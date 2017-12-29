@@ -1,0 +1,29 @@
+.App-logo {
+    animation: App-logo-spin infinite 25s linear;
+    height: 70px;
+    top:35px;
+    position: absolute;
+  }
+
+  .App-logo2{
+    padding-top:0px;
+    padding-left: 65px;
+    height: 100px;
+    width: 150px;
+  }
+  
+  .App-header {
+    background-color: #222;
+    height: 160px;
+    padding: 20px;
+    color: white;
+  }
+  
+  .App-title {
+    font-size: 30px;
+  }
+  
+  @keyframes App-logo-spin {
+    from { transform: rotate(deg); }
+    to { transform: rotate(360deg); }
+  }

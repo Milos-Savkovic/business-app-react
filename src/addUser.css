@@ -1,0 +1,46 @@
+.add-user-container{
+    height: 100%;
+    overflow-y:auto;
+}
+.contactForm { 
+  border: 3px solid rgb(206, 218, 155);
+  padding: 3%;
+  width: 100%;
+  background: rgb(226, 225, 225);
+  height:100%;
+  overflow-y: auto;
+  overflow-y:auto;
+  text-align: center;
+}
+input, textarea { 
+  margin: .8em auto;
+  font-family: inherit; 
+  text-transform: inherit; 
+  font-size: inherit;
+  float:relative;  
+  display: block; 
+  width: 280px; 
+  padding: .4em;
+}
+textarea { 
+    height: 120px; 
+    resize: none; 
+}
+label{
+    text-decoration: none;    
+    font-size: 20px;
+}
+.formBtn {
+  width: 200px;
+  display: inline-block;
+  background: rgb(187, 150, 29);
+  color: #fff;
+  font-weight: 100;
+  font-size: 1.2em;
+  border: none;
+  height: 50px;
+  padding:10px;
+}
+.formBtn:hover {
+    background-color: rgb(169, 187, 92);
+}

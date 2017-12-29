@@ -1,0 +1,9 @@
+.reportName{
+    padding-top:8px;
+}
+.reportName:hover{
+    color:rgb(128, 139, 23);
+}
+.date{
+    font-size: 14px;
+}
