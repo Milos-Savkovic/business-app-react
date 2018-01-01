@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import './container.css';
 import Person from './Person';
 import fetchUsers from './Seed';
@@ -15,7 +15,7 @@ class Container extends Component {
     }
 
     helper() {
-        fetchUsers().then((items) => {
+        fetchUsers().then((items) => { 
             this.setState({
                 users: items,
             })
@@ -33,13 +33,15 @@ class Container extends Component {
             userDetailsId: id,
         })
         console.log(id);
-
+        this.props.history.push(`/users/${this.state.userDetailsId}`);
+        
     }
-
+    
     clickHandler = () => {
         this.setState({
             newUser: true,
         })
+        this.props.history.push(`/users/add`);
     }
 
     render() {
@@ -71,5 +73,5 @@ class Container extends Component {
     }
 }
 
-export default Container;
+export default withRouter(Container);
 

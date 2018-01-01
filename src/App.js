@@ -14,11 +14,11 @@ const App = () => (
       <Route exact path='/' render={() => (
         <Redirect to='/login' />
       )} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
+      <Route  path="/login" component={Login} />
+      <Route  path="/register" component={Register} />
       <Route exact path='/users/add' component={Right} />
-      <Route exact path='/users' component={Home} />
-      <Route exact path='/users/:id' component={About} />
+      <Route  path='/users/:id' component={About} />
+      <Route  path='/users' component={Home} />
       <Route component={NotFound} />
     </Switch>
   </div>

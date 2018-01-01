@@ -25,7 +25,7 @@ class Person extends Component {
             );
         }
         else return (
-            <div className="cardImagePlus" onClick={() => { this.handleAddPerson() }}>
+            <div className="cardImagePlus" onClick={(e) => this.handleAddPerson(e) }>
                 <div className="plusElement">+</div>
             </div>
         );
