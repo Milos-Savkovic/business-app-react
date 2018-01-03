@@ -2,7 +2,8 @@
     padding-top:8px;
 }
 .reportName:hover{
-    color:rgb(128, 139, 23);
+    background-color:rgb(248, 246, 171);
+    cursor: pointer;
 }
 .date{
     font-size: 14px;
