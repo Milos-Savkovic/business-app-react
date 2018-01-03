@@ -40,7 +40,7 @@ class UserDetail extends Component {
                 <div className="reportsClass">
                     {this.reporter()}
                 </div>
-                <button className="buttonAdd"> <span className="buttonSpan">+</span> </button>
+        {/*<button className="buttonAdd"> <span className="buttonSpan">+</span> </button>*/}
             </div>
         );
     }

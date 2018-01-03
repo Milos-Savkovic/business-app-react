@@ -8,7 +8,7 @@ class Report extends Component {
             <div className="reportName">
                 {this.props.reportName}
                 <div className="date">
-                    {" ( " + this.props.date1 + " - " + this.props.date2 + " ) "}
+                    <small>{" ( " + this.props.date1 + " - " + this.props.date2 + " ) "}</small>
                 </div>
             </div>
         )

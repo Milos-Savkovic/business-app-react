@@ -1,8 +1,10 @@
 .reportName{
-    padding-top:8px;
+    padding: 8px 3px;
 }
 .reportName:hover{
-    color:rgb(128, 139, 23);
+    color: rgb(17, 17, 17);
+    cursor: pointer;
+    background-color: #efbe23;
 }
 .date{
     font-size: 14px;
