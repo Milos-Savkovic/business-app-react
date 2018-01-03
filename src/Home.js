@@ -6,7 +6,6 @@ import './home.css';
 class Home extends Component {
 
     render() {
-        console.log(this.props);
         return (
             <div className="home">
                 <Navigation />

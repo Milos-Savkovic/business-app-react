@@ -28,17 +28,17 @@ class AddUser extends Component {
     setFirebase = (event) => {
         event.preventDefault();
         let ourTeam = [];
-        const reports = {
-            0: {
-                reportName: "reportName",
-                date1: "date1",
-                date2: "date2",
-                dailyEarnings: "deilyEarnings",
-                costs: "Kompanija",
-                distance: "distance",
-                typeOfTransport: "Sluzbeno"
-            }
-        }
+        // const reports = {
+        //     0: {
+        //         reportName: "reportName",
+        //         date1: "date1",
+        //         date2: "date2",
+        //         dailyEarnings: "deilyEarnings",
+        //         costs: "Kompanija",
+        //         distance: "distance",
+        //         typeOfTransport: "Sluzbeno"
+        //     }
+        // }
         fireDB.ref('/users').once('value')
             .then((snapshot) => {
                 const team = [
@@ -62,7 +62,7 @@ class AddUser extends Component {
                         Id: id,
                         LastName: this.state.user.lastname,
                         Position: this.state.user.position,
-                        Reports: reports,
+                        // Reports: reports,
                         Selected: true,
                     }];
                 return team;

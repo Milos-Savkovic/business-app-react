@@ -1,10 +1,11 @@
 .user{
     height: 100%;
     width:300px;
-    overflow:scroll;
+    overflow-y:auto;
     overflow-x: hidden;
-    background-color:rgb(209, 209, 167);
-    border-right: solid 2px rgb(187, 150, 29);
+    /* background-color:rgb(209, 209, 167); */
+    border-right: solid 1px rgb(240, 191, 35);
+    box-shadow: 1px 0px 6px #c2c2c2;
 }
 ::-webkit-scrollbar {
     width: 12px;
@@ -23,8 +24,8 @@
 }
 
 .img{
-    height: 200px;
-    width: 250px;
+    height: auto;
+    width: 100%;
     border: solid 1px rgb(134, 107, 23);
     display: flex;
     flex-flow: row wrap;
@@ -34,13 +35,13 @@
     margin-top: 10px;    
 }
 .nameClass{
-    background-color: rgb(187, 150, 29);
+    background-color: rgb(224, 178, 34);
     color:rgb(29, 28, 28);
     font-size:24px;
     text-align: center; 
     font-family: Verdana;
     padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);        
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
 }
 .positionClass{
     font-size:18px;    
@@ -50,16 +51,17 @@
 }
 .descriptionClass{
     padding: 5px;
-    padding-left:20px;     
+    /* padding-left:20px;      */
+    text-align: center;
     font-family: Monospace;
-    font-size:16px;    
+    font-size:16px;  
 }
 .reportsClass{
     color:rgb(64, 73, 2); 
     margin-top:10px;
     text-align: center;
     font-size:20px;
-    padding:5px;
+    /* padding:5px; */
     overflow-y:auto;
 }
 .buttonAdd{

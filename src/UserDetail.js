@@ -6,22 +6,24 @@ class UserDetail extends Component {
 
     reporter() {
         const reportsArray = [];
-        for (let i in this.props.reports) {
-            reportsArray.push(this.props.reports[i]);
-        }
-        const reports = reportsArray.map((item) => (
-            <Report
-                key={item.reportName}
-                const={item.costs}
-                reportName={item.reportName}
-                distance={item.distance}
-                dailyEarnings={item.dailyEarnings}
-                typeOfTransport={item.typeOfTransport}
-                date1={item.date1}
-                date2={item.date2}
-            />
-        ))
-        return (reports)
+        if (this.props.reports) {
+            for (let i in this.props.reports) {
+                reportsArray.push(this.props.reports[i]);
+            }
+            const reports = reportsArray.map((item) => (
+                <Report
+                    key={item.reportName}
+                    const={item.costs}
+                    reportName={item.reportName}
+                    distance={item.distance}
+                    dailyEarnings={item.dailyEarnings}
+                    typeOfTransport={item.typeOfTransport}
+                    date1={item.date1}
+                    date2={item.date2}
+                />
+            ))
+            return (reports)
+        } else return null;        
     }
 
     render() {
@@ -40,7 +42,7 @@ class UserDetail extends Component {
                 <div className="reportsClass">
                     {this.reporter()}
                 </div>
-                <button className="buttonAdd"> <span className="buttonSpan">+</span> </button>
+                {/*<button className="buttonAdd"> <span className="buttonSpan">+</span> </button>*/}
             </div>
         );
     }
