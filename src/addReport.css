@@ -1,0 +1,62 @@
+.field{
+    background-color: rgb(248, 233, 201);
+    height:100%;
+    width: 100%;  
+    -webkit-flex: 1;
+    flex: 1;
+    overflow:hidden;
+}
+
+.form-newReport{
+    height: 100%;
+    overflow-y: auto;
+    display: flex;        
+    flex-direction: column; 
+    /* justify-content: center;  */
+    align-items: center;     
+}
+#date{
+    flex-direction: row; 
+    width:150px;
+    text-align: center
+}
+.addLocation{
+    width:300px;    
+    padding: 15px;
+    background-color: rgb(127, 211, 94);
+    color:white;
+    font-size:24px;
+}
+.submit{
+    width:100%;
+    min-height:80px;
+    padding: 15px;
+    background-color: rgb(127, 211, 94);
+    color:white;
+    font-size:24px;
+    text-align: center;
+}
+#mapElement{
+    min-height: 350px;
+    width: 640px;
+}
+#mapsearch{
+    width:300px;
+    text-align: center;    
+}
+.rowDate{
+    flex-direction: column; 
+    padding-bottom:10px;
+}
+.buttom-costs{
+ widows: 91px;
+ padding:10px;
+}
+#date1, #date2{
+    text-align: center;
+    margin:5px;
+}
+label{
+    font-size:16px;
+    padding:3px;
+}
