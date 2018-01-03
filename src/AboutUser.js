@@ -16,7 +16,9 @@ class AboutUser extends Component {
                     reports={this.props.reports}
                     description={this.props.description}
                 />
-                <Field />
+                <Field 
+                    path={this.props.path}
+                />
             </div>
         );
     }

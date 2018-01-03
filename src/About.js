@@ -26,6 +26,9 @@ class About extends Component {
             })
             .catch((e) => console.log(e))
     }
+    componentWillUpdate() {
+        console.log(this.props.location.pathname);
+    }
 
     about() {
         if (this.state.user) {
@@ -38,6 +41,7 @@ class About extends Component {
                     position={this.state.user.Position}
                     reports={this.state.user.Reports}
                     description={this.state.user.Description}
+                    path={this.props.location.pathname}
                 />
             )
         }
