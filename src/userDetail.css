@@ -36,9 +36,10 @@
 }
 .descriptionClass{
     padding: 5px;
-    padding-left:20px;     
+    /* padding-left:20px;      */
+    text-align: center;
     font-family: Monospace;
-    font-size:16px;    
+    font-size:16px;  
 }
 .reportsClass{
     color:rgb(64, 73, 2); 
