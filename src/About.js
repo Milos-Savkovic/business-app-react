@@ -18,11 +18,11 @@ class About extends Component {
                     ...snapshot.val(),
                 ];
                 Team.filter(item => item.Id === id)
-                    .map(item => {
+                    .map(item => (
                         this.setState({
                             user: item,
                         })
-                    })
+                    ))
             })
             .catch((e) => console.log(e))
     }
