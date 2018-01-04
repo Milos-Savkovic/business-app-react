@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DayPicker from './DayPicker';
 import './addReport.css';
 
 class AddReport extends Component {
@@ -10,10 +11,7 @@ class AddReport extends Component {
             <div className="field">
                 <form method="post" className="form-newReport"  >
                     <div className="rowDate">
-                        <label>Datum polaska: </label>
-                        <input id="date1" />
-                        <label>Datum dolaska: </label>
-                        <input id="date2" />
+                        <DayPicker />
                     </div>
                     <label>Dnevnica : </label>
                     <label>domaća</label>
