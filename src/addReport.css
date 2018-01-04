@@ -10,15 +10,9 @@
     overflow-y: auto;
     display: flex;        
     flex-direction: column; 
-    /* justify-content: center;  */ 
     align-items: center;     
     position: relative;
     width: 100%;
-}
-#date{
-    flex-direction: row; 
-    width:150px;
-    text-align: center
 }
 .addLocation{
     width:300px;    
@@ -40,16 +34,19 @@
     min-height: 350px;
     width: 640px;
 }
-#mapsearch{
-    width:300px;
-    text-align: center;    
+#mapSearch{
+    width:200px;
+    text-align: center;  
 }
 .rowDate{
     flex-direction: column; 
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
 .rowDate input {
     width: 150px;
+    height: 15px;
+    margin:5px;
+    text-align: center;
 }
 .buttom-costs{
  widows: 91px;
@@ -59,9 +56,16 @@
     text-align: center;
     margin:5px;
 }
-label{
-    font-size:16px;
+p{
+    font-size:18px;
     padding:3px;
+    margin-bottom:0px;
+    margin-top:0px;
+}
+label{
+    font-size:14px;
+    padding:3px;
+    margin-bottom:0px;
 }
 .close {
     position: absolute;
@@ -80,4 +84,32 @@ label{
     box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.144);
     cursor: pointer;
     font-size: 1.3rem;
+}
+.rowEarnings{
+    padding:10px;
+    flex-direction: column; 
+    width:100px;
+    padding-top:0px;
+}
+.box{
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+  }
+.ch1,.ch2,.ch3{
+    width:22px;
+    padding:3px;
+    margin:4px;
+}
+.drop{
+    display: flex;
+  flex-direction: row;
+}
+.dropItem{
+    flex-direction: column;
+    display: flex;
+    flex:1;
+    align-content: stretch;
+    align-items: center;
+    justify-content: space-between;
 }
