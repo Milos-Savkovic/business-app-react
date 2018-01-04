@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import Report from './Report';
 import './userDetail.css';
 
@@ -11,19 +12,24 @@ class UserDetail extends Component {
                 reportsArray.push(this.props.reports[i]);
             }
             const reports = reportsArray.map((item) => (
-                <Report
+                <NavLink 
                     key={item.reportName}
-                    const={item.costs}
-                    reportName={item.reportName}
-                    distance={item.distance}
-                    dailyEarnings={item.dailyEarnings}
-                    typeOfTransport={item.typeOfTransport}
-                    date1={item.date1}
-                    date2={item.date2}
-                />
+                    to={`/users/${this.props.id}/reports/${item.reportName}`}
+                    className="navLink"
+                >
+                    <Report
+                        const={item.costs}
+                        reportName={item.reportName}
+                        distance={item.distance}
+                        dailyEarnings={item.dailyEarnings}
+                        typeOfTransport={item.typeOfTransport}
+                        date1={item.date1}
+                        date2={item.date2}
+                    />
+                </NavLink>
             ))
             return (reports)
-        } else return null;        
+        } else return null;
     }
 
     render() {
@@ -39,7 +45,7 @@ class UserDetail extends Component {
                 <div className="descriptionClass">
                     {this.props.description}
                 </div>
-                <hr className="separator"/>
+                <hr className="separator" />
                 <div className="reportsClass">
                     {this.reporter()}
                 </div>

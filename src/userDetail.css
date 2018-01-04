@@ -88,3 +88,7 @@
     display: block;
     border-top: .5px solid rgb(240, 191, 35);
 }
+.navLink {
+    text-decoration: none;
+    color: inherit;
+}

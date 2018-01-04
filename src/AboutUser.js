@@ -22,7 +22,7 @@ class AboutUser extends Component {
         })
     }
     closeHandler = () => {
-        this.props.history.push(`/users/${this.props.id}`);
+        this.props.history.push(this.props.history.goBack());
         this.setState({
             addReport: true
         })
@@ -39,6 +39,7 @@ class AboutUser extends Component {
             <div className="aboutUser">
                 <UserDetail
                     key={this.props.id}
+                    id={this.props.id}
                     firstName={this.props.firstName}
                     lastName={this.props.lastName}
                     position={this.props.position}
