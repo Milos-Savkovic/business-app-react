@@ -12,7 +12,7 @@ class AddReport extends Component {
                     <div className="rowDate">
                         <label>Datum polaska: </label>
                         <input id="date1" />
-                        <label>Datum dolaska: </label> 
+                        <label>Datum dolaska: </label>
                         <input id="date2" />
                     </div>
                     <label>Dnevnica : </label>
@@ -34,13 +34,14 @@ class AddReport extends Component {
                     <input type="text" id="mapsearch" required="" />
                     <div id="mapElement" >
                     </div>
+                    <div
+                        className="close"
+                        onClick={this.xhandler}
+                    >
+                        X
+                    </div>
                 </form>
-                <div
-                    className="close"
-                    onClick={this.xhandler}
-                >
-                    X
-                </div>
+
             </div>
         );
     }
