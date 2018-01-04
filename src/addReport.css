@@ -16,6 +16,7 @@
     flex-direction: column; 
     /* justify-content: center;  */ 
     align-items: center;     
+    position: relative;
 }
 #date{
     flex-direction: row; 
@@ -50,6 +51,9 @@
     flex-direction: column; 
     padding-bottom:10px;
 }
+.rowDate input {
+    width: 150px;
+}
 .buttom-costs{
  widows: 91px;
  padding:10px;
@@ -64,8 +68,8 @@ label{
 }
 .close {
     position: absolute;
-    top: 3rem;
-    right: 3rem;
+    top: 0rem;
+    right: 2rem;
     font-size: 1rem;
     font-weight:  500;
     color: rgb(224, 178, 34);
