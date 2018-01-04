@@ -11,11 +11,6 @@ class AboutUser extends Component {
         addReport: true,
     }
 
-    // handleAddReport = () => {
-    //     this.setState({
-    //         addReport: true,
-    //     })
-    // }
     addReportHandler = () => {
         this.setState({
             addReport: false

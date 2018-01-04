@@ -3,21 +3,23 @@
     height:100%;
     width: 100%;  
     display: flex;
+    padding: 2rem 0;
     /* -webkit-flex: 1; */
     /* flex: 1; */
     overflow:hidden;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    /* flex-wrap: wrap; */
 }
 .fieldTitle {
     color: #a3a3a3;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: capitalize;
 }
 .fieldButton {
     /* border: 1px solid #a7a6a6; */
-    padding: 3rem;
+    padding: 1.7rem;
     border-radius: 50%;
     position: relative;
     box-shadow: 0px 0px 5px #8a8a8a;
@@ -35,7 +37,7 @@
 .fieldPlus {
     position: absolute;
     color: #a3a3a3;    
-    font-size: 3rem;
+    font-size: 1.7rem;
 }
 .fieldButton:hover .fieldPlus {
     color: rgb(224, 178, 34);
