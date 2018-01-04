@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import NotFound from './NotFound';
+import ReportDetails from './ReportDetails';
 import './field.css';
 
 class Field extends Component {
@@ -28,7 +28,7 @@ class Field extends Component {
                 <hr className='separator'/>
                 <Route
                     path={`/users/:id/reports/:reportName`}
-                    component={NotFound}
+                    component={ReportDetails}
                 />
             </div>
         );

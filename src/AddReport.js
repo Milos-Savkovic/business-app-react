@@ -14,12 +14,21 @@ class AddReport extends Component {
                         <DayPicker />
                     </div>
                     <label>Dnevnica : </label>
-                    <label>domaća</label>
-                    <input type="radio" name="radioButton" value="domaća" id="choice2" defaultChecked />
-                    <label>EX-YU</label>
-                    <input type="radio" name="radioButton" value="EX-YU" id="choice1" />
-                    <label>strana</label>
-                    <input type="radio" value="strana" name="radioButton" id="choice3" />
+                    <div className="dnevnica">
+                        <div className="box">
+                            <input type="radio" name="radioButton" value="domaća" id="choice2" defaultChecked />
+                            <label>domaća</label>
+                        </div>
+                        <div className="box">
+                            <input type="radio" name="radioButton" value="EX-YU" id="choice1" />
+                            <label>EX-YU</label>
+                        </div>
+                        <div className="box">
+                            <input type="radio" value="strana" name="radioButton" id="choice3" />
+                            <label>strana</label>
+                        </div>
+
+                    </div>
                     <br />
                     <label>Troškove snosi : </label>
                     <div type="buttom" className="buttom-costs">
