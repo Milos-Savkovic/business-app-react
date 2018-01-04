@@ -13,9 +13,11 @@ class UserDetail extends Component {
             }
             const reports = reportsArray.map((item) => (
                 <NavLink 
+                    exact
                     key={item.reportName}
                     to={`/users/${this.props.id}/reports/${item.reportName}`}
                     className="navLink"
+                    activeClassName="active"
                 >
                     <Report
                         const={item.costs}
@@ -45,7 +47,7 @@ class UserDetail extends Component {
                 <div className="descriptionClass">
                     {this.props.description}
                 </div>
-                <hr className="separator" />
+                <hr className="description-separator" />
                 <div className="reportsClass">
                     {this.reporter()}
                 </div>

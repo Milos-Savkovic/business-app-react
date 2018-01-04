@@ -11,18 +11,21 @@ class Field extends Component {
     render() {
         console.log(this.props.path)
         return (
-            <div className="fieldBack">
-        {/*<h3 className="fieldTitle">Add new report</h3>*/}
-                <Link
-                    to={`${this.props.path}/new-report`}
-                    onClick={this.clickHandler}
-                >
-                    <div
-                        className="fieldButton"
+            <div className="fieldBack-container">
+                <div className="fieldBack">
+                    <h3 className="fieldTitle">Add new report</h3>
+                    <Link
+                        to={`${this.props.path}/new-report`}
+                        onClick={this.clickHandler}
                     >
-                        <strong className="fieldPlus" >+</strong>
-                    </div>
-                </Link>
+                        <div
+                            className="fieldButton"
+                        >
+                            <strong className="fieldPlus" >+</strong>
+                        </div>
+                    </Link>
+                </div>
+                <hr className='separator'/>
                 <Route
                     path={`/users/:id/reports/:reportName`}
                     component={NotFound}

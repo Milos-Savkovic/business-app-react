@@ -1,12 +1,8 @@
 .field{
     /* background-color: rgb(248, 233, 201); */
-    height:100%;
-    width: 100%;  
-    display: flex;
-    /* -webkit-flex: 1;
-    flex: 1; */
-    overflow:hidden;
-    padding: 3rem 0;
+    width: 100%;    
+    overflow:hidden;  
+    padding: 1rem; 
 }
 
 .form-newReport{
@@ -17,6 +13,7 @@
     /* justify-content: center;  */ 
     align-items: center;     
     position: relative;
+    width: 100%;
 }
 #date{
     flex-direction: row; 

@@ -44,20 +44,6 @@ class AboutUser extends Component {
                 {report}
             </div>
         );
-        // } else return(
-        //     <div className="aboutUser">
-        //             <UserDetail
-        //                 key={this.props.id}
-        //                 firstName={this.props.firstName}
-        //                 lastName={this.props.lastName}
-        //                 position={this.props.position}
-        //                 reports={this.props.reports}
-        //                 description={this.props.description}
-        //                 addReport={this.handleAddReport}
-        //             />
-        //             <AddReport />
-        //         </div>
-        // )
     }
 }
 
