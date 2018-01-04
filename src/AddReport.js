@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './addReport.css';
 
 class AddReport extends Component {
+    xhandler = () => {
+        this.props.closeReport();
+    }
     render() {
         return (
             <div className="field">
@@ -32,6 +35,12 @@ class AddReport extends Component {
                     <div id="mapElement" >
                     </div>
                 </form>
+                <div
+                    className="close"
+                    onClick={this.xhandler}
+                >
+                    X
+                </div>
             </div>
         );
     }

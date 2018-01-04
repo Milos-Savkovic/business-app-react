@@ -4,9 +4,8 @@ import './field.css';
 
 class Field extends Component {
     
-    state={
-        showReport:false,
-        addReport:false,
+    clickHandler = () => {
+        this.props.clicked();
     }
     render() {
         return (
@@ -14,10 +13,10 @@ class Field extends Component {
                 <h3 className="fieldTitle">Add new report</h3>
                 <Link 
                     to={`${this.props.path}/new-report`}     
+                    onClick={this.clickHandler}
                 >
                     <div
-                        className="fieldButton"
-                        
+                        className="fieldButton"             
                     >
                         <strong className="fieldPlus" >+</strong>
                     </div>

@@ -42,6 +42,8 @@ class About extends Component {
                     reports={this.state.user.Reports}
                     description={this.state.user.Description}
                     path={this.props.location.pathname}
+                    history={this.props.history}
+                    location={this.props.location}
                 />
             )
         }

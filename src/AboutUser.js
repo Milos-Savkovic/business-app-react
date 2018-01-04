@@ -3,21 +3,41 @@ import UserDetail from './UserDetail';
 import Field from './Field';
 // import AddReport from './AddReport';
 import './aboutUser.css';
+import AddReport from './AddReport';
 
 class AboutUser extends Component {
 
-    // state = {
-    //     addReport: false,
-    // }
+    state = {
+        addReport: true,
+    }
 
     // handleAddReport = () => {
     //     this.setState({
     //         addReport: true,
     //     })
     // }
+    addReportHandler = () => {
+        this.setState({
+            addReport: false
+        })
+    }
+    closeHandler = () => {
+        console.log(this.props.history);
+        this.props.history.push(`/users/${this.props.id}`);
+        this.setState({
+            addReport: true
+        })
+    }
 
     render() {
         // if (!AddReport) {
+        console.log(this.props);
+        let report = (this.state.addReport) ?
+            <Field path={this.props.path} clicked={this.addReportHandler} /> :
+            <AddReport closeReport={this.closeHandler} />;
+        if(this.props.location.pathname == `/users/${this.props.id}/new-report`) {
+            report = <AddReport closeReport={this.closeHandler} />;
+        }
         return (
             <div className="aboutUser">
                 <UserDetail
@@ -29,9 +49,7 @@ class AboutUser extends Component {
                     description={this.props.description}
                 // addReport={this.handleAddReport}
                 />
-                <Field 
-                    path={this.props.path}
-                />
+                {report}
             </div>
         );
         // } else return(
