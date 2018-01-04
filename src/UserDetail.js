@@ -39,6 +39,7 @@ class UserDetail extends Component {
                 <div className="descriptionClass">
                     {this.props.description}
                 </div>
+                <hr className="separator"/>
                 <div className="reportsClass">
                     {this.reporter()}
                 </div>

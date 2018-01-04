@@ -6,12 +6,12 @@
 .card {
     padding: 5px;
     border-radius: 15px;
-    border: 3px solid rgb(187, 150, 29) ;
+    border: 3px solid rgb(231, 231, 231) ;
     margin: 30px;
     height: 350px;
     width:250px;
     float: left;
-    background-color:#b7cad1;
+    background-color:#f8f8f8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin-bottom:20px;
     text-align: center;
@@ -20,7 +20,8 @@
     margin: 30px; 
     padding: 5px;    
     background-color:rgb(127, 211, 94);
-    border: 3px solid rgb(187, 150, 29);    
+    border: 3px solid rgb(231, 231, 231);    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
     font-size:80px;
     height: 350px;

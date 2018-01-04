@@ -12,7 +12,7 @@ class AddReport extends Component {
                     <div className="rowDate">
                         <label>Datum polaska: </label>
                         <input id="date1" />
-                        <label>Datum dolaska: </label>
+                        <label>Datum dolaska: </label> 
                         <input id="date2" />
                     </div>
                     <label>Dnevnica : </label>

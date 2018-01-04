@@ -14,7 +14,7 @@
     overflow-y: auto;
     display: flex;        
     flex-direction: column; 
-    /* justify-content: center;  */
+    /* justify-content: center;  */ 
     align-items: center;     
 }
 #date{
@@ -64,8 +64,8 @@ label{
 }
 .close {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 3rem;
+    right: 3rem;
     font-size: 1rem;
     font-weight:  500;
     color: rgb(224, 178, 34);

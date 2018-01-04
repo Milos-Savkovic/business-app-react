@@ -26,9 +26,6 @@ class About extends Component {
             })
             .catch((e) => console.log(e))
     }
-    componentWillUpdate() {
-        console.log(this.props.location.pathname);
-    }
 
     about() {
         if (this.state.user) {

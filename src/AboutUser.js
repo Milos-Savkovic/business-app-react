@@ -22,7 +22,6 @@ class AboutUser extends Component {
         })
     }
     closeHandler = () => {
-        console.log(this.props.history);
         this.props.history.push(`/users/${this.props.id}`);
         this.setState({
             addReport: true
@@ -30,12 +29,10 @@ class AboutUser extends Component {
     }
 
     render() {
-        // if (!AddReport) {
-        console.log(this.props);
         let report = (this.state.addReport) ?
             <Field path={this.props.path} clicked={this.addReportHandler} /> :
             <AddReport closeReport={this.closeHandler} />;
-        if(this.props.location.pathname == `/users/${this.props.id}/new-report`) {
+        if(this.props.location.pathname === `/users/${this.props.id}/new-report`) {
             report = <AddReport closeReport={this.closeHandler} />;
         }
         return (
@@ -47,7 +44,6 @@ class AboutUser extends Component {
                     position={this.props.position}
                     reports={this.props.reports}
                     description={this.props.description}
-                // addReport={this.handleAddReport}
                 />
                 {report}
             </div>
