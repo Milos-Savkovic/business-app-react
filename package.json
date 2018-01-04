@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^4.8.1",
     "history": "^4.7.2",
+    "moment": "^2.20.1",
     "re-base": "^3.2.1",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
