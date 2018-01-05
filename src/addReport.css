@@ -1,10 +1,8 @@
 .field{
-    /* background-color: rgb(248, 233, 201); */
     width: 100%;    
     overflow:hidden;  
     padding: 1rem; 
 }
-
 .form-newReport{
     height: 100%;
     overflow-y: auto;
@@ -30,10 +28,6 @@
     font-size:24px;
     text-align: center;
 }
-#mapElement{
-    min-height: 350px;
-    width: 640px;
-}
 #mapSearch{
     width:200px;
     text-align: center;  
@@ -49,8 +43,8 @@
     text-align: center;
 }
 .buttom-costs{
- widows: 91px;
- padding:10px;
+    widows: 91px;
+    padding:10px;
 }
 #date1, #date2{
     text-align: center;
@@ -95,15 +89,14 @@ label{
     flex-direction: row;
     display: flex;
     justify-content: flex-start;
-  }
+}
 .ch1,.ch2,.ch3{
     width:22px;
     padding:3px;
     margin:4px;
 }
 .drop{
-    display: flex;
-  flex-direction: row;
+     flex-direction: row;
 }
 .dropItem{
     flex-direction: column;

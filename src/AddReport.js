@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DayPicker from './DayPicker';
+import MyMap from './MyMap';
 import './addReport.css';
 
 class AddReport extends Component {
@@ -50,8 +51,7 @@ class AddReport extends Component {
                     </div>
                     <p>Lokacija : </p>
                     <input type="text" id="mapSearch" required="" />
-                    <div id="mapElement" >
-                    </div>
+                    <MyMap />
                     <div
                         className="close"
                         onClick={this.xhandler}
