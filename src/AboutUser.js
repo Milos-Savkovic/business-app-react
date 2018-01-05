@@ -25,9 +25,13 @@ class AboutUser extends Component {
 
     render() {
         let report = (this.state.addReport) ?
-            <Field path={this.props.path} clicked={this.addReportHandler} /> :
+            <Field
+                id={this.props.id}
+                path={this.props.path}
+                clicked={this.addReportHandler}
+            /> :
             <AddReport closeReport={this.closeHandler} />;
-        if(this.props.location.pathname === `/users/${this.props.id}/new-report`) {
+        if (this.props.location.pathname === `/users/${this.props.id}/new-report`) {
             report = <AddReport closeReport={this.closeHandler} />;
         }
         return (

@@ -24,30 +24,28 @@
     line-height: .5rem;
 }
 .fieldButton {
-    /* border: 1px solid #a7a6a6; */
-    padding: 1rem 1.2rem;
+    padding: 1rem 2.2rem;
     border-radius: 10%;
     position: relative;
-    box-shadow: 0px 0px 5px #8a8a8a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+    display: flex;    
+    align-items: center;    
+    justify-content: center;    
+    box-sizing: border-box;    
     transition: all 0.1s ease-out;
+    box-shadow: 0px 0px 3px #79640b;
+    background-color: #f0bf24;
 }
 .fieldButton:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 10px #8a8a8a;
+    box-shadow: 0px 0px 1px #585858;
 }
 
 .fieldPlus {
     position: absolute;
-    color: #a3a3a3;    
+    color: #ffffff;    
     font-size: 1.5rem;
 }
-.fieldButton:hover .fieldPlus {
-    color: rgb(224, 178, 34);
-}
+
 .separator {
     width: 90%;
     display: block;
