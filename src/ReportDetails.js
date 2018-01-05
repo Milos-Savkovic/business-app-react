@@ -6,7 +6,7 @@ class ReportDetails extends Component {
   state = {
     user: null
   }
-  componentDidMount() {
+  componentWillMount() {
     fireDB.ref('/users').once('value')
       .then((snapshot) => {
         const Team = [
@@ -28,7 +28,6 @@ class ReportDetails extends Component {
       const repName = arrayFromUrl.pop();
       const reportArr = this.state.user.Reports.filter(rep => rep.reportName === repName);
       const reportObj = reportArr.pop();
-      console.log(reportObj);
       return reportObj;
     }
     if (this.state.user) {

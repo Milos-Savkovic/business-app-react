@@ -24,6 +24,7 @@ class AboutUser extends Component {
     }
 
     render() {
+        // console.log(this.props);
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}
@@ -31,9 +32,9 @@ class AboutUser extends Component {
                 clicked={this.addReportHandler}
             /> :
             <AddReport closeReport={this.closeHandler} />;
-        if (this.props.location.pathname === `/users/${this.props.id}/new-report`) {
-            report = <AddReport closeReport={this.closeHandler} />;
-        }
+        // if (this.props.location.pathname === `/users/${this.props.id}/new-report`) {
+        //     report = <AddReport closeReport={this.closeHandler} />;
+        // }
         return (
             <div className="aboutUser">
                 <UserDetail

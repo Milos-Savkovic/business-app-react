@@ -18,6 +18,7 @@ class UserDetail extends Component {
                     to={`/users/${this.props.id}/reports/${item.reportName}`}
                     className="navLink"
                     activeClassName="active"
+
                 >
                     <Report
                         const={item.costs}

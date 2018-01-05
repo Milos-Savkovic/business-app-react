@@ -9,7 +9,7 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div className="fieldBack-container">
                 <div className="fieldBack">
