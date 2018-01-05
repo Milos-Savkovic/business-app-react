@@ -1,0 +1,13 @@
+.report-container {
+  width: 90%;
+  padding: 2rem;
+  display: flex;
+  flex-flow: column;
+}
+.report-row {
+  display: flex;
+  justify-content: space-between;
+  color: #676767;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #dfdfdf;
+}

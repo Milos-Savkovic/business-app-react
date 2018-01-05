@@ -4,7 +4,7 @@
 .reportName:hover{
     color: rgb(17, 17, 17);
     cursor: pointer;
-    background-color: #efbe23;
+    background: rgb(238, 238, 238);
 }
 .date{
     font-size: 14px;
