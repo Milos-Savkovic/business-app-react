@@ -10,7 +10,11 @@ class AboutUser extends Component {
     state = {
         addReport: true,
     }
-
+    clicked = () => {
+        this.setState({
+            addReport: true
+        })
+    }
     addReportHandler = () => {
         this.setState({
             addReport: false
@@ -45,6 +49,7 @@ class AboutUser extends Component {
                     position={this.props.position}
                     reports={this.props.reports}
                     description={this.props.description}
+                    clickedLink={this.clicked}
                 />
                 {report}
             </div>

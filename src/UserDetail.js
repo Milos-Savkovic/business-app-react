@@ -4,7 +4,9 @@ import Report from './Report';
 import './userDetail.css';
 
 class UserDetail extends Component {
-
+    click = () => {
+        this.props.clickedLink();
+    }
     reporter() {
         const reportsArray = [];
         if (this.props.reports) {
@@ -12,13 +14,13 @@ class UserDetail extends Component {
                 reportsArray.push(this.props.reports[i]);
             }
             const reports = reportsArray.map((item) => (
-                <NavLink 
+                <NavLink
                     exact
                     key={item.reportName}
                     to={`/users/${this.props.id}/reports/${item.reportName}`}
                     className="navLink"
                     activeClassName="active"
-
+                    onClick={this.click}
                 >
                     <Report
                         const={item.costs}
