@@ -9,13 +9,13 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         return (
             <div className="fieldBack-container">
                 <div className="fieldBack">
                     <h3 className="fieldTitle">Add new report</h3>
                     <Link
-                        to={`${this.props.path}/new-report`}
+                        to={`/users/${this.props.id}/new-report`}
                         onClick={this.clickHandler}
                     >
                         <div
