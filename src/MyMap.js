@@ -1,12 +1,13 @@
 import React from 'react';
 import { compose, withProps } from 'recompose';
 import {
-    withScriptjs,
     withGoogleMap,
+    withScriptjs,
     GoogleMap,
     Marker,
 } from "react-google-maps";
 
+// var map = new window.google.maps.Map({ lat: 37.7749300, lng: -122.4194200 });
 const MyMap = compose(
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
@@ -27,5 +28,4 @@ const MyMap = compose(
         />
     </GoogleMap>
     );
-
 export default MyMap;
