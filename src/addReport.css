@@ -20,13 +20,14 @@
     font-size:24px;
 }
 .submit{
-    width:100%;
-    min-height:80px;
-    padding: 15px;
-    background-color: rgb(127, 211, 94);
+    width:400px;
+    min-height:50px;
+    padding: 5px;
+    background-color: rgb(224, 178, 34);
     color:white;
     font-size:24px;
     text-align: center;
+    border:none;
 }
 #mapSearch{
     width:200px;

@@ -58,6 +58,7 @@ class AddReport extends Component {
                     >
                         X
                     </div>
+                    <input type="submit" value="Add report" className="submit"/>
                 </form>
 
             </div>
