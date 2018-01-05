@@ -4,6 +4,25 @@ import MyMap from './MyMap';
 import './addReport.css';
 
 class AddReport extends Component {
+
+    state = {
+        city: {
+            cityName: '',
+        },
+    }
+
+    handleCity = (e) => {
+        const city = this.state.city;
+        const name = e.target.name;
+        const value = e.target.value;
+
+        city[name] = value;
+
+        this.setState({
+            city
+        })
+    }
+
     xhandler = () => {
         this.props.closeReport();
     }
@@ -32,7 +51,7 @@ class AddReport extends Component {
                     <div className="drop">
                         <div className="dropItem">
                             <p>Troškove snosi : </p>
-                            <div type="buttom" className="buttom-costs">
+                            <div className="buttom-costs">
                                 <select id="dropdownItem">
                                     <option name="dropdowna" value="kompanija">Kompanija</option>
                                     <option name="dropdowna" value="zaposleni">Zaposleni</option>
@@ -50,15 +69,19 @@ class AddReport extends Component {
                         </div>
                     </div>
                     <p>Lokacija : </p>
-                    <input type="text" id="mapSearch" required="" />
-                    <MyMap />
+                    <div className="input-group">
+                        <input type="text" className="form-control" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                    </div>
+                    <MyMap
+                        city={this.state.city.cityName || 'Banja Luka'}
+                    />
                     <div
                         className="close"
                         onClick={this.xhandler}
                     >
                         X
                     </div>
-                    <input type="submit" value="Add report" className="submit"/>
+                    <input type="submit" value="Add report" className="submit" />
                 </form>
 
             </div>
