@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DayPicker from './DayPicker';
+import MyMap from './MyMap';
 import './addReport.css';
 
 class AddReport extends Component {
@@ -13,25 +14,44 @@ class AddReport extends Component {
                     <div className="rowDate">
                         <DayPicker />
                     </div>
-                    <label>Dnevnica : </label>
-                    <label>domaća</label>
-                    <input type="radio" name="radioButton" value="domaća" id="choice2" defaultChecked />
-                    <label>EX-YU</label>
-                    <input type="radio" name="radioButton" value="EX-YU" id="choice1" />
-                    <label>strana</label>
-                    <input type="radio" value="strana" name="radioButton" id="choice3" />
-                    <br />
-                    <label>Troškove snosi : </label>
-                    <div type="buttom" className="buttom-costs">
-                        <select id="dropdownItem">
-                            <option name="dropdowna" value="kompanija">Kompanija</option>
-                            <option name="dropdowna" value="zaposleni">Zaposleni</option>
-                        </select>
+                    <p>Dnevnica : </p>
+                    <div className="rowEarnings">
+                        <div className="box">
+                            <input type="radio" name="radioButton" value="domaća" id="choice1" className="ch1" defaultChecked />
+                            <label>domaća</label>
+                        </div>
+                        <div className="box">
+                            <input type="radio" name="radioButton" value="EX-YU" id="choice2" className="ch2" />
+                            <label>EX-YU</label>
+                        </div>
+                        <div className="box">
+                            <input type="radio" value="strana" name="radioButton" id="choice3" className="ch3" />
+                            <label>strana</label>
+                        </div>
                     </div>
-                    <label>Lokacija : </label>
-                    <input type="text" id="mapsearch" required="" />
-                    <div id="mapElement" >
+                    <div className="drop">
+                        <div className="dropItem">
+                            <p>Troškove snosi : </p>
+                            <div type="buttom" className="buttom-costs">
+                                <select id="dropdownItem">
+                                    <option name="dropdowna" value="kompanija">Kompanija</option>
+                                    <option name="dropdowna" value="zaposleni">Zaposleni</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="dropItem">
+                            <p>Vrsta prevoza : </p>
+                            <div type="buttom" className="buttom-costs">
+                                <select id="dropdownItem">
+                                    <option name="dropdowna" value="sluzbeno">Službeno vozilo</option>
+                                    <option name="dropdowna" value="licno">Lično vozilo</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+                    <p>Lokacija : </p>
+                    <input type="text" id="mapSearch" required="" />
+                    <MyMap />
                     <div
                         className="close"
                         onClick={this.xhandler}

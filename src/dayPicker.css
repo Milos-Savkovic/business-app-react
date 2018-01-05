@@ -17,5 +17,6 @@ p{
     padding:2px;
     text-align: center;
     margin-top:2px;
+    flex-direction: row; 
 }
   
