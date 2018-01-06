@@ -12,6 +12,7 @@ class AddReport extends Component {
     }
 
     handleCity = (e) => {
+        e.preventDefault();
         const city = this.state.city;
         const name = e.target.name;
         const value = e.target.value;
