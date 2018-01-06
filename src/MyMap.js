@@ -19,28 +19,30 @@ const MyMap = compose(
     withScriptjs,
     withGoogleMap,
     lifecycle({
-        componentDidMount() {
-            const DirectionsService = new google.maps.DirectionsService();
+        componentWillReceiveProps() {
+            if ((this.props.city !== 'Banja Luka') && (this.props.city !== undefined)) {
+                this.setState({
+                    isBanjaLuka: false,
+                });
 
-            DirectionsService.route({
-                origin: new google.maps.LatLng(44.7782748, 17.187756),
-                destination: this.props.city,
-                travelMode: google.maps.TravelMode.DRIVING,
-            }, (result, status) => {
-                if (this.props.city === 'Banja Luka') {
-                    this.setState({
-                        isBanjaLuka: true
-                    });
-                }
-                if (status === google.maps.DirectionsStatus.OK) {
-                    this.setState({
-                        directions: result,
-                        distance: result['routes'][0]['legs'][0]['distance'].value
-                    });
-                } else {
-                    console.error(`error fetching directions ${result}`);
-                }
-            });
+                const DirectionsService = new google.maps.DirectionsService();
+                DirectionsService.route({
+                    origin: new google.maps.LatLng(44.7782748, 17.187756),
+                    destination: this.props.city,
+                    travelMode: google.maps.TravelMode.DRIVING,
+                }, (result, status) => {
+                    if (status === google.maps.DirectionsStatus.OK) {
+                        this.setState({
+                            directions: result,
+                            distance: result['routes'][0]['legs'][0]['distance'].value,
+                        });
+                    }
+                });
+            } else {
+                this.setState({
+                    isBanjaLuka: true,
+                })
+            }
         }
     })
 )(props => {
@@ -56,7 +58,6 @@ const MyMap = compose(
             </GoogleMap>
         )
     } else {
-        console.log(props.distance);
         return (
             <GoogleMap
                 defaultZoom={8}
