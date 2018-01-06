@@ -8,7 +8,40 @@ class AddReport extends Component {
     state = {
         city: {
             cityName: '',
+            distance: 0,
         },
+        inputs: {
+            earnings: '',
+            typeOfTransport: '',
+            costs: '',
+        },
+        date: {
+            start: '',
+            end: '',
+        },
+    }
+
+    handleDistance = (dis, nm) => {
+        console.log(dis, nm);
+        this.setState({
+            city: {
+                cityName: nm,
+                distance: dis,
+            }
+        })
+        console.log(this.state);
+    }
+
+    handleInputs = (e) => {
+        const inputs = this.state.inputs;
+        const name = e.target.name;
+        const value = e.target.value;
+
+        inputs[name] = value;
+        this.setState({
+            inputs
+        })
+        console.log(this.state.inputs);
     }
 
     handleCity = (e) => {
@@ -35,25 +68,25 @@ class AddReport extends Component {
                         <DayPicker />
                     </div>
                     <p>Dnevnica : </p>
-                    <div className="rowEarnings">
+                    <div className="rowEarnings" onChange={this.handleInputs}>
                         <div className="box">
-                            <input type="radio" name="radioButton" value="domaća" id="choice1" className="ch1" defaultChecked />
+                            <input type="radio" name="earnings" value="domaća" id="choice1" className="ch1" defaultChecked />
                             <label>domaća</label>
                         </div>
                         <div className="box">
-                            <input type="radio" name="radioButton" value="EX-YU" id="choice2" className="ch2" />
+                            <input type="radio" name="earnings" value="EX-YU" id="choice2" className="ch2" />
                             <label>EX-YU</label>
                         </div>
                         <div className="box">
-                            <input type="radio" value="strana" name="radioButton" id="choice3" className="ch3" />
+                            <input type="radio" value="strana" name="earnings" id="choice3" className="ch3" />
                             <label>strana</label>
                         </div>
                     </div>
                     <div className="drop">
                         <div className="dropItem">
                             <p>Troškove snosi : </p>
-                            <div className="buttom-costs">
-                                <select id="dropdownItem">
+                            <div className="buttom-costs" onChange={this.handleInputs}>
+                                <select id="dropdownItem" name="costs">
                                     <option name="dropdowna" value="kompanija">Kompanija</option>
                                     <option name="dropdowna" value="zaposleni">Zaposleni</option>
                                 </select>
@@ -61,8 +94,8 @@ class AddReport extends Component {
                         </div>
                         <div className="dropItem">
                             <p>Vrsta prevoza : </p>
-                            <div type="buttom" className="buttom-costs">
-                                <select id="dropdownItem">
+                            <div className="buttom-costs" onChange={this.handleInputs}>
+                                <select id="dropdownItem" name="typeOfTransport">
                                     <option name="dropdowna" value="sluzbeno">Službeno vozilo</option>
                                     <option name="dropdowna" value="licno">Lično vozilo</option>
                                 </select>
@@ -71,10 +104,11 @@ class AddReport extends Component {
                     </div>
                     <p>Lokacija : </p>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                        <input type="text" className="form-control" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} onClick={e => { e.preventDefault() }} required />
                     </div>
                     <MyMap
                         city={this.state.city.cityName || 'Banja Luka'}
+                        handleDistance={this.handleDistance}
                     />
                     <div
                         className="close"

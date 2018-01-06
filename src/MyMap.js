@@ -36,9 +36,10 @@ const MyMap = compose(
                             directions: result,
                             distance: result['routes'][0]['legs'][0]['distance'].value,
                         });
+                        this.props.handleDistance(this.state.distance,this.props.city);
                     }
                 });
-            } else {
+            } else if (this.props.city === 'Banja Luka') {
                 this.setState({
                     isBanjaLuka: true,
                 })
