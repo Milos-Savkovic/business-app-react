@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import DayPicker from './DayPicker';
 import MyMap from './MyMap';
 import './addReport.css';
@@ -15,13 +16,19 @@ class AddReport extends Component {
             typeOfTransport: 'sluzbeno',
             costs: 'kompanija',
         },
-        date: {
-            start: '',
-            end: '',
-        },
+        startDate: moment().format('DD.MM.YYYY'),
+        endDate: moment().add(3, 'days').format('DD.MM.YYYY'),
     }
-    handleDate = (date) => {
-        console.log(date);
+    handleDateStart = (date) => {
+        this.setState({
+            startDate: date,
+        });
+    }
+
+    handleDateEnd = (date) => {
+        this.setState({
+            endDate: date,
+        });
     }
 
     handleDistance = (dis, nm) => {
@@ -68,7 +75,8 @@ class AddReport extends Component {
                 <form method="post" className="form-newReport"  >
                     <div className="rowDate">
                         <DayPicker
-                            handleDate={this.handleDate}
+                            handleDateStart={this.handleDateStart}
+                            handleDateEnd={this.handleDateEnd}
                         />
                     </div>
                     <p>Dnevnica : </p>
@@ -108,7 +116,7 @@ class AddReport extends Component {
                     </div>
                     <p>Lokacija : </p>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} onClick={e => { e.preventDefault() }} required />
+                        <input type="text" className="form-control" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
                     </div>
                     <MyMap
                         city={this.state.city.cityName || 'Banja Luka'}

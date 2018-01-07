@@ -5,7 +5,8 @@
 }
 .form-newReport{
     height: 100%;
-    overflow-y: auto;
+    overflow-x:hidden;
+    overflow-y: auto; 
     display: flex;        
     flex-direction: column; 
     align-items: center;     
