@@ -11,14 +11,17 @@ class AddReport extends Component {
             distance: 0,
         },
         inputs: {
-            earnings: '',
-            typeOfTransport: '',
-            costs: '',
+            earnings: 'domaća',
+            typeOfTransport: 'sluzbeno',
+            costs: 'kompanija',
         },
         date: {
             start: '',
             end: '',
         },
+    }
+    handleDate = (date) => {
+        console.log(date);
     }
 
     handleDistance = (dis, nm) => {
@@ -29,7 +32,6 @@ class AddReport extends Component {
                 distance: dis,
             }
         })
-        console.log(this.state);
     }
 
     handleInputs = (e) => {
@@ -41,7 +43,6 @@ class AddReport extends Component {
         this.setState({
             inputs
         })
-        console.log(this.state.inputs);
     }
 
     handleCity = (e) => {
@@ -61,11 +62,14 @@ class AddReport extends Component {
         this.props.closeReport();
     }
     render() {
+        console.log(this.state);
         return (
             <div className="field">
                 <form method="post" className="form-newReport"  >
                     <div className="rowDate">
-                        <DayPicker />
+                        <DayPicker
+                            handleDate={this.handleDate}
+                        />
                     </div>
                     <p>Dnevnica : </p>
                     <div className="rowEarnings" onChange={this.handleInputs}>

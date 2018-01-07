@@ -11,6 +11,11 @@ import MomentLocaleUtils, {
 import 'moment/locale/it';
 
 export default function Example() {
+
+    const handleChange = (e) => {
+        console.log(e);
+    }
+
     return (
         <div>
             <p>Datum polaska:</p>
@@ -19,6 +24,8 @@ export default function Example() {
                 parseDate={parseDate}
                 format='DD.MM.YYYY.'
                 value={moment().format('DD.MM.YYYY')}
+                onChange={handleChange}
+
             />
             <p>
                 Datum dolaska:
@@ -31,6 +38,7 @@ export default function Example() {
                 dayPickerProps={{
                     localeUtils: MomentLocaleUtils,
                 }}
+                onChange={handleChange}
             />
         </div>
     );
