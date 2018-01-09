@@ -1,5 +1,5 @@
 .report-container {
-  width: 90%;
+  /* width: 90%; */
   padding: 2rem;
   display: flex;
   flex-flow: column;
@@ -17,8 +17,8 @@
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
-  font-size: 2rem;
-  width: 8rem;
+  font-size: 1.2rem;
+  width: 10rem;
   background: white;
   color: #878787;
   border: 1px solid #dfdfdf;

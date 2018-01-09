@@ -61,7 +61,7 @@ class ReportDetails extends Component {
             className="printReportBtn"
             onClick={this.printReport}
           >
-            &#128438;
+            Print report &#128438;
         </button>
         </div>
       );
