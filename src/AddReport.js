@@ -49,7 +49,7 @@ class AddReport extends Component {
                         })
                     })
                 //push new report in reports array
-                let oldReport = this.state.user.Reports;
+                let oldReport = this.state.user.Reports || [];
                 oldReport.push(report);
 
                 const newUser = this.state.user;
