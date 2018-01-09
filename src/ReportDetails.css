@@ -1,5 +1,11 @@
 .report-container {
-  /* width: 90%; */
+  /* width: 730px; */
+  padding: 2rem;
+  display: flex;
+  flex-flow: column;
+}
+.report-container-print {
+  width: 730px; 
   padding: 2rem;
   display: flex;
   flex-flow: column;

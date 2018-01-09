@@ -26,16 +26,28 @@ class AboutUser extends Component {
             addReport: true,
         });
     }
+    updateReportHandler = () => {
+        this.setState({
+            addReport: true,
+        });
+        this.props.history.replace(`/users/${this.props.id}`);
+        this.props.addReportToList();
+    }
 
     render() {
-        // console.log(this.props);
+        console.log(this.props);
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}
                 path={this.props.path}
                 clicked={this.addReportHandler}
             /> :
-            <AddReport closeReport={this.closeHandler} id={this.props.id} />;
+            <AddReport 
+                closeReport={this.closeHandler} 
+                updateReportList={this.updateReportHandler}
+                id={this.props.id} 
+                history={this.props.history}            
+            />;
         // if (this.props.location.pathname === `/users/${this.props.id}/new-report`) {
         //     report = <AddReport closeReport={this.closeHandler} />;
         // }

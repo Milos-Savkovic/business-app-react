@@ -68,8 +68,12 @@ class AddReport extends Component {
                 console.log(users);
                 // set new database with new user report
                 fireDB.ref('/users').set(users);
+                this.handleSubmit();
             })
             .catch((e) => console.log(e))
+    }
+    handleSubmit = () => {
+        this.props.updateReportList();
     }
 
     handleDateStart = (date) => {
@@ -174,14 +178,14 @@ class AddReport extends Component {
                     <MyMap
                         city={this.state.city.cityName || 'Banja Luka'}
                         handleDistance={this.handleDistance}
-                    />
+                    />                    
+                    <input type="submit" name="submit" value="Add report" className="submit" />
                     <div
                         className="close"
                         onClick={this.xhandler}
                     >
                         X
                     </div>
-                    <input type="submit" name="submit" value="Add report" className="submit" />
                 </form>
 
             </div>

@@ -26,13 +26,18 @@ class ReportDetails extends Component {
   }
   printReport = () => {
     const divToPrint = document.getElementById('report');
-    html2canvas(divToPrint)
+    divToPrint.setAttribute('class', 'report-container-print');
+    html2canvas(divToPrint, {
+      width: 1200,
+      height: 1200
+    })
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('l', 'mm', 'a4');
+        const pdf = new jsPDF('p', 'mm', 'a4');
         pdf.addImage(imgData, 'JPEG', 0, 0);
         const report = this.giveMeReport();
         pdf.save(`${report.reportName}.pdf`);
+        divToPrint.setAttribute('class', 'report-container');
       })
       .catch(err => console.log(err))
       ;
