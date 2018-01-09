@@ -45,7 +45,11 @@ class ReportDetails extends Component {
       );
     } else {
       return (
-        <div>LOADING...</div>
+        <div class="load-bar">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
       );
     }
   }
