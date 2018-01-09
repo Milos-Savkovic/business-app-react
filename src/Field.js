@@ -9,7 +9,7 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
-        // console.log(this.props)
+        console.log(this.props.keyLocation)
         return (
             <div className="fieldBack-container">
                 <div className="fieldBack">
@@ -25,13 +25,13 @@ class Field extends Component {
                         </div>
                     </Link>
                 </div>
-                <hr className='separator'/>
+                <hr className='separator' />
                 <Route
-                    path={`/users/:id/reports/:reportName`}
-                    render={() => <ReportDetails 
-                                    id={this.props.id}
-                                    path={this.props.path} 
-                                />}
+                    path={`/users/:${this.props.id}/:date/:reportName`}
+                    render={() => <ReportDetails
+                        id={this.props.id}
+                        path={this.props.path}
+                    />}
                 />
             </div>
         );

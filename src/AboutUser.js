@@ -35,7 +35,7 @@ class AboutUser extends Component {
     }
 
     render() {
-        console.log(this.props);
+        console.log(this.props.location.key);
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}
@@ -62,6 +62,7 @@ class AboutUser extends Component {
                     reports={this.props.reports}
                     description={this.props.description}
                     clickedLink={this.clicked}
+                    keyLocation={this.props.location.key}
                 />
                 {report}
             </div>

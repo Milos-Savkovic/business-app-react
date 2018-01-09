@@ -27,10 +27,7 @@ class ReportDetails extends Component {
   printReport = () => {
     const divToPrint = document.getElementById('report');
     divToPrint.setAttribute('class', 'report-container-print');
-    html2canvas(divToPrint, {
-      width: 1200,
-      height: 1200
-    })
+    html2canvas(divToPrint)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4');
@@ -46,7 +43,8 @@ class ReportDetails extends Component {
   giveMeReport = () => {
     const arrayFromUrl = this.props.path.split('/');
     const repName = arrayFromUrl.pop();
-    const reportArr = this.state.user.Reports.filter(rep => rep.reportName === repName);
+    const date = arrayFromUrl.pop();
+    const reportArr = this.state.user.Reports.filter(rep => rep.reportName === repName && rep.date1 === date);
     const reportObj = reportArr.pop();
     return reportObj;
   }

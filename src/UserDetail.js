@@ -16,8 +16,8 @@ class UserDetail extends Component {
             const reports = reportsArray.map((item) => (
                 <NavLink
                     exact
-                    key={item.reportName}
-                    to={`/users/${this.props.id}/reports/${item.reportName}`}
+                    key={item.date1+item.reportName}
+                    to={`/users/${this.props.id}/${item.date1}/${item.reportName}`}
                     className="navLink"
                     activeClassName="active"
                     onClick={this.click}
