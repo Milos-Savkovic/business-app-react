@@ -10,7 +10,16 @@ import MomentLocaleUtils, {
 
 import 'moment/locale/it';
 
-export default function Example() {
+export default function Example(props) {
+
+    const handleChangeStartDate = (day) => {
+        props.handleDateStart(moment(day).format('DD.MM.YYYY'));
+    }
+
+    const handleChangeEndDate = (day) => {
+        props.handleDateEnd(moment(day).format('DD.MM.YYYY'));
+    }
+
     return (
         <div>
             <p>Datum polaska:</p>
@@ -19,6 +28,7 @@ export default function Example() {
                 parseDate={parseDate}
                 format='DD.MM.YYYY.'
                 value={moment().format('DD.MM.YYYY')}
+                onDayChange={handleChangeStartDate}
             />
             <p>
                 Datum dolaska:
@@ -31,6 +41,7 @@ export default function Example() {
                 dayPickerProps={{
                     localeUtils: MomentLocaleUtils,
                 }}
+                onDayChange={handleChangeEndDate}
             />
         </div>
     );

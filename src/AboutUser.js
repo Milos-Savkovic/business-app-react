@@ -17,14 +17,14 @@ class AboutUser extends Component {
     }
     addReportHandler = () => {
         this.setState({
-            addReport: false
-        })
+            addReport: false,
+        });
     }
     closeHandler = () => {
         this.props.history.push(this.props.history.goBack());
         this.setState({
-            addReport: true
-        })
+            addReport: true,
+        });
     }
 
     render() {

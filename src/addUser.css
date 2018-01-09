@@ -1,14 +1,15 @@
 .add-user-container{
     height: 100%;
     overflow-y:auto;
+    overflow-x:hidden;
 }
 .contactForm { 
   border: 3px solid rgb(206, 218, 155);
-  padding: 3%;
+  padding: 2%;
   width: 100%;
   background: rgb(226, 225, 225);
   height:100%;
-  overflow-y: auto;
+  overflow-x: hidden;
   overflow-y:auto;
   text-align: center;
 }
