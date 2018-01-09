@@ -28,6 +28,7 @@ class AddReport extends Component {
         this.props.closeReport();
     }
     render() {
+        console.log(this.props);
         return (
             <div className="field">
                 <form method="post" className="form-newReport"  >
