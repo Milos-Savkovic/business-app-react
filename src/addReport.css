@@ -30,6 +30,9 @@
     text-align: center;
     border:none;
 }
+.submit:hover{
+    background-color: rgb(233, 192, 71);
+}
 #mapSearch{
     width:200px;
     text-align: center;  

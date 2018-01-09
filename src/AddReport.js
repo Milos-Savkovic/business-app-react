@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import DayPicker from './DayPicker';
 import MyMap from './MyMap';
+import { fireDB } from './firebaseApp'
 import './addReport.css';
 
 class AddReport extends Component {
@@ -19,6 +20,25 @@ class AddReport extends Component {
         startDate: moment().format('DD.MM.YYYY'),
         endDate: moment().add(3, 'days').format('DD.MM.YYYY'),
     }
+    // userId={this.props.id}
+
+    setFirebase = (e) => {
+        e.preventDefault();
+        console.log("Set FIREBASE!");
+        // console.log(this.state.id);
+        const report = {
+            costs: this.state.inputs.costs,
+            dailyEarnings: this.state.inputs.earnings,
+            date1: this.state.startDate,
+            date2: this.state.endDate,
+            distance: this.state.city.distance,
+            reportName: this.state.city.cityName,
+            typeOfTransport: this.state.inputs.typeOfTransport,
+        }
+        console.log(report);
+        // fireDB.ref('/users/reports').set(report);
+    }
+
     handleDateStart = (date) => {
         this.setState({
             startDate: date,
@@ -62,17 +82,17 @@ class AddReport extends Component {
 
         this.setState({
             city
-        })
+        });
     }
 
     xhandler = () => {
         this.props.closeReport();
     }
+
     render() {
-        console.log(this.state);
         return (
             <div className="field">
-                <form method="post" className="form-newReport"  >
+                <form className="form-newReport" onSubmit={this.setFirebase} >
                     <div className="rowDate">
                         <DayPicker
                             handleDateStart={this.handleDateStart}
@@ -116,7 +136,7 @@ class AddReport extends Component {
                     </div>
                     <p>Lokacija : </p>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                        <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
                     </div>
                     <MyMap
                         city={this.state.city.cityName || 'Banja Luka'}
@@ -128,7 +148,7 @@ class AddReport extends Component {
                     >
                         X
                     </div>
-                    <input type="submit" value="Add report" className="submit" />
+                    <input type="submit" name="submit" value="Add report" className="submit" />
                 </form>
 
             </div>
