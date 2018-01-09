@@ -19,13 +19,15 @@ class AddReport extends Component {
         },
         startDate: moment().format('DD.MM.YYYY'),
         endDate: moment().add(3, 'days').format('DD.MM.YYYY'),
+        user: null,
     }
     // userId={this.props.id}
 
     setFirebase = (e) => {
         e.preventDefault();
         console.log("Set FIREBASE!");
-        // console.log(this.state.id);
+        console.log(this.props.id);
+        //create new report 
         const report = {
             costs: this.state.inputs.costs,
             dailyEarnings: this.state.inputs.earnings,
@@ -35,8 +37,39 @@ class AddReport extends Component {
             reportName: this.state.city.cityName,
             typeOfTransport: this.state.inputs.typeOfTransport,
         }
-        console.log(report);
-        // fireDB.ref('/users/reports').set(report);
+        //get user details from database
+        fireDB.ref('/users').once('value')
+            .then((snapshot) => {
+                const users = [...snapshot.val()]
+
+                users.filter(item => item.Id === this.props.id)
+                    .map(item => {
+                        this.setState({
+                            user: item,
+                        })
+                    })
+                //push new report in reports array
+                let oldReport = this.state.user.Reports;
+                oldReport.push(report);
+
+                const newUser = this.state.user;
+                newUser.Reports = oldReport;
+
+                this.setState({
+                    user: newUser,
+                })
+                console.log(this.state.user);
+
+                users.map(item => {
+                    if (item.Id === this.state.user.Id) {
+                        item.Reports = this.state.user.Reports;
+                    }
+                })
+                console.log(users);
+                // set new database with new user report
+                fireDB.ref('/users').set(users);
+            })
+            .catch((e) => console.log(e))
     }
 
     handleDateStart = (date) => {
@@ -90,7 +123,6 @@ class AddReport extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
