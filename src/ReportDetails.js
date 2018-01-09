@@ -20,7 +20,7 @@ class ReportDetails extends Component {
               user: item,
             })
           ))
-        // console.log(this.props);
+        console.log(this.state.user);
       })
       .catch((e) => console.log(e))
   }
@@ -29,23 +29,26 @@ class ReportDetails extends Component {
     html2canvas(divToPrint)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdf = new jsPDF('l', 'mm', 'a4');
         pdf.addImage(imgData, 'JPEG', 0, 0);
-        pdf.save("a4.pdf");
+        const report = this.giveMeReport();
+        pdf.save(`${report.reportName}.pdf`);
       })
       .catch(err => console.log(err))
       ;
+    
+  }
+  giveMeReport = () => {
+    const arrayFromUrl = this.props.path.split('/');
+    const repName = arrayFromUrl.pop();
+    const reportArr = this.state.user.Reports.filter(rep => rep.reportName === repName);
+    const reportObj = reportArr.pop();
+    return reportObj;
   }
   render() {
-    const giveMeReport = () => {
-      const arrayFromUrl = this.props.path.split('/');
-      const repName = arrayFromUrl.pop();
-      const reportArr = this.state.user.Reports.filter(rep => rep.reportName === repName);
-      const reportObj = reportArr.pop();
-      return reportObj;
-    }
+
     if (this.state.user) {
-      const report = giveMeReport();
+      const report = this.giveMeReport();
       return (
         <div>
           <div className="report-container" id="report">
