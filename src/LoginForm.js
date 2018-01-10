@@ -58,6 +58,7 @@ class LoginForm extends Component {
                     <Header />
                     <button type="submit" id="button" className="btn btn-success center-block form-login button">Log in with Google</button>
                 </form>
+                <h1 className="Title">Business Trip-app</h1>
             </div>
         );
     }

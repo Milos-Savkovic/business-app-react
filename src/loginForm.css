@@ -10,8 +10,17 @@
     justify-content: flex-start;
     align-items: center;
 }
-
-
+.Title{
+  position: absolute;
+  font-size:60px; 
+  top:10px;
+  right:20px;
+  color: rgb(1, 1, 1);
+  background: rgba(218, 212, 212, 0.918);
+  border-radius: 20px;
+  padding:10px;
+  box-shadow: 0 0 20px 0 rgba(27, 27, 27, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
 .form-login {
   border-radius: 20px;
   background: rgba(78, 77, 60, 0.836);
