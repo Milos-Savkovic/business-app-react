@@ -1,13 +1,13 @@
 .report-container {
   padding: 2rem;
   display: flex;
-  flex-flow: column;
+  flex-flow: row nowrap;
 }
 .report-container-print {
-  width: 730px; 
+  width: 1060px;
   padding: 2rem;
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
 }
 .report-name {
   text-align: center;
@@ -21,7 +21,14 @@
 }
 .rightBorder {
   border-right: 2px solid #c0c0c0;
-  /* padding: .3rem; */
+  display: flex;
+  flex-flow: column;
+  padding: 1rem 0 1rem 1rem;
+}
+.no-rightBorder {
+  display: flex;
+  flex-flow: column;
+  padding: 1rem 1rem 1rem 0;
 }
 .report-row {
   display: flex;
@@ -59,7 +66,7 @@
   flex-flow: row nowrap;
 }
 .report-row-no-line {
-  margin-bottom: 1rem;
+  margin-bottom: .31rem;
 }
 .report-row-no-line--no-margin {
   margin: 0;
