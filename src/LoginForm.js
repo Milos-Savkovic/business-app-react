@@ -36,7 +36,6 @@ class LoginForm extends Component {
                         <input type="email" id="login-email" placeholder="email" className="form-login input" required ref={(input) => this.email = input} />
                         <input type="password" id="login-password" placeholder="password" className="form-login input" required ref={(input) => this.password = input} />
                         <button type="submit" id="button" className="btn btn-success center-block form-login button">Log in</button>
-                        <a href="/register">Click here to SignUp</a>
                     </form>
                 </div>
             </div>
