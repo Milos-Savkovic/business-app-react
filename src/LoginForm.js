@@ -1,44 +1,63 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import  {fireAuth}  from './firebaseApp';
+import fire, { provider } from './firebaseApp';
+import Header from './Header';
 import './loginForm.css';
 
 class LoginForm extends Component {
     state = {
-        isLoggedIn: false
+        isLoggedIn: false,
+        user: null,
     }
 
-    initApp = (event) => {
-        event.preventDefault();
+    login = (e) => {
+        e.preventDefault();
 
-        fireAuth.signInWithEmailAndPassword(this.email.value, this.password.value)
+        fire.auth().signInWithPopup(provider)
+            .then(result => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const token = result.credential.accessToken;
+                // The signed-in user info.
+                this.setState({
+                    user: result.user,
+                })
+            })
             .then(() => {
-                fireAuth.onAuthStateChanged(user => {
-                    this.setState({
-                        isLoggedIn: true
-                    })
+                fire.auth().onAuthStateChanged(() => {
+                    if (this.state.user) {
+                        this.setState({
+                            isLoggedIn: true,
+                        })
+                    } else {
+                        this.setState({
+                            isLoggedIn: false,
+                        })
+                    }
                 });
             })
             .catch(error => {
-                console.log("The password you’ve entered is incorrect.")
-            })
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                const credential = error.credential;
+                // ...
+            });
     }
 
     render() {
-        if (this.state.isLoggedIn) {
+        if (this.state.user) {
             return (
-                <Redirect from='/login' to='/users' />
+                <Redirect to='/users' />
             )
         } else return (
             <div className="Login">
-                <div>
-                    <form className="form-login" onSubmit={(e) => this.initApp(e)}>
-                        <input type="email" id="login-email" placeholder="email" className="form-login input" required ref={(input) => this.email = input} />
-                        <input type="password" id="login-password" placeholder="password" className="form-login input" required ref={(input) => this.password = input} />
-                        <button type="submit" id="button" className="btn btn-success center-block form-login button">Log in</button>
-                        <a href="/register">Click here to SignUp</a>
-                    </form>
-                </div>
+                <form className="form-login" onSubmit={(e) => this.login(e)}>
+                    <Header />
+                    <button type="submit" id="button" className="btn btn-success center-block form-login button">Log in with Google</button>
+                </form>
             </div>
         );
     }

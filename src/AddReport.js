@@ -46,7 +46,7 @@ class AddReport extends Component {
                     .map(item => {
                         this.setState({
                             user: item,
-                        })
+                        });
                     })
                 //push new report in reports array
                 let oldReport = this.state.user.Reports || [];
@@ -178,7 +178,7 @@ class AddReport extends Component {
                     <MyMap
                         city={this.state.city.cityName || 'Banja Luka'}
                         handleDistance={this.handleDistance}
-                    />                    
+                    />
                     <input type="submit" name="submit" value="Add report" className="submit" />
                     <div
                         className="close"

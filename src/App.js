@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import Login from './Login';
-import Register from './Register';
 import Home from './Home';
 import Right from './Right';
 
@@ -16,7 +15,6 @@ const App = () => (
         <Redirect to='/login' />
       )} />
       <Route  path="/login" component={Login} />
-      <Route  path="/register" component={Register} />
       <Route  path='/users/add' component={Right} />
       
       <Route  path='/users/:id' component={About} />

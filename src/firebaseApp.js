@@ -11,7 +11,10 @@ const config = {
 
 const fire = firebase.initializeApp(config);
 
-export const fireDB = fire.database();
-export const fireAuth = fire.auth();
+export const provider = new firebase.auth.GoogleAuthProvider();
 
-export default fire;
+export const fireDB = fire.database();
+
+// export const googleAuth = fire.auth().getRedirectResult()
+
+export default  fire;
