@@ -1,7 +1,7 @@
 .field{
     width: 100%;    
     overflow:hidden;  
-    padding: 1rem; 
+    /* padding: 1rem;  */
 }
 .form-newReport{
     height: 100%;
@@ -68,7 +68,7 @@ label{
 }
 .close {
     position: absolute;
-    top: 0rem;
+    top: 1rem;
     right: 2rem;
     font-size: 1rem;
     font-weight:  500;

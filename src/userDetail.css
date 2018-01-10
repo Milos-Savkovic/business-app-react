@@ -91,7 +91,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', end
 }
 .description-separator {
     display: block;
-    border-top: .5px solid rgb(240, 191, 35);
+    border-top: .5px solid rgb(255, 255, 255);
     margin: 0;
 }
 .navLink {
