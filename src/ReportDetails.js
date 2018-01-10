@@ -30,7 +30,7 @@ class ReportDetails extends Component {
     html2canvas(divToPrint)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('l', 'mm', 'a4');
+        const pdf = new jsPDF('l', 'pt', 'a4');
         pdf.addImage(imgData, 'JPEG', 0, 0);
         const report = this.giveMeReport();
         pdf.save(`${report.reportName}.pdf`);
@@ -189,10 +189,8 @@ class ReportDetails extends Component {
               </div>
             </div>
             <div className="no-rightBorder">
-              <h4>Preduzeće - Organizacija</h4>
-              <div className="report-row">
-                <div><strong>"GotSolution" d.o.o. Banja Luka</strong></div>
-              </div>
+              <h4 className="text-center">Na osnovu prednjeg naloga izvršio sam službeno putovanje i podnosim sledeći</h4>
+              <h2 className="text-center">PUTNI NALOG</h2>
               <div className="report-row-no-line">
                 <div className="report-field" style={{ paddingRight: '1rem' }}>
                   <span className="report-text">Broj:</span>

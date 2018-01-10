@@ -1,13 +1,17 @@
 .report-container {
   padding: 2rem;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 .report-container-print {
   width: 1060px;
+  height: 730px;
   padding: 2rem;
   display: flex;
   flex-flow: row;
+  border: 1px solid #111;
+  align-content: center;
+  justify-content: center;
 }
 .report-name {
   text-align: center;
@@ -28,7 +32,7 @@
 .no-rightBorder {
   display: flex;
   flex-flow: column;
-  padding: 1rem 1rem 1rem 0;
+  padding: 1rem 1rem 1rem 1rem;
 }
 .report-row {
   display: flex;
@@ -36,6 +40,9 @@
   color: #484848;
   margin-bottom: 1rem;
   border-bottom: 1px solid #c0c0c0;
+}
+.text-center {
+  text-align: center;
 }
 .printReportBtn {
   display: flex;
