@@ -8,7 +8,7 @@
 }
 .fieldBack-container {   
     width: 100%;    
-    overflow:hidden;  
+    overflow:auto;  
     /* padding: 1rem;  */
 }
 .fieldTitle {
