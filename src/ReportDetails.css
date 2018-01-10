@@ -31,12 +31,15 @@
   border-radius: 5px;
   outline: none;
   align-self: center;
+  box-sizing: border-box;
+  transition: all .2s ease-out;
 }
 .printReportBtn:hover {
   cursor: pointer;
   color: white;
   background: #fdba2c;
   border: 1px solid #fdba2c;
+  transform: scale(1.1);
 }
 /* ///////////////////// LOADER ///////////////////// */
 .load-bar {

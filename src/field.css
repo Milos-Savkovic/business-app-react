@@ -1,53 +1,50 @@
 .fieldBack{
-    /* background-color:rgb(248, 246, 171);  */
-    /* height:100%; */
+    background-color:rgb(71, 71, 71); 
     width: 100%;  
     display: flex;
-    padding: .3rem;
-    /* -webkit-flex: 1; */
-    /* flex: 1; */
     overflow:hidden;
     align-items: baseline;
-    justify-content: space-around;
-    /* flex-direction: column; */
-    /* flex-wrap: wrap; */
+    justify-content: space-around;    
 }
 .fieldBack-container {   
     width: 100%;    
     overflow:hidden;  
-    padding: 1rem; 
+    /* padding: 1rem;  */
 }
 .fieldTitle {
-    color: #a3a3a3;
+    color: #c7c7c7;
     font-size: 1.5rem;
     text-transform: capitalize;
-    line-height: .5rem;
+    /* line-height: .5rem; */
 }
 .fieldButton {
-    padding: 1rem 2.2rem;
-    border-radius: 10%;
-    position: relative;
-    display: flex;    
-    align-items: center;    
-    justify-content: center;    
-    box-sizing: border-box;    
-    transition: all 0.1s ease-out;
-    box-shadow: 0px 0px 3px #79640b;
-    background-color: #f0bf24;
+    display: flex;
+    justify-content: center;
+    width: 6rem;
+    background: #c7c7c7;
+    background: linear-gradient(to bottom right, rgb(253, 216, 49), rgb(224, 156, 28));
+    border: 1px solid rgb(71, 71, 71);
+    border-radius: 5px;    
+    box-sizing: border-box;
+    transition: all .2s ease-out;
+    text-decoration: none;
 }
 .fieldButton:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 1px #585858;
+    transform: scale(1.1);
 }
-
-.fieldPlus {
-    position: absolute;
-    color: #ffffff;    
+.btnPlus {
+    /* position: absolute; */
+    color: white;    
     font-size: 1.5rem;
-}
+    text-decoration: none;
+    transition: all .2s ease-out;
+} 
 
 .separator {
-    width: 90%;
+    /* width: 90%; */
     display: block;
-    border-top: .5px solid rgb(240, 191, 35);
+    border-top: 2.5px solid rgb(240, 191, 35);
+    margin-top: 0;
+    box-shadow: 0 2px 8px #787878;
 }

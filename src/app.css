@@ -4,7 +4,7 @@ body,html{
   /* width:100%; */
   margin: 0 auto;
   max-width: 1366px;
-  box-shadow: 0 0 10px #333;
+  box-shadow: 0 0 8px #878787;
 }
 
 #root{

@@ -15,13 +15,12 @@ class Field extends Component {
                 <div className="fieldBack">
                     <h3 className="fieldTitle">Add new report</h3>
                     <Link
+                        style={{textDecoration: 'none'}}
                         to={`/users/${this.props.id}/new-report`}
                         onClick={this.clickHandler}
                     >
-                        <div
-                            className="fieldButton"
-                        >
-                            <strong className="fieldPlus" >+</strong>
+                        <div className="fieldButton">
+                            <strong className="btnPlus">&#43;</strong>
                         </div>
                     </Link>
                 </div>
