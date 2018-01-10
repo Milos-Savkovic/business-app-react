@@ -38,7 +38,7 @@ class ReportDetails extends Component {
       })
       .catch(err => console.log(err))
       ;
-    
+
   }
   giveMeReport = () => {
     const arrayFromUrl = this.props.path.split('/');
@@ -55,6 +55,8 @@ class ReportDetails extends Component {
       return (
         <div>
           <div className="report-container" id="report">
+            <h4 className="report-user">{`${this.state.user.FirstName} ${this.state.user.LastName}`}</h4>
+            <h2 className="report-name">{report.reportName}</h2>
             <div className="report-row"><strong>Report Name: </strong><i>{report.reportName}</i></div>
             <div className="report-row"><strong>Daily Earnings: </strong><i>{report.dailyEarnings}</i></div>
             <div className="report-row"><strong>Type of transport: </strong><i>{report.typeOfTransport}</i></div>

@@ -1,10 +1,10 @@
 .fieldBack{
-    background-color:rgb(71, 71, 71); 
-    width: 100%;  
+    background-color:#111; 
     display: flex;
     overflow:hidden;
     align-items: baseline;
-    justify-content: space-around;    
+    justify-content: space-between;
+    padding: 0 2rem;    
 }
 .fieldBack-container {   
     width: 100%;    
@@ -12,10 +12,10 @@
     /* padding: 1rem;  */
 }
 .fieldTitle {
-    color: #c7c7c7;
-    font-size: 1.5rem;
+    color: white;
+    font-size: 1.3rem;
     text-transform: capitalize;
-    /* line-height: .5rem; */
+    line-height: .5rem;
 }
 .fieldButton {
     display: flex;
@@ -40,7 +40,9 @@
     text-decoration: none;
     transition: all .2s ease-out;
 } 
-
+.fieldButton:hover .btnPlus{
+    transform: scale(-1.1);    
+}
 .separator {
     /* width: 90%; */
     display: block;

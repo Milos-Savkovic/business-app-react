@@ -35,7 +35,7 @@ class AboutUser extends Component {
     }
 
     render() {
-        console.log(this.props.location.key);
+        // console.log(this.props.location.key);
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}

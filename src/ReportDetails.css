@@ -10,10 +10,20 @@
   display: flex;
   flex-flow: column;
 }
+.report-name {
+  text-align: center;
+  text-transform: uppercase;
+  color: #484848;
+  letter-spacing: 2px;
+}
+.report-user {  
+  color: #484848;
+  margin:0;
+}
 .report-row {
   display: flex;
   justify-content: space-between;
-  color: #676767;
+  color: #484848;
   margin-bottom: 1rem;
   border-bottom: 1px solid #dfdfdf;
 }

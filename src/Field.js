@@ -9,7 +9,7 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
-        console.log(this.props.keyLocation)
+        // console.log(this.props.keyLocation)
         return (
             <div className="fieldBack-container">
                 <div className="fieldBack">
@@ -24,7 +24,7 @@ class Field extends Component {
                         </div>
                     </Link>
                 </div>
-                <hr className='separator' />
+                
                 <Route
                     path={`/users/:${this.props.id}/:date/:reportName`}
                     render={() => <ReportDetails
