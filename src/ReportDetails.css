@@ -1,5 +1,4 @@
 .report-container {
-  /* width: 730px; */
   padding: 2rem;
   display: flex;
   flex-flow: column;
@@ -20,12 +19,16 @@
   color: #484848;
   margin:0;
 }
+.rightBorder {
+  border-right: 2px solid #c0c0c0;
+  /* padding: .3rem; */
+}
 .report-row {
   display: flex;
   justify-content: space-between;
   color: #484848;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #c0c0c0;
 }
 .printReportBtn {
   display: flex;
@@ -50,6 +53,39 @@
   background: #fdba2c;
   border: 1px solid #fdba2c;
   transform: scale(1.1);
+}
+.report-row-no-line, .report-field {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.report-row-no-line {
+  margin-bottom: 1rem;
+}
+.report-row-no-line--no-margin {
+  margin: 0;
+}
+.report-field {
+  /* padding-right: 1rem; */
+  width: 100%;
+}
+.report-field--end {
+  justify-content: flex-end;
+}
+.report-text {  
+  white-space: nowrap;
+}
+.report-text--right-padding {
+  padding-right: 7rem
+}
+.floor-border{
+  border-bottom: 1px solid #c0c0c0;
+  width: inherit;
+}
+.floor-border--end {
+  text-align: end;
+}
+.floor-border--start {
+  text-align: start;
 }
 /* ///////////////////// LOADER ///////////////////// */
 .load-bar {
