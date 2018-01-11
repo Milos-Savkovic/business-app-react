@@ -28,17 +28,6 @@ class AddUser extends Component {
     setFirebase = (event) => {
         event.preventDefault();
         let ourTeam = [];
-        // const reports = {
-        //     0: {
-        //         reportName: "reportName",
-        //         date1: "date1",
-        //         date2: "date2",
-        //         dailyEarnings: "deilyEarnings",
-        //         costs: "Kompanija",
-        //         distance: "distance",
-        //         typeOfTransport: "Sluzbeno"
-        //     }
-        // }
         fireDB.ref('/users').once('value')
             .then((snapshot) => {
                 const team = [
@@ -72,7 +61,7 @@ class AddUser extends Component {
                 fireDB.ref('/users').set(team);
             })
             .then(() => {
-                this.setState({
+                this.setState({ 
                     isAdded: true
                 })
             })

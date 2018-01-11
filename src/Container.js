@@ -15,7 +15,7 @@ class Container extends Component {
     }
 
     helper() {
-        fetchUsers().then((items) => { 
+        fetchUsers().then((items) => {
             this.setState({
                 users: items,
             })
@@ -31,12 +31,11 @@ class Container extends Component {
         this.setState({
             userDetails: true,
             userDetailsId: id,
-        })
-        console.log(id);
+        });
         this.props.history.push(`/users/${this.state.userDetailsId}`);
-        
+
     }
-    
+
     clickHandler = () => {
         this.setState({
             newUser: true,

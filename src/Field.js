@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import NotFound from './NotFound';
+import ReportDetails from './ReportDetails';
 import './field.css';
 
 class Field extends Component {
@@ -9,26 +9,28 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
-        console.log(this.props.path)
+        // console.log(this.props.keyLocation)
         return (
             <div className="fieldBack-container">
                 <div className="fieldBack">
                     <h3 className="fieldTitle">Add new report</h3>
                     <Link
-                        to={`${this.props.path}/new-report`}
+                        style={{textDecoration: 'none'}}
+                        to={`/users/${this.props.id}/new-report`}
                         onClick={this.clickHandler}
                     >
-                        <div
-                            className="fieldButton"
-                        >
-                            <strong className="fieldPlus" >+</strong>
+                        <div className="fieldButton">
+                            <strong className="btnPlus">&#43;</strong>
                         </div>
                     </Link>
                 </div>
-                <hr className='separator'/>
+                
                 <Route
-                    path={`/users/:id/reports/:reportName`}
-                    component={NotFound}
+                    path={`/users/:${this.props.id}/:date/:reportName`}
+                    render={() => <ReportDetails
+                        id={this.props.id}
+                        path={this.props.path}
+                    />}
                 />
             </div>
         );

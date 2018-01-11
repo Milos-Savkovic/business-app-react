@@ -11,6 +11,9 @@ class About extends Component {
     }
 
     componentDidMount() {
+        this.fetchData();
+    }
+    fetchData = () => {
         const id = + this.props.match.params.id;
         fireDB.ref('/users').once('value')
             .then((snapshot) => {
@@ -25,6 +28,9 @@ class About extends Component {
                     ))
             })
             .catch((e) => console.log(e))
+    }
+    updateReportList = () => {
+        this.fetchData();
     }
 
     about() {
@@ -41,6 +47,7 @@ class About extends Component {
                     path={this.props.location.pathname}
                     history={this.props.history}
                     location={this.props.location}
+                    addReportToList={this.updateReportList}
                 />
             )
         }

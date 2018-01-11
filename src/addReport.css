@@ -1,11 +1,12 @@
 .field{
     width: 100%;    
     overflow:hidden;  
-    padding: 1rem; 
+    /* padding: 1rem;  */
 }
 .form-newReport{
     height: 100%;
-    overflow-y: auto;
+    overflow-x:hidden;
+    overflow-y: auto; 
     display: flex;        
     flex-direction: column; 
     align-items: center;     
@@ -20,13 +21,17 @@
     font-size:24px;
 }
 .submit{
-    width:100%;
-    min-height:80px;
-    padding: 15px;
-    background-color: rgb(127, 211, 94);
+    width:400px;
+    min-height:50px;
+    padding: 5px;
+    background-color: rgb(224, 178, 34);
     color:white;
     font-size:24px;
     text-align: center;
+    border:none;
+}
+.submit:hover{
+    background-color: rgb(233, 192, 71);
 }
 #mapSearch{
     width:200px;
@@ -63,7 +68,7 @@ label{
 }
 .close {
     position: absolute;
-    top: 0rem;
+    top: 1rem;
     right: 2rem;
     font-size: 1rem;
     font-weight:  500;
