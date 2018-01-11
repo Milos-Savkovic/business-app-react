@@ -7,8 +7,20 @@ class Navigation extends Component {
 
     state = {
         isLoggin: true,
+        userEmail: '',
     }
+    componentDidMount() {
+        let user = fire.auth().currentUser;
+        if (user) {
+            const userEmail = user.email;
+            this.setState({
+                userEmail: userEmail,
+            })
+        } else this.setState({
+            isLoggin: false,
+        })
 
+    }
     handleLogOut = () => {
         fire.auth().signOut().then(() => {
             console.log("LOG OUT!");
@@ -19,11 +31,16 @@ class Navigation extends Component {
             console.log("Error in log out.");
         });
     }
+
     render() {
         if (this.state.isLoggin) {
             return (
                 <div className="sidenav">
-                    <a onClick={this.handleLogOut}>LogOut</a>
+                    <div className="wellcome-user">
+                        <span className="logout-btn" onClick={this.handleLogOut}>Log out</span>
+                        {this.state.userEmail}
+                        <hr className="user-separator" />
+                    </div>
                     <Link to='/users'>Users</Link>
                     <img alt='logo' className="nav-logo" src="http://jsguru.io/wp-content/uploads/2017/02/jsguru_wh_large.png" />
                 </div>

@@ -35,7 +35,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        console.log(this.state.username);
         if (this.state.isLoggedIn) {
             return (
                 <Redirect to='/users' />
