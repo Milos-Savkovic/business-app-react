@@ -7,9 +7,9 @@ import './loginForm.css';
 
 class LoginForm extends Component {
     state = {
-        isLoggedIn: this.props.isLoggedIn,
-        user: this.props.user,
-        token: null,
+        isLoggedIn: false,
+        user: null,
+        token: '',
     }
 
     login = (e) => {
@@ -20,20 +20,7 @@ class LoginForm extends Component {
                     result: result,
                     token: result.credential.accessToken,
                     user: result.user,
-                });
-            })
-            .then(() => {
-                fire.auth().onAuthStateChanged(() => {
-                    if (this.state.user) {
-                        this.setState({
-                            isLoggedIn: true,
-                        })
-                        // Auth.login(this.state.user);
-                    } else {
-                        this.setState({
-                            isLoggedIn: false,
-                        })
-                    }
+                    isLoggedIn: true,
                 });
             })
             .catch(error => {
@@ -47,7 +34,8 @@ class LoginForm extends Component {
     render() {
         console.log(this.state.user);
         console.log(this.state.token);
-        if (this.state.user && this.state.isLoggedIn) {
+        console.log(this.state.isLoggedIn);
+        if (this.state.isLoggedIn) {
             return (
                 <Redirect to='/users' />
             )

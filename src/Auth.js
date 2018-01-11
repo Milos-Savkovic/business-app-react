@@ -8,12 +8,7 @@ const Auth = {
             return Promise.reject('Invalid user')
     },
     checkIfLoggedIn: () => {
-        const localStateJson = localStorage.getItem('state');
-        if (localStateJson) {
-            const localState = JSON.parse(localStateJson);
-            return this.isLoggedIn = localState.isLoggedIn;
-        } else
-            return this.isLoggedIn;
+        return true;
     },
     getUser: () => {
         const localStateJson = localStorage.getItem('state');

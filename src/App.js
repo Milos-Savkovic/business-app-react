@@ -15,7 +15,7 @@ const App = () => (
         <Redirect to='/login' />
       )} />
       <Route  path="/login" component={Login } />
-      <PrivateRoute  path='/users' component={Home} />
+      <PrivateRoute  exact path='/users' component={Home} />
       <Route  path='/users/add' component={Right} />
       
       <Route  path='/users/:id' component={About} />
