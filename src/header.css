@@ -19,7 +19,8 @@
   }
   
   .App-title {
-    font-size: 30px;
+    font-size: 40px;
+    font-family: 'Montserrat';
   }
   
   @keyframes App-logo-spin {
