@@ -1,17 +1,17 @@
 .report-container {
   padding: 2rem;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
+  flex: 1;
 }
 .report-container-print {
-  width: 1060px;
+  min-width: 1060px;
   height: 730px;
   padding: 2rem;
   display: flex;
-  flex-flow: row;
+  flex-flow: row nowrap;
+  flex: 1;
   border: 1px solid #111;
-  align-content: center;
-  justify-content: center;
 }
 .report-name {
   text-align: center;
@@ -23,16 +23,13 @@
   color: #484848;
   margin:0;
 }
-.rightBorder {
-  border-right: 2px solid #c0c0c0;
+.no-right-border-report, .right-border-report {
   display: flex;
   flex-flow: column;
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem 0 0 1rem;
 }
-.no-rightBorder {
-  display: flex;
-  flex-flow: column;
-  padding: 1rem 1rem 1rem 1rem;
+.right-border-report {
+  border-right: 2px solid #c0c0c0;
 }
 .report-row {
   display: flex;
@@ -44,7 +41,7 @@
 .text-center {
   text-align: center;
 }
-.printReportBtn {
+.print-report-button {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
@@ -61,7 +58,7 @@
   box-sizing: border-box;
   transition: all .2s ease-out;
 }
-.printReportBtn:hover {
+.print-report-button:hover {
   cursor: pointer;
   color: white;
   background: #fdba2c;
@@ -100,6 +97,9 @@
 }
 .floor-border--start {
   text-align: start;
+}
+.paraf-bottom {
+  align-self: flex-end;
 }
 /* ///////////////////// LOADER ///////////////////// */
 .load-bar {
