@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fireDB } from './firebaseApp';
+import { fireDB } from '../api/firebaseApp';
 import Navigation from './Navigation';
 import AboutUser from './AboutUser';
 import './about.css';

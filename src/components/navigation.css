@@ -14,6 +14,7 @@
     font-size: 26px;
     color: #f0bf23;
     display: block;
+    cursor: pointer;
 }
 
 .sidenav a:hover {

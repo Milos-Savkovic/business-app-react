@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import Login from './Login';
-import Home from './Home';
-import Right from './Right';
-import PrivateRoute from './PrivateRoute';
-import About from './About';
-import NotFound from './NotFound';
+import Login from './components/Login';
+import Home from './components/Home';
+import Right from './components/Right';
+import PrivateRoute from './components/PrivateRoute';
+import About from './components/About';
+import NotFound from './components/NotFound';
 import './app.css';
 
 const App = () => (

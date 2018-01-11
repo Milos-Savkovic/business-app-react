@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { fireDB } from './firebaseApp'
+import { fireDB } from '../api/firebaseApp'
 import './addUser.css';
 class AddUser extends Component {
 

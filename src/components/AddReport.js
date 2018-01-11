@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import DayPicker from './DayPicker';
-import MyMap from './MyMap';
-import { fireDB } from './firebaseApp'
+import MyMap from '../api/MyMap';
+import { fireDB } from '../api/firebaseApp'
 import './addReport.css';
 
 class AddReport extends Component {
