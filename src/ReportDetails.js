@@ -3,6 +3,7 @@ import { fireDB } from './firebaseApp';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './ReportDetails.css';
+import { ReportTable } from './ReportTable';
 
 class ReportDetails extends Component {
   state = {
@@ -30,7 +31,7 @@ class ReportDetails extends Component {
     html2canvas(divToPrint)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdf = new jsPDF('l', 'pt', 'a4');
         pdf.addImage(imgData, 'JPEG', 0, 0);
         const report = this.giveMeReport();
         pdf.save(`${report.reportName}.pdf`);
@@ -55,17 +56,8 @@ class ReportDetails extends Component {
       return (
         <div>
           <div className="report-container" id="report">
-            <div className="rightBorder">
-              {/*<h4 className="report-user">{`${this.state.user.FirstName} ${this.state.user.LastName}`}</h4>
-            <h2 className="report-name">{report.reportName}</h2>
-            <div className="report-row"><strong>Report Name: </strong><i>{report.reportName}</i></div>
-            <div className="report-row"><strong>Daily Earnings: </strong><i>{report.dailyEarnings}</i></div>
-            <div className="report-row"><strong>Type of transport: </strong><i>{report.typeOfTransport}</i></div>
-            <div className="report-row"><strong>Distance: </strong><i>{report.distance}</i></div>
-            <div className="report-row"><strong>Start: </strong><i>{report.date1}</i></div>
-            <div className="report-row"><strong>End: </strong><i>{report.date2}</i></div>
-            <div className="report-row"><strong>Costs: </strong><i>{report.costs}</i></div>*/}
-              <h5>Preduzeće - Organizacija</h5>
+            <div className="right-border-report">
+              <h4>Preduzeće - Organizacija</h4>
               <div className="report-row">
                 <div><strong>"GotSolution" d.o.o. Banja Luka</strong></div>
               </div>
@@ -184,23 +176,54 @@ class ReportDetails extends Component {
                 </div>
               </div>
               <br />
-              <div className="report-row-no-line">
-                <div className="report-field report-field--end">
-                  <span className="report-text report-text--right-padding">Nalogodavac,</span>
-                </div>
-              </div>
               <br />
               <br />
-              <div className="report-row-no-line report-row-no-line--no-margin">
-                <div className="report-field report-field--end">
-                  <div className="floor-border" style={{ width: '12rem', marginRight: '1rem' }}></div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div className="paraf-bottom">
+                <div className="report-row-no-line">
+                  <div className="report-field report-field--end">
+                    <span className="report-text report-text--right-padding">Nalogodavac,</span>
+                  </div>
+                </div>
+                <br />
+                <br />
+                <div className="report-row-no-line report-row-no-line--no-margin">
+                  <div className="report-field report-field--end">
+                    <div className="floor-border" style={{ width: '12rem', marginRight: '1rem' }}></div>
+                  </div>
                 </div>
               </div>
-
             </div>
+            <div className="no-right-border-report">
+              <h4 className="text-center">Na osnovu prednjeg naloga izvršio sam službeno putovanje i podnosim sledeći</h4>
+              <h2 className="text-center">PUTNI NALOG</h2>
+              <ReportTable />
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <div className="paraf-bottom">
+                <div className="report-row-no-line">
+                  <div className="report-field report-field--end">
+                    <span className="report-text report-text--right-padding">Nalogodavac,</span>
+                  </div>
+                </div>
+                <br />
+                <br />
+                <div className="report-row-no-line report-row-no-line--no-margin">
+                  <div className="report-field report-field--end">
+                    <div className="floor-border" style={{ width: '12rem', marginRight: '1rem' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           <button
-            className="printReportBtn"
+            className="print-report-button"
             onClick={this.printReport}
           >
             Print report &#128438;
