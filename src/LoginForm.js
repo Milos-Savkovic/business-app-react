@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import fire, { provider } from './firebaseApp';
+// import Auth from './Auth';
 import Header from './Header';
 import './loginForm.css';
 
 class LoginForm extends Component {
     state = {
-        isLoggedIn: false,
-        user: null,
+        isLoggedIn: this.props.isLoggedIn,
+        user: this.props.user,
+        token: null,
     }
 
     login = (e) => {
         e.preventDefault();
-
         fire.auth().signInWithPopup(provider)
             .then(result => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const token = result.credential.accessToken;
-                // The signed-in user info.
                 this.setState({
+                    result: result,
+                    token: result.credential.accessToken,
                     user: result.user,
-                })
+                });
             })
             .then(() => {
                 fire.auth().onAuthStateChanged(() => {
@@ -28,6 +28,7 @@ class LoginForm extends Component {
                         this.setState({
                             isLoggedIn: true,
                         })
+                        // Auth.login(this.state.user);
                     } else {
                         this.setState({
                             isLoggedIn: false,
@@ -36,19 +37,17 @@ class LoginForm extends Component {
                 });
             })
             .catch(error => {
-                // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // The email of the user's account used.
                 const email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
                 const credential = error.credential;
-                // ...
             });
     }
 
     render() {
-        if (this.state.user) {
+        console.log(this.state.user);
+        console.log(this.state.token);
+        if (this.state.user && this.state.isLoggedIn) {
             return (
                 <Redirect to='/users' />
             )
