@@ -42,10 +42,10 @@ class Navigation extends Component {
             return (
                 <div className="sidenav">
                     <div className="wellcome-user">
-                        {this.state.userEmail}
                         <img className="user-image" src={this.state.photo} alt="" />
+                        {this.state.userEmail}
                         <span className="logout-btn" onClick={this.handleLogOut}>Log out</span>
-                        <hr className="user-separator" />
+            {/*<hr className="user-separator" />*/}
                     </div>
                     <Link to='/users'>Users</Link>
                     <img alt='logo' className="nav-logo" src="http://jsguru.io/wp-content/uploads/2017/02/jsguru_wh_large.png" />

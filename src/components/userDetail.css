@@ -32,7 +32,6 @@
 .img{
     height: auto;
     width: 100%;
-    border: solid 1px rgb(134, 107, 23);
     display: flex;
     flex-flow: row wrap;
     margin:20px auto;
