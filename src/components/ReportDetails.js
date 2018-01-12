@@ -68,7 +68,7 @@ class ReportDetails extends Component {
                 </div>
                 <div className="report-field">
                   <span className="report-text">Datum:</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.date1}</div>
                 </div>
               </div>
               <div className="report-row-no-line">

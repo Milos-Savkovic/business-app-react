@@ -91,6 +91,8 @@
 .floor-border{
   border-bottom: 1px solid #c0c0c0;
   width: inherit;
+  text-align: center;
+  font-weight: bold;
 }
 .floor-border--end {
   text-align: end;
