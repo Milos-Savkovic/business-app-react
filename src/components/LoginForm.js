@@ -9,8 +9,8 @@ class LoginForm extends Component {
     state = {
         isLoggedIn: false,
         user: null,
-        token: '',
-        username: ''
+        // token: '',
+        // username: ''
     }
 
     login = (e) => {
@@ -20,17 +20,18 @@ class LoginForm extends Component {
                 console.log(result);
                 this.setState({
                     result: result,
-                    token: result.credential.accessToken,
+                    // token: result.credential.accessToken,
                     user: result.user,
                     isLoggedIn: true,
-                    username: result.user.displayName,
+                    // username: result.user.displayName,
                 });
             })
             .catch(error => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                const email = error.email;
-                const credential = error.credential;
+                // const email = error.email;
+                // const credential = error.credential;
+                console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
             });
     }
 

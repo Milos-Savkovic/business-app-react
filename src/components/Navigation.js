@@ -8,14 +8,19 @@ class Navigation extends Component {
     state = {
         isLoggin: true,
         userEmail: '',
+        photo: ''
     }
     componentDidMount() {
         let user = fire.auth().currentUser;
         if (user) {
             const userEmail = user.email;
+            const userPhoto = user.photoURL;
+            const photo = userPhoto.slice(0, userPhoto.length);
+            console.log(photo);
             this.setState({
                 userEmail: userEmail,
-            })
+                photo: userPhoto,
+            });
         } else this.setState({
             isLoggin: false,
         })
@@ -37,9 +42,10 @@ class Navigation extends Component {
             return (
                 <div className="sidenav">
                     <div className="wellcome-user">
-                        <span className="logout-btn" onClick={this.handleLogOut}>Log out</span>
+                        <img className="user-image" src={this.state.photo} alt="" />
                         {this.state.userEmail}
-                        <hr className="user-separator" />
+                        <span className="logout-btn" onClick={this.handleLogOut}>Log out</span>
+            {/*<hr className="user-separator" />*/}
                     </div>
                     <Link to='/users'>Users</Link>
                     <img alt='logo' className="nav-logo" src="http://jsguru.io/wp-content/uploads/2017/02/jsguru_wh_large.png" />

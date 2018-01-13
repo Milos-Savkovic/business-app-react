@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { fireDB } from '../api/firebaseApp'
+import TextField from 'material-ui/TextField';
+import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
+import FlatButton from 'material-ui/FlatButton';
 import './addUser.css';
 class AddUser extends Component {
 
@@ -61,7 +64,7 @@ class AddUser extends Component {
                 fireDB.ref('/users').set(team);
             })
             .then(() => {
-                this.setState({ 
+                this.setState({
                     isAdded: true
                 })
             })
@@ -71,23 +74,63 @@ class AddUser extends Component {
     }
 
     render() {
+        //Styles for inputs
+        const styles = {
+            floatingLabelStyle: {
+                color: grey900,
+            },
+            floatingLabelFocusStyle: {
+                color: blue500,
+            },
+        };
+        //Style for submit button
+        const style = {
+            margin: 12,
+            backgroundColor: blue500,
+            color: lime50,
+        };
+        //Render
         if (this.state.isAdded) return <Redirect to="/users" />
         return (
             <div className="add-user-container" >
                 <form className="contactForm" onSubmit={this.setFirebase}>
-                    <label>Ime : </label>
-                    <input type="text" name="firstname" onChange={this.handleInput} required />
-                    <br />
-                    <label>Prezime : </label>
-                    <input type="text" name="lastname" onChange={this.handleInput} required />
-                    <br />
-                    <label>Pozicija : </label>
-                    <input type="text" name="position" onChange={this.handleInput} required />
-                    <br />
-                    <label>Deskripcija : </label>
-                    <textarea name="description" onChange={this.handleInput} required></textarea>
-                    <br />
-                    <input type="submit" name="submit" className="formBtn" value="Dodaj novu osobu" />
+                    <TextField
+                        floatingLabelText="Ime"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        onChange={this.handleInput}
+                        name="firstname"
+                        required
+                    /><br />
+                    <TextField
+                        floatingLabelText="Prezime"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        onChange={this.handleInput}
+                        name="lastname"
+                        required
+                    /><br />
+                    <TextField
+                        floatingLabelText="Pozicija"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        onChange={this.handleInput}
+                        name="position"
+                        required
+                    /><br />
+                    <TextField
+                        floatingLabelText="Deskripcija"
+                        multiLine={true}
+                        rows={1}
+                        rowsMax={4}
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        onChange={this.handleInput}
+                        name="description"
+                        required
+                    /><br />
+                    <FlatButton type="submit" label="Dodaj novu osobu" name="submit" style={style} />
+                    {/* <input type="submit" className="formBtn" value="Dodaj novu osobu" /> */}
                 </form>
             </div>
         );

@@ -31,17 +31,18 @@
     bottom: 50px;
 }
 .wellcome-user {
-    color: #3cb8ff;
+    height: 171.5px;
+    color: #111;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem 0;
+    background: #ececec;
 }
 .user-separator {
-    margin: 1rem 0;
-    border: 1px solid #3cb8ff;
-    width: 100%;
+    margin: 1.5rem 0 0 0;
+    border: 1px solid #f0bf23;
+    width: 70%;
 }
 .logout-btn {
     background: #3cb8ff;
@@ -50,7 +51,7 @@
     border-radius: 5px;
     box-sizing: border-box;
     color: #ffffff;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
 .logout-btn:hover {
     border: 2px solid #2292d3;
@@ -60,4 +61,11 @@
 .logout-btn:focus,
 .logout-btn:active {
     cursor: pointer;
+}
+.user-image {
+    width: 50px;
+    height: 50px;
+    margin: 1rem 0;
+    border-radius: 5%;
+    box-sizing: border-box;
 }

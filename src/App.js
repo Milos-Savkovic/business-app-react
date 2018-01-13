@@ -3,7 +3,6 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
 import Right from './components/Right';
-import PrivateRoute from './components/PrivateRoute';
 import About from './components/About';
 import NotFound from './components/NotFound';
 import './app.css';
@@ -15,7 +14,7 @@ const App = () => (
         <Redirect to='/login' />
       )} />
       <Route  path="/login" component={Login } />
-      <PrivateRoute  exact path='/users' component={Home} />
+      <Route  exact path='/users' component={Home} />
       <Route  path='/users/add' component={Right} />
       
       <Route  path='/users/:id' component={About} />
