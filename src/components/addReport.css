@@ -87,7 +87,7 @@ label{
 .rowEarnings{
     padding:10px;
     flex-direction: column; 
-    width:100px;
+    width:150px;
     padding-top:0px;
 }
 .box{
@@ -102,6 +102,7 @@ label{
 }
 .drop{
      flex-direction: row;
+     width:250px;
 }
 .dropItem{
     flex-direction: column;
