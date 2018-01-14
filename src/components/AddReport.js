@@ -8,6 +8,8 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import './addReport.css';
 
 const styles = {
@@ -39,6 +41,7 @@ class AddReport extends Component {
         startDate: moment().format('DD.MM.YYYY'),
         endDate: moment().add(3, 'days').format('DD.MM.YYYY'),
         user: null,
+        moreCosts: null,
     }
 
     setFirebase = (e) => {
@@ -145,6 +148,14 @@ class AddReport extends Component {
         this.props.closeReport();
     }
 
+    handleMoreCosts = () => {
+        let newCosts = this.state.moreCosts;
+        newCosts += 1;
+        this.setState({
+            moreCosts: newCosts,
+        });
+    }
+
     render() {
         console.log(this.state);
         return (
@@ -219,6 +230,16 @@ class AddReport extends Component {
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>
                     </div>
+                    {this.state.moreCosts}
+                    <FloatingActionButton
+                        mini={true}
+                        style={{
+                            marginRight: 20,
+                        }}
+                        onClick={this.handleMoreCosts}
+                    >
+                        <ContentAdd />
+                    </FloatingActionButton>
                     <RaisedButton
                         type="submit"
                         label="Add report"
