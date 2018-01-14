@@ -7,6 +7,7 @@ import { grey900 } from 'material-ui/styles/colors';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 import './addReport.css';
 
 const styles = {
@@ -47,12 +48,12 @@ class AddReport extends Component {
         //create new report 
         const report = {
             costs: this.state.costs,
-            dailyEarnings: this.state.inputs.earnings,
+            dailyEarnings: this.state.earnings,
             date1: this.state.startDate,
             date2: this.state.endDate,
             distance: this.state.city.distance,
             reportName: this.state.city.cityName,
-            typeOfTransport: this.state.inputs.typeOfTransport,
+            typeOfTransport: this.state.typeOfTransport,
         }
         //get user details from database
         fireDB.ref('/users').once('value')
@@ -179,15 +180,15 @@ class AddReport extends Component {
                             />
                         </RadioButtonGroup>
                     </div>
-                        <p>Lokacija : </p>
-                        <div className="input-group">
-                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
-                        </div>
-                        <MyMap
-                            city={this.state.city.cityName || 'Banja Luka'}
-                            handleDistance={this.handleDistance}
-                        />
-                   
+                    <p>Lokacija : </p>
+                    <div className="input-group">
+                        <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                    </div>
+                    <MyMap
+                        city={this.state.city.cityName || 'Banja Luka'}
+                        handleDistance={this.handleDistance}
+                    />
+
                     <div className="drop">
                         <SelectField
                             floatingLabelText="Troškove snosi:"
@@ -218,8 +219,12 @@ class AddReport extends Component {
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>
                     </div>
-
-                    <input type="submit" name="submit" value="Add report" className="submit" />
+                    <RaisedButton
+                        type="submit"
+                        label="Add report"
+                        className="submit"
+                        backgroundColor="#E0B222"
+                    />
                     <div
                         className="close"
                         onClick={this.xhandler}

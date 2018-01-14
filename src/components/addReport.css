@@ -14,16 +14,8 @@
 }
 .submit{
     width:400px;
-    min-height:50px;
-    padding: 5px;
-    background-color: rgb(224, 178, 34);
-    color:white;
-    font-size:24px;
-    text-align: center;
-    border:none;
-}
-.submit:hover{
-    background-color: rgb(233, 192, 71);
+    height:50px;
+    margin-bottom:10px; 
 }
 #mapSearch{
     width:200px;
@@ -37,6 +29,7 @@
     font-size:16px;
 }
 .rowDate{
+    margin-top:10px;
     flex-direction: column; 
     padding-bottom: 10px;
 }
