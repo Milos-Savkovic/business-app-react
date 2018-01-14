@@ -1,13 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import DatePicker from 'material-ui/DatePicker';
 import 'react-day-picker/lib/style.css';
-
 import MomentLocaleUtils, {
     formatDate,
     parseDate,
 } from 'react-day-picker/moment';
-
+import './dayPicker.css';
 import 'moment/locale/it';
 
 export default function Example(props) {

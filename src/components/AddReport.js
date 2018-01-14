@@ -15,6 +15,13 @@ const styles = {
     },
     floatingLabelStyle: {
         color: grey900,
+        fontSize: '16px',
+    },
+    menuItem: {
+        textAlign: 'center',
+    },
+    selectField: {
+        width: '200px',
     },
 };
 
@@ -108,13 +115,9 @@ class AddReport extends Component {
         })
     }
 
-    handleEarnings = (e) => {
-        e.preventDefault();
-        const value = e.target.value;
-        this.setState({
-            earnings: value
-        })
-    }
+    handleEarnings = (e, value) => this.setState({
+        earnings: value
+    })
 
     handleCosts = (event, index, value) => this.setState({
         costs: value
@@ -154,7 +157,11 @@ class AddReport extends Component {
                     </div>
                     <div className="rowEarnings">
                         <p>Dnevnica : </p>
-                        <RadioButtonGroup floatingLabelText="Dnevnica" name="earnings" onChange={this.handleEarnings} defaultSelected="domaća">
+                        <RadioButtonGroup
+                            name="earnings"
+                            onChange={this.handleEarnings}
+                            defaultSelected="domaća"
+                        >
                             <RadioButton
                                 label="strana"
                                 value="strana"
@@ -172,34 +179,46 @@ class AddReport extends Component {
                             />
                         </RadioButtonGroup>
                     </div>
-
-                    <SelectField
-                        floatingLabelText="Troškove snosi"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        value={this.state.costs}
-                        onChange={this.handleCosts}
-                    >
-                        <MenuItem value="kompanija" primaryText="Kompanija" />
-                        <MenuItem value="zaposleni" primaryText="Zaposleni" />
-                    </SelectField>
-                    <SelectField
-                        floatingLabelText="Vrsta prevoza"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        value={this.state.typeOfTransport}
-                        onChange={this.handleTypeOfTransport}
-                    >
-                        <MenuItem value="službeno" primaryText="Službeno vozilo" />
-                        <MenuItem value="lično" primaryText="Lično vozilo" />
-                    </SelectField>
-
-                    <p>Lokacija : </p>
-                    <div className="input-group">
-                        <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                        <p>Lokacija : </p>
+                        <div className="input-group">
+                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                        </div>
+                        <MyMap
+                            city={this.state.city.cityName || 'Banja Luka'}
+                            handleDistance={this.handleDistance}
+                        />
+                   
+                    <div className="drop">
+                        <SelectField
+                            floatingLabelText="Troškove snosi:"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            value={this.state.costs}
+                            onChange={this.handleCosts}
+                            style={styles.selectField}
+                        >
+                            <MenuItem
+                                value="kompanija"
+                                primaryText="Kompanija"
+                                style={styles.menuItem}
+                            />
+                            <MenuItem
+                                value="zaposleni"
+                                primaryText="Zaposleni"
+                                style={styles.menuItem}
+                            />
+                        </SelectField>
+                        <SelectField
+                            floatingLabelText="Vrsta prevoza:"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            value={this.state.typeOfTransport}
+                            onChange={this.handleTypeOfTransport}
+                            style={styles.selectField}
+                        >
+                            <MenuItem value="službeno" primaryText="Službeno vozilo" />
+                            <MenuItem value="lično" primaryText="Lično vozilo" />
+                        </SelectField>
                     </div>
-                    <MyMap
-                        city={this.state.city.cityName || 'Banja Luka'}
-                        handleDistance={this.handleDistance}
-                    />
+
                     <input type="submit" name="submit" value="Add report" className="submit" />
                     <div
                         className="close"
