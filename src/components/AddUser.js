@@ -30,6 +30,7 @@ class AddUser extends Component {
             lastname: '',
             position: '',
             description: '',
+            email: '',
         },
         isAdded: false,
     }
@@ -71,6 +72,7 @@ class AddUser extends Component {
                         Id: id,
                         LastName: this.state.user.lastname,
                         Position: this.state.user.position,
+                        Email: this.state.user.email,
                         Selected: true,
                     }];
                 return team;
@@ -107,6 +109,15 @@ class AddUser extends Component {
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         onChange={this.handleInput}
                         name="lastname"
+                        required
+                    /><br />
+                    <TextField
+                        type="email"
+                        floatingLabelText="Email"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        onChange={this.handleInput}
+                        name="email"
                         required
                     /><br />
                     <TextField
