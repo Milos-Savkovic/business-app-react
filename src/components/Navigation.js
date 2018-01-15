@@ -10,23 +10,6 @@ class Navigation extends React.Component {
         userEmail: '',
         photo: ''
     }
-    // componentWillMount() {
-    //   let user = fire.auth().currentUser;
-    //   if (user) {
-    //     const userEmail = user.email;
-    //     const userPhoto = user.photoURL;
-    //     const photo = userPhoto.slice(0, userPhoto.length);
-    //     console.log(photo);
-    //     this.setState({
-    //       isLoggin: true,
-    //       userEmail: userEmail,
-    //       photo: userPhoto,
-    //     });
-    //   } else this.setState({
-    //     isLoggin: false,
-    //   })
-
-    // }
     componentWillMount() {
         this.authUser();
     }
@@ -57,11 +40,13 @@ class Navigation extends React.Component {
     render() {
         return (
             <div className="sidenav" >
-                <div className="wellcome-user">
-                    <img className="user-image" src={this.state.photo} alt="user" />
+                <div className="welcome-user">
+                    <h4>Welcome,</h4>
                     {this.state.userEmail}
-                    <span className="logout-btn" onClick={this.handleLogOut}>Log out</span>
-                    {/*<hr className="user-separator" />*/}
+                    <div className="picture-btn">
+                        <img className="user-image" src={this.state.photo} alt="user" />
+                        <span className="logout-btn" onClick={this.handleLogOut}>Log out</span>
+                    </div>
                 </div>
                 <Link to='/users'>Users</Link>
                 <img alt='logo' className="nav-logo" src="http://jsguru.io/wp-content/uploads/2017/02/jsguru_wh_large.png" />
