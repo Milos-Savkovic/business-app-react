@@ -8,10 +8,10 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
     <div className="router">
-    <Router>
-        <MuiThemeProvider>
-        <App />
-        </MuiThemeProvider>
-    </Router>
+        <Router>
+            <MuiThemeProvider>
+                <App />
+            </MuiThemeProvider>
+        </Router>
     </div>, document.getElementById('root'));
 registerServiceWorker();

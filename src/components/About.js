@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { fireDB } from '../api/firebaseApp';
-import Navigation from './Navigation';
 import AboutUser from './AboutUser';
 import './about.css';
 
@@ -55,8 +54,7 @@ class About extends Component {
 
     render() {
         return (
-            <div className="about" >
-                <Navigation />
+            <div className="about" >                
                 {this.about()}
             </div>
         );
