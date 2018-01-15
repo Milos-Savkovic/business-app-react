@@ -5,12 +5,12 @@ import Container from './components/Container';
 import AddUser from './components/AddUser';
 import About from './components/About';
 import NotFound from './components/NotFound';
-import Field from './components/Field';
 import Navigation from './components/Navigation';
 import './app.css';
 import fire from './api/firebaseApp';
 
-const App = () => {
+const App = (props) => {
+  
   console.log(fire.auth().currentUser);
   if (fire.auth().currentUser) {
     return (

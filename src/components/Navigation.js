@@ -1,6 +1,6 @@
 import React from 'react';
 import fire from '../api/firebaseApp';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 
 import './navigation.css';
 
@@ -51,7 +51,8 @@ class Navigation extends React.Component {
             console.log("LOG OUT!");
             this.setState({
                 isLoggin: false,
-            })
+            });
+            this.props.history.push('/login');
         }).catch((error) => {
             console.log("Error in log out.");
         });
@@ -73,4 +74,4 @@ class Navigation extends React.Component {
     }
 }
 
-export default Navigation;
+export default withRouter(Navigation);
