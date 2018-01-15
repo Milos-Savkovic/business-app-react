@@ -2,8 +2,31 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import DayPicker from './DayPicker';
 import MyMap from '../api/MyMap';
-import { fireDB } from '../api/firebaseApp'
+import { fireDB } from '../api/firebaseApp';
+import { grey900 } from 'material-ui/styles/colors';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import './addReport.css';
+
+const styles = {
+    radioButton: {
+        marginBottom: 10,
+    },
+    floatingLabelStyle: {
+        color: grey900,
+        fontSize: '16px',
+    },
+    menuItem: {
+        textAlign: 'center',
+    },
+    selectField: {
+        width: '200px',
+    },
+};
 
 class AddReport extends Component {
 
@@ -12,16 +35,14 @@ class AddReport extends Component {
             cityName: '',
             distance: 0,
         },
-        inputs: {
-            earnings: 'domaća',
-            typeOfTransport: 'sluzbeno',
-            costs: 'kompanija',
-        },
+        earnings: 'domaća',
+        typeOfTransport: 'službeno',
+        costs: 'kompanija',
         startDate: moment().format('DD.MM.YYYY'),
         endDate: moment().add(3, 'days').format('DD.MM.YYYY'),
         user: null,
+        moreCosts: null,
     }
-    // userId={this.props.id}
 
     setFirebase = (e) => {
         e.preventDefault();
@@ -29,13 +50,13 @@ class AddReport extends Component {
         console.log(this.props.id);
         //create new report 
         const report = {
-            costs: this.state.inputs.costs,
-            dailyEarnings: this.state.inputs.earnings,
+            costs: this.state.costs,
+            dailyEarnings: this.state.earnings,
             date1: this.state.startDate,
             date2: this.state.endDate,
             distance: this.state.city.distance,
             reportName: this.state.city.cityName,
-            typeOfTransport: this.state.inputs.typeOfTransport,
+            typeOfTransport: this.state.typeOfTransport,
         }
         //get user details from database
         fireDB.ref('/users').once('value')
@@ -98,16 +119,17 @@ class AddReport extends Component {
         })
     }
 
-    handleInputs = (e) => {
-        const inputs = this.state.inputs;
-        const name = e.target.name;
-        const value = e.target.value;
+    handleEarnings = (e, value) => this.setState({
+        earnings: value
+    })
 
-        inputs[name] = value;
-        this.setState({
-            inputs
-        })
-    }
+    handleCosts = (event, index, value) => this.setState({
+        costs: value
+    });
+
+    handleTypeOfTransport = (event, index, value) => this.setState({
+        typeOfTransport: value
+    });
 
     handleCity = (e) => {
         e.preventDefault();
@@ -126,7 +148,16 @@ class AddReport extends Component {
         this.props.closeReport();
     }
 
+    handleMoreCosts = () => {
+        let newCosts = this.state.moreCosts;
+        newCosts += 1;
+        this.setState({
+            moreCosts: newCosts,
+        });
+    }
+
     render() {
+        console.log(this.state);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
@@ -136,40 +167,29 @@ class AddReport extends Component {
                             handleDateEnd={this.handleDateEnd}
                         />
                     </div>
-                    <p>Dnevnica : </p>
-                    <div className="rowEarnings" onChange={this.handleInputs}>
-                        <div className="box">
-                            <input type="radio" name="earnings" value="domaća" id="choice1" className="ch1" defaultChecked />
-                            <label>domaća</label>
-                        </div>
-                        <div className="box">
-                            <input type="radio" name="earnings" value="EX-YU" id="choice2" className="ch2" />
-                            <label>EX-YU</label>
-                        </div>
-                        <div className="box">
-                            <input type="radio" value="strana" name="earnings" id="choice3" className="ch3" />
-                            <label>strana</label>
-                        </div>
-                    </div>
-                    <div className="drop">
-                        <div className="dropItem">
-                            <p>Troškove snosi : </p>
-                            <div className="buttom-costs" onChange={this.handleInputs}>
-                                <select id="dropdownItem" name="costs">
-                                    <option name="dropdowna" value="kompanija">Kompanija</option>
-                                    <option name="dropdowna" value="zaposleni">Zaposleni</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="dropItem">
-                            <p>Vrsta prevoza : </p>
-                            <div className="buttom-costs" onChange={this.handleInputs}>
-                                <select id="dropdownItem" name="typeOfTransport">
-                                    <option name="dropdowna" value="sluzbeno">Službeno vozilo</option>
-                                    <option name="dropdowna" value="licno">Lično vozilo</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div className="rowEarnings">
+                        <p>Dnevnica : </p>
+                        <RadioButtonGroup
+                            name="earnings"
+                            onChange={this.handleEarnings}
+                            defaultSelected="domaća"
+                        >
+                            <RadioButton
+                                label="strana"
+                                value="strana"
+                                style={styles.radioButton}
+                            />
+                            <RadioButton
+                                label="domaća"
+                                value="domaća"
+                                style={styles.radioButton}
+                            />
+                            <RadioButton
+                                label="EX-YU"
+                                value="EX-YU"
+                                style={styles.radioButton}
+                            />
+                        </RadioButtonGroup>
                     </div>
                     <p>Lokacija : </p>
                     <div className="input-group">
@@ -179,7 +199,53 @@ class AddReport extends Component {
                         city={this.state.city.cityName || 'Banja Luka'}
                         handleDistance={this.handleDistance}
                     />
-                    <input type="submit" name="submit" value="Add report" className="submit" />
+
+                    <div className="drop">
+                        <SelectField
+                            floatingLabelText="Troškove snosi:"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            value={this.state.costs}
+                            onChange={this.handleCosts}
+                            style={styles.selectField}
+                        >
+                            <MenuItem
+                                value="kompanija"
+                                primaryText="Kompanija"
+                                style={styles.menuItem}
+                            />
+                            <MenuItem
+                                value="zaposleni"
+                                primaryText="Zaposleni"
+                                style={styles.menuItem}
+                            />
+                        </SelectField>
+                        <SelectField
+                            floatingLabelText="Vrsta prevoza:"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            value={this.state.typeOfTransport}
+                            onChange={this.handleTypeOfTransport}
+                            style={styles.selectField}
+                        >
+                            <MenuItem value="službeno" primaryText="Službeno vozilo" />
+                            <MenuItem value="lično" primaryText="Lično vozilo" />
+                        </SelectField>
+                    </div>
+                    {this.state.moreCosts}
+                    <FloatingActionButton
+                        mini={true}
+                        style={{
+                            marginRight: 20,
+                        }}
+                        onClick={this.handleMoreCosts}
+                    >
+                        <ContentAdd />
+                    </FloatingActionButton>
+                    <RaisedButton
+                        type="submit"
+                        label="Add report"
+                        className="submit"
+                        backgroundColor="#E0B222"
+                    />
                     <div
                         className="close"
                         onClick={this.xhandler}

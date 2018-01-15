@@ -5,6 +5,23 @@ import TextField from 'material-ui/TextField';
 import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import './addUser.css';
+
+
+//Styles for inputs
+const styles = {
+    floatingLabelStyle: {
+        color: grey900,
+    },
+    floatingLabelFocusStyle: {
+        color: blue500,
+    },
+    button: {
+        margin: 12,
+        backgroundColor: blue500,
+        color: lime50,
+    },
+};
+
 class AddUser extends Component {
 
     state = {
@@ -13,6 +30,7 @@ class AddUser extends Component {
             lastname: '',
             position: '',
             description: '',
+            email: '',
         },
         isAdded: false,
     }
@@ -54,13 +72,12 @@ class AddUser extends Component {
                         Id: id,
                         LastName: this.state.user.lastname,
                         Position: this.state.user.position,
-                        // Reports: reports,
+                        Email: this.state.user.email,
                         Selected: true,
                     }];
                 return team;
             })
             .then((team) => {
-                console.log(team)
                 fireDB.ref('/users').set(team);
             })
             .then(() => {
@@ -74,22 +91,6 @@ class AddUser extends Component {
     }
 
     render() {
-        //Styles for inputs
-        const styles = {
-            floatingLabelStyle: {
-                color: grey900,
-            },
-            floatingLabelFocusStyle: {
-                color: blue500,
-            },
-        };
-        //Style for submit button
-        const style = {
-            margin: 12,
-            backgroundColor: blue500,
-            color: lime50,
-        };
-        //Render
         if (this.state.isAdded) return <Redirect to="/users" />
         return (
             <div className="add-user-container" >
@@ -111,6 +112,15 @@ class AddUser extends Component {
                         required
                     /><br />
                     <TextField
+                        type="email"
+                        floatingLabelText="Email"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        onChange={this.handleInput}
+                        name="email"
+                        required
+                    /><br />
+                    <TextField
                         floatingLabelText="Pozicija"
                         floatingLabelStyle={styles.floatingLabelStyle}
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
@@ -129,8 +139,7 @@ class AddUser extends Component {
                         name="description"
                         required
                     /><br />
-                    <FlatButton type="submit" label="Dodaj novu osobu" name="submit" style={style} />
-                    {/* <input type="submit" className="formBtn" value="Dodaj novu osobu" /> */}
+                    <FlatButton type="submit" label="Dodaj novu osobu" name="submit" style={styles.button} />
                 </form>
             </div>
         );
