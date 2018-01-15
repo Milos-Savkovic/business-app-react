@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import fire, { provider, session } from '../api/firebaseApp';
+import fire, { provider } from '../api/firebaseApp';
 import Header from './Header';
 import './loginForm.css';
 import googleLogo from '../assets/images/google.png';
@@ -15,35 +15,24 @@ class LoginForm extends Component {
 
     login = (e) => {
         e.preventDefault();
-        session
-            .then(function () {
-                // Existing and future Auth states are now persisted in the current
-                // session only. Closing the window would clear any existing state even
-                // if a user forgets to sign out.
-                // ...
-                // New sign-in will be persisted with session persistence.
-                return fire.auth().signInWithPopup(provider)
-                    .then(result => {
-                        console.log(result);
-                        this.setState({
-                            // token: result.credential.accessToken,
-                            user: result.user,
-                            isLoggedIn: true,
-                            // username: result.user.displayName,
-                        });
-                    })
-                    .catch(error => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        // const email = error.email;
-                        // const credential = error.credential;
-                        console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
-                    });
+        return fire.auth().signInWithPopup(provider)
+            .then(result => {
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var credential = result.credential;
+                this.setState({
+                    // token: result.credential.accessToken,
+                    user: result.user,
+                    isLoggedIn: true,
+                    // username: result.user.displayName,
+                });
             })
-            .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
+            .catch(error => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // const email = error.email;
+                // const credential = error.credential;
+                console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
             });
 
     }

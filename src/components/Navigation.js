@@ -1,6 +1,6 @@
 import React from 'react';
 import fire from '../api/firebaseApp';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import './navigation.css';
 
@@ -29,15 +29,12 @@ class Navigation extends React.Component {
     // }
     componentWillMount() {
         this.authUser();
-        console.log(this.state);
     }
     authUser = () => {
         let user = fire.auth().currentUser;
         if (user) {
             const userEmail = user.email;
             const userPhoto = user.photoURL;
-            const photo = userPhoto.slice(0, userPhoto.length);
-            console.log(photo);
             this.setState({
                 userEmail: userEmail,
                 photo: userPhoto,
@@ -48,21 +45,20 @@ class Navigation extends React.Component {
     }
     handleLogOut = () => {
         fire.auth().signOut().then(() => {
-            console.log("LOG OUT!");
             this.setState({
                 isLoggin: false,
             });
+            this.props.logout();
             this.props.history.push('/login');
         }).catch((error) => {
             console.log("Error in log out.");
         });
     }
     render() {
-        console.log(this.props);
         return (
             <div className="sidenav" >
                 <div className="wellcome-user">
-                    <img className="user-image" src={this.state.photo} alt="photo" />
+                    <img className="user-image" src={this.state.photo} alt="user" />
                     {this.state.userEmail}
                     <span className="logout-btn" onClick={this.handleLogOut}>Log out</span>
                     {/*<hr className="user-separator" />*/}
