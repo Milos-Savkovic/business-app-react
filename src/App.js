@@ -36,13 +36,12 @@ class App extends React.Component {
     if (this.state.userInTheHouse) {
       return (
         <div className="classApp">
-          <Navigation logout={this.logoutHandler}/>
+          <Navigation logout={this.logoutHandler} />
           <Switch>
-            <Route exact path='/' render={() => (
-              <Redirect to='/login' />
-            )} />
-            <Route path="/login" component={Login} />
             <Route exact path='/users' component={Container} />
+            <Route exact path='/login' render={() => (
+              <Redirect to='/users' />
+            )} />
             <Route path='/users/add' component={AddUser} />
             <Route path='/users/:id' component={About} />
             <Route component={NotFound} />

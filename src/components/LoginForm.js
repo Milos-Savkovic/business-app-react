@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import fire, { provider } from '../api/firebaseApp';
+import fire, { provider, session } from '../api/firebaseApp';
 import Header from './Header';
 import './loginForm.css';
 import googleLogo from '../assets/images/google.png';
@@ -9,36 +9,41 @@ class LoginForm extends Component {
     state = {
         isLoggedIn: false,
         user: null,
-        // token: '',
+        token: '',
+        credential: '',
         // username: ''
     }
 
     login = (e) => {
         e.preventDefault();
-        return fire.auth().signInWithPopup(provider)
-            .then(result => {
-                var token = result.credential.accessToken;
-                // The signed-in user info.
-                var credential = result.credential;
-                this.setState({
-                    // token: result.credential.accessToken,
-                    user: result.user,
-                    isLoggedIn: true,
-                    // username: result.user.displayName,
-                });
+        session
+            .then(() => {
+                return fire.auth().signInWithPopup(provider)
+                    .then(result => {
+                        const token = result.credential.accessToken;
+                        const credential = result.credential;
+                        this.setState({
+                            token: token,
+                            user: result.user,
+                            isLoggedIn: true,
+                            credential: credential,
+                            // username: result.user.displayName,
+                        });
+                    })
+                    .catch(error => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;``
+                        console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
+                    });
             })
-            .catch(error => {
+            .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // const email = error.email;
-                // const credential = error.credential;
-                console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
             });
-
     }
 
     render() {
-        if (this.state.isLoggedIn) {
+        if (this.state.isLoggedIn && this.state.token) {
             return (
                 <Redirect to='/users' />
             )
