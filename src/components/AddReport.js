@@ -48,7 +48,6 @@ class AddReport extends Component {
     setFirebase = (e) => {
         e.preventDefault();
         console.log("Set FIREBASE!");
-        console.log(this.props.id);
         //create new report 
         const report = {
             costs: this.state.costs,
@@ -58,7 +57,8 @@ class AddReport extends Component {
             distance: this.state.city.distance,
             reportName: this.state.city.cityName,
             typeOfTransport: this.state.typeOfTransport,
-        }
+            moreCosts:this.state.moreCosts,
+        };
         //get user details from database
         fireDB.ref('/users').once('value')
             .then((snapshot) => {
@@ -198,7 +198,6 @@ class AddReport extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >

@@ -4,6 +4,6 @@
     overflow-y:auto;
     display: flex;
     flex-flow: row wrap;
-    padding-right:5px;
-    padding-left:80px;
+    justify-content: center;
+    padding:20px;
 }
