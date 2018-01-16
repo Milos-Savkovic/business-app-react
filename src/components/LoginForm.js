@@ -31,7 +31,7 @@ class LoginForm extends Component {
                         });
                     })
                     .catch(error => {
-                        console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
+                        console.log(error);
                     });
             })
             .catch((error) => {
