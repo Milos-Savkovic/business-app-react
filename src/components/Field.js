@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import ReportDetails from './ReportDetails';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import './field.css';
 
 class Field extends Component {
@@ -9,22 +11,22 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
-        // console.log(this.props.keyLocation)
         return (
             <div className="fieldBack-container">
                 <div className="fieldBack">
-                    <h3 className="fieldTitle">Add new report</h3>
                     <Link
-                        style={{textDecoration: 'none'}}
+                        style={{ textDecoration: 'none' }}
                         to={`/users/${this.props.id}/new-report`}
                         onClick={this.clickHandler}
                     >
                         <div className="fieldButton">
-                            <strong className="btnPlus">&#43;</strong>
+                            <FloatingActionButton >
+                                <ContentAdd />
+                            </FloatingActionButton>
                         </div>
                     </Link>
                 </div>
-                
+
                 <Route
                     path={`/users/:${this.props.id}/:date/:reportName`}
                     render={() => <ReportDetails

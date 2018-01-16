@@ -11,42 +11,10 @@
     overflow:auto;  
     /* padding: 1rem;  */
 }
-.fieldTitle {
-    color: white;
-    font-size: 1.3rem;
-    text-transform: capitalize;
-    line-height: .5rem;
-}
 .fieldButton {
     display: flex;
     justify-content: center;
-    width: 6rem;
-    background: #c7c7c7;
-    background: linear-gradient(to bottom right, rgb(253, 216, 49), rgb(224, 156, 28));
-    border: 1px solid rgb(71, 71, 71);
-    border-radius: 5px;    
-    box-sizing: border-box;
-    transition: all .2s ease-out;
-    text-decoration: none;
-}
-.fieldButton:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-}
-.btnPlus {
-    /* position: absolute; */
-    color: white;    
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: all .2s ease-out;
-} 
-.fieldButton:hover .btnPlus{
-    transform: scale(-1.1);    
-}
-.separator {
-    /* width: 90%; */
-    display: block;
-    border-top: 2.5px solid rgb(240, 191, 35);
-    margin-top: 0;
-    box-shadow: 0 2px 8px #787878;
+    bottom: 20px;
+    right:20px;
+    position: fixed;
 }
