@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import TextField from 'material-ui/TextField';
+import NewCosts from './NewCosts';
 import './addReport.css';
 
 const styles = {
@@ -80,7 +80,6 @@ class AddReport extends Component {
                 this.setState({
                     user: newUser,
                 })
-                console.log(this.state.user);
 
                 users.map(item => {
                     if (item.Id === this.state.user.Id) {
@@ -151,8 +150,33 @@ class AddReport extends Component {
 
     handleMoreCosts = () => {
         let newCosts = `input-${this.state.moreCosts.length}`;
+        const newArray = this.state.moreCosts;
+        newArray.push({
+            id: newCosts,
+            name: '',
+            KM: '',
+        });
         this.setState({
-            moreCosts: this.state.moreCosts.concat([newCosts])
+            moreCosts: newArray,
+        });
+    }
+
+    handleMoreCostsValue = (e) => {
+        e.preventDefault();
+        let moreCosts = this.state.moreCosts;
+        const id = e.target.id;
+        const value = e.target.value;
+
+        let cost = moreCosts.filter(item => item.id === id);
+        cost = cost[0];
+        cost.name = value;
+
+        let newArray = moreCosts.filter(item => item.id !== id);
+        newArray.push(cost);
+
+        moreCosts = newArray;
+        this.setState({
+            moreCosts,
         });
     }
 
@@ -231,11 +255,17 @@ class AddReport extends Component {
                         </SelectField>
                     </div>
                     <p>Dodatni troškovi: </p>
-                    {this.state.moreCosts.map(input => <TextField key={input} />)}
+                    {this.state.moreCosts.map(input => <NewCosts
+                        key={input.id}
+                        id={input.id}
+                        value={input.name}
+                        KM={input.KM}
+                        handleMoreCostsValue={this.handleMoreCostsValue}
+                    />)}
                     <FloatingActionButton
                         mini={true}
                         style={{
-                            marginRight: 20,
+                            marginTop: '10px',
                         }}
                         onClick={this.handleMoreCosts}
                     >
@@ -254,7 +284,6 @@ class AddReport extends Component {
                         X
                     </div>
                 </form>
-
             </div>
         );
     }
