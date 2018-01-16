@@ -8,6 +8,7 @@ import NotFound from './components/NotFound';
 import Navigation from './components/Navigation';
 import './app.css';
 import fire from './api/firebaseApp';
+// import AppBar from 'material-ui/AppBar';
 
 class App extends React.Component {
   state = {
@@ -37,6 +38,10 @@ class App extends React.Component {
       return (
         <div className="classApp">
           <Navigation logout={this.logoutHandler} />
+          {/* <AppBar
+            title="Welcome,"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+          /> */}
           <Switch>
             <Route exact path='/users' component={Container} />
             <Route exact path='/login' render={() => (

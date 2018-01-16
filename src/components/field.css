@@ -9,7 +9,6 @@
 .fieldBack-container {   
     width: 100%;    
     overflow:auto;  
-    /* padding: 1rem;  */
 }
 .fieldButton {
     display: flex;

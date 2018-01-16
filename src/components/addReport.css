@@ -30,7 +30,6 @@
 }
 .rowDate{
     margin-top:10px;
-    flex-direction: column; 
     padding-bottom: 10px;
 }
 .rowDate input {

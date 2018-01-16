@@ -20,7 +20,7 @@ export default function Example(props) {
     }
 
     return (
-        <div>
+        <div className="rowDate">
             <p>Datum polaska:</p>
             <DayPickerInput
                 formatDate={formatDate}

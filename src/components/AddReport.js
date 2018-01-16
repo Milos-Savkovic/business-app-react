@@ -10,6 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import TextField from 'material-ui/TextField';
 import './addReport.css';
 
 const styles = {
@@ -41,7 +42,7 @@ class AddReport extends Component {
         startDate: moment().format('DD.MM.YYYY'),
         endDate: moment().add(3, 'days').format('DD.MM.YYYY'),
         user: null,
-        moreCosts: null,
+        moreCosts: [],
     }
 
     setFirebase = (e) => {
@@ -149,10 +150,9 @@ class AddReport extends Component {
     }
 
     handleMoreCosts = () => {
-        let newCosts = this.state.moreCosts;
-        newCosts += 1;
+        let newCosts = `input-${this.state.moreCosts.length}`;
         this.setState({
-            moreCosts: newCosts,
+            moreCosts: this.state.moreCosts.concat([newCosts])
         });
     }
 
@@ -230,7 +230,8 @@ class AddReport extends Component {
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>
                     </div>
-                    {this.state.moreCosts}
+                    <p>Dodatni troškovi: </p>
+                    {this.state.moreCosts.map(input => <TextField key={input} />)}
                     <FloatingActionButton
                         mini={true}
                         style={{
