@@ -31,25 +31,12 @@ class LoginForm extends Component {
                         });
                     })
                     .catch(error => {
-<<<<<<< HEAD
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
-                    });
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`);
-            });
-=======
                         console.log(error);
                     });
             })
             .catch((error) => {
                 console.log(error)
             })
->>>>>>> develop
     }
 
     render() {
