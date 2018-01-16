@@ -15,6 +15,7 @@
 .table-row-4,
 .table-row-5 {
   border-top: 0;
+  justify-content: space-evenly;
 }
 .table-row-1,
 .table-row-2,
@@ -48,7 +49,7 @@
   align-items: center;
   justify-content: center;
 }
-.cell-2{
+.table-row-cell-2{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,6 +68,7 @@
   text-align: center;
   box-sizing: border-box;
 }
+.cell-2,
 .cell-3,
 .cell-4,
 .cell-5,
@@ -107,13 +109,29 @@
 }
 .long-field {
   width: 10rem;
+  border-bottom: 1px solid #333;
+  min-height: 1.982rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.long-field-end {
+  border-bottom: unset;
 }
 .table-row-2-cell-5,
 .table-row-2-cell-6,
 .table-row-2-cell-7 {
   height: auto;
 }
-;table-row-2-cell-1 {
-  display: flex;
-  flex-flow: column wrap;
+.short-field-row-2 {
+  border-bottom: 1px solid #333;
+  height: 1.92rem;  
+}
+.short-field-end,
+.medium-field-end {
+  border-bottom: unset;
+}
+.medium-field-row-2 {
+  height: 1.92rem;
 }
