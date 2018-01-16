@@ -5,20 +5,21 @@ import './newCosts.css';
 class NewCosts extends Component {
 
     render() {
-        console.log(this.props);
         return (
             <div className="">
                 <TextField
+                    id={this.props.id}
                     hintText="Novi trošak"
                     style={{
-                        width:'300px',
+                        width: '300px',
                     }}
-                    onChange={this.props.handleMoreCostsValue}
+                    onChange={this.props.handleMoreCostsName}
                 />
                 <TextField
+                    id={this.props.id}
                     style={{
-                        width:'70px',
-                        marginLeft:'20px',
+                        width: '70px',
+                        marginLeft: '20px',
                     }}
                     onChange={this.props.handleMoreCostsValue}
                 />

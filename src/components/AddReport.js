@@ -161,7 +161,7 @@ class AddReport extends Component {
         });
     }
 
-    handleMoreCostsValue = (e) => {
+    handleMoreCostsName = (e) => {
         e.preventDefault();
         let moreCosts = this.state.moreCosts;
         const id = e.target.id;
@@ -170,10 +170,27 @@ class AddReport extends Component {
         let cost = moreCosts.filter(item => item.id === id);
         cost = cost[0];
         cost.name = value;
-
+      
         let newArray = moreCosts.filter(item => item.id !== id);
         newArray.push(cost);
+        moreCosts = newArray;
+        this.setState({
+            moreCosts,
+        });
+    }
 
+    handleMoreCostsValue = (e) => {
+        e.preventDefault();
+        let moreCosts = this.state.moreCosts;
+        const id = e.target.id;
+        const value = e.target.value;
+
+        let cost = moreCosts.filter(item => item.id === id);
+        cost = cost[0];
+        cost.KM = value;
+      
+        let newArray = moreCosts.filter(item => item.id !== id);
+        newArray.push(cost);
         moreCosts = newArray;
         this.setState({
             moreCosts,
@@ -258,8 +275,9 @@ class AddReport extends Component {
                     {this.state.moreCosts.map(input => <NewCosts
                         key={input.id}
                         id={input.id}
-                        value={input.name}
+                        name={input.name}
                         KM={input.KM}
+                        handleMoreCostsName={this.handleMoreCostsName}
                         handleMoreCostsValue={this.handleMoreCostsValue}
                     />)}
                     <FloatingActionButton

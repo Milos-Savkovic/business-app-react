@@ -35,9 +35,8 @@ class LoginForm extends Component {
                     });
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
+                console.log(error)
+            })
     }
 
     render() {
