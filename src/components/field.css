@@ -1,0 +1,19 @@
+.fieldBack{
+    background-color:#111; 
+    display: flex;
+    overflow:hidden;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0 2rem;    
+}
+.fieldBack-container {   
+    width: 100%;    
+    overflow:auto;  
+}
+.fieldButton {
+    display: flex;
+    justify-content: center;
+    bottom: 20px;
+    right:20px;
+    position: fixed;
+}

@@ -1,7 +1,6 @@
 .field{
     width: 100%;    
     overflow:hidden;  
-    /* padding: 1rem;  */
 }
 .form-newReport{
     height: 100%;
@@ -13,58 +12,40 @@
     position: relative;
     width: 100%;
 }
-.addLocation{
-    width:300px;    
-    padding: 15px;
-    background-color: rgb(127, 211, 94);
-    color:white;
-    font-size:24px;
-}
 .submit{
-    width:400px;
-    min-height:50px;
-    padding: 5px;
-    background-color: rgb(224, 178, 34);
-    color:white;
-    font-size:24px;
-    text-align: center;
-    border:none;
-}
-.submit:hover{
-    background-color: rgb(233, 192, 71);
+    width:300px;
+    margin: 50px 0px 20px 0px; 
 }
 #mapSearch{
     width:200px;
     text-align: center;  
+    padding:2px;
+    height: 30px;
+    margin-bottom: 10px;
+    border:none;
+    border-bottom:2px solid rgb(233, 192, 71);
+    border-radius:7%;     
+    font-size:16px;
 }
 .rowDate{
-    flex-direction: column; 
+    margin-top:10px;
     padding-bottom: 10px;
 }
 .rowDate input {
     width: 150px;
-    height: 15px;
-    margin:5px;
+    height:30px;
     text-align: center;
-}
-.buttom-costs{
-    widows: 91px;
-    padding:10px;
-}
-#date1, #date2{
-    text-align: center;
-    margin:5px;
+    border-radius:7%;     
+    font-size: 16px;
+    padding: 1px 0px;
+    border:none;
+    border-bottom:2px solid rgb(233, 192, 71);
 }
 p{
     font-size:18px;
     padding:3px;
     margin-bottom:0px;
     margin-top:0px;
-}
-label{
-    font-size:14px;
-    padding:3px;
-    margin-bottom:0px;
 }
 .close {
     position: absolute;
@@ -85,27 +66,17 @@ label{
     font-size: 1.3rem;
 }
 .rowEarnings{
-    padding:10px;
+    padding:0px 0px 10px 0px;
     flex-direction: column; 
-    width:100px;
-    padding-top:0px;
-}
-.box{
-    flex-direction: row;
-    display: flex;
-    justify-content: flex-start;
-}
-.ch1,.ch2,.ch3{
-    width:22px;
-    padding:3px;
-    margin:4px;
+    width:150px;
 }
 .drop{
      flex-direction: row;
+     width:400px;
+     /* display: flex; */
 }
 .dropItem{
     flex-direction: column;
-    display: flex;
     flex:1;
     align-content: stretch;
     align-items: center;

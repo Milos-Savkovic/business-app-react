@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fireDB } from './firebaseApp';
+import { fireDB } from '../api/firebaseApp';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './ReportDetails.css';
@@ -68,7 +68,7 @@ class ReportDetails extends Component {
                 </div>
                 <div className="report-field">
                   <span className="report-text">Datum:</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.date1}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -171,7 +171,7 @@ class ReportDetails extends Component {
               </div>
               <div className="report-row-no-line">
                 <div className="report-field">
-                  <span className="report-text" style={{ paddingRight: '1rem' }}>Putni troškovi padaju na teret </span>
+                  <span className="report-text" style={{ paddingRight: '1rem' }}>Odobravam isplatu akontacije u iznosu od KM</span>
                   <div className="floor-border floor-border--start">0,00</div>
                 </div>
               </div>
