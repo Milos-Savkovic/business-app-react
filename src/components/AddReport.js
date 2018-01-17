@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import DayPicker from './DayPicker';
+import PickDays from './PickDays';
 import MyMap from '../api/MyMap';
 import { fireDB } from '../api/firebaseApp';
+import uuidv4 from 'uuid/v4';
 import { grey900 } from 'material-ui/styles/colors';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
@@ -39,12 +39,17 @@ class AddReport extends Component {
         earnings: 'domaća',
         typeOfTransport: 'službeno',
         costs: 'kompanija',
-        startDate: moment().format('DD.MM.YYYY'),
-        endDate: moment().add(3, 'days').format('DD.MM.YYYY'),
+        startDate: new Date(),
+        endDate: this.date(),
         user: null,
         moreCosts: [],
     }
 
+    date() {
+        const date = new Date()
+        date.setDate(date.getDate() + 3);
+        return date;
+    }
     setFirebase = (e) => {
         e.preventDefault();
         console.log("Set FIREBASE!");
@@ -58,6 +63,7 @@ class AddReport extends Component {
             reportName: this.state.city.cityName,
             typeOfTransport: this.state.typeOfTransport,
             moreCosts: this.state.moreCosts,
+            id: uuidv4(),
         };
         //get user details from database
         fireDB.ref('/users').once('value')
@@ -69,6 +75,7 @@ class AddReport extends Component {
                         this.setState({
                             user: item,
                         });
+                        return item;
                     })
                 //push new report in reports array
                 let oldReport = this.state.user.Reports || [];
@@ -79,14 +86,14 @@ class AddReport extends Component {
 
                 this.setState({
                     user: newUser,
-                })
+                });
 
                 users.map(item => {
                     if (item.Id === this.state.user.Id) {
                         item.Reports = this.state.user.Reports;
                     }
+                    return item;
                 })
-                console.log(users);
                 // set new database with new user report
                 fireDB.ref('/users').set(users);
                 this.handleSubmit();
@@ -149,10 +156,9 @@ class AddReport extends Component {
     }
 
     handleMoreCosts = () => {
-        let newCosts = `input-${this.state.moreCosts.length}`;
         const newArray = this.state.moreCosts;
         newArray.push({
-            id: newCosts,
+            id: uuidv4(),
             name: '',
             KM: '',
         });
@@ -210,12 +216,13 @@ class AddReport extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
                     <div className="rowDate">
-                        <DayPicker
+                        <PickDays
+                            startDate={this.state.startDate}
+                            endDate={this.state.endDate}
                             handleDateStart={this.handleDateStart}
                             handleDateEnd={this.handleDateEnd}
                         />

@@ -36,6 +36,7 @@ export default function Example(props) {
                 formatDate={formatDate}
                 parseDate={parseDate}
                 format='DD.MM.YYYY.'
+                max="1979-12-31"
                 value={moment().add(3, 'days').format('DD.MM.YYYY')}
                 dayPickerProps={{
                     localeUtils: MomentLocaleUtils,
