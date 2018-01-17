@@ -27,6 +27,8 @@
   display: flex;
   flex-flow: column;
   padding: 1rem 0 0 1rem;
+  /* width: 826.234px; */
+  width: 51.639rem;
 }
 .right-border-report {
   border-right: 2px solid #c0c0c0;
@@ -99,6 +101,9 @@
 }
 .floor-border--start {
   text-align: start;
+}
+.floor-border--center {
+  text-align: center;
 }
 .paraf-bottom {
   align-self: flex-end;

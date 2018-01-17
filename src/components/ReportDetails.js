@@ -26,16 +26,16 @@ class ReportDetails extends Component {
       .catch((e) => console.log(e))
   }
   printReport = () => {
-    const divToPrint = document.getElementById('report');
-    divToPrint.setAttribute('class', 'report-container-print');
-    html2canvas(divToPrint)
+    const page1 = document.getElementById('report-page-2');
+    // divToPrint.setAttribute('class', 'report-container-print');
+    html2canvas(page1)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('l', 'pt', 'a4');
+        const pdf = new jsPDF('p', 'pt', 'a4');
         pdf.addImage(imgData, 'JPEG', 0, 0);
         const report = this.giveMeReport();
         pdf.save(`${report.reportName}.pdf`);
-        divToPrint.setAttribute('class', 'report-container');
+        // divToPrint.setAttribute('class', 'report-container-print');
       })
       .catch(err => console.log(err))
       ;
@@ -56,7 +56,7 @@ class ReportDetails extends Component {
       return (
         <div>
           <div className="report-container" id="report">
-            <div className="right-border-report">
+            <div className="right-border-report" id="report-page-1">
               <h4>Preduzeće - Organizacija</h4>
               <div className="report-row">
                 <div><strong>"GotSolution" d.o.o. Banja Luka</strong></div>
@@ -197,14 +197,48 @@ class ReportDetails extends Component {
                 </div>
               </div>
             </div>
-            <div className="no-right-border-report">
+            <div className="no-right-border-report" id="report-page-2">
               <h4 className="text-center">Na osnovu prednjeg naloga izvršio sam službeno putovanje i podnosim sledeći</h4>
               <h2 className="text-center">PUTNI NALOG</h2>
               <ReportTable />
+              <br />
+              <br />
+              <div className="report-row-no-line">
+                <div className="report-field">
+                  <span className="report-text" style={{ whiteSpace: 'inherit', fontSize: '1.3rem' }}>
+                    Potvrđujem da je putovanje izvršeno prema ovom nalogu i odobravam uplatu
+                  </span>
+                </div>
+              </div>
+              <div className="report-row-no-line">
+                <div className="report-field">
+                  <span className="report-text" style={{ whiteSpace: 'inherit', fontSize: '1.3rem' }}>
+                    putnog računa od KM
+                  </span>&nbsp;&nbsp;&nbsp;
+                  <div className="floor-border" style={{ width: '8rem' }}></div>
+                </div>
+              </div>
+              <br />
+              <div className="report-row-no-line">
+                <div className="report-field">
+                  <div className="floor-border floor-border--start"></div>
+                  <span className="report-text" style={{ paddingRight: '1rem' }}>na teret</span>
+                  <div className="floor-border floor-border--center">kompanije</div>
+                </div>
+              </div>
               <br/>
-              <br/>
-              <br/>
-              <br/>
+              <div className="report-row-no-line">
+                <div className="report-field">
+                  <span className="report-text" style={{ paddingRight: '1rem' }}>U</span>
+                  <div className="floor-border floor-border--center" style={{width: '12rem'}}>Banjoj Luci</div>
+                  <span className="report-text" style={{ paddingRight: '1rem' }}>dana</span>
+                  <div className="floor-border floor-border--center" style={{width: '12rem'}}></div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
               <div className="paraf-bottom">
                 <div className="report-row-no-line">
                   <div className="report-field report-field--end">

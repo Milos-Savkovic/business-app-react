@@ -7,27 +7,39 @@
 }
 .table-row {
   border: 1px solid #444;
-  min-height: 6rem;
+  min-height: 2rem;
   flex-direction: row;
 }
 .table-row-2,
 .table-row-3,
 .table-row-4,
-.table-row-5 {
-  border-top: 0;
+.table-row-5,
+.table-row-6,
+.table-row-7 {
+  border-top: none;
   justify-content: space-evenly;
 }
 .table-row-1,
 .table-row-2,
 .table-row-3,
 .table-row-4,
-.table-row-5 {
+.table-row-5,
+.table-row-6,
+.table-row-7 {
   display: flex;
 }
-.table-row-1 {
-  /* justify-content: space-between; */
+.table-row-6,
+.table-row-7 {
+  align-items: flex-end;
 }
-
+.table-row-4,
+.table-row-5,
+.table-row-6 {
+  border-bottom: none;
+}
+.table-row-7 {
+  justify-content: flex-end;
+}
 .cell {
   display: flex;
   align-items: center;
@@ -37,9 +49,9 @@
   border-right: 1px solid #444;
 }
 .cell-1__text {
-  writing-mode: vertical-lr;
-  text-orientation: inherit;
-  transform: rotate(180deg);
+  /* writing-mode: vertical-lr;
+  text-orientation: inherit; */
+  transform: rotate(-90deg);
   margin: inherit;
 }
 .cell-1 {
@@ -67,6 +79,15 @@
   width: 4rem;
   text-align: center;
   box-sizing: border-box;
+}
+.underline-medium {
+  width: 8rem;
+}
+.underline-long {
+  width: 12rem;
+}
+.underline-large {
+  width: 20rem;
 }
 .cell-2,
 .cell-3,
@@ -100,12 +121,12 @@
 
 .table-row-2-cell-1 {
   height: 16rem;
-  writing-mode: vertical-lr;
-  text-orientation: inherit;
-  transform: rotate(180deg);
-  font-size: 1.45rem;
-  border-right: unset;
-  border-left: 1px solid #444;
+  position: relative;
+}
+.table-row-2-cell-1 p.cell-1__text {
+  position: absolute;
+  width: 16rem;
+  font-size: 20px;
 }
 .long-field {
   width: 10rem;
@@ -124,7 +145,8 @@
 .table-row-2-cell-7 {
   height: auto;
 }
-.short-field-row-2 {
+.short-field-row-2,
+.medium-field-row-2 {
   border-bottom: 1px solid #333;
   height: 1.92rem;  
 }
@@ -134,4 +156,31 @@
 }
 .medium-field-row-2 {
   height: 1.92rem;
+}
+.large-field {
+  width: 44.3rem;
+  height: 1.92rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  box-sizing: border-box;  
+}
+.large-field-no-border {
+  padding-right: .5rem;
+  border-bottom: none;
+  width: auto;
+}
+.table-row-4-1 {
+  display: flex;
+  width: 29.1rem;
+  align-items: flex-end;
+}
+.table-row-4-2 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 15rem;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+  border-bottom: 1px solid #444;
 }

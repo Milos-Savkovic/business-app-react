@@ -48,7 +48,6 @@ class AddReport extends Component {
     setFirebase = (e) => {
         e.preventDefault();
         console.log("Set FIREBASE!");
-        console.log(this.props.id);
         //create new report 
         const report = {
             costs: this.state.costs,
@@ -58,7 +57,8 @@ class AddReport extends Component {
             distance: this.state.city.distance,
             reportName: this.state.city.cityName,
             typeOfTransport: this.state.typeOfTransport,
-        }
+            moreCosts: this.state.moreCosts,
+        };
         //get user details from database
         fireDB.ref('/users').once('value')
             .then((snapshot) => {
@@ -163,17 +163,18 @@ class AddReport extends Component {
 
     handleMoreCostsName = (e) => {
         e.preventDefault();
-        let moreCosts = this.state.moreCosts;
         const id = e.target.id;
         const value = e.target.value;
 
-        let cost = moreCosts.filter(item => item.id === id);
-        cost = cost[0];
-        cost.name = value;
-      
-        let newArray = moreCosts.filter(item => item.id !== id);
-        newArray.push(cost);
-        moreCosts = newArray;
+        let moreCosts = this.state.moreCosts;
+
+        let costArray = moreCosts.map(item => {
+            if (item.id === id) {
+                item.name = value;
+            }
+            return item;
+        });
+        moreCosts = costArray;
         this.setState({
             moreCosts,
         });
@@ -181,19 +182,30 @@ class AddReport extends Component {
 
     handleMoreCostsValue = (e) => {
         e.preventDefault();
-        let moreCosts = this.state.moreCosts;
         const id = e.target.id;
         const value = e.target.value;
 
-        let cost = moreCosts.filter(item => item.id === id);
-        cost = cost[0];
-        cost.KM = value;
-      
-        let newArray = moreCosts.filter(item => item.id !== id);
-        newArray.push(cost);
-        moreCosts = newArray;
+        let moreCosts = this.state.moreCosts;
+
+        let costArray = moreCosts.map(item => {
+            if (item.id === id) {
+                item.KM = value;
+            }
+            return item;
+        });
+        moreCosts = costArray;
         this.setState({
             moreCosts,
+        });
+    }
+
+    handleDeleteInput = (id) => {
+        let moreCosts = this.state.moreCosts;
+        const changer = moreCosts.filter(item => item.id !== id)
+            .map(item => { return item });
+
+        this.setState({
+            moreCosts: changer,
         });
     }
 
@@ -272,14 +284,17 @@ class AddReport extends Component {
                         </SelectField>
                     </div>
                     <p>Dodatni troškovi: </p>
-                    {this.state.moreCosts.map(input => <NewCosts
-                        key={input.id}
-                        id={input.id}
-                        name={input.name}
-                        KM={input.KM}
-                        handleMoreCostsName={this.handleMoreCostsName}
-                        handleMoreCostsValue={this.handleMoreCostsValue}
-                    />)}
+                    <div className="moreCosts">
+                        {this.state.moreCosts.map(input => <NewCosts
+                            key={input.id}
+                            id={input.id}
+                            name={input.name}
+                            KM={input.KM}
+                            handleMoreCostsName={this.handleMoreCostsName}
+                            handleMoreCostsValue={this.handleMoreCostsValue}
+                            handleDeleteInput={this.handleDeleteInput}
+                        />)}
+                    </div>
                     <FloatingActionButton
                         mini={true}
                         style={{
