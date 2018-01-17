@@ -57,7 +57,7 @@ class AddReport extends Component {
             distance: this.state.city.distance,
             reportName: this.state.city.cityName,
             typeOfTransport: this.state.typeOfTransport,
-            moreCosts:this.state.moreCosts,
+            moreCosts: this.state.moreCosts,
         };
         //get user details from database
         fireDB.ref('/users').once('value')
@@ -163,17 +163,18 @@ class AddReport extends Component {
 
     handleMoreCostsName = (e) => {
         e.preventDefault();
-        let moreCosts = this.state.moreCosts;
         const id = e.target.id;
         const value = e.target.value;
 
-        let cost = moreCosts.filter(item => item.id === id);
-        cost = cost[0];
-        cost.name = value;
-      
-        let newArray = moreCosts.filter(item => item.id !== id);
-        newArray.push(cost);
-        moreCosts = newArray;
+        let moreCosts = this.state.moreCosts;
+
+        let costArray = moreCosts.map(item => {
+            if (item.id === id) {
+                item.name = value;
+            }
+            return item;
+        });
+        moreCosts = costArray;
         this.setState({
             moreCosts,
         });
@@ -181,23 +182,25 @@ class AddReport extends Component {
 
     handleMoreCostsValue = (e) => {
         e.preventDefault();
-        let moreCosts = this.state.moreCosts;
         const id = e.target.id;
         const value = e.target.value;
 
-        let cost = moreCosts.filter(item => item.id === id);
-        cost = cost[0];
-        cost.KM = value;
-      
-        let newArray = moreCosts.filter(item => item.id !== id);
-        newArray.push(cost);
-        moreCosts = newArray;
+        let moreCosts = this.state.moreCosts;
+
+        let costArray = moreCosts.map(item => {
+            if (item.id === id) {
+                item.KM = value;
+            }
+            return item;
+        });
+        moreCosts = costArray;
         this.setState({
             moreCosts,
         });
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
