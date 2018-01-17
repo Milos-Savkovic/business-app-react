@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+import IconButton from 'material-ui/IconButton';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
+
 import './newCosts.css';
 
 class NewCosts extends Component {
 
+    handleDeleteInput = (e) => {
+        e.preventDefault();
+        this.props.handleDeleteInput(this.props.id);
+    }
     render() {
         return (
-            <div className="">
+            <div className="newInput">
                 <TextField
                     id={this.props.id}
                     hintText="Novi trošak"
@@ -24,6 +31,10 @@ class NewCosts extends Component {
                     onChange={this.props.handleMoreCostsValue}
                 />
                 KM
+                <IconButton onClick={(e) => { this.handleDeleteInput(e) }} >
+                    <DeleteIcon
+                    />
+                </IconButton>
             </div>
         );
     }

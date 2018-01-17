@@ -199,6 +199,16 @@ class AddReport extends Component {
         });
     }
 
+    handleDeleteInput = (id) => {
+        let moreCosts = this.state.moreCosts;
+        const changer = moreCosts.filter(item => item.id !== id)
+            .map(item => { return item });
+
+        this.setState({
+            moreCosts: changer,
+        });
+    }
+
     render() {
         console.log(this.state);
         return (
@@ -281,6 +291,7 @@ class AddReport extends Component {
                         KM={input.KM}
                         handleMoreCostsName={this.handleMoreCostsName}
                         handleMoreCostsValue={this.handleMoreCostsValue}
+                        handleDeleteInput={this.handleDeleteInput}
                     />)}
                     <FloatingActionButton
                         mini={true}
