@@ -49,9 +49,9 @@
   border-right: 1px solid #444;
 }
 .cell-1__text {
-  writing-mode: vertical-lr;
-  text-orientation: inherit;
-  transform: rotate(180deg);
+  /* writing-mode: vertical-lr;
+  text-orientation: inherit; */
+  transform: rotate(-90deg);
   margin: inherit;
 }
 .cell-1 {
@@ -121,12 +121,12 @@
 
 .table-row-2-cell-1 {
   height: 16rem;
-  writing-mode: vertical-lr;
-  text-orientation: inherit;
-  transform: rotate(180deg);
-  font-size: 1.45rem;
-  border-right: unset;
-  border-left: 1px solid #444;
+  position: relative;
+}
+.table-row-2-cell-1 p.cell-1__text {
+  position: absolute;
+  width: 16rem;
+  font-size: 20px;
 }
 .long-field {
   width: 10rem;

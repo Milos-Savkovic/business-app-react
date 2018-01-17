@@ -26,16 +26,16 @@ class ReportDetails extends Component {
       .catch((e) => console.log(e))
   }
   printReport = () => {
-    const divToPrint = document.getElementById('report');
-    divToPrint.setAttribute('class', 'report-container');
-    html2canvas(divToPrint)
+    const page1 = document.getElementById('report-page-2');
+    // divToPrint.setAttribute('class', 'report-container-print');
+    html2canvas(page1)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'pt', 'a4');
         pdf.addImage(imgData, 'JPEG', 0, 0);
         const report = this.giveMeReport();
         pdf.save(`${report.reportName}.pdf`);
-        divToPrint.setAttribute('class', 'report-container');
+        // divToPrint.setAttribute('class', 'report-container-print');
       })
       .catch(err => console.log(err))
       ;
@@ -56,7 +56,7 @@ class ReportDetails extends Component {
       return (
         <div>
           <div className="report-container" id="report">
-            <div className="right-border-report">
+            <div className="right-border-report" id="report-page-1">
               <h4>Preduzeće - Organizacija</h4>
               <div className="report-row">
                 <div><strong>"GotSolution" d.o.o. Banja Luka</strong></div>
@@ -197,7 +197,7 @@ class ReportDetails extends Component {
                 </div>
               </div>
             </div>
-            <div className="no-right-border-report">
+            <div className="no-right-border-report" id="report-page-2">
               <h4 className="text-center">Na osnovu prednjeg naloga izvršio sam službeno putovanje i podnosim sledeći</h4>
               <h2 className="text-center">PUTNI NALOG</h2>
               <ReportTable />

@@ -9,7 +9,9 @@ export const ReportTable = (props) => {
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
-        <div className="cell cell-1"><p className="cell-1__text">Dnevnice</p></div>
+        <div className="cell cell-1">
+          <p className="cell-1__text">Dnevnice</p>
+        </div>
         <div className="cell table-row-cell-2">
           <div className="cell-2-row">
             Dan odlaska
@@ -49,7 +51,7 @@ export const ReportTable = (props) => {
       </div>
       <div className="table-row table-row-2">
         <div className="cell cell-1 table-row-2-cell-1">
-          Prevozni troškovi
+          <p className="cell-1__text">Prevozni troškovi</p>
         </div>
         <div className="cell cell-2 table-row-2-cell-2">
           <div className="long-field">Od</div>
