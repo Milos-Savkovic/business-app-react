@@ -100,6 +100,9 @@
 .floor-border--start {
   text-align: start;
 }
+.floor-border--center {
+  text-align: center;
+}
 .paraf-bottom {
   align-self: flex-end;
 }

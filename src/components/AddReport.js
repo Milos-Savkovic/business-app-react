@@ -284,15 +284,17 @@ class AddReport extends Component {
                         </SelectField>
                     </div>
                     <p>Dodatni troškovi: </p>
-                    {this.state.moreCosts.map(input => <NewCosts
-                        key={input.id}
-                        id={input.id}
-                        name={input.name}
-                        KM={input.KM}
-                        handleMoreCostsName={this.handleMoreCostsName}
-                        handleMoreCostsValue={this.handleMoreCostsValue}
-                        handleDeleteInput={this.handleDeleteInput}
-                    />)}
+                    <div className="moreCosts">
+                        {this.state.moreCosts.map(input => <NewCosts
+                            key={input.id}
+                            id={input.id}
+                            name={input.name}
+                            KM={input.KM}
+                            handleMoreCostsName={this.handleMoreCostsName}
+                            handleMoreCostsValue={this.handleMoreCostsValue}
+                            handleDeleteInput={this.handleDeleteInput}
+                        />)}
+                    </div>
                     <FloatingActionButton
                         mini={true}
                         style={{

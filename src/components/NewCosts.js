@@ -30,12 +30,12 @@ class NewCosts extends Component {
                     }}
                     onChange={this.props.handleMoreCostsValue}
                 />
-                KM
-                <IconButton onClick={(e) => { this.handleDeleteInput(e) }} >
-                    <DeleteIcon
+                <strong>KM</strong>
+                <IconButton  onClick={(e) => { this.handleDeleteInput(e) }} >
+                    <DeleteIcon className="delete-icon"
                     />
                 </IconButton>
-            </div>
+            </div> 
         );
     }
 }

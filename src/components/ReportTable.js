@@ -126,8 +126,25 @@ export const ReportTable = (props) => {
           <div className="medium-field medium-field-row-2 medium-field-end"></div>
         </div>
       </div>
-      <div className="table-row table-row-4"></div>
+      <div className="table-row table-row-4">
+        <div className="table-row-4-1">
+          Broj priloga: <span className="underline underline-medium"></span>
+        </div>
+        <div className="table-row-4-2">
+          Ostaje za isplatu-uplatu&nbsp;
+        </div>
+        <div className="medium-field medium-field-row-2"></div>
+      </div>
       <div className="table-row table-row-5"></div>
+      <div className="table-row table-row-6">
+        U&nbsp;
+        <span className="underline underline-long"></span>
+        dana&nbsp;
+        <span className="underline underline-long"></span>
+        &nbsp;&nbsp;
+        <span className="underline underline-large"></span>
+      </div>
+      <div className="table-row table-row-7">Potpis podnosioca obračuna&nbsp;</div>
     </div>
   );
 }
