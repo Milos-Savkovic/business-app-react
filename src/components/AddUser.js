@@ -33,6 +33,13 @@ class AddUser extends Component {
             email: '',
         },
         isAdded: false,
+        close: false,
+    }
+
+    xhandler = () => {
+        this.setState({
+            close: true,
+        });
     }
 
     handleInput = (e) => {
@@ -91,7 +98,7 @@ class AddUser extends Component {
     }
 
     render() {
-        if (this.state.isAdded) return <Redirect to="/users" />
+        if (this.state.isAdded || this.state.close) return <Redirect to="/users" />
         return (
             <div className="add-user-container" >
                 <form className="contactForm" onSubmit={this.setFirebase}>
@@ -141,6 +148,12 @@ class AddUser extends Component {
                     /><br />
                     <FlatButton type="submit" label="Dodaj novu osobu" name="submit" style={styles.button} />
                 </form>
+                <div
+                    className="close"
+                    onClick={this.xhandler}
+                >
+                    X
+                    </div>
             </div>
         );
     }
