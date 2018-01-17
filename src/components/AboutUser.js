@@ -48,9 +48,6 @@ class AboutUser extends Component {
                 id={this.props.id} 
                 history={this.props.history}            
             />;
-        // if (this.props.location.pathname === `/users/${this.props.id}/new-report`) {
-        //     report = <AddReport closeReport={this.closeHandler} />;
-        // }
         return (
             <div className="aboutUser">
                 <UserDetail

@@ -1,8 +1,7 @@
 .user{
     height: 100%;
     width:300px;
-    overflow-y:auto;
-    overflow-x: hidden;
+    overflow:auto;
     background: #E7E877; 
 }
 ::-webkit-scrollbar {
@@ -56,7 +55,6 @@
 }
 .reportsClass{
     color:rgb(41, 41, 41); 
-    margin-top:10px;
     text-align: center;
     font-size:20px;
     /* padding:5px; */
@@ -73,9 +71,7 @@
     width:300px;
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    text-align: center;  
-    /* position: absolute;
-    bottom:   0;   */
+    text-align: center;
 }
 .buttonAdd:hover{
     background-color: rgb(194, 150, 63);    
