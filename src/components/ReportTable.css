@@ -125,6 +125,7 @@
 }
 .table-row-2-cell-1 p.cell-1__text {
   position: absolute;
+  top: 25%;
   width: 16rem;
   font-size: 20px;
 }
