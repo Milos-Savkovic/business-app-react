@@ -284,6 +284,7 @@ class AddReport extends Component {
                         </SelectField>
                     </div>
                     <p>Dodatni troškovi: </p>
+                    <div className="moreCosts">
                     {this.state.moreCosts.map(input => <NewCosts
                         key={input.id}
                         id={input.id}
@@ -293,6 +294,7 @@ class AddReport extends Component {
                         handleMoreCostsValue={this.handleMoreCostsValue}
                         handleDeleteInput={this.handleDeleteInput}
                     />)}
+                    </div>
                     <FloatingActionButton
                         mini={true}
                         style={{
