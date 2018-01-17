@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import ReportDetails from './ReportDetails';
+import ReportDetails from '../ReportDetails/ReportDetails';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import './field.css';

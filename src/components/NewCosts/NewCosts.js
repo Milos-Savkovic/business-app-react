@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
-
 import './newCosts.css';
 
 class NewCosts extends Component {

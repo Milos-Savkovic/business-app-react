@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import Report from './Report';
+import Report from '../Report/Report';
 import './userDetail.css';
 
 class UserDetail extends Component {
