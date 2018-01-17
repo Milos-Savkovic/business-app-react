@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import fire, { provider, session } from '../api/firebaseApp';
-import Header from './Header';
-import './loginForm.css';
-import googleLogo from '../assets/images/google.png';
+import fire, { provider, session } from '../../api/firebaseApp';
+import Header from '../Header/Header';
+import './login.css';
+import googleLogo from '../../assets/images/google.png';
 
-class LoginForm extends Component {
+class Login extends Component {
     state = {
         isLoggedIn: false,
         user: null,
@@ -57,4 +57,4 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm;
+export default Login;

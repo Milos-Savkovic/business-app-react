@@ -1,14 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 @font-face {
   font-family: my-font;
-  src: url('../assets/fonts/PoiretOne-Regular.ttf');
+  src: url('../../assets/fonts/PoiretOne-Regular.ttf');
 }
 .Login{
     height: 100%;
     width: 100%;
     overflow: hidden;
     padding-left:50px;
-    background-image: url("../assets/images/businessTrip.jpg");
+    background-image: url("../../assets/images/businessTrip.jpg");
     display:flex;
     justify-content: flex-start;
     align-items: center;

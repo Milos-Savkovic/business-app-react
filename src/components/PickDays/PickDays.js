@@ -1,6 +1,21 @@
 import React from 'react';
 import moment from 'moment';
 import DatePicker from 'material-ui/DatePicker';
+import areIntlLocalesSupported from 'intl-locales-supported';
+
+
+let DateTimeFormat;
+
+if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
+    DateTimeFormat = global.Intl.DateTimeFormat;
+} else {
+    // const IntlPolyfill = require('intl');
+    // DateTimeFormat = IntlPolyfill.DateTimeFormat;
+    // require('intl/locale-data/jsonp/fr');
+    // require('intl/locale-data/jsonp/fa-IR');
+    DateTimeFormat = global.Intl.DateTimeFormat;
+}
+
 
 const optionsStyle = {
     maxWidth: 255,
@@ -29,6 +44,8 @@ export default class DatePickerExampleToggle extends React.Component {
     };
     render() {
         console.log(this.props);
+        const m = moment.locale();
+        console.log(m);
         return (
             <div>
                 <div style={optionsStyle}>
@@ -39,6 +56,13 @@ export default class DatePickerExampleToggle extends React.Component {
                         maxDate={this.state.maxDate}
                         defaultDate={this.state.minDate}
                         disableYearSelection={this.state.disableYearSelection}
+                        firstDayOfWeek={1}
+                        mode="landscape"
+                        formatDate={new DateTimeFormat('en', {
+                            day: 'numeric',
+                            month: 'numeric',
+                            year: 'numeric',
+                        }).format}
                     />
                     <DatePicker
                         onChange={this.handleChangeMaxDate}
@@ -47,6 +71,13 @@ export default class DatePickerExampleToggle extends React.Component {
                         minDate={this.state.minDate}
                         defaultDate={this.state.maxDate}
                         disableYearSelection={this.state.disableYearSelection}
+                        firstDayOfWeek={1}
+                        mode="landscape"
+                        formatDate={new DateTimeFormat('en', {
+                            day: 'numeric',
+                            month: 'numeric',
+                            year: 'numeric',
+                        }).format}
                     />
                 </div>
             </div>

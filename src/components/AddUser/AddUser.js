@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { fireDB } from '../api/firebaseApp'
+import { fireDB } from '../../api/firebaseApp'
 import TextField from 'material-ui/TextField';
 import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import './addUser.css';
-
 
 //Styles for inputs
 const styles = {

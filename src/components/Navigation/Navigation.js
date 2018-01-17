@@ -1,7 +1,6 @@
 import React from 'react';
-import fire from '../api/firebaseApp';
+import fire from '../../api/firebaseApp';
 import { Link, withRouter } from 'react-router-dom';
-
 import './navigation.css';
 
 class Navigation extends React.Component {

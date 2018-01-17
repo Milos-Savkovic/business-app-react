@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import Login from './components/Login';
-import Container from './components/Container';
-import AddUser from './components/AddUser';
-import About from './components/About';
-import NotFound from './components/NotFound';
-import Navigation from './components/Navigation';
+import Login from './components/Login/Login';
+import Container from './components/Container/Container';
+import AddUser from './components/AddUser/AddUser';
+import About from './components/About/About';
+import NotFound from './components/NotFound/NotFound';
+import Navigation from './components/Navigation/Navigation';
 import './app.css';
 import fire from './api/firebaseApp';
 // import AppBar from 'material-ui/AppBar';
