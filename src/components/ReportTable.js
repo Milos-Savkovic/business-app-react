@@ -4,6 +4,7 @@ import './ReportTable.css';
 export const ReportTable = (props) => {
   const style = {
     borderTop: { borderTop: '1px solid #333' },
+    borderBottom: { borderBottom: '1px solid #333' },
   }
   return (
     <div className="table-container">
@@ -111,7 +112,20 @@ export const ReportTable = (props) => {
           <div className="medium-field medium-field-row-2 medium-field-end"></div>
         </div>
       </div>
-      <div className="table-row table-row-3"></div>
+      <div className="table-row table-row-3">
+        <div className="cell cell-2 table-row-3-cell-1">
+          <div className="large-field">
+            <div className="medium-field medium-field-row-2">Svega</div>
+          </div>
+          <div className="large-field">
+            <div className="medium-field medium-field-row-2 large-field-no-border">Primljena akontacija</div>
+          </div>
+        </div>
+        <div className="cell cell-2 table-row-3-cell-2">
+          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2 medium-field-end"></div>
+        </div>
+      </div>
       <div className="table-row table-row-4"></div>
       <div className="table-row table-row-5"></div>
     </div>
