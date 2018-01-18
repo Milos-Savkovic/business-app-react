@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@font-face {
+  font-family: my-font;
+  src: url('../../assets/fonts/PoiretOne-Regular.ttf');
+}
+.Login{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding-left:50px;
+    background-image: url("../../assets/images/businessTrip.jpg");
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.Title{
+  font-family: my-font, "Roboto", sans-serif;
+  position: relative;
+  align-self: flex-start;
+  margin-left: 18.5%;
+  font-size:60px; 
+  color: rgb(77, 75, 80);
+  padding:10px;
+  transform: rotate(-12deg);
+}
+.form-login {
+  border-radius: 20px;
+  background: rgba(67, 62, 68, 0.86);
+  border: 2px solid #c0ddeb;
+  box-sizing: border-box;
+  width: 350px;
+  height: 350px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(27, 27, 27, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form-login button {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: rgb(240, 197, 35);
+  width: 70%;
+  border: 0;
+  margin-top:30px;
+  color: rgb(1, 1, 1);
+  font-weight: 700;
+  font-size: 18px;
+  -webkit-transition: all 0.3 ease; 
+  transition: all 0.3 ease; 
+  cursor: pointer;
+  height:50px;
+}
+.form-login button:hover,.form button:active,.form button:focus {
+  background: rgb(218, 212, 212);
+}
+.google-logo {
+  height: 42px;
+  width: 42px;
+  display: block;
+  margin: 0 auto;
+}

@@ -1,0 +1,69 @@
+.div-persons{
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 30px;
+    height: 350px;
+    width:250px;
+    float: left;
+    background-color:#f8f8f8;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom:20px;
+    text-align: center;
+    border: 1px solid rgb(224, 178, 34);
+}
+.cardImagePlus{
+    margin: 30px; 
+    padding: 5px;    
+    background-color:rgb(127, 211, 94);
+    border: 1px solid rgb(224, 178, 34);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size:80px;
+    height: 350px;
+    width:250px; 
+    border-radius: 15px;    
+}
+.cardImagePlus:hover {
+    cursor: pointer;
+}
+
+.plusElement{
+    margin-top:50%;
+}
+
+.cardImagePlus:hover {
+    background-color: rgb(162, 224, 137);
+}
+
+.title {
+    color: grey;
+}
+
+.button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 10px;
+    color: white;
+    background-color: rgb(39, 39, 39);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 0px;
+    border-radius: 10px;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+.avatar{
+    height: 200px;
+    width: 100%;
+    border-radius: 5px;
+}
