@@ -8,17 +8,16 @@
     display: flex;
     flex-flow: row wrap;
     padding: 5px;
-    border-radius: 5px;
-    justify-content: center;
-    margin: 1%;
-    height: 350px;
-    width:75%;
+    /* border-radius: 5px; */
+    /* margin: 30px; */
+    height: 100%;
+    width:100%;
     float: left;
     background-color:#f8f8f8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin-bottom:20px;
     text-align: center;
-    border: 1px solid rgb(224, 178, 34);
+    /* border: 1px solid rgb(34, 189, 224) */
 }
 @media(min-width: 700px) {
     .card {
@@ -36,16 +35,26 @@
     }
 }
 .cardImagePlus{
+<<<<<<< HEAD
     margin: 1%; 
+=======
+    /* margin: 30px;  */
+>>>>>>> develop
     padding: 5px;    
     background-color:rgb(127, 211, 94);
-    border: 1px solid rgb(224, 178, 34);
+    border: 1px solid rgb(34, 189, 224);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
     font-size:80px;
+<<<<<<< HEAD
     height: 350px;
     width:250px; 
     border-radius: 5px;    
+=======
+    height: 100%;
+    width:100%; 
+    /* border-radius: 5px;     */
+>>>>>>> develop
 }
 .cardImagePlus:hover {
     cursor: pointer;
@@ -85,4 +94,12 @@
     height: 200px;
     width: 100%;
     border-radius: 5px;
+}
+.add-person-icon {
+    height: 128px!important;
+    width: 128px!important;
+}
+.add-person-icon-container {
+    height: 150px!important;
+    width: 150px!important;
 }
