@@ -24,5 +24,12 @@ body,html{
   height: 100%;
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-
+.containerApp{
+overflow: hidden;
+height:100%;
+width:100%;
+flex:1;
+}

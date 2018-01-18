@@ -12,9 +12,6 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { grey900, yellow400, blueGrey500 } from 'material-ui/styles/colors';
 import './navigation.css';
 
-
-
-
 const Logged = (props) => (
     <IconMenu
         {...props}
@@ -61,8 +58,7 @@ class Navigation extends React.Component {
             isLoggin: false,
         })
     }
-
-    handlelogout = () => {
+    handlelogout = (props) => {
         fire.auth().signOut().then(() => {
             this.setState({
                 isLoggin: false,
@@ -73,11 +69,12 @@ class Navigation extends React.Component {
             console.log("Error in log out.");
         });
     }
+
     render() {
         return (
             <AppBar
                 title={`Welcome,  ${this.state.userName}`}
-                iconClassNameRight="muidocs-icon-navigation-expand-more"
+                // iconClassNameRight="muidocs-icon-navigation-expand-more"
                 iconElementRight={<Logged
                     handlelogout={this.handlelogout}
                     photo={this.state.photo}
