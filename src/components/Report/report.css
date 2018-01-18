@@ -2,9 +2,14 @@
     padding: 8px 3px;
 }
 .reportName:hover{
-    color: rgb(17, 17, 17);
+    color: rgb(255, 255, 255);
     cursor: pointer;
-    background: rgb(228, 163, 0);
+    background: rgb(60, 184, 255);
+}
+.reportName:active{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    background: rgb(255, 255, 255);
 }
 .date{
     font-size: 14px;
