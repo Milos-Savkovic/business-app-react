@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import UserDetail from './UserDetail';
-import Field from './Field';
-// import AddReport from './AddReport';
+import UserDetail from '../UserDetail/UserDetail';
+import Field from '../Field/Field';
 import './aboutUser.css';
-import AddReport from './AddReport';
+import AddReport from '../AddReport/AddReport';
 
 class AboutUser extends Component {
 

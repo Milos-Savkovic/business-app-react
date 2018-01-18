@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PickDays from './PickDays';
-import MyMap from '../api/MyMap';
-import { fireDB } from '../api/firebaseApp';
+import PickDays from '../PickDays/PickDays';
+import MyMap from '../../api/MyMap';
+import { fireDB } from '../../api/firebaseApp';
 import uuidv4 from 'uuid/v4';
 import { grey900 } from 'material-ui/styles/colors';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import NewCosts from './NewCosts';
+import NewCosts from '../NewCosts/NewCosts';
 import './addReport.css';
 
 const styles = {

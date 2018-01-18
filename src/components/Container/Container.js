@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import './container.css';
-import Person from './Person';
-import fetchUsers from '../api/Seed';
+import Person from '../Person/Person';
+import fetchUsers from '../../api/Seed';
 // import fetchUsers from './Seed-offline';
 
 class Container extends Component {

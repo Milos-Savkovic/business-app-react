@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { fireDB } from '../api/firebaseApp';
+import { fireDB } from '../../api/firebaseApp';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './ReportDetails.css';
-import { ReportTable } from './ReportTable';
+import { ReportTable } from '../ReportTable/ReportTable';
 
 class ReportDetails extends Component {
   state = {
