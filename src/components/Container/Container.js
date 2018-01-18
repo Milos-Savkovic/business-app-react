@@ -3,7 +3,18 @@ import { Redirect, withRouter } from 'react-router-dom';
 import './container.css';
 import Person from '../Person/Person';
 import fetchUsers from '../../api/Seed';
+import Paper from 'material-ui/Paper';
 // import fetchUsers from './Seed-offline';
+
+const style = {
+    height: 350,
+    width: 250,
+    margin: 20,
+    textAlign: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+};
 
 class Container extends Component {
 
@@ -52,15 +63,17 @@ class Container extends Component {
             return <Redirect to={"/users/" + this.state.userDetailsId} />
         } else {
             const teamComponents = this.state.users.map((person) => (
-                <Person
-                    key={person.Id}
-                    id={person.Id}
-                    firstName={person.FirstName}
-                    lastName={person.LastName}
-                    position={person.Position}
-                    clickHandler={this.clickHandler}
-                    clickHandlerDetail={this.clickHandlerDetail}
-                />
+                <Paper style={style} zDepth={3} >
+                    <Person
+                        key={person.Id}
+                        id={person.Id}
+                        firstName={person.FirstName}
+                        lastName={person.LastName}
+                        position={person.Position}
+                        clickHandler={this.clickHandler}
+                        clickHandlerDetail={this.clickHandlerDetail}
+                    />
+                </Paper>
             ))
 
             return (
