@@ -69,19 +69,21 @@ class Navigation extends React.Component {
             console.log("Error in log out.");
         });
     }
-
+    
     render() {
+        const linkToHome = <Link to='/users'>Bussines Trip</Link>
         return (
             <AppBar
-                title={`Welcome,  ${this.state.userName}`}
-                // iconClassNameRight="muidocs-icon-navigation-expand-more"
+                className="material-bar"
+                title={linkToHome}
+                showMenuIconButton={false}
                 iconElementRight={<Logged
                     handlelogout={this.handlelogout}
                     photo={this.state.photo}
                     email={this.state.userEmail}
                 />}
                 style={{
-                    backgroundColor: blueGrey500
+                    backgroundColor: 'rgb(60, 184, 255)'
                 }}
 
             />

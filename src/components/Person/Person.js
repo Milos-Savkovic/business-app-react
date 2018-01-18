@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import IconButton from 'material-ui/IconButton';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import { grey700, green700 } from 'material-ui/styles/colors';
 import './person.css';
 
 class Person extends Component {
@@ -25,9 +28,22 @@ class Person extends Component {
             );
         }
         else return (
-            <div className="cardImagePlus" onClick={(e) => this.handleAddPerson(e) }>
-                <div className="plusElement">+</div>
-            </div>
+            // <div className="cardImagePlus" onClick={(e) => this.handleAddPerson(e) }>
+            //     <div className="plusElement">+</div>
+            // </div>
+            <IconButton
+                onClick={(e) => this.handleAddPerson(e)}
+                className="add-person-icon-container"
+                tooltip="add user"
+                tooltipPosition="bottom-right"
+                touch={true}
+                tooltipPosition="bottom-center"
+            >
+                <PersonAdd
+                    className="add-person-icon"
+                    color={grey700}
+                />
+            </IconButton>
         );
     }
 }
