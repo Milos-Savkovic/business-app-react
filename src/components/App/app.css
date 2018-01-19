@@ -1,3 +1,7 @@
+@font-face {
+  font-family: my-font;
+  src: url('../../assets/fonts/PoiretOne-Regular.ttf');
+}
 body,html{
   overflow: hidden;
   height:100%;

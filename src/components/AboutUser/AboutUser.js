@@ -39,7 +39,7 @@ class AboutUser extends Component {
             <Field
                 id={this.props.id}
                 path={this.props.path}
-                clicked={this.addReportHandler}
+                clicked={this.addReportHandler}                
             /> :
             <AddReport 
                 closeReport={this.closeHandler} 
