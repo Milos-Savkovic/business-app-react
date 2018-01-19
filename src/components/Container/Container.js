@@ -66,10 +66,10 @@ class Container extends Component {
             return <Redirect to={"/users/" + this.state.userDetailsId} />
         } else {
             const teamComponents = this.state.users.map((person) => {
-                if(person.Id !== 0) {
+                if (person.Id !== 0) {
                     return (
                         <Paper key={person.Id} style={style} zDepth={3} >
-                            <Person                            
+                            <Person
                                 id={person.Id}
                                 firstName={person.FirstName}
                                 lastName={person.LastName}
@@ -78,7 +78,7 @@ class Container extends Component {
                             />
                         </Paper>
                     );
-                }                
+                } else return null;
             });
 
             return (
