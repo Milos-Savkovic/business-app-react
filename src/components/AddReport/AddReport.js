@@ -47,7 +47,6 @@ class AddReport extends Component {
 
     setFirebase = (e) => {
         e.preventDefault();
-        console.log("Set FIREBASE!");
         //create new report 
         const report = {
             costs: this.state.costs,
@@ -211,7 +210,6 @@ class AddReport extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
