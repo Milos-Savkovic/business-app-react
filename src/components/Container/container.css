@@ -1,11 +1,14 @@
 .container{
-    background-color: whitesmoke;
     height: 100%;
-    overflow-y:auto;
     display: flex;
     flex-flow: row wrap;
-    flex: 33,3%;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    width: 1085px;
+}
+@media(min-width: 1449px) {
+    .container {
+        width: 1450px;
+    }
 }
 .users-heading {
     width: 100%;
@@ -13,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    font-size: 2rem;
+    font-size: 1.6rem;
     /* font-weight: ; */
     color:rgb(144, 144, 144);
     font-family: roboto;

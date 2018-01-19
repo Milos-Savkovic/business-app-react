@@ -10,8 +10,8 @@ import Paper from 'material-ui/Paper';
 // import fetchUsers from './Seed-offline';
 
 const style = {
-    height: 350,
-    width: 250,
+    height: 400,
+    width: 320,
     margin: 20,
     textAlign: 'center',
     display: "flex",
@@ -68,7 +68,7 @@ class Container extends Component {
             const teamComponents = this.state.users.map((person) => {
                 if (person.Id !== 0) {
                     return (
-                        <Paper key={person.Id} style={style} zDepth={3} >
+                        <Paper key={person.Id} style={style} zDepth={0} >
                             <Person
                                 id={person.Id}
                                 firstName={person.FirstName}

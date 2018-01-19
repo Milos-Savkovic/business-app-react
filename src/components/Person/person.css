@@ -4,8 +4,7 @@
 }
 
 
-.card {    
-    padding: 5px;    
+.card {       
     height: 100%;
     width:100%;
     float: left;
@@ -66,18 +65,18 @@
 }
 
 .avatar{
-    height: 200px;
+    height: auto;
     width: 100%;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 .add-person-icon {
-    height: 64px!important;
-    width: 64px!important;
+    height: 42px!important;
+    width: 42px!important;
 }
 svg.add-person-icon path {
     fill: rgb(0, 188, 212);
 }
 .add-person-icon-container {
-    height: 73px!important;
-    width: 73px!important;
+    height: 50px!important;
+    width: 50px!important;
 }
