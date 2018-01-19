@@ -29,28 +29,35 @@
   height: 350px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(27, 27, 27, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
 }
 .form-login button {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: rgb(240, 197, 35);
-  width: 70%;
+  background: rgb(211, 221, 120);
+  width: 80%;
   border: 0;
-  margin-top:30px;
+  margin: 10%;
   color: rgb(1, 1, 1);
-  font-weight: 700;
+  font-weight: 900;
   font-size: 18px;
-  -webkit-transition: all 0.3 ease; 
-  transition: all 0.3 ease; 
-  cursor: pointer;
-  height:50px;
+  height:60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
 }
 .form-login button:hover,.form button:active,.form button:focus {
-  background: rgb(218, 212, 212);
+  background: rgb(170, 226, 229);
+  color: whitesmoke;
 }
 .google-logo {
-  height: 42px;
-  width: 42px;
-  display: block;
-  margin: 0 auto;
+  height: 32px;
+  width: 32px;
+  display: inline;
+  margin: 0 10px;
+}
+.login-text{
+  padding: 5px;
 }

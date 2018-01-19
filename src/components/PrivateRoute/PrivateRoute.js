@@ -29,7 +29,7 @@ export default class PrivateRoute extends React.Component {
         userInTheHouse: true,
     }
 
-    componentWillMount() {
+    cdm() {
         fire.auth().onAuthStateChanged((user) => {
             if (!user) {
                 this.setState({
@@ -40,6 +40,7 @@ export default class PrivateRoute extends React.Component {
     }
 
     render() {
+        this.cdm();
         return getAuthRoute(this.props, this.state.userInTheHouse);
     }
 }
