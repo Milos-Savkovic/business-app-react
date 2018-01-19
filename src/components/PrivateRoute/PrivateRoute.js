@@ -3,7 +3,6 @@ import { Route, Redirect } from 'react-router-dom';
 import fire from '../../api/firebaseApp';
 
 const getAuthRoute = ({ component: Component, ...rest }, isAuthorized) => {
-    console.log(isAuthorized);
     return (
         <Route
             {...rest}
