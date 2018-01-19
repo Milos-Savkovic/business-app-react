@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import fire from '../../api/firebaseApp';
 import { Link, withRouter } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
@@ -6,64 +6,61 @@ import IconButton from 'material-ui/IconButton';
 import Avatar from 'material-ui/Avatar';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import { grey900, yellow400, blueGrey500 } from 'material-ui/styles/colors';
+import { grey50, blueGrey500 } from 'material-ui/styles/colors';
 import './navigation.css';
 
-const Logged = (props) => (
-    <IconMenu
-        {...props}
-        iconButtonElement={
-            <IconButton><MoreVertIcon /></IconButton>
-        }
-        targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-    >
-        <div className="menu-item-right">
-            <MenuItem primaryText={props.email} />
-            <Avatar src={props.photo} size={50} />
-            <MenuItem primaryText="Refresh" onClick={() => { window.location.reload() }} />
-            <MenuItem primaryText="Sign out" onClick={props.handlelogout} />
-        </div>
-    </IconMenu>
-);
+class Logged extends Component {
+    render() {
+        return (
+            <IconMenu
+                iconButtonElement={
+                    <IconButton><MoreVertIcon color={grey50} /></IconButton>
+                }
+                targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+            >
+                <div className="menu-item-right">
+                    <MenuItem primaryText={this.props.email} />
+                    <Avatar src={this.props.photo} size={50} />
+                    <MenuItem primaryText="Refresh" onClick={() => { window.location.reload() }} />
+                    <MenuItem primaryText="Sign out" onClick={this.props.handlelogout} />
+                </div>
+            </IconMenu>
+        );
+    }
+}
 
-Logged.muiName = 'IconMenu';
-
-class Navigation extends React.Component {
+class Navigation extends Component {
     state = {
-        isLoggin: true,
         userEmail: '',
         userName: '',
-        photo: ''
+        photo: '',
     }
     componentWillMount() {
         this.authUser();
     }
     authUser = () => {
-        let user = fire.auth().currentUser;
-        if (user) {
-            const userEmail = user.email;
-            const userPhoto = user.photoURL;
-            const displayName = user.displayName;
-            console.log(user);
-            this.setState({
-                userEmail: userEmail,
-                photo: userPhoto,
-                userName: displayName,
-            });
-        } else this.setState({
-            isLoggin: false,
-        })
+        fire.auth().onAuthStateChanged(user => {
+            if (user) {
+                const userEmail = user.email;
+                const userPhoto = user.photoURL;
+                const displayName = user.displayName;
+                console.log(user);
+                this.setState({
+                    userEmail: userEmail,
+                    photo: userPhoto,
+                    userName: displayName,
+                });
+            } else {
+                console.log('Niste prijavljeni.')
+            }
+        });
     }
     handlelogout = (props) => {
         fire.auth().signOut().then(() => {
-            this.setState({
-                isLoggin: false,
-            });
-            this.props.logout();
+
+            // this.props.logout();
             this.props.history.push('/login');
         }).catch((error) => {
             console.log("Error in log out.");

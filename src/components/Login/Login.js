@@ -7,11 +7,27 @@ import googleLogo from '../../assets/images/google.png';
 
 class Login extends Component {
     state = {
-        isLoggedIn: false,
-        user: null,
+        isLoggedIn: true,
+        user: '',
         token: '',
         credential: '',
-        // username: ''
+    }
+
+    componentWillMount() {
+        fire.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                this.setState({
+                    userInTheHouse: false,
+                });
+            }
+            else {
+                console.log(user);
+                this.setState({
+                    user: user,
+                    token: user.refreshToken,
+                });
+            }
+        });
     }
 
     login = (e) => {
@@ -42,18 +58,19 @@ class Login extends Component {
     render() {
         if (this.state.isLoggedIn && this.state.token) {
             return (
-                <Redirect to='/users' />
+                <Redirect to='/' />
             )
-        } else return (
-            <div className="Login">
-                <form className="form-login" onSubmit={(e) => this.login(e)}>
-                    <Header />
-                    <img src={googleLogo} alt="google logo" className="google-logo" />
-                    <button type="submit" id="button" className="btn btn-success center-block form-login button">Log in with Google</button>
-                </form>
-                <h1 className="Title">Business Trip</h1>
-            </div>
-        );
+        } else
+            return (
+                <div className="Login">
+                    <form className="form-login" onSubmit={(e) => this.login(e)}>
+                        <Header />
+                        <img src={googleLogo} alt="google logo" className="google-logo" />
+                        <button type="submit" id="button" className="btn btn-success center-block form-login button">Log in with Google</button>
+                    </form>
+                    <h1 className="Title">Business Trip</h1>
+                </div>
+            );
     }
 }
 
