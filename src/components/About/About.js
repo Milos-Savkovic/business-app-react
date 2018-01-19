@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { fireDB } from '../../api/firebaseApp';
 import AboutUser from '../AboutUser/AboutUser';
-import uuidv4 from 'uuid/v4';
 import './about.css';
 
 class About extends Component {

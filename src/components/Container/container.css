@@ -1,5 +1,5 @@
 .container{
-    height: 113%;
+    height: fit-content;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;

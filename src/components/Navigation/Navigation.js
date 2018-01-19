@@ -8,7 +8,6 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { grey50 } from 'material-ui/styles/colors';
-import UsersIcon from 'material-ui/svg-icons/social/people';
 import './navigation.css';
 import Drawer from 'material-ui/Drawer';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';

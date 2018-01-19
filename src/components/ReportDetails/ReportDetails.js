@@ -20,8 +20,7 @@ class ReportDetails extends Component {
             this.setState({
               user: item,
             })
-          ))
-        console.log(this.state.user);
+          ))        
       })
       .catch((e) => console.log(e))
   }
@@ -52,7 +51,6 @@ class ReportDetails extends Component {
   render() {    
     if (this.state.user) {
       const report = this.giveMeReport();
-      console.log(report);
       return (
         <div>
           <div className="report-container" id="report">
