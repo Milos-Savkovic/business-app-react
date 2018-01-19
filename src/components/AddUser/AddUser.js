@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import uuidv4 from 'uuid/v4';
 import { fireDB } from '../../api/firebaseApp'
 import TextField from 'material-ui/TextField';
 import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
@@ -61,21 +62,20 @@ class AddUser extends Component {
                     ...snapshot.val(),
                 ];
                 ourTeam = team;
-                console.log(ourTeam);
                 return ourTeam;
             })
             .then((team) => {
-                let maxId = 0;
-                for (let j = 0; j < team.length; j++) {
-                    if (team[j].Id > maxId) maxId = team[j].Id;
-                }
-                const id = maxId + 1;
+                // let maxId = 0;
+                // for (let j = 0; j < team.length; j++) {
+                //     if (team[j].Id > maxId) maxId = team[j].Id;
+                // }
+                // const id = maxId + 1;
 
                 team = [
                     ...team, {
                         Description: this.state.user.description,
                         FirstName: this.state.user.firstname,
-                        Id: id,
+                        Id: uuidv4(),
                         LastName: this.state.user.lastname,
                         Position: this.state.user.position,
                         Email: this.state.user.email,

@@ -58,6 +58,7 @@ class Container extends Component {
     }
 
     render() {
+        console.log(this.state.users);
         if (this.state.newUser === true) {
             return (
                 <Redirect to="/users/add" />
