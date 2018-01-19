@@ -1,8 +1,9 @@
 .container{
-    height: 100%;
+    height: fit-content;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
+    box-shadow: 0 0 3px #adadad;
     width: 1085px;
 }
 @media(min-width: 1449px) {
@@ -25,4 +26,18 @@
 }
 .users-heading h3 {
     margin: 0;
+}
+.add-person-icon {
+    height: 42px!important;
+    width: 42px!important;
+}
+svg.add-person-icon path {
+    fill: rgb(144, 144, 144);
+}
+svg.add-person-icon:hover path {
+    fill: rgb(0, 188, 213);
+}
+.add-person-icon-container {
+    height: 50px!important;
+    width: 50px!important;
 }

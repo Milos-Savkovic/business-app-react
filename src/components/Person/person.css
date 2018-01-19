@@ -69,14 +69,3 @@
     width: 100%;
     /* border-radius: 5px; */
 }
-.add-person-icon {
-    height: 42px!important;
-    width: 42px!important;
-}
-svg.add-person-icon path {
-    fill: rgb(0, 188, 212);
-}
-.add-person-icon-container {
-    height: 50px!important;
-    width: 50px!important;
-}

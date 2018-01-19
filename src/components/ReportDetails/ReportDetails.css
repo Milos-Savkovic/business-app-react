@@ -28,11 +28,12 @@
   display: flex;
   flex-flow: column;
   padding: 1rem 0 0 1rem;
-  /* width: 826.234px; */
+  height: 950.016px;
   width: 51.639rem;
 }
 .right-border-report {
   border-right: 2px solid #c0c0c0;
+  line-height: 2rem;
 }
 .report-row {
   display: flex;

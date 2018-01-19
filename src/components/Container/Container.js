@@ -58,7 +58,6 @@ class Container extends Component {
     }
 
     render() {
-        console.log(this.state.users);
         if (this.state.newUser === true) {
             return (
                 <Redirect to="/users/add" />
@@ -85,7 +84,7 @@ class Container extends Component {
             return (
                 <div className="container">
                     <div className="users-heading">
-                        <h3>USERS</h3>
+                        <h3>Users</h3>
                         <IconButton
                             onClick={this.clickHandler}
                             className="add-person-icon-container"
