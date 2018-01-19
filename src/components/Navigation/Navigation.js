@@ -41,23 +41,26 @@ class Navigation extends Component {
         this.authUser();
     }
     authUser = () => {
-        let user = fire.auth().currentUser;
-        if (user) {
-            const userEmail = user.email;
-            const userPhoto = user.photoURL;
-            const displayName = user.displayName;
-            console.log(user);
-            this.setState({
-                userEmail: userEmail,
-                photo: userPhoto,
-                userName: displayName,
-            });
-        }
+        fire.auth().onAuthStateChanged(user => {
+            if (user) {
+                const userEmail = user.email;
+                const userPhoto = user.photoURL;
+                const displayName = user.displayName;
+                console.log(user);
+                this.setState({
+                    userEmail: userEmail,
+                    photo: userPhoto,
+                    userName: displayName,
+                });
+            } else {
+                console.log('Niste prijavljeni.')
+            }
+        });
     }
     handlelogout = (props) => {
         fire.auth().signOut().then(() => {
 
-            this.props.logout();
+            // this.props.logout();
             this.props.history.push('/login');
         }).catch((error) => {
             console.log("Error in log out.");
@@ -67,7 +70,7 @@ class Navigation extends Component {
     render() {
         return (
             <AppBar
-                title={`Users`}
+                title={<Link to='/users'>Users</Link>}
                 // iconClassNameRight="muidocs-icon-navigation-expand-more"
                 // onLeftIconButtonClick={() => console.log('Add menu  ')}
                 showMenuIconButton={false}
