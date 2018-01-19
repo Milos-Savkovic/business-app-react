@@ -15,22 +15,22 @@ class Field extends Component {
             (
                 <div className="fieldBack">
                     <h3 className="field-tip">Choose report on left to print</h3>
-                    <Link
-                        style={{ textDecoration: 'none' }}
-                        to={`/users/${this.props.id}/new-report`}
-                        onClick={this.clickHandler}
-                    >
-                        <div className="fieldButton">
-                            <FloatingActionButton >
-                                <ContentAdd />
-                            </FloatingActionButton>
-                        </div>
-                    </Link>
                 </div>
             ) : null;
         return (
             <div className="fieldBack-container">
                 {text}
+                <Link
+                    style={{ textDecoration: 'none' }}
+                    to={`/users/${this.props.id}/new-report`}
+                    onClick={this.clickHandler}
+                >
+                    <div className="fieldButton">
+                        <FloatingActionButton >
+                            <ContentAdd />
+                        </FloatingActionButton>
+                    </div>
+                </Link>
                 <Route
                     path={`/users/:${this.props.id}/:date/:reportName`}
                     render={() => <ReportDetails
