@@ -47,7 +47,6 @@ class Navigation extends Component {
                 const userEmail = user.email;
                 const userPhoto = user.photoURL;
                 const displayName = user.displayName;
-                console.log(user);
                 this.setState({
                     userEmail: userEmail,
                     photo: userPhoto,

@@ -39,17 +39,12 @@ class AddReport extends Component {
         earnings: 'domaća',
         typeOfTransport: 'službeno',
         costs: 'kompanija',
-        startDate: new Date(),
-        endDate: this.date(),
+        startDate: null,
+        endDate: null,
         user: null,
         moreCosts: [],
     }
 
-    date() {
-        const date = new Date()
-        date.setDate(date.getDate() + 3);
-        return date;
-    }
     setFirebase = (e) => {
         e.preventDefault();
         console.log("Set FIREBASE!");
@@ -216,13 +211,12 @@ class AddReport extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
                     <div className="rowDate">
                         <PickDays
-                            startDate={this.state.startDate}
-                            endDate={this.state.endDate}
                             handleDateStart={this.handleDateStart}
                             handleDateEnd={this.handleDateEnd}
                         />
