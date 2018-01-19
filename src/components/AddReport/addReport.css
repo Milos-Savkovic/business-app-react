@@ -14,7 +14,8 @@
 }
 .submit{
     width:300px;
-    margin: 50px 0px 20px 0px; 
+    margin: 50px 0px 20px 0px;
+    color: white!important;
 }
 #mapSearch{
     width:200px;
@@ -81,7 +82,4 @@ p{
     align-content: stretch;
     align-items: center;
     justify-content: space-between;
-}
-.moreCosts{
-    
 }
