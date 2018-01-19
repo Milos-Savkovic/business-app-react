@@ -65,12 +65,6 @@ class AddUser extends Component {
                 return ourTeam;
             })
             .then((team) => {
-                // let maxId = 0;
-                // for (let j = 0; j < team.length; j++) {
-                //     if (team[j].Id > maxId) maxId = team[j].Id;
-                // }
-                // const id = maxId + 1;
-
                 team = [
                     ...team, {
                         Description: this.state.user.description,
