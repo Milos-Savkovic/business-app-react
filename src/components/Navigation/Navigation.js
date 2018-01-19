@@ -6,10 +6,8 @@ import IconButton from 'material-ui/IconButton';
 import Avatar from 'material-ui/Avatar';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import { grey900, yellow400, blueGrey500 } from 'material-ui/styles/colors';
+import UsersIcon from 'material-ui/svg-icons/social/people';
 import './navigation.css';
 
 const Logged = (props) => (
@@ -77,13 +75,20 @@ class Navigation extends React.Component {
                 className="material-bar"
                 title={linkToHome}
                 showMenuIconButton={false}
+                onLeftIconButtonClick={() => console.log('click')}
                 iconElementRight={<Logged
                     handlelogout={this.handlelogout}
                     photo={this.state.photo}
                     email={this.state.userEmail}
                 />}
+                iconElementLeft={
+                    <UsersIcon 
+                        color={{color: 'red'}}
+                        hover={{color: 'white'}}
+                    />
+                }
                 style={{
-                    backgroundColor: 'rgb(60, 184, 255)'
+                    backgroundColor: 'rgb(144, 144, 144)'
                 }}
 
             />

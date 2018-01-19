@@ -7,3 +7,19 @@
     flex: 33,3%;
     justify-content: space-evenly;
 }
+.users-heading {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 2rem;
+    font-weight: ;
+    color:rgb(144, 144, 144);
+    font-family: roboto;
+    border-bottom: 1px solid;
+    margin: 2rem 4rem 4rem;
+}
+.users-heading h3 {
+    margin: 0;
+}

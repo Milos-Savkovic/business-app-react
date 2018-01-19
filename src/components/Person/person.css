@@ -11,9 +11,8 @@
     float: left;
     background-color:#f8f8f8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin-bottom:20px;
+    padding-bottom: 8px;
     text-align: center;
-    
 }
 
 .cardImagePlus{    
@@ -38,27 +37,32 @@
 .cardImagePlus:hover {
     background-color: rgb(162, 224, 137);
 }
-
+.name {
+    color: rgb(142, 142, 142);
+}
 .title {
     color: grey;
+    margin-bottom: 1rem;
 }
 
 .button {
-    border: none;
-    outline: 0;
+    outline: unset;
+    border: 0;
     display: inline-block;
     padding: 10px;
     color: white;
-    background-color: rgb(39, 39, 39);
+    background-color: rgb(95, 95, 95);
     text-align: center;
     cursor: pointer;
     width: 100%;
     margin-bottom: 0px;
-    border-radius: 10px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 .button:hover {
-    background-color: #555;
+    background-color: #fdba2c;
+    color: #565656;
 }
 
 .avatar{
@@ -67,10 +71,13 @@
     border-radius: 5px;
 }
 .add-person-icon {
-    height: 128px!important;
-    width: 128px!important;
+    height: 64px!important;
+    width: 64px!important;
+}
+svg.add-person-icon path {
+    fill: rgb(0, 188, 212);
 }
 .add-person-icon-container {
-    height: 150px!important;
-    width: 150px!important;
+    height: 73px!important;
+    width: 73px!important;
 }

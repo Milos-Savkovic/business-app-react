@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import './container.css';
 import Person from '../Person/Person';
+import IconButton from 'material-ui/IconButton';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import { grey700 } from 'material-ui/styles/colors';
 import fetchUsers from '../../api/Seed';
 import Paper from 'material-ui/Paper';
 // import fetchUsers from './Seed-offline';
@@ -34,7 +37,7 @@ class Container extends Component {
         });
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.helper();
     }
 
@@ -62,22 +65,39 @@ class Container extends Component {
         } else if (this.state.userDetails === true) {
             return <Redirect to={"/users/" + this.state.userDetailsId} />
         } else {
-            const teamComponents = this.state.users.map((person) => (
-                <Paper style={style} zDepth={3} >
-                    <Person
-                        key={person.Id}
-                        id={person.Id}
-                        firstName={person.FirstName}
-                        lastName={person.LastName}
-                        position={person.Position}
-                        clickHandler={this.clickHandler}
-                        clickHandlerDetail={this.clickHandlerDetail}
-                    />
-                </Paper>
-            ))
+            const teamComponents = this.state.users.map((person) => {
+                if(person.Id !== 0) {
+                    return (
+                        <Paper key={person.Id} style={style} zDepth={3} >
+                            <Person                            
+                                id={person.Id}
+                                firstName={person.FirstName}
+                                lastName={person.LastName}
+                                position={person.Position}
+                                clickHandlerDetail={this.clickHandlerDetail}
+                            />
+                        </Paper>
+                    );
+                }                
+            });
 
             return (
                 <div className="container">
+                    <div className="users-heading">
+                        <h3>USERS</h3>
+                        <IconButton
+                            onClick={this.clickHandler}
+                            className="add-person-icon-container"
+                            tooltip="Add User"
+                            touch={true}
+                            tooltipPosition="bottom-left"
+                        >
+                            <PersonAdd
+                                className="add-person-icon"
+                                color={grey700}
+                            />
+                        </IconButton>
+                    </div>
                     {teamComponents}
                 </div>
             )
