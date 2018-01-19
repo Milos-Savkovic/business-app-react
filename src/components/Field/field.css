@@ -1,14 +1,16 @@
 .fieldBack{
-    background-color:#111; 
+    /* background-color:#111;  */
     display: flex;
     overflow:hidden;
-    align-items: baseline;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     padding: 0 2rem;    
 }
 .fieldBack-container {   
     width: 100%;    
     overflow:auto;  
+    display: flex;
+    justify-content: center;
 }
 .fieldButton {
     display: flex;
@@ -16,4 +18,9 @@
     bottom: 20px;
     right:20px;
     position: fixed;
+}
+.field-tip {
+    font-size: 4rem;
+    text-align: center;
+    color: #ececec;
 }

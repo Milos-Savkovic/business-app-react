@@ -7,7 +7,8 @@ import Avatar from 'material-ui/Avatar';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import { grey50, blueGrey500 } from 'material-ui/styles/colors';
+import { grey50 } from 'material-ui/styles/colors';
+import UsersIcon from 'material-ui/svg-icons/social/people';
 import './navigation.css';
 
 class Logged extends Component {
@@ -46,7 +47,6 @@ class Navigation extends Component {
                 const userEmail = user.email;
                 const userPhoto = user.photoURL;
                 const displayName = user.displayName;
-                console.log(user);
                 this.setState({
                     userEmail: userEmail,
                     photo: userPhoto,
@@ -66,7 +66,7 @@ class Navigation extends Component {
             console.log("Error in log out.");
         });
     }
-    
+
     render() {
         const linkToHome = <Link to='/users'>Bussines Trip</Link>
         return (
@@ -74,13 +74,20 @@ class Navigation extends Component {
                 className="material-bar"
                 title={linkToHome}
                 showMenuIconButton={false}
+                onLeftIconButtonClick={() => console.log('click')}
                 iconElementRight={<Logged
                     handlelogout={this.handlelogout}
                     photo={this.state.photo}
                     email={this.state.userEmail}
                 />}
+                iconElementLeft={
+                    <UsersIcon
+                        color={{ color: 'red' }}
+                        hover={{ color: 'white' }}
+                    />
+                }
                 style={{
-                    backgroundColor: 'rgb(60, 184, 255)'
+                    backgroundColor: 'rgb(144, 144, 144)'
                 }}
 
             />

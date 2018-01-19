@@ -11,9 +11,10 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
-        return (
-            <div className="fieldBack-container">
+        let text = (this.props.path === `/users/${this.props.id}`) ?
+            (
                 <div className="fieldBack">
+                    <h3 className="field-tip">Choose report on left to print</h3>
                     <Link
                         style={{ textDecoration: 'none' }}
                         to={`/users/${this.props.id}/new-report`}
@@ -26,7 +27,10 @@ class Field extends Component {
                         </div>
                     </Link>
                 </div>
-
+            ) : null;
+        return (
+            <div className="fieldBack-container">
+                {text}
                 <Route
                     path={`/users/:${this.props.id}/:date/:reportName`}
                     render={() => <ReportDetails
