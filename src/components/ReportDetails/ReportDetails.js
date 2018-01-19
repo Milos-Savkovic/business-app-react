@@ -26,7 +26,7 @@ class ReportDetails extends Component {
       .catch((e) => console.log(e))
   }
   printReport = () => {
-    const page1 = document.getElementById('report-page-2');
+    const page1 = document.getElementById('report');
     // divToPrint.setAttribute('class', 'report-container-print');
     html2canvas(page1)
       .then((canvas) => {
@@ -49,10 +49,10 @@ class ReportDetails extends Component {
     const reportObj = reportArr.pop();
     return reportObj;
   }
-  render() {
-
+  render() {    
     if (this.state.user) {
       const report = this.giveMeReport();
+      console.log(report);
       return (
         <div>
           <div className="report-container" id="report">
