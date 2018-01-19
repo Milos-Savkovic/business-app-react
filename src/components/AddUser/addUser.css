@@ -1,12 +1,9 @@
 .add-user-container{
-    height: 100%;
-    overflow-y:auto;
-    overflow-x:hidden;
+    width: inherit;
+    margin: auto 0;
 }
 .contactForm { 
   width: 100%;
-  height:100%;
-  overflow:hidden;
   display: flex;
   justify-content: center;
   align-items: center;
