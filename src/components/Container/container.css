@@ -5,6 +5,5 @@
     display: flex;
     flex-flow: row wrap;
     flex: 33,3%;
-    justify-content: center;
-    padding:20px;
+    justify-content: space-evenly;
 }

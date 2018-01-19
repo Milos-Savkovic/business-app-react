@@ -32,7 +32,7 @@ class UserDetail extends Component {
                         date2={item.date2}
                     />
                 </NavLink>
-            ))
+            ));
             return (reports)
         } else return null;
     }

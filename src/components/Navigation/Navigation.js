@@ -66,13 +66,13 @@ class Navigation extends Component {
             console.log("Error in log out.");
         });
     }
-
+    
     render() {
+        const linkToHome = <Link to='/users'>Bussines Trip</Link>
         return (
             <AppBar
-                title={<Link to='/users'>Users</Link>}
-                // iconClassNameRight="muidocs-icon-navigation-expand-more"
-                // onLeftIconButtonClick={() => console.log('Add menu  ')}
+                className="material-bar"
+                title={linkToHome}
                 showMenuIconButton={false}
                 iconElementRight={<Logged
                     handlelogout={this.handlelogout}
@@ -80,7 +80,7 @@ class Navigation extends Component {
                     email={this.state.userEmail}
                 />}
                 style={{
-                    backgroundColor: blueGrey500
+                    backgroundColor: 'rgb(60, 184, 255)'
                 }}
 
             />
