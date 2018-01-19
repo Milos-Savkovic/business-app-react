@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { fireDB } from '../../api/firebaseApp';
 import AboutUser from '../AboutUser/AboutUser';
+import uuidv4 from 'uuid/v4';
 import './about.css';
 
 class About extends Component {
@@ -13,7 +14,7 @@ class About extends Component {
         this.fetchData();
     }
     fetchData = () => {
-        const id = + this.props.match.params.id;
+        const id =  this.props.match.params.id;
         fireDB.ref('/users').once('value')
             .then((snapshot) => {
                 const Team = [
