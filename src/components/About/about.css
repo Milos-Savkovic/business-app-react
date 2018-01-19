@@ -1,4 +1,12 @@
-.about{
+.container-about{
     height: 100%;
-    overflow:hidden;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 1450px;
 }
+/* @media(min-width: 1449px) {
+    .container-about {
+        width: 1450px;
+    }
+} */

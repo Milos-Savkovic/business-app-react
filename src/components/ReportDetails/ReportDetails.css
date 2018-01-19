@@ -64,8 +64,8 @@
 .print-report-button:hover {
   cursor: pointer;
   color: white;
-  background: #fdba2c;
-  border: 1px solid #fdba2c;
+  background: rgb(60, 185, 255);
+  border: 1px solid rgb(60, 185, 255);
   transform: scale(1.1);
 }
 .report-row-no-line, .report-field {

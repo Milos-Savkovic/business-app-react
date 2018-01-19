@@ -55,7 +55,7 @@ class About extends Component {
 
     render() {
         return (
-            <div className="about" >                
+            <div className="container-about" >                
                 {this.about()}
             </div>
         );
