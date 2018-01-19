@@ -114,3 +114,12 @@ h4{
 .drawer a {
     text-decoration: none;
 }
+.drawer-logo {
+    position: absolute;
+    bottom: 2rem;
+    left: 4rem;
+    mix-blend-mode: luminosity;
+    width: 4rem;
+    height: auto;
+    opacity: .5;
+}

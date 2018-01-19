@@ -13,6 +13,7 @@ import Drawer from 'material-ui/Drawer';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import People from 'material-ui/svg-icons/social/people';
 import Divider from 'material-ui/Divider';
+import logo from '../../assets/images/logo.svg';
 
 class Logged extends Component {
     render() {
@@ -102,6 +103,7 @@ class Navigation extends Component {
                     <Link to="/users"><MenuItem primaryText="Users" leftIcon={<People />} onClick={this.handleClose} /></Link>
                     <Link to="/users/add"><MenuItem primaryText="Add user" leftIcon={<PersonAdd />} onClick={this.handleClose} /></Link>
                     <Divider />
+                    <img src={logo} className="drawer-logo" alt="logo" />
                 </Drawer>
             </div>
 
