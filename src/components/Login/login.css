@@ -35,7 +35,7 @@
 .form-login button {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: rgb(211, 221, 120);
+  background: whitesmoke;
   width: 80%;
   border: 0;
   margin: 10%;
@@ -50,7 +50,7 @@
 }
 .form-login button:hover,.form button:active,.form button:focus {
   background: rgb(170, 226, 229);
-  color: whitesmoke;
+  color: rgb(40, 39, 41);
 }
 .google-logo {
   height: 32px;
