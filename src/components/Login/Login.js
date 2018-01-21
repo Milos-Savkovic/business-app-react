@@ -13,7 +13,7 @@ class Login extends Component {
         credential: '',
     }
 
-    componentWillMount() {
+    componentDidCatch() {
         fire.auth().onAuthStateChanged((user) => {
             if (!user) {
                 this.setState({
