@@ -11,7 +11,10 @@ class Header extends Component {
                 <img src={logo} className="App-logo" alt="logo" />
                 <img src={logo2} className="App-logo2" alt="logo2" />
                 </div>
+<<<<<<< HEAD
                 {/* <h1 className="App-title">Welcome</h1> */}
+=======
+>>>>>>> mladen
             </header>
         );
     }

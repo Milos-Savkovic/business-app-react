@@ -65,7 +65,7 @@ class Login extends Component {
                 <div className="Login">
                     <form className="form-login" onSubmit={(e) => this.login(e)}>
                         <Header />
-                        <button type="submit" id="button" className="btn btn-success center-block form-login button">
+                        <button type="submit" id="button" className="form-login">
                             <img src={googleLogo} alt="google logo" className="google-logo" />
                             <span className="login-text">Login with Google  </span>
                         </button>

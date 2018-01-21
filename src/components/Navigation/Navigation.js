@@ -8,8 +8,12 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { grey50 } from 'material-ui/styles/colors';
-import UsersIcon from 'material-ui/svg-icons/social/people';
 import './navigation.css';
+import Drawer from 'material-ui/Drawer';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import People from 'material-ui/svg-icons/social/people';
+import Divider from 'material-ui/Divider';
+import logo from '../../assets/images/logo.svg';
 
 class Logged extends Component {
     render() {
@@ -37,10 +41,13 @@ class Navigation extends Component {
         userEmail: '',
         userName: '',
         photo: '',
+        open: false,
     }
     componentWillMount() {
         this.authUser();
     }
+    handleToggle = () => this.setState({ open: !this.state.open });
+    handleClose = () => this.setState({ open: false });
     authUser = () => {
         fire.auth().onAuthStateChanged(user => {
             if (user) {
@@ -70,27 +77,36 @@ class Navigation extends Component {
     render() {
         const linkToHome = <Link to='/users'>Bussines Trip</Link>
         return (
-            <AppBar
-                className="material-bar"
-                title={linkToHome}
-                showMenuIconButton={false}
-                onLeftIconButtonClick={() => console.log('click')}
-                iconElementRight={<Logged
-                    handlelogout={this.handlelogout}
-                    photo={this.state.photo}
-                    email={this.state.userEmail}
-                />}
-                iconElementLeft={
-                    <UsersIcon
-                        color={{ color: 'red' }}
-                        hover={{ color: 'white' }}
-                    />
-                }
-                style={{
-                    backgroundColor: 'rgb(144, 144, 144)'
-                }}
+            <div>
+                <AppBar
+                    className="material-bar"
+                    title={linkToHome}
+                    showMenuIconButton={true}
+                    onLeftIconButtonClick={this.handleToggle}
+                    iconElementRight={<Logged
+                        handlelogout={this.handlelogout}
+                        photo={this.state.photo}
+                        email={this.state.userEmail}
+                    />}
+                    style={{
+                        backgroundColor: 'rgb(144, 144, 144)'
+                    }}
 
-            />
+                />
+                <Drawer
+                    className="drawer"
+                    docked={false}
+                    width={200}
+                    open={this.state.open}
+                    onRequestChange={(open) => this.setState({ open })}
+                >
+                    <Link to="/users"><MenuItem primaryText="Users" leftIcon={<People />} onClick={this.handleClose} /></Link>
+                    <Link to="/users/add"><MenuItem primaryText="Add user" leftIcon={<PersonAdd />} onClick={this.handleClose} /></Link>
+                    <Divider />
+                    <img src={logo} className="drawer-logo" alt="logo" />
+                </Drawer>
+            </div>
+
 
             // <div className="sidenav" >
             //     <div className="welcome-user">

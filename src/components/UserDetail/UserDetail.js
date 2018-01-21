@@ -50,7 +50,7 @@ class UserDetail extends Component {
                 <div className="descriptionClass">
                     {this.props.description}
                 </div>
-                <hr className="description-separator" />
+                <h4 className="reports-heading">Reports</h4>
                 <div className="reportsClass">
                     {this.reporter()}
                 </div>
