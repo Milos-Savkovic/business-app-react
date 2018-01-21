@@ -4,25 +4,23 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    padding:50px 0px 0px 50px;
-    background-image: url("../../assets/images/businessTrip.jpg");
+    /* padding:50px 0px 0px 50px; */
+    background: url("../../assets/images/businessTrip.jpg") no-repeat center center;
+    background-size: cover;
     display:flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 .Title{
   font-family: my-font, "Roboto", sans-serif;
   position: relative;
-  align-self: flex-start;
-  margin-left: 18.5%;
-  font-size:60px; 
-  color: rgb(77, 75, 80);
-  padding:10px;
-  transform: rotate(-12deg);
+  font-size:40px; 
+  color: rgb(92, 89, 98);
+  margin: 0 auto;
 }
 .form-login {
   border-radius: 5px;
-  background: rgba(67, 62, 68, 0.86);  
+  background: rgb(255, 255, 255);  
   box-sizing: border-box;
   width: 350px;  
   text-align: center;
@@ -36,15 +34,18 @@
   background: rgb(255, 255, 255);
   width: 80%;
   border: 0;
-  margin: 10%;
+  margin: 5% auto;
   color: rgb(1, 1, 1);
   font-weight: 900;
   font-size: 18px;
-  height:60px;
+  height:44px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
+}
+form.form-login hr {
+  margin-top: 2rem!important;
 }
 .form-login button:hover {
   cursor: pointer;
@@ -57,4 +58,5 @@
 }
 .login-text{
   padding: 5px;
+  color: #5e5862;
 }

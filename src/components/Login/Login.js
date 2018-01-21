@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import fire, { provider, session } from '../../api/firebaseApp';
 import Header from '../Header/Header';
+import Divider from 'material-ui/Divider';
 import './login.css';
 import googleLogo from '../../assets/images/google.png';
+import { darkBlack } from 'material-ui/styles/colors';
 
 class Login extends Component {
     state = {
@@ -65,12 +67,13 @@ class Login extends Component {
                 <div className="Login">
                     <form className="form-login" onSubmit={(e) => this.login(e)}>
                         <Header />
+                        <h1 className="Title">Business Trip</h1>
+                        <Divider />                        
                         <button type="submit" id="button" className="form-login">
                             <img src={googleLogo} alt="google logo" className="google-logo" />
                             <span className="login-text">Login with Google  </span>
                         </button>
-                    </form>
-                    <h1 className="Title">Business Trip</h1>
+                    </form>                    
                 </div>
             );
     }
