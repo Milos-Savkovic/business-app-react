@@ -43,7 +43,7 @@ class Navigation extends Component {
         photo: '',
         open: false,
     }
-    componentWillMount() {
+    componentDidMount() {
         this.authUser();
     }
     handleToggle = () => this.setState({ open: !this.state.open });
