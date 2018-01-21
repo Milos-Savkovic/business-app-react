@@ -2,6 +2,7 @@
     height: 100%;
     width:300px;
     overflow:auto;
+    overflow-x: hidden;
     background: rgb(236, 236, 236); 
 }
 ::-webkit-scrollbar {
