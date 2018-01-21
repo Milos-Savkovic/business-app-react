@@ -43,16 +43,18 @@
 }
 
 .edit {
-	padding-top: 7px;	
-	padding-right: 7px;
+	padding-top: 4px;	
+	padding-right: 4px;
 	position: absolute;
 	right: 0;
-	top: 0;
-	display: none;
+    top: 0;
+    display: none;
+    width: 55px;
 }
-
 .edit a {
-	color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: flex-start;
 }
 .nameClass{
     background-color: rgb(60, 184, 255);

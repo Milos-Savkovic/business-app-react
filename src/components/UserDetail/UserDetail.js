@@ -6,6 +6,20 @@ import Create from 'material-ui/svg-icons/content/create';
 import { grey50 } from 'material-ui/styles/colors';
 import './userDetail.css';
 
+
+const styles = {
+    exampleImageInput: {
+        cursor: 'pointer',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        width: '100%',
+        opacity: 0,
+    },
+};
+
 class UserDetail extends Component {
     click = () => {
         this.props.clickedLink();
@@ -40,6 +54,9 @@ class UserDetail extends Component {
         } else return null;
     }
 
+    handleEditImage = () => {
+        console.log("Edit image!");
+    }
     render() {
         return (
             <div className="user">
@@ -47,15 +64,18 @@ class UserDetail extends Component {
                     <img src="https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png" className="img" alt="Jane" />
                     <div className="edit">
                         <IconButton
+                            onClick={() => this.fileUpload.click()}
                             tooltip="Edit image"
                             tooltipPosition="bottom-left"
-                        >
-                            <Create
-                                color={grey50}
-
-                            />
+                            tooltipStyles={{
+                                fontSize: "14px",
+                            }}>
+                            <Create color={grey50} />
                         </IconButton>
-
+                        <input type="file" ref={(fileUpload) => {
+                            this.fileUpload = fileUpload;
+                        }}
+                            style={{ visibility: 'hidden' }} onChange={this.groupImgUpload} />
                     </div>
                 </div>
                 <div className="nameClass">
