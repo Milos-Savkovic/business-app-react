@@ -283,7 +283,7 @@ class AddReport extends Component {
                         </SelectField>
                     </div>
                     <p>Dodatni troškovi: </p>
-                    <div className="moreCosts">
+                    <div>
                         {this.state.moreCosts.map(input => <NewCosts
                             key={input.id}
                             id={input.id}
@@ -307,7 +307,8 @@ class AddReport extends Component {
                         type="submit"
                         label="Add report"
                         className="submit"
-                        backgroundColor="#E0B222"
+                        backgroundColor="rgb(60, 184, 255)"
+                        labelColor="rgb(255, 255, 255)"
                     />
                     <div
                         className="close"
