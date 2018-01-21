@@ -33,11 +33,7 @@
 .form-login button {
   font-family: "Roboto", sans-serif;
   outline: 0;
-<<<<<<< HEAD
-  background: whitesmoke;
-=======
   background: rgb(255, 255, 255);
->>>>>>> mladen
   width: 80%;
   border: 0;
   margin: 10%;
@@ -50,14 +46,8 @@
   justify-content: center;
   align-content: center;
 }
-<<<<<<< HEAD
-.form-login button:hover,.form button:active,.form button:focus {
-  background: rgb(170, 226, 229);
-  color: rgb(40, 39, 41);
-=======
 .form-login button:hover {
   cursor: pointer;
->>>>>>> mladen
 }
 .google-logo {
   height: 32px;
