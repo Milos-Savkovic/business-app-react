@@ -20,21 +20,20 @@ class ReportDetails extends Component {
             this.setState({
               user: item,
             })
-          ))        
+          ))
       })
       .catch((e) => console.log(e))
   }
   printReport = () => {
-    const page1 = document.getElementById('report');
-    // divToPrint.setAttribute('class', 'report-container-print');
-    html2canvas(page1)
+    const divToPrint = document.getElementById('report');
+    divToPrint.setAttribute('class', 'report-container-print');
+    html2canvas(divToPrint)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'pt', 'a4');
-        pdf.addImage(imgData, 'JPEG', 0, 0);
-        const report = this.giveMeReport();
-        pdf.save(`${report.reportName}.pdf`);
-        // divToPrint.setAttribute('class', 'report-container-print');
+        var pdf = new jsPDF('l', 'mm', 'a4');        
+        pdf.addImage(imgData, 'JPEG', 5, 10, 285, 190);
+        pdf.save('test.pdf');
+        divToPrint.removeAttribute('class', 'report-container-print');
       })
       .catch(err => console.log(err))
       ;
@@ -48,7 +47,7 @@ class ReportDetails extends Component {
     const reportObj = reportArr.pop();
     return reportObj;
   }
-  render() {    
+  render() {
     if (this.state.user) {
       const report = this.giveMeReport();
       return (
@@ -224,13 +223,13 @@ class ReportDetails extends Component {
                   <div className="floor-border floor-border--center">kompanije</div>
                 </div>
               </div>
-              <br/>
+              <br />
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text" style={{ paddingRight: '1rem' }}>U</span>
-                  <div className="floor-border floor-border--center" style={{width: '12rem'}}>Banjoj Luci</div>
+                  <div className="floor-border floor-border--center" style={{ width: '12rem' }}>Banjoj Luci</div>
                   <span className="report-text" style={{ paddingRight: '1rem' }}>dana</span>
-                  <div className="floor-border floor-border--center" style={{width: '12rem'}}></div>
+                  <div className="floor-border floor-border--center" style={{ width: '12rem' }}></div>
                 </div>
               </div>
               <br />

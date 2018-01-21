@@ -308,7 +308,7 @@ class AddReport extends Component {
                         label="Add report"
                         className="submit"
                         backgroundColor="rgb(60, 184, 255)"
-                        labelColor="white"
+                        labelColor="rgb(255, 255, 255)"
                     />
                     <div
                         className="close"
