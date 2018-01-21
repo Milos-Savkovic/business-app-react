@@ -6,20 +6,6 @@ import Create from 'material-ui/svg-icons/content/create';
 import { grey50 } from 'material-ui/styles/colors';
 import './userDetail.css';
 
-
-const styles = {
-    exampleImageInput: {
-        cursor: 'pointer',
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        width: '100%',
-        opacity: 0,
-    },
-};
-
 class UserDetail extends Component {
     click = () => {
         this.props.clickedLink();
