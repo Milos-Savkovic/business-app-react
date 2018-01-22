@@ -15,6 +15,6 @@ export const provider = new firebase.auth.GoogleAuthProvider();
 export const session = fire.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 export const fireDB = fire.database();
-export const storage = firebase.storage().ref();
+// export const storage = fire.storage();
 
 export default  fire;
