@@ -16,7 +16,7 @@ const style = {
     textAlign: 'center',
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
 };
 
 class Container extends Component {
@@ -68,7 +68,7 @@ class Container extends Component {
             const teamComponents = this.state.users.map((person) => {
                 if (person.Id !== 0) {
                     return (
-                        <Paper key={person.Id} style={style} zDepth={0} >
+                        <Paper key={person.Id} style={style} zDepth={0} className="material-paper">
                             <Person
                                 id={person.Id}
                                 firstName={person.FirstName}
