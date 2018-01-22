@@ -22,6 +22,7 @@ class NewCosts extends Component {
                     onChange={this.props.handleMoreCostsName}
                 />
                 <TextField
+                    type="number"
                     id={this.props.id}
                     style={{
                         width: '70px',
@@ -30,11 +31,11 @@ class NewCosts extends Component {
                     onChange={this.props.handleMoreCostsValue}
                 />
                 <strong>KM</strong>
-                <IconButton  onClick={(e) => { this.handleDeleteInput(e) }} >
+                <IconButton onClick={(e) => { this.handleDeleteInput(e) }} >
                     <DeleteIcon className="delete-icon"
                     />
                 </IconButton>
-            </div> 
+            </div>
         );
     }
 }

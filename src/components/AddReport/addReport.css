@@ -1,6 +1,8 @@
 .field{
     width: 100%;    
     overflow:hidden;  
+    display: flex;
+    
 }
 .form-newReport{
     height: 100%;
@@ -28,20 +30,6 @@
     border-radius:7%;     
     font-size:16px;
 }
-.rowDate{
-    margin-top:10px;
-    padding-bottom: 10px;    
-}
-.rowDate input {
-    width: 150px;
-    height:30px;
-    text-align: center;
-    border-radius:7%;     
-    font-size: 16px;
-    padding: 1px 0px;
-    border:none;
-    border-bottom:2px solid rgb(233, 192, 71);
-}
 p{
     font-size:18px;
     padding:3px;
@@ -68,18 +56,37 @@ p{
 }
 .rowEarnings{
     padding:0px 0px 10px 0px;
-    flex-direction: column; 
     width:150px;
 }
 .drop{
-     flex-direction: row;
      width:400px;
-     /* display: flex; */
 }
 .dropItem{
-    flex-direction: column;
-    flex:1;
     align-content: stretch;
     align-items: center;
     justify-content: space-between;
+}
+.dates{
+
+}
+.rowDate{
+    margin-top:10px;
+    padding-bottom: 10px;  
+}
+.rowDate input {
+    /* width: 150px; */
+    height:30px;
+    text-align: center;
+    border-radius:7%;     
+    font-size: 16px;
+    padding: 1px 0px;
+    border:none;
+    border-bottom:2px solid rgb(233, 192, 71);
+}
+.time-picker{
+}
+.protocol{
+    justify-content: flex-start;
+    width: 100%;
+    margin-left:50px;
 }

@@ -3,13 +3,15 @@ import PickDays from '../PickDays/PickDays';
 import MyMap from '../../api/MyMap';
 import { fireDB } from '../../api/firebaseApp';
 import uuidv4 from 'uuid/v4';
-import { grey900 } from 'material-ui/styles/colors';
+import { grey400 } from 'material-ui/styles/colors';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import TextField from 'material-ui/TextField';
+import TimePicker from 'material-ui/TimePicker';
 import NewCosts from '../NewCosts/NewCosts';
 import './addReport.css';
 
@@ -18,7 +20,7 @@ const styles = {
         marginBottom: 10,
     },
     floatingLabelStyle: {
-        color: grey900,
+        color: grey400,
         fontSize: '16px',
     },
     menuItem: {
@@ -111,7 +113,6 @@ class AddReport extends Component {
     }
 
     handleDistance = (dis, nm) => {
-        console.log(dis, nm);
         this.setState({
             city: {
                 cityName: nm,
@@ -153,7 +154,7 @@ class AddReport extends Component {
         const newArray = this.state.moreCosts;
         newArray.push({
             id: uuidv4(),
-            name: '',
+            name: 0,
             KM: '',
         });
         this.setState({
@@ -210,14 +211,50 @@ class AddReport extends Component {
     }
 
     render() {
+        console.log(this.state.moreCosts);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
-                    <div className="rowDate">
-                        <PickDays
-                            handleDateStart={this.handleDateStart}
-                            handleDateEnd={this.handleDateEnd}
+                    <div className="protocol">
+                        <TextField
+                            hintText="03/2018"
+                            floatingLabelText="Broj protokola"
+                            floatingLabelStyle={{
+                                color: grey400,
+                            }}
+                            style={{
+                                width: '130px',
+                            }}
+                            required
                         />
+                    </div>
+                    <div className="dates">
+                        <div className="rowDate">
+                            <PickDays
+                                handleDateStart={this.handleDateStart}
+                                handleDateEnd={this.handleDateEnd}
+                            />
+                        </div>
+                        <div className="time-picker">
+                            <TimePicker
+                                format="24hr"
+                                hintText="Vrijeme polaska"
+                                textFieldStyle={{
+                                    width: '130px',
+                                    color: grey400,
+                                }}
+                                required
+                            />
+                            <TimePicker
+                                format="24hr"
+                                hintText="Vrijeme dolaska"
+                                textFieldStyle={{
+                                    width: '130px',
+                                    color: grey400,
+                                }}
+                                required
+                            />
+                        </div>
                     </div>
                     <div className="rowEarnings">
                         <p>Dnevnica : </p>
@@ -243,6 +280,15 @@ class AddReport extends Component {
                             />
                         </RadioButtonGroup>
                     </div>
+                    <TextField
+                        hintText="poslovnog angažmana za klijenta"
+                        floatingLabelText="Putuje se radi"
+                        floatingLabelStyle={{
+                            color: grey400,
+                        }}
+                        multiLine={true}
+                        rows={2}
+                    />
                     <p>Lokacija : </p>
                     <div className="input-group">
                         <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
