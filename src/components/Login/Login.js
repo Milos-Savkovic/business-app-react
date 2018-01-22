@@ -5,7 +5,6 @@ import Header from '../Header/Header';
 import Divider from 'material-ui/Divider';
 import './login.css';
 import googleLogo from '../../assets/images/google.png';
-import { darkBlack } from 'material-ui/styles/colors';
 
 class Login extends Component {
     state = {
