@@ -245,6 +245,7 @@ class AddReport extends Component {
                                 }}
                                 required
                             />
+                            <br/>                        
                             <TimePicker
                                 format="24hr"
                                 hintText="Vrijeme dolaska"
@@ -255,32 +256,34 @@ class AddReport extends Component {
                                 required
                             />
                         </div>
+                        <div className="rowEarnings">
+                            <p>Dnevnica : </p>
+                            <RadioButtonGroup
+                                name="earnings"
+                                onChange={this.handleEarnings}
+                                defaultSelected="domaća"
+                            >
+                                <RadioButton
+                                    label="strana"
+                                    value="strana"
+                                    style={styles.radioButton}
+                                />
+                                <RadioButton
+                                    label="domaća"
+                                    value="domaća"
+                                    style={styles.radioButton}
+                                />
+                                <RadioButton
+                                    label="EX-YU"
+                                    value="EX-YU"
+                                    style={styles.radioButton}
+                                />
+                            </RadioButtonGroup>
+                        </div>
                     </div>
-                    <div className="rowEarnings">
-                        <p>Dnevnica : </p>
-                        <RadioButtonGroup
-                            name="earnings"
-                            onChange={this.handleEarnings}
-                            defaultSelected="domaća"
-                        >
-                            <RadioButton
-                                label="strana"
-                                value="strana"
-                                style={styles.radioButton}
-                            />
-                            <RadioButton
-                                label="domaća"
-                                value="domaća"
-                                style={styles.radioButton}
-                            />
-                            <RadioButton
-                                label="EX-YU"
-                                value="EX-YU"
-                                style={styles.radioButton}
-                            />
-                        </RadioButtonGroup>
-                    </div>
+
                     <TextField
+                        className="cause-field"
                         hintText="poslovnog angažmana za klijenta"
                         floatingLabelText="Putuje se radi"
                         floatingLabelStyle={{
