@@ -1,11 +1,6 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
 
-const optionsStyle = {
-    maxWidth: 255,
-    marginRight: 'auto',
-};
-
 export default class DatePickerExampleToggle extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +15,7 @@ export default class DatePickerExampleToggle extends React.Component {
         this.setState({
             minDate: date,
         });
-        
+
         const convertDate = this.formatDate(date);
         this.props.handleDateStart(convertDate);
     };
@@ -41,26 +36,32 @@ export default class DatePickerExampleToggle extends React.Component {
     render() {
         return (
             <div>
-                <div style={optionsStyle}>
-                    <DatePicker
-                        onChange={this.handleChangeMinDate}
-                        floatingLabelText="Datum polaska"
-                        maxDate={this.state.maxDate}
-                        defaultDate={this.state.minDate}
-                        formatDate={this.formatDate}
-                        firstDayOfWeek={1}
-                        mode="landscape"
-                    />
-                    <DatePicker
-                        onChange={this.handleChangeMaxDate}
-                        floatingLabelText="Datum dolaska"
-                        minDate={this.state.minDate}
-                        defaultDate={this.state.maxDate}
-                        formatDate={this.formatDate}
-                        firstDayOfWeek={1}
-                        mode="landscape"
-                    />
-                </div>
+                <DatePicker
+                    onChange={this.handleChangeMinDate}
+                    floatingLabelText="Datum polaska"
+                    maxDate={this.state.maxDate}
+                    defaultDate={this.state.minDate}
+                    formatDate={this.formatDate}
+                    firstDayOfWeek={1}
+                    mode="landscape"
+                    textFieldStyle={{
+                        width: '130px',
+                    }}
+                    required
+                />
+                <DatePicker
+                    onChange={this.handleChangeMaxDate}
+                    floatingLabelText="Datum dolaska"
+                    minDate={this.state.minDate}
+                    defaultDate={this.state.maxDate}
+                    formatDate={this.formatDate}
+                    firstDayOfWeek={1}
+                    mode="landscape"
+                    textFieldStyle={{
+                        width: '130px',
+                    }}
+                    required
+                />
             </div>
         );
     }

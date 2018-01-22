@@ -1,9 +1,8 @@
 .field{
     width: 100%;    
-    overflow:hidden;  
+    overflow-y: auto;  
 }
 .form-newReport{
-    height: 100%;
     overflow-x:hidden;
     overflow-y: auto; 
     display: flex;        
@@ -27,20 +26,6 @@
     border-bottom:2px solid rgb(233, 192, 71);
     border-radius:7%;     
     font-size:16px;
-}
-.rowDate{
-    margin-top:10px;
-    padding-bottom: 10px;    
-}
-.rowDate input {
-    width: 150px;
-    height:30px;
-    text-align: center;
-    border-radius:7%;     
-    font-size: 16px;
-    padding: 1px 0px;
-    border:none;
-    border-bottom:2px solid rgb(233, 192, 71);
 }
 p{
     font-size:18px;
@@ -68,18 +53,51 @@ p{
 }
 .rowEarnings{
     padding:0px 0px 10px 0px;
-    flex-direction: column; 
     width:150px;
+    color: #454545;
 }
 .drop{
-     flex-direction: row;
-     width:400px;
-     /* display: flex; */
+     width:405px;
+     margin-top: 3rem;
 }
 .dropItem{
-    flex-direction: column;
-    flex:1;
     align-content: stretch;
     align-items: center;
     justify-content: space-between;
+}
+.dates{
+    display: flex;
+    align-items: baseline;
+    width: 80%;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+    /* background-color: #ececec; */
+    box-shadow: 0 0 1px #a8a8a8;
+}
+.dates:hover {
+    box-shadow: 0 0 5px #a8a8a8;    
+}
+.rowDate {
+      
+}
+.rowDate input {
+    /* width: 150px; */
+    height:30px;
+    text-align: center;
+    border-radius:7%;     
+    font-size: 16px;
+    padding: 1px 0px;
+    border:none;
+    border-bottom:2px solid rgb(233, 192, 71);
+}
+.time-picker{
+}
+.protocol{
+    justify-content: flex-start;
+    width: 100%;
+    margin-left:50px;
+}
+.cause-field {
+    width: 80%!important;
+    margin-bottom: 3rem;
 }
