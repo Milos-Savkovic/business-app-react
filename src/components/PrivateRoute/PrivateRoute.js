@@ -29,7 +29,7 @@ export default class PrivateRoute extends React.Component {
         userInTheHouse: true,
     }
 
-    componentDidCatch() {
+    componentWillMount() {
         fire.auth().onAuthStateChanged((user) => {
             if (!user) {
                 this.setState({

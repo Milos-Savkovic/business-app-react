@@ -30,8 +30,8 @@ class ReportDetails extends Component {
     html2canvas(divToPrint)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        var pdf = new jsPDF('l', 'mm', 'a4');        
-        pdf.addImage(imgData, 'JPEG', 5, 10, 285, 190);
+        var pdf = new jsPDF('l', 'mm', 'a4');
+        pdf.addImage(imgData, 'JPEG', 0, 0, 295, 210);
         pdf.save('test.pdf');
         divToPrint.removeAttribute('class', 'report-container-print');
       })
@@ -54,20 +54,28 @@ class ReportDetails extends Component {
         <div>
           <div className="report-container" id="report">
             <div className="right-border-report" id="report-page-1">
-              <h4>Preduzeće - Organizacija</h4>
-              <div className="report-row">
-                <div><strong>"GotSolution" d.o.o. Banja Luka</strong></div>
+              <p>Preduzeće - Organizacija</p>
+              <div className="report-row" style={{width: '70%'}}>
+                <div>
+                  <strong style={{ fontSize: '18px' }}>"GotSolution" d.o.o. Banja Luka</strong>
+                </div>
               </div>
               <div className="report-row-no-line">
                 <div className="report-field" style={{ paddingRight: '1rem' }}>
                   <span className="report-text">Broj:</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border medium-width-border"></div>
                 </div>
                 <div className="report-field">
                   <span className="report-text">Datum:</span>
-                  <div className="floor-border">{report.date1}</div>
+                  <div className="floor-border medium-width-border">{report.date1}</div>
                 </div>
               </div>
+              <div className="report-row-no-line">
+                <div className="report-field" style={{ justifyContent: 'center' }}>
+                  <h1 className="nalog-heading">Nalog za službeno putovanje</h1>
+                </div>
+              </div>
+              <br />
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Ime i Prezime</span>
@@ -175,21 +183,21 @@ class ReportDetails extends Component {
               <br />
               <br />
               <br />
-              <br />
-              <br />
-              <br />
-              <br />
               <div className="paraf-bottom">
                 <div className="report-row-no-line">
                   <div className="report-field report-field--end">
                     <span className="report-text report-text--right-padding">Nalogodavac,</span>
                   </div>
                 </div>
-                <br />
+                <div className="report-row-no-line">
+                  <div className="report-field" style={{ justifyContent: 'center' }}>
+                    <span className="report-text">(M.P.)</span>
+                  </div>
+                </div>
                 <br />
                 <div className="report-row-no-line report-row-no-line--no-margin">
                   <div className="report-field report-field--end">
-                    <div className="floor-border" style={{ width: '12rem', marginRight: '1rem' }}></div>
+                    <div className="floor-border" style={{ width: '15rem', marginRight: '1rem' }}></div>
                   </div>
                 </div>
               </div>
@@ -239,14 +247,20 @@ class ReportDetails extends Component {
               <div className="paraf-bottom">
                 <div className="report-row-no-line">
                   <div className="report-field report-field--end">
-                    <span className="report-text report-text--right-padding">Nalogodavac,</span>
+                    <span className="report-text report-text--right-padding" style={{ paddingRight: '8.5rem' }}>Nalogodavac:</span>
+                  </div>
+                </div>
+                <div className="report-row-no-line">
+                  <div className="report-field" style={{ justifyContent: 'center' }}>
+                    <span className="report-text" style={{ marginRight: '15rem' }}>(M.P.)</span>
                   </div>
                 </div>
                 <br />
-                <br />
                 <div className="report-row-no-line report-row-no-line--no-margin">
                   <div className="report-field report-field--end">
-                    <div className="floor-border" style={{ width: '12rem', marginRight: '1rem' }}></div>
+                    <div style={{ width: '22rem' }}>
+                      <small style={{ fontSize: '13px' }}>Potpis ovlašćenog lica nalogodavca koje odobrava isplatu</small>
+                    </div>
                   </div>
                 </div>
               </div>
