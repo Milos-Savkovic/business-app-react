@@ -9,7 +9,7 @@
     background-size: cover;
     display:flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
 }
 .Title{
   font-family: my-font, "Roboto", sans-serif;
@@ -19,6 +19,8 @@
   margin: 0 auto;
 }
 .form-login {
+  margin-right: 5%;
+  margin-bottom: 10%;
   border-radius: 5px;
   background: rgb(255, 255, 255);  
   box-sizing: border-box;
