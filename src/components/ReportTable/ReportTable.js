@@ -84,7 +84,7 @@ export const ReportTable = (props) => {
           <div className="long-field long-field-end"></div>
         </div>
         <div className="cell cell-5 table-row-2-cell-5">
-          <div className="short-field short-field-row-2"></div>
+          <div className="short-field short-field-row-2">Kl.</div>
           <div className="short-field short-field-row-2"></div>
           <div className="short-field short-field-row-2"></div>
           <div className="short-field short-field-row-2"></div>
@@ -94,7 +94,7 @@ export const ReportTable = (props) => {
           <div className="short-field short-field-end short-field-row-2"></div>
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2">KM</div>
           <div className="medium-field medium-field-row-2"></div>
           <div className="medium-field medium-field-row-2"></div>
           <div className="medium-field medium-field-row-2"></div>
@@ -109,6 +109,26 @@ export const ReportTable = (props) => {
           <div className="medium-field medium-field-row-2"></div>
           <div className="medium-field medium-field-row-2"></div>
           <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2 medium-field-end"></div>
+        </div>
+      </div>
+      <div className="table-row table-row-8">
+        <div className="cell cell-1 table-row-8-cell-1">
+          <p className="cell-1__text">Ostalo</p>
+        </div>
+        <div className="cell cell-6 table-row-2-cell-6">
+          <div className="longer-field"></div>
+          <div className="longer-field"></div>
+          <div className="longer-field" style={{borderBottom: 0}}></div>
+        </div>
+        <div className="cell cell-6 table-row-2-cell-6">
+          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2 medium-field-end"></div>
+        </div>
+        <div className="cell cell-7 table-row-2-cell-7">
           <div className="medium-field medium-field-row-2"></div>
           <div className="medium-field medium-field-row-2"></div>
           <div className="medium-field medium-field-row-2 medium-field-end"></div>

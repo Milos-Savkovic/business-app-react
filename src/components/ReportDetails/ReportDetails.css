@@ -7,41 +7,47 @@
 }
 .report-container-print {
   min-width: 1080px;
-  height: 950px;
+  /* height: 950px; */
   padding: 2rem;
   display: flex;
   flex-flow: row nowrap;
 }
+.nalog-heading {
+  text-transform: uppercase;
+}
 .report-name {
   text-align: center;
   text-transform: uppercase;
-  color: #484848;
+  color: #111;
   letter-spacing: 2px;
 }
 .report-user {  
-  color: #484848;
+  color: #111;
   margin:0;
 }
 .no-right-border-report, .right-border-report {
   display: flex;
   flex-flow: column;
   padding: 1rem 0 0 1rem;
-  height: 950.016px;
+  height: 1070px;
   width: 826.219px;
 }
 .right-border-report {
-  border-right: 2px solid #c0c0c0;
+  border-right: 2px solid #111;
   line-height: 2rem;
 }
 .report-row {
   display: flex;
   justify-content: space-between;
-  color: #484848;
+  color: #111;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid #111;
 }
 .text-center {
   text-align: center;
+}
+.medium-width-border {
+  width: 18rem!important;
 }
 .print-report-button {
   display: flex;
@@ -86,10 +92,10 @@
   white-space: nowrap;
 }
 .report-text--right-padding {
-  padding-right: 7rem
+  padding-right: 10rem
 }
 .floor-border{
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid #111;
   width: inherit;
   text-align: center;
   font-weight: bold;
@@ -105,6 +111,7 @@
 }
 .paraf-bottom {
   align-self: flex-end;
+  width: 100%
 }
 /* ///////////////////// LOADER ///////////////////// */
 .load-bar {
