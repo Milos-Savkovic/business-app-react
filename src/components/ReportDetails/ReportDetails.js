@@ -41,9 +41,8 @@ class ReportDetails extends Component {
   }
   giveMeReport = () => {
     const arrayFromUrl = this.props.path.split('/');
-    const repName = arrayFromUrl.pop();
-    const date = arrayFromUrl.pop();
-    const reportArr = this.state.user.Reports.filter(rep => rep.reportName === repName && rep.date1 === date);
+    const reportId = arrayFromUrl.pop();
+    const reportArr = this.state.user.Reports.filter(rep => rep.id === reportId);
     const reportObj = reportArr.pop();
     return reportObj;
   }
@@ -78,7 +77,7 @@ class ReportDetails extends Component {
               <br />
               <div className="report-row-no-line">
                 <div className="report-field">
-                  <span className="report-text">Ime i Prezime</span>
+                  <span className="report-text">Ime i prezime</span>
                   <div className="floor-border"></div>
                 </div>
               </div>
@@ -103,7 +102,7 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">otputovaće po službenom poslu u mjesto-a</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.reportName}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -115,7 +114,7 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">radi</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.reason}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
