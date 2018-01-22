@@ -73,7 +73,6 @@ class AddUser extends Component {
                         LastName: this.state.user.lastname,
                         Position: this.state.user.position,
                         Email: this.state.user.email,
-                        Selected: true,
                     }];
                 return team;
             })
