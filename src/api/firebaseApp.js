@@ -15,7 +15,6 @@ export const provider = new firebase.auth.GoogleAuthProvider();
 export const session = fire.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 export const fireDB = fire.database();
-
-// export const googleAuth = fire.auth().getRedirectResult()
+// export const storage = fire.storage();
 
 export default  fire;

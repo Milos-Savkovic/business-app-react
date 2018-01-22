@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import fire from '../../api/firebaseApp';
 import Report from '../Report/Report';
+import IconButton from 'material-ui/IconButton';
+import Create from 'material-ui/svg-icons/content/create';
+import { grey50 } from 'material-ui/styles/colors';
 import './userDetail.css';
 
 class UserDetail extends Component {
+
+    state = {
+        picture: null,
+    }
+
     click = () => {
         this.props.clickedLink();
     }
@@ -16,7 +25,7 @@ class UserDetail extends Component {
             const reports = reportsArray.map((item) => (
                 <NavLink
                     exact
-                    key={item.date1+item.reportName}
+                    key={item.date1 + item.reportName}
                     to={`/users/${this.props.id}/${item.date1}/${item.reportName}`}
                     className="navLink"
                     activeClassName="active"
@@ -37,10 +46,59 @@ class UserDetail extends Component {
         } else return null;
     }
 
+    handleUploadImage = (e) => {
+        try {
+            const file = e.target.files[0];
+            const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
+            console.log(storageRef);
+            console.log("Successfully added new picture.");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    componentDidMount() {
+        try {
+            const p = fire.storage().ref(`images/${this.props.id}`).getDownloadURL().then(url => {
+                this.setState({
+                    picture: url,
+                });
+            }).catch(error => {
+                console.log(error);
+            })
+            console.log(p);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     render() {
+        let picture;
+        if (this.state.picture) picture = this.state.picture;
+        else picture = "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png";
+
+        console.log(picture);
         return (
             <div className="user">
-                <img src="https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png" className="img" alt="Jane" />
+                <div className="profile-pic">
+                    <img src={picture} className="img" alt="Profile" />
+                    <div className="edit">
+                        <IconButton
+                            onClick={() => this.fileUpload.click()}
+                            tooltip="Edit image"
+                            tooltipPosition="bottom-left"
+                            tooltipStyles={{
+                                fontSize: "14px",
+                            }}>
+                            <Create color={grey50} />
+                        </IconButton>
+                        <input type="file" ref={(fileUpload) => {
+                            this.fileUpload = fileUpload;
+                        }}
+                            style={{ visibility: 'hidden' }}
+                            onChange={(e) => this.handleUploadImage(e)} />
+                    </div>
+                </div>
                 <div className="nameClass">
                     {this.props.firstName + " " + this.props.lastName}
                 </div>
