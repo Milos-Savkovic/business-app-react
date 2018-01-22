@@ -43,8 +43,12 @@ class AddReport extends Component {
         costs: 'kompanija',
         startDate: null,
         endDate: null,
+        startTime: null,
+        endtime: null,
         user: null,
         moreCosts: [],
+        protocol: '',
+        reason: '',
     }
 
     setFirebase = (e) => {
@@ -60,6 +64,10 @@ class AddReport extends Component {
             typeOfTransport: this.state.typeOfTransport,
             moreCosts: this.state.moreCosts,
             id: uuidv4(),
+            protocol: this.state.protocol,
+            reason: this.state.reason,
+            startTime: this.state.startTime,
+            endTime: this.state.endTime,
         };
         //get user details from database
         fireDB.ref('/users').once('value')
@@ -122,15 +130,15 @@ class AddReport extends Component {
     }
 
     handleEarnings = (e, value) => this.setState({
-        earnings: value
+        earnings: value,
     })
 
     handleCosts = (event, index, value) => this.setState({
-        costs: value
+        costs: value,
     });
 
     handleTypeOfTransport = (event, index, value) => this.setState({
-        typeOfTransport: value
+        typeOfTransport: value,
     });
 
     handleCity = (e) => {
@@ -210,8 +218,31 @@ class AddReport extends Component {
         });
     }
 
+    handleProtocol = (event, value) => this.setState({
+        protocol: value,
+    });
+
+    handleReason = (event, value) => this.setState({
+        reason: value,
+    });
+
+    handleChangeMinTime = (event, date) => {
+        console.log(date);
+        date = `${date.getHours()}:${date.getMinutes()}`;
+        this.setState({
+            startTime: date,
+        });
+    };
+
+    handleChangeMaxTime = (event, date) => {
+        console.log(date);
+        date = `${date.getHours()}:${date.getMinutes()}`;
+        this.setState({
+            endTime: date,
+        });
+    };
+
     render() {
-        console.log(this.state.moreCosts);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
@@ -225,6 +256,7 @@ class AddReport extends Component {
                             style={{
                                 width: '130px',
                             }}
+                            onChange={this.handleProtocol}
                             required
                         />
                     </div>
@@ -243,7 +275,7 @@ class AddReport extends Component {
                                     width: '130px',
                                     color: grey400,
                                 }}
-                                required
+                                onChange={this.handleChangeMinTime}
                             />
                             <TimePicker
                                 format="24hr"
@@ -252,7 +284,7 @@ class AddReport extends Component {
                                     width: '130px',
                                     color: grey400,
                                 }}
-                                required
+                                onChange={this.handleChangeMaxTime}
                             />
                         </div>
                     </div>
@@ -287,7 +319,8 @@ class AddReport extends Component {
                             color: grey400,
                         }}
                         multiLine={true}
-                        rows={2}
+                        rows={1}
+                        onChange={this.handleReason}
                     />
                     <p>Lokacija : </p>
                     <div className="input-group">
