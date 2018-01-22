@@ -353,6 +353,7 @@ class AddReport extends Component {
                                 style={styles.menuItem}
                             />
                         </SelectField>
+                        &nbsp;
                         <SelectField
                             floatingLabelText="Vrsta prevoza:"
                             floatingLabelStyle={styles.floatingLabelStyle}
@@ -364,7 +365,7 @@ class AddReport extends Component {
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>
                     </div>
-                    <p>Dodatni troškovi: </p>
+                    <p style={{marginTop: '3rem'}}>Dodatni troškovi: </p>
                     <div>
                         {this.state.moreCosts.map(input => <NewCosts
                             key={input.id}

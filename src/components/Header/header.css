@@ -12,14 +12,8 @@
     width: 150px;
   }
   .logo-box {
-    background: #52005b; /* Old browsers */
-    background: #001b3d; /* Old browsers */
-    background: #001b3d; /* Old browsers */
-background: -moz-linear-gradient(-45deg, #001b3d 0%, #001da0 31%, #006ff7 60%, #006ff7 83%, #00def7 96%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg, #001b3d 0%,#001da0 31%,#006ff7 60%,#006ff7 83%,#00def7 96%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg, #001b3d 0%,#001da0 31%,#006ff7 60%,#006ff7 83%,#00def7 96%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001b3d', endColorstr='#00def7',GradientType=1 );
-    border-radius: 15px;
+    background-color: dimgray;
+    border-radius: 5px;
     padding: 3px;
     margin: 0 auto;
     width: 90%;

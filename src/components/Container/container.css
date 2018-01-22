@@ -3,7 +3,6 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    box-shadow: 0 0 3px #adadad;
     width: 1085px;
 }
 @media(min-width: 1449px) {

@@ -1,7 +1,6 @@
 .field{
     width: 100%;    
-    overflow:hidden;  
-    
+    overflow-y: auto;  
 }
 .form-newReport{
     overflow-x:hidden;
@@ -58,7 +57,8 @@ p{
     color: #454545;
 }
 .drop{
-     width:400px;
+     width:405px;
+     margin-top: 3rem;
 }
 .dropItem{
     align-content: stretch;
