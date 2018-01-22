@@ -36,6 +36,9 @@ class Field extends Component {
                     render={() => <ReportDetails
                         id={this.props.id}
                         path={this.props.path}
+                        firstName={this.props.fname}
+                        lastName={this.props.lname}
+                        position={this.props.position}
                     />}
                 />
             </div>

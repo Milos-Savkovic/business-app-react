@@ -34,12 +34,15 @@ class AboutUser extends Component {
     }
 
     render() {
-        // console.log(this.props.location.key);
+        console.log(this.props);
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}
                 path={this.props.path}
-                clicked={this.addReportHandler}                
+                clicked={this.addReportHandler}
+                fname={this.props.firstName}
+                lname={this.props.lastName}  
+                position={this.props.position}              
             /> :
             <AddReport 
                 closeReport={this.closeHandler} 

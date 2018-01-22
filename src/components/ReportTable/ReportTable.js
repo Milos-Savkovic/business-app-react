@@ -6,6 +6,8 @@ export const ReportTable = (props) => {
     borderTop: { borderTop: '1px solid #333' },
     borderBottom: { borderBottom: '1px solid #333' },
   }
+  const rep = props.report;
+  console.log(props);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -14,17 +16,17 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell table-row-cell-2">
           <div className="cell-2-row">
-            Dan odlaska
-            <span className="underline"></span>
-            u
-            <span className="underline">08:00</span>
+            Dan odlaska&nbsp;
+            <span className="underline">{rep.date1}</span>
+            &nbsp;u
+            <span className="underline">{rep.startTime}</span>
             č
           </div>
           <div className="cell-2-row">
-            Dan dolaska
-            <span className="underline"></span>
-            u
-            <span className="underline">23:00</span>
+            Dan dolaska&nbsp;
+            <span className="underline">{rep.date2}</span>
+            &nbsp;u
+            <span className="underline">{rep.endTime}</span>
             č
           </div>
         </div>
