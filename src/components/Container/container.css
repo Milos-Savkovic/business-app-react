@@ -17,7 +17,7 @@
     justify-content: space-between;
     align-items: flex-end;
     font-size: 1.6rem;
-    /* font-weight: ; */
+    padding-bottom: 1rem;
     color:rgb(144, 144, 144);
     font-family: roboto;
     border-bottom: 1px solid;
@@ -39,4 +39,7 @@ svg.add-person-icon path {
 }
 .add-person-icon-container:hover svg.add-person-icon path {
     fill: rgb(0, 188, 213);
+}
+.material-paper:hover {
+    box-shadow: 0 0 10px #94efff;
 }

@@ -7,7 +7,7 @@ import { ReportTable } from '../ReportTable/ReportTable';
 
 class ReportDetails extends Component {
   state = {
-    user: null
+    user: null,
   }
   componentWillMount() {
     fireDB.ref('/users').once('value')
@@ -41,15 +41,16 @@ class ReportDetails extends Component {
   }
   giveMeReport = () => {
     const arrayFromUrl = this.props.path.split('/');
-    const repName = arrayFromUrl.pop();
-    const date = arrayFromUrl.pop();
-    const reportArr = this.state.user.Reports.filter(rep => rep.reportName === repName && rep.date1 === date);
+    const reportId = arrayFromUrl.pop();
+    const reportArr = this.state.user.Reports.filter(rep => rep.id === reportId);
     const reportObj = reportArr.pop();
     return reportObj;
   }
   render() {
     if (this.state.user) {
       const report = this.giveMeReport();
+      console.log(report);
+      console.log(this.props);
       return (
         <div>
           <div className="report-container" id="report">
@@ -63,7 +64,7 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field" style={{ paddingRight: '1rem' }}>
                   <span className="report-text">Broj:</span>
-                  <div className="floor-border medium-width-border"></div>
+                  <div className="floor-border medium-width-border">{report.protocol}</div>
                 </div>
                 <div className="report-field">
                   <span className="report-text">Datum:</span>
@@ -78,20 +79,20 @@ class ReportDetails extends Component {
               <br />
               <div className="report-row-no-line">
                 <div className="report-field">
-                  <span className="report-text">Ime i Prezime</span>
-                  <div className="floor-border"></div>
+                  <span className="report-text">Ime i prezime</span>
+                  <div className="floor-border">{`${this.props.firstName} ${this.props.lastName}`}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Raspoređen-na na poslove radnog mesta</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{this.props.position}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">sa dnevnicom (domaćom ili stranom)</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.dailyEarnings}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -103,7 +104,7 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">otputovaće po službenom poslu u mjesto-a</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.reportName}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -115,25 +116,25 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">radi</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.reason}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
                 <div className="report-field">
-                  <span className="report-text">Putovanje će trajati</span>
-                  <div className="floor-border" style={{ width: '8rem' }}></div>
+                  <span className="report-text">Putovanje će trajati</span>&nbsp;
+                  <div className="floor-border" style={{ width: '8rem' }}>{`${report.date1}-${report.date2}`}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Troškovi putovanje padaju na teret</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.typeOfTransport}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Na službenom putu će koristiti prevozno sredstvo</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{report.typeOfTransport}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -145,13 +146,13 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Pravac putovanja</span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{`Banja luka - ${report.reportName}`}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Na službenom putu će se zadržati najdalje do: </span>
-                  <div className="floor-border"></div>
+                  <div className="floor-border">{` ${report.endTime}h,  ${report.date2}`}</div>
                   <span className="report-text"> godine.&nbsp;</span>
                 </div>
               </div>
@@ -165,7 +166,7 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text" style={{ paddingRight: '1rem' }}>Putni troškovi padaju na teret </span>
-                  <div className="floor-border floor-border--start">Kompanije</div>
+                  <div className="floor-border floor-border--start">{report.costs}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -205,7 +206,9 @@ class ReportDetails extends Component {
             <div className="no-right-border-report" id="report-page-2">
               <h4 className="text-center">Na osnovu prednjeg naloga izvršio sam službeno putovanje i podnosim sledeći</h4>
               <h2 className="text-center">PUTNI NALOG</h2>
-              <ReportTable />
+              <ReportTable 
+                report={report}
+              />
               <br />
               <br />
               <div className="report-row-no-line">

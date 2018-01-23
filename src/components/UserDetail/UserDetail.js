@@ -25,14 +25,14 @@ class UserDetail extends Component {
             const reports = reportsArray.map((item) => (
                 <NavLink
                     exact
-                    key={item.date1 + item.reportName}
-                    to={`/users/${this.props.id}/${item.date1}/${item.reportName}`}
+                    key={item.id}
+                    to={`/users/${this.props.id}/${item.id}`}
                     className="navLink"
                     activeClassName="active"
                     onClick={this.click}
                 >
                     <Report
-                        const={item.costs}
+                        cost={item.costs}
                         reportName={item.reportName}
                         distance={item.distance}
                         dailyEarnings={item.dailyEarnings}
@@ -41,7 +41,7 @@ class UserDetail extends Component {
                         date2={item.date2}
                     />
                 </NavLink>
-            ));
+            )).reverse();
             return (reports)
         } else return null;
     }
@@ -57,7 +57,7 @@ class UserDetail extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         try {
             const p = fire.storage().ref(`images/${this.props.id}`).getDownloadURL().then(url => {
                 this.setState({
@@ -66,7 +66,6 @@ class UserDetail extends Component {
             }).catch(error => {
                 console.log(error);
             })
-            console.log(p);
         } catch (error) {
             console.log(error);
         }
@@ -77,7 +76,6 @@ class UserDetail extends Component {
         if (this.state.picture) picture = this.state.picture;
         else picture = "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png";
 
-        console.log(picture);
         return (
             <div className="user">
                 <div className="profile-pic">

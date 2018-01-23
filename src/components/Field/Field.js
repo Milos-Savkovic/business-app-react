@@ -32,10 +32,13 @@ class Field extends Component {
                     </div>
                 </Link>
                 <Route
-                    path={`/users/:${this.props.id}/:date/:reportName`}
+                    path={`/users/:${this.props.id}/:id`}
                     render={() => <ReportDetails
                         id={this.props.id}
                         path={this.props.path}
+                        firstName={this.props.fname}
+                        lastName={this.props.lname}
+                        position={this.props.position}
                     />}
                 />
             </div>
