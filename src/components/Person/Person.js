@@ -13,18 +13,22 @@ class Person extends Component {
         this.props.clickHandlerDetail(id);
     }
 
-    getImage() {
-        getImage(this.props.id)
-            .then((url) => {
-                this.setState({
-                    image: url,
-                });
-            }).catch(error => {
-                console.log(error);
-            })
+    componentWillMount() {
+        try {
+            getImage(this.props.id)
+                .then((url) => {
+                    this.setState({
+                        image: url,
+                    });
+                }).catch(error => {
+                    console.log(error);
+                })
+        } catch (error) {
+            console.log(error);
+        }
     }
+
     render() {
-        this.getImage();
         let picture;
         if (this.state.image) picture = this.state.image;
         else picture = "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png";
