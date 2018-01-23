@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './ReportDetails.css';
 import { ReportTable } from '../ReportTable/ReportTable';
+import moment from 'moment';
 
 class ReportDetails extends Component {
   state = {
@@ -51,12 +52,27 @@ class ReportDetails extends Component {
       const report = this.giveMeReport();
       console.log(report);
       console.log(this.props);
+      let d1 = report.date1.split('.').reverse().slice(1);
+      let d2 = report.date2.split('.').reverse().slice(1);
+      const d3 = [];
+      d1.map(val => {
+        d3.push(parseInt(val));
+      })
+      const d4 = [];
+      d2.map(val => {
+        d4.push(parseInt(val));
+      })
+      console.log(d3,d4);
+      var b = moment([2018, 0, 30]);
+      var a = moment([2018, 0, 31]);
+      console.log(a.diff(b, 'days'));
+      
       return (
         <div>
           <div className="report-container" id="report">
             <div className="right-border-report" id="report-page-1">
               <p>Preduzeće - Organizacija</p>
-              <div className="report-row" style={{width: '70%'}}>
+              <div className="report-row" style={{ width: '70%' }}>
                 <div>
                   <strong style={{ fontSize: '18px' }}>"GotSolution" d.o.o. Banja Luka</strong>
                 </div>
@@ -206,7 +222,7 @@ class ReportDetails extends Component {
             <div className="no-right-border-report" id="report-page-2">
               <h4 className="text-center">Na osnovu prednjeg naloga izvršio sam službeno putovanje i podnosim sledeći</h4>
               <h2 className="text-center">PUTNI NALOG</h2>
-              <ReportTable 
+              <ReportTable
                 report={report}
               />
               <br />
