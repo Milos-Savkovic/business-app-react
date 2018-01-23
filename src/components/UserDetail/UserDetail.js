@@ -59,7 +59,7 @@ class UserDetail extends Component {
 
     componentWillMount() {
         try {
-            const p = fire.storage().ref(`images/${this.props.id}`).getDownloadURL().then(url => {
+            fire.storage().ref(`images/${this.props.id}`).getDownloadURL().then(url => {
                 this.setState({
                     picture: url,
                 });
