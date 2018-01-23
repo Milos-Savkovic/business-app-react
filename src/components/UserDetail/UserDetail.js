@@ -5,6 +5,7 @@ import Report from '../Report/Report';
 import IconButton from 'material-ui/IconButton';
 import Create from 'material-ui/svg-icons/content/create';
 import { grey50 } from 'material-ui/styles/colors';
+import base64Img from 'base64-img';
 import './userDetail.css';
 
 class UserDetail extends Component {
@@ -49,6 +50,7 @@ class UserDetail extends Component {
     handleUploadImage = (e) => {
         try {
             const file = e.target.files[0];
+            // const file64 = base64Img.base64(file, (err, file) => {})
             const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
             console.log(storageRef);
             console.log("Successfully added new picture.");
@@ -57,7 +59,7 @@ class UserDetail extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         try {
             const p = fire.storage().ref(`images/${this.props.id}`).getDownloadURL().then(url => {
                 this.setState({
