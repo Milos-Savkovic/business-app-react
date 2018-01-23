@@ -3,17 +3,19 @@ import { Route, Redirect } from 'react-router-dom';
 import fire from '../../api/firebaseApp';
 
 const getAuthRoute = ({ component: Component, ...rest }, isAuthorized, email) => {
-    console.log(email);
+    let isEmailCorrect = true;
     if (email !== undefined) {
-        email = email.match(/gmail.com/);
-    } else {
-        return 0;
+        email = email.match(/jsguru.io/);
+        if (!email) {
+            isEmailCorrect = false;
+            alert('Please login with your jsguru google email. We support only jsguru.io emails. Thanks for understanding.');
+        };
     }
     return (
         <Route
             {...rest}
             render={props => (
-                isAuthorized && email ? (
+                (isAuthorized && isEmailCorrect) ? (
                     <Component {...props} />
                 ) : (
                         <Redirect to={{
@@ -36,7 +38,7 @@ export default class PrivateRoute extends React.Component {
         user: false,
     }
 
-    componentWillMount() {
+    componentDidMount() {
         fire.auth().onAuthStateChanged((user) => {
             if (!user) {
                 this.setState({
