@@ -65,7 +65,8 @@
 }
 
 .avatar{
-    height: auto;
-    width: 100%;
+    height: 240px;
+    width: 310px;
+    margin-top:5px;
     /* border-radius: 5px; */
 }

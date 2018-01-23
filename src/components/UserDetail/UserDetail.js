@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import fire from '../../api/firebaseApp';
+import { getImage } from '../../api/getImage';
 import Report from '../Report/Report';
 import IconButton from 'material-ui/IconButton';
 import Create from 'material-ui/svg-icons/content/create';
@@ -60,17 +61,14 @@ class UserDetail extends Component {
     }
 
     componentWillMount() {
-        try {
-            fire.storage().ref(`images/${this.props.id}`).getDownloadURL().then(url => {
+        getImage(this.props.id)
+            .then((url) => {
                 this.setState({
                     picture: url,
                 });
             }).catch(error => {
                 console.log(error);
             })
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     render() {

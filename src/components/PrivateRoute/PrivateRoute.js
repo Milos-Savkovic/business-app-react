@@ -8,6 +8,11 @@ const getAuthRoute = ({ component: Component, ...rest }, isAuthorized, email) =>
         email = email.match(/jsguru.io/);
         if (!email) {
             isEmailCorrect = false;
+            fire.auth().signOut().then(() => {
+                console.log("You are SignOut.");
+            }).catch((error) => {
+                console.log(error);
+            });
             alert('Please login with your jsguru google email. We support only jsguru.io emails. Thanks for understanding.');
         };
     }
