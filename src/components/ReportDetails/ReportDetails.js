@@ -47,25 +47,29 @@ class ReportDetails extends Component {
     const reportObj = reportArr.pop();
     return reportObj;
   }
+
+  dateToArray = (arr) => {
+    let arrayConverted = arr.split('.').reverse().slice(1);
+    let arrayToInt = [];
+    arrayConverted.map(val => {
+      arrayToInt.push(parseInt(val))
+    });
+    arrayToInt[1] = arrayToInt[1] -1;
+    return arrayToInt;
+  }
+  substructDays = (array1, array2) => {
+    let firstDayArray = this.dateToArray(array1);
+    let lastDayArray = this.dateToArray(array2);
+    let firstDay = moment(firstDayArray);
+    let lastDay = moment(lastDayArray);
+    return lastDay.diff(firstDay, 'days');
+  }
+
   render() {
     if (this.state.user) {
       const report = this.giveMeReport();
       console.log(report);
       console.log(this.props);
-      let d1 = report.date1.split('.').reverse().slice(1);
-      let d2 = report.date2.split('.').reverse().slice(1);
-      const d3 = [];
-      d1.map(val => {
-        d3.push(parseInt(val));
-      })
-      const d4 = [];
-      d2.map(val => {
-        d4.push(parseInt(val));
-      })
-      console.log(d3,d4);
-      var b = moment([2018, 0, 30]);
-      var a = moment([2018, 0, 31]);
-      console.log(a.diff(b, 'days'));
       
       return (
         <div>
@@ -138,7 +142,8 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Putovanje će trajati</span>&nbsp;
-                  <div className="floor-border" style={{ width: '8rem' }}>{`${report.date1}-${report.date2}`}</div>
+                  <div className="floor-border" style={{ width: '8rem' }}>{this.substructDays(report.date1, report.date2)}</div>
+                  <span className="report-text"> dan/a.&nbsp;</span>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -224,6 +229,7 @@ class ReportDetails extends Component {
               <h2 className="text-center">PUTNI NALOG</h2>
               <ReportTable
                 report={report}
+                days={this.substructDays(report.date1, report.date2)}
               />
               <br />
               <br />
@@ -245,7 +251,7 @@ class ReportDetails extends Component {
               <br />
               <div className="report-row-no-line">
                 <div className="report-field">
-                  <div className="floor-border floor-border--start"></div>
+                  <div className="floor-border floor-border--start">{`${this.props.firstName} ${this.props.lastName}`}</div>
                   <span className="report-text" style={{ paddingRight: '1rem' }}>na teret</span>
                   <div className="floor-border floor-border--center">kompanije</div>
                 </div>
@@ -256,7 +262,7 @@ class ReportDetails extends Component {
                   <span className="report-text" style={{ paddingRight: '1rem' }}>U</span>
                   <div className="floor-border floor-border--center" style={{ width: '12rem' }}>Banjoj Luci</div>
                   <span className="report-text" style={{ paddingRight: '1rem' }}>dana</span>
-                  <div className="floor-border floor-border--center" style={{ width: '12rem' }}></div>
+                  <div className="floor-border floor-border--center" style={{ width: '12rem' }}>{`${moment().format('DD.MM.YYYY.')} godine`}</div>
                 </div>
               </div>
               <br />
