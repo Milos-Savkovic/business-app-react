@@ -31,8 +31,8 @@ class Field extends Component {
                         </FloatingActionButton>
                     </div>
                 </Link>
-                <Route
-                    path={`/users/:${this.props.id}/:id`}
+                <Route                    
+                    path={`/users/${this.props.id}/:key`}
                     render={() => <ReportDetails
                         id={this.props.id}
                         path={this.props.path}

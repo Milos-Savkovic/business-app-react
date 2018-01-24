@@ -51,6 +51,7 @@ class UserDetail extends Component {
 
     handleUploadImage = (e) => {
         try {
+            console.log(this.props.id)
             const file = e.target.files[0];
             const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
             console.log(storageRef);

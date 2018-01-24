@@ -18,7 +18,7 @@ class About extends Component {
         fireDB.ref(`/users/${this.state.id}`).on("value", snapshot => {
             this.setState({
                 user: snapshot.val(),
-            });
+            });            
         }, errorObject => {
             console.log("The read failed: " + errorObject.code);
         });
@@ -48,6 +48,8 @@ class About extends Component {
     }
 
     render() {
+        // console.log(Object.keys(this.state.user.Reports).map(key => key));
+        // console.log(Object.keys(this.state.user.Reports).map(key => key));
         return (
             <div className="container-about" >
                 {this.about()}

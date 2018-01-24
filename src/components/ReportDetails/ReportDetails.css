@@ -11,6 +11,7 @@
   padding: 2rem;
   display: flex;
   flex-flow: row nowrap;
+  /* transform: scale(1.8); */
 }
 .nalog-heading {
   text-transform: uppercase;
