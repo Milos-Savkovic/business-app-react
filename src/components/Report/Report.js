@@ -26,13 +26,10 @@ class Report extends Component {
     };
 
     handleDelete = () => {
-        console.log(this.props);
-        fireDB.ref(`/users/${this.props.userId}/${this.props.id}`).remove();
-        this.handleClose();
+        fireDB.ref(`/users/${this.props.userId}/Reports/${this.props.id}`).remove();
     }
 
     render() {
-        console.log(this.props);
         const actions = [
             <FlatButton
                 label="Cancel"
