@@ -37,33 +37,67 @@ class ReportDetails extends Component {
   }
 
   giveMeReport = () => {
+    const reps = this.state.user.Reports;
+    console.log(reps);
     const arrayFromUrl = this.props.path.split('/');
     const reportId = arrayFromUrl.pop();
-    const reportArr = this.state.user.Reports.filter(rep => rep.id === reportId);
+    const reportArr = Object.keys(reps).map(key => {
+      if(key = reportId){
+        return reps[key];
+      }
+    });
+    console.log(reportArr);
     const reportObj = reportArr.pop();
     return reportObj;
   }
 
+  dateToArray = (arr) => {
+    let arrayConverted = arr.split('.').reverse().slice(1);
+    let arrayToInt = [];
+    arrayConverted.map(val => {
+      arrayToInt.push(parseInt(val))
+    });
+    arrayToInt[1] = arrayToInt[1] -1;
+    return arrayToInt;
+  }
+  substructDays = (array1, array2) => {
+    let firstDayArray = this.dateToArray(array1);
+    let lastDayArray = this.dateToArray(array2);
+    let firstDay = moment(firstDayArray);
+    let lastDay = moment(lastDayArray);
+    return lastDay.diff(firstDay, 'days');
+  }
+  dayPay = (pay) => {
+    switch (pay) {
+      case "domaća":
+        return 20;
+        break;
+      case "strana":
+        return 39.16;
+        break;
+      case "EX-YU":
+        return 97.90;
+        break;
+      default: 
+        return 0;
+    }
+  }
+
   render() {
-    alert("Whatt");
     if (this.state.user) {
       const report = this.giveMeReport();
-      console.log(report);
-      let d1 = report.date1.split('.').reverse().slice(1);
-      let d2 = report.date2.split('.').reverse().slice(1);
-      const d3 = [];
-      d1.map(val => {
-        return d3.push(parseInt(val));
-      });
-      const d4 = [];
-      d2.map(val => {
-        return d4.push(parseInt(val));
-      });
-      console.log(d3, d4);
-      var b = moment([2018, 0, 30]);
-      var a = moment([2018, 0, 31]);
-      console.log(a.diff(b, 'days'));
-
+      const days = this.substructDays(report.date1, report.date2);
+      const totalCosts = {
+        daily: this.dayPay(report.dailyEarnings) * days,
+        transition: +(report.distance * 1.95 / 1000).toFixed(2),
+        rest: 0,
+        total() {
+          let sum = this.daily + this.transition + this.rest;
+          return sum;
+        },          
+      }
+      const sum = totalCosts.total().toFixed(2);
+      const dailyEarnings = this.dayPay(report.dailyEarnings);
       return (
         <div>
           <div className="report-container" id="report">
@@ -160,7 +194,7 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Pravac putovanja</span>
-                  <div className="floor-border">{`Banja luka - ${report.reportName}`}</div>
+                  <div className="floor-border">{`Banja luka - ${report.reportName} - Banja Luka`}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -222,7 +256,10 @@ class ReportDetails extends Component {
               <h2 className="text-center">PUTNI NALOG</h2>
               <ReportTable
                 report={report}
-                days={this.substructDays(report.date1, report.date2)}
+                days={days}
+                totalCosts={totalCosts}
+                sum={sum}
+                dailyEarnings={dailyEarnings}
               />
               <br />
               <br />
@@ -238,7 +275,7 @@ class ReportDetails extends Component {
                   <span className="report-text" style={{ whiteSpace: 'inherit', fontSize: '1.3rem' }}>
                     putnog računa od KM
                   </span>&nbsp;&nbsp;&nbsp;
-                  <div className="floor-border" style={{ width: '8rem' }}></div>
+                  <div className="floor-border" style={{ width: '8rem', fontSize: '1.2rem' }}>{sum}</div>
                 </div>
               </div>
               <br />
