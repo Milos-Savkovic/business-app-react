@@ -89,7 +89,6 @@ class ReportDetails extends Component {
   }
 
   render() {
-    alert("Whatt");
     if (this.state.user) {
       const report = this.giveMeReport();
       const days = this.substructDays(report.date1, report.date2);
