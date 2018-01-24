@@ -31,6 +31,8 @@ class UserDetail extends Component {
                         onClick={this.click}
                     >
                         <Report
+                            userId={this.props.id}
+                            id={key}
                             key={this.props.reports[key].reportName}
                             cost={this.props.reports[key].costs}
                             reportName={this.props.reports[key].reportName}
@@ -49,7 +51,6 @@ class UserDetail extends Component {
 
     handleUploadImage = (e) => {
         try {
-            console.log(this.props.id)
             const file = e.target.files[0];
             const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
             console.log(storageRef);

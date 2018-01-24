@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { fireDB } from '../../api/firebaseApp';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -25,25 +26,13 @@ class Report extends Component {
     };
 
     handleDelete = () => {
-        alert('Deleted');
         console.log(this.props);
-        // ref.child(key).remove();
-        // fireDB.ref('/users').once('value')
-        // .then((snapshot) => {
-        //     const Team = [
-        //         ...snapshot.val(),
-        //     ];
-        //     Team.filter(item => item.Id === id)
-        //         .map(item => (
-        //             this.setState({
-        //                 user: item,
-        //             })
-        //         ))
-        // })
-        // .catch((e) => console.log(e))
+        fireDB.ref(`/users/${this.props.userId}/${this.props.id}`).remove();
+        this.handleClose();
     }
 
     render() {
+        console.log(this.props);
         const actions = [
             <FlatButton
                 label="Cancel"
