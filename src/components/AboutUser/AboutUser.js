@@ -52,8 +52,9 @@ class AboutUser extends Component {
         return (
             <div className="aboutUser">
                 <UserDetail
-                    // key={this.props.id}
+                    key={this.props.id}
                     id={this.props.id}
+                    email={this.props.email}
                     firstName={this.props.firstName}
                     lastName={this.props.lastName}
                     position={this.props.position}
