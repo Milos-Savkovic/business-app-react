@@ -64,13 +64,37 @@ class ReportDetails extends Component {
     let lastDay = moment(lastDayArray);
     return lastDay.diff(firstDay, 'days');
   }
+  dayPay = (pay) => {
+    switch (pay) {
+      case "domaća":
+        return 20;
+        break;
+      case "strana":
+        return 39.16;
+        break;
+      case "EX-YU":
+        return 97.90;
+        break;
+      default: 
+        return 0;
+    }
+  }
 
   render() {
     if (this.state.user) {
       const report = this.giveMeReport();
-      console.log(report);
-      console.log(this.props);
-      
+      const days = this.substructDays(report.date1, report.date2);
+      const totalCosts = {
+        daily: this.dayPay(report.dailyEarnings) * days,
+        transition: +(report.distance * 1.95 / 1000).toFixed(2),
+        rest: 0,
+        total() {
+          let sum = this.daily + this.transition + this.rest;
+          return sum;
+        },          
+      }
+      const sum = totalCosts.total();
+      const dailyEarnings = this.dayPay(report.dailyEarnings);
       return (
         <div>
           <div className="report-container" id="report">
@@ -167,7 +191,7 @@ class ReportDetails extends Component {
               <div className="report-row-no-line">
                 <div className="report-field">
                   <span className="report-text">Pravac putovanja</span>
-                  <div className="floor-border">{`Banja luka - ${report.reportName}`}</div>
+                  <div className="floor-border">{`Banja luka - ${report.reportName} - Banja Luka`}</div>
                 </div>
               </div>
               <div className="report-row-no-line">
@@ -229,7 +253,10 @@ class ReportDetails extends Component {
               <h2 className="text-center">PUTNI NALOG</h2>
               <ReportTable
                 report={report}
-                days={this.substructDays(report.date1, report.date2)}
+                days={days}
+                totalCosts={totalCosts}
+                sum={sum}
+                dailyEarnings={dailyEarnings}
               />
               <br />
               <br />
@@ -245,7 +272,7 @@ class ReportDetails extends Component {
                   <span className="report-text" style={{ whiteSpace: 'inherit', fontSize: '1.3rem' }}>
                     putnog računa od KM
                   </span>&nbsp;&nbsp;&nbsp;
-                  <div className="floor-border" style={{ width: '8rem' }}></div>
+                  <div className="floor-border" style={{ width: '8rem', fontSize: '1.2rem' }}>{sum}</div>
                 </div>
               </div>
               <br />
