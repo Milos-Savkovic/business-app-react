@@ -10,21 +10,18 @@ class ReportDetails extends Component {
   state = {
     user: null,
   }
+
   componentWillMount() {
-    fireDB.ref('/users').once('value')
-      .then((snapshot) => {
-        const Team = [
-          ...snapshot.val(),
-        ];
-        Team.filter(item => item.Id === this.props.id)
-          .map(item => (
-            this.setState({
-              user: item,
-            })
-          ))
-      })
-      .catch((e) => console.log(e))
+    console.log(this.props);
+    fireDB.ref(`/users/${this.props.id}`).on("value", snapshot => {
+      this.setState({
+        user: snapshot.val(),
+      });
+    }, errorObject => {
+      console.log("The read failed: " + errorObject.code);
+    });
   }
+
   printReport = () => {
     const divToPrint = document.getElementById('report');
     divToPrint.setAttribute('class', 'report-container-print');
@@ -37,9 +34,8 @@ class ReportDetails extends Component {
         divToPrint.removeAttribute('class', 'report-container-print');
       })
       .catch(err => console.log(err))
-      ;
-
   }
+
   giveMeReport = () => {
     const arrayFromUrl = this.props.path.split('/');
     const reportId = arrayFromUrl.pop();
@@ -48,6 +44,7 @@ class ReportDetails extends Component {
     return reportObj;
   }
 
+<<<<<<< HEAD
   dateToArray = (arr) => {
     let arrayConverted = arr.split('.').reverse().slice(1);
     let arrayToInt = [];
@@ -65,12 +62,33 @@ class ReportDetails extends Component {
     return lastDay.diff(firstDay, 'days');
   }
 
+=======
+>>>>>>> develop
   render() {
+    alert("Whatt");
     if (this.state.user) {
       const report = this.giveMeReport();
       console.log(report);
+<<<<<<< HEAD
       console.log(this.props);
       
+=======
+      let d1 = report.date1.split('.').reverse().slice(1);
+      let d2 = report.date2.split('.').reverse().slice(1);
+      const d3 = [];
+      d1.map(val => {
+        return d3.push(parseInt(val));
+      });
+      const d4 = [];
+      d2.map(val => {
+        return d4.push(parseInt(val));
+      });
+      console.log(d3, d4);
+      var b = moment([2018, 0, 30]);
+      var a = moment([2018, 0, 31]);
+      console.log(a.diff(b, 'days'));
+
+>>>>>>> develop
       return (
         <div>
           <div className="report-container" id="report">

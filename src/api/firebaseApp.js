@@ -12,7 +12,7 @@ const config = {
 const fire = firebase.initializeApp(config);
 
 export const provider = new firebase.auth.GoogleAuthProvider();
-export const session = fire.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+export const session = fire.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 export const fireDB = fire.database();
 // export const storage = fire.storage();

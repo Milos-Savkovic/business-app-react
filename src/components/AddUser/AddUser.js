@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import uuidv4 from 'uuid/v4';
 import { fireDB } from '../../api/firebaseApp'
 import TextField from 'material-ui/TextField';
 import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
@@ -55,38 +54,20 @@ class AddUser extends Component {
 
     setFirebase = (event) => {
         event.preventDefault();
-        let ourTeam = [];
-        fireDB.ref('/users').once('value')
-            .then((snapshot) => {
-                const team = [
-                    ...snapshot.val(),
-                ];
-                ourTeam = team;
-                return ourTeam;
-            })
-            .then((team) => {
-                team = [
-                    ...team, {
-                        Description: this.state.user.description,
-                        FirstName: this.state.user.firstname,
-                        Id: uuidv4(),
-                        LastName: this.state.user.lastname,
-                        Position: this.state.user.position,
-                        Email: this.state.user.email,
-                    }];
-                return team;
-            })
-            .then((team) => {
-                fireDB.ref('/users').set(team);
-            })
-            .then(() => {
-                this.setState({
-                    isAdded: true
-                })
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        const newUser = {
+            Description: this.state.user.description,
+            FirstName: this.state.user.firstname,
+            LastName: this.state.user.lastname,
+            Position: this.state.user.position,
+            Email: this.state.user.email,
+        }
+        const ref = fireDB.ref(`/users`);
+        ref.push(newUser, error => {
+            console.log(error);
+        });
+        this.setState({
+            isAdded: true,
+        })
     }
 
     render() {

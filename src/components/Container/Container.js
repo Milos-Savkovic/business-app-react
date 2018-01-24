@@ -29,11 +29,12 @@ class Container extends Component {
     }
 
     helper() {
-        fetchUsers().then((items) => {
+        fetchUsers().on("value", snapshot => {
             this.setState({
-                users: items,
-            })
-
+                users: snapshot.val(),
+            });
+        }, errorObject => {
+            console.log("The read failed: " + errorObject.code);
         });
     }
 
@@ -65,21 +66,21 @@ class Container extends Component {
         } else if (this.state.userDetails === true) {
             return <Redirect to={"/users/" + this.state.userDetailsId} />
         } else {
-            const teamComponents = this.state.users.map((person) => {
-                if (person.Id !== 0) {
-                    return (
-                        <Paper key={person.Id} style={style} zDepth={0} className="material-paper">
-                            <Person
-                                id={person.Id}
-                                firstName={person.FirstName}
-                                lastName={person.LastName}
-                                position={person.Position}
-                                clickHandlerDetail={this.clickHandlerDetail}
-                            />
-                        </Paper>
-                    );
-                } else return null;
-            });
+            const teamComponents = this.state.users;
+
+            const myData = Object.keys(teamComponents).map(key => {
+                return (
+                    <Paper key={key} style={style} zDepth={0} className="material-paper">
+                        <Person
+                            id={key}
+                            firstName={teamComponents[key].FirstName}
+                            lastName={teamComponents[key].LastName}
+                            position={teamComponents[key].Position}
+                            clickHandlerDetail={this.clickHandlerDetail}
+                        />
+                    </Paper>
+                )
+            })
 
             return (
                 <div className="container">
@@ -98,7 +99,7 @@ class Container extends Component {
                             />
                         </IconButton>
                     </div>
-                    {teamComponents}
+                    {myData}
                 </div>
             )
         }
