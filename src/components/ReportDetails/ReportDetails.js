@@ -44,35 +44,11 @@ class ReportDetails extends Component {
     return reportObj;
   }
 
-<<<<<<< HEAD
-  dateToArray = (arr) => {
-    let arrayConverted = arr.split('.').reverse().slice(1);
-    let arrayToInt = [];
-    arrayConverted.map(val => {
-      arrayToInt.push(parseInt(val))
-    });
-    arrayToInt[1] = arrayToInt[1] -1;
-    return arrayToInt;
-  }
-  substructDays = (array1, array2) => {
-    let firstDayArray = this.dateToArray(array1);
-    let lastDayArray = this.dateToArray(array2);
-    let firstDay = moment(firstDayArray);
-    let lastDay = moment(lastDayArray);
-    return lastDay.diff(firstDay, 'days');
-  }
-
-=======
->>>>>>> develop
   render() {
     alert("Whatt");
     if (this.state.user) {
       const report = this.giveMeReport();
       console.log(report);
-<<<<<<< HEAD
-      console.log(this.props);
-      
-=======
       let d1 = report.date1.split('.').reverse().slice(1);
       let d2 = report.date2.split('.').reverse().slice(1);
       const d3 = [];
@@ -88,7 +64,6 @@ class ReportDetails extends Component {
       var a = moment([2018, 0, 31]);
       console.log(a.diff(b, 'days'));
 
->>>>>>> develop
       return (
         <div>
           <div className="report-container" id="report">
