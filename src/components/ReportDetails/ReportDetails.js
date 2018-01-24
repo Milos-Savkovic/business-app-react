@@ -21,7 +21,10 @@ class ReportDetails extends Component {
       console.log("The read failed: " + errorObject.code);
     });
   }
-
+  componentWillUnmount() {
+    console.log('component unmounted');
+    fireDB.ref(`/users/${this.props.id}`).off();
+  }
   printReport = () => {
     const divToPrint = document.getElementById('report');
     divToPrint.setAttribute('class', 'report-container-print');
@@ -48,6 +51,7 @@ class ReportDetails extends Component {
     });
     console.log(reportArr);
     const reportObj = reportArr.pop();
+    console.log(reportObj);
     return reportObj;
   }
 
