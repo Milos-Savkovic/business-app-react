@@ -49,11 +49,12 @@ class UserDetail extends Component {
 
     handleUploadImage = (e) => {
         try {
+            console.log(this.props.id)
             const file = e.target.files[0];
             const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
             console.log(storageRef);
             console.log("Successfully added new picture.");
-            window.location.reload();
+            // window.location.reload();
         } catch (error) {
             console.log(error);
         }
