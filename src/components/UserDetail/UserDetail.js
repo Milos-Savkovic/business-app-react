@@ -31,7 +31,9 @@ class UserDetail extends Component {
                         onClick={this.click}
                     >
                         <Report
-                            key={key}
+                            userId={this.props.id}
+                            id={key}
+                            key={this.props.reports[key].reportName}
                             cost={this.props.reports[key].costs}
                             reportName={this.props.reports[key].reportName}
                             distance={this.props.reports[key].distance}

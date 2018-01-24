@@ -8,7 +8,6 @@ class About extends Component {
     state = {
         user: null,
         id: this.props.match.params.id,
-
     }
 
     componentDidMount() {
@@ -19,7 +18,7 @@ class About extends Component {
         fireDB.ref(`/users/${this.state.id}`).on("value", snapshot => {
             this.setState({
                 user: snapshot.val(),
-            });            
+            });
         }, errorObject => {
             console.log("The read failed: " + errorObject.code);
         });

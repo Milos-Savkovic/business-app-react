@@ -25,6 +25,7 @@ class ReportDetails extends Component {
     console.log('component unmounted');
     fireDB.ref(`/users/${this.props.id}`).off();
   }
+
   printReport = () => {
     const divToPrint = document.getElementById('report');
     divToPrint.setAttribute('class', 'report-container-print');
@@ -45,7 +46,7 @@ class ReportDetails extends Component {
     const arrayFromUrl = this.props.path.split('/');
     const reportId = arrayFromUrl.pop();
     const reportArr = Object.keys(reps).map(key => {
-      if(key = reportId){
+      if(key === reportId){
         return reps[key];
       }
     });
@@ -75,13 +76,10 @@ class ReportDetails extends Component {
     switch (pay) {
       case "domaća":
         return 20;
-        break;
       case "strana":
         return 39.16;
-        break;
       case "EX-YU":
         return 97.90;
-        break;
       default: 
         return 0;
     }
