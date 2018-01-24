@@ -1,5 +1,7 @@
 .reportName{
     padding: 8px 3px;
+    display: flex;
+    flex-direction: row;
 }
 .reportName:hover{
     color: rgb(255, 255, 255);
@@ -13,4 +15,14 @@
 }
 .date{
     font-size: 14px;
+}
+.icon-menu{
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0px;
+}
+.report{
+    width:100%;
+    padding: 3px;
 }

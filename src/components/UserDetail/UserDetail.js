@@ -55,6 +55,7 @@ class UserDetail extends Component {
             const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
             console.log(storageRef);
             console.log("Successfully added new picture.");
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
