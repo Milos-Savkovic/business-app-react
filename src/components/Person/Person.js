@@ -12,7 +12,7 @@ class Person extends Component {
     handleDetailPerson(id) {
         this.props.clickHandlerDetail(id);
     }
-
+ 
     componentWillMount() {
         try {
             getImage(this.props.id)

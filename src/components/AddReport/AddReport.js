@@ -45,7 +45,6 @@ class AddReport extends Component {
         endDate: null,
         startTime: null,
         endtime: null,
-        user: null,
         moreCosts: [],
         protocol: '',
         reason: '',
@@ -63,46 +62,17 @@ class AddReport extends Component {
             reportName: this.state.city.cityName,
             typeOfTransport: this.state.typeOfTransport,
             moreCosts: this.state.moreCosts,
-            id: uuidv4(),
             protocol: this.state.protocol,
             reason: this.state.reason,
             startTime: this.state.startTime,
             endTime: this.state.endTime,
         };
-        //get user details from database
-        fireDB.ref('/users').once('value')
-            .then((snapshot) => {
-                const users = [...snapshot.val()]
-
-                users.filter(item => item.Id === this.props.id)
-                    .map(item => {
-                        this.setState({
-                            user: item,
-                        });
-                        return item;
-                    })
-                //push new report in reports array
-                let oldReport = this.state.user.Reports || [];
-                oldReport.push(report);
-
-                const newUser = this.state.user;
-                newUser.Reports = oldReport;
-
-                this.setState({
-                    user: newUser,
-                });
-
-                users.map(item => {
-                    if (item.Id === this.state.user.Id) {
-                        item.Reports = this.state.user.Reports;
-                    }
-                    return item;
-                })
-                // set new database with new user report
-                fireDB.ref('/users').set(users);
-                this.handleSubmit();
-            })
-            .catch((e) => console.log(e))
+        //push new report in reports array
+        const ref = fireDB.ref(`/users/${this.props.id}/Reports`);
+        ref.push(report, error => {
+            console.log(error);
+        });
+        // this.handleSubmit();
     }
     handleSubmit = () => {
         this.props.updateReportList();
@@ -277,7 +247,7 @@ class AddReport extends Component {
                                 }}
                                 onChange={this.handleChangeMinTime}
                             />
-                            <br/>                        
+                            <br />
                             <TimePicker
                                 format="24hr"
                                 hintText="Vrijeme dolaska"
@@ -365,7 +335,7 @@ class AddReport extends Component {
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>
                     </div>
-                    <p style={{marginTop: '3rem'}}>Dodatni troškovi: </p>
+                    <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
                     <div>
                         {this.state.moreCosts.map(input => <NewCosts
                             key={input.id}

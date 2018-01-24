@@ -11,7 +11,7 @@ class AboutUser extends Component {
     }
     clicked = () => {
         this.setState({
-            addReport: true
+            addReport: true,
         })
     }
     addReportHandler = () => {
@@ -34,7 +34,6 @@ class AboutUser extends Component {
     }
 
     render() {
-        console.log(this.props);
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}
@@ -53,7 +52,7 @@ class AboutUser extends Component {
         return (
             <div className="aboutUser">
                 <UserDetail
-                    key={this.props.id}
+                    // key={this.props.id}
                     id={this.props.id}
                     firstName={this.props.firstName}
                     lastName={this.props.lastName}

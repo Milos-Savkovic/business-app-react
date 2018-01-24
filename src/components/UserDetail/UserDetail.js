@@ -6,7 +6,7 @@ import Report from '../Report/Report';
 import IconButton from 'material-ui/IconButton';
 import Create from 'material-ui/svg-icons/content/create';
 import { grey50 } from 'material-ui/styles/colors';
-import base64Img from 'base64-img';
+// import base64Img from 'base64-img';
 import './userDetail.css';
 
 class UserDetail extends Component {
@@ -19,39 +19,37 @@ class UserDetail extends Component {
         this.props.clickedLink();
     }
     reporter() {
-        const reportsArray = [];
         if (this.props.reports) {
-            for (let i in this.props.reports) {
-                reportsArray.push(this.props.reports[i]);
-            }
-            const reports = reportsArray.map((item) => (
-                <NavLink
-                    exact
-                    key={item.id}
-                    to={`/users/${this.props.id}/${item.id}`}
-                    className="navLink"
-                    activeClassName="active"
-                    onClick={this.click}
-                >
-                    <Report
-                        cost={item.costs}
-                        reportName={item.reportName}
-                        distance={item.distance}
-                        dailyEarnings={item.dailyEarnings}
-                        typeOfTransport={item.typeOfTransport}
-                        date1={item.date1}
-                        date2={item.date2}
-                    />
-                </NavLink>
-            )).reverse();
-            return (reports)
+            const reports = Object.keys(this.props.reports).map(key => {
+                return (
+                    <NavLink
+                        exact
+                        key={key}
+                        to={`/users/${this.props.id}/${key}`}
+                        className="navLink"
+                        activeClassName="active"
+                        onClick={this.click}
+                    >
+                        <Report
+                            key={this.props.reports[key].reportName}
+                            cost={this.props.reports[key].costs}
+                            reportName={this.props.reports[key].reportName}
+                            distance={this.props.reports[key].distance}
+                            dailyEarnings={this.props.reports[key].dailyEarnings}
+                            typeOfTransport={this.props.reports[key].typeOfTransport}
+                            date1={this.props.reports[key].date1}
+                            date2={this.props.reports[key].date2}
+                        />
+                    </NavLink>
+                );
+            }).reverse();
+            return (reports);
         } else return null;
     }
 
     handleUploadImage = (e) => {
         try {
             const file = e.target.files[0];
-            // const file64 = base64Img.base64(file, (err, file) => {})
             const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
             console.log(storageRef);
             console.log("Successfully added new picture.");
@@ -62,14 +60,18 @@ class UserDetail extends Component {
     }
 
     componentWillMount() {
-        getImage(this.props.id)
-            .then((url) => {
-                this.setState({
-                    picture: url,
-                });
-            }).catch(error => {
-                console.log(error);
-            })
+        try {
+            getImage(this.props.id)
+                .then((url) => {
+                    this.setState({
+                        picture: url,
+                    });
+                }).catch(error => {
+                    console.log(error);
+                })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     render() {

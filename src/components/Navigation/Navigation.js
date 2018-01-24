@@ -106,20 +106,6 @@ class Navigation extends Component {
                     <img src={logo} className="drawer-logo" alt="logo" />
                 </Drawer>
             </div>
-
-
-            // <div className="sidenav" >
-            //     <div className="welcome-user">
-            //         <h4>Welcome,</h4>
-            //         {this.state.userEmail}
-            //         <div className="picture-btn">
-            //             <img className="user-image" src={this.state.photo} alt="user" />
-            //             <span className="logout-btn" onClick={this.handlelogOut}>Log out</span>
-            //         </div>
-            //     </div>
-            //     <Link to='/users'>Users</Link>
-            //     <img alt='logo' className="nav-logo" src="http://jsguru.io/wp-content/uploads/2017/02/jsguru_wh_large.png" />
-            // </div>
         );
     }
 }

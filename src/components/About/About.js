@@ -7,26 +7,21 @@ class About extends Component {
 
     state = {
         user: null,
+        id: this.props.match.params.id,
     }
 
     componentDidMount() {
         this.fetchData();
     }
+
     fetchData = () => {
-        const id =  this.props.match.params.id;
-        fireDB.ref('/users').once('value')
-            .then((snapshot) => {
-                const Team = [
-                    ...snapshot.val(),
-                ];
-                Team.filter(item => item.Id === id)
-                    .map(item => (
-                        this.setState({
-                            user: item,
-                        })
-                    ))
-            })
-            .catch((e) => console.log(e))
+        fireDB.ref(`/users/${this.state.id}`).on("value", snapshot => {
+            this.setState({
+                user: snapshot.val(),
+            });
+        }, errorObject => {
+            console.log("The read failed: " + errorObject.code);
+        });
     }
     updateReportList = () => {
         this.fetchData();
@@ -36,8 +31,8 @@ class About extends Component {
         if (this.state.user) {
             return (
                 <AboutUser
-                    key={this.state.user.Id}
-                    id={this.state.user.Id}
+                    key={this.state.id}
+                    id={this.state.id}
                     firstName={this.state.user.FirstName}
                     lastName={this.state.user.LastName}
                     position={this.state.user.Position}
@@ -54,7 +49,7 @@ class About extends Component {
 
     render() {
         return (
-            <div className="container-about" >                
+            <div className="container-about" >
                 {this.about()}
             </div>
         );

@@ -7,7 +7,6 @@ import Delete from 'material-ui/svg-icons/action/delete';
 import Create from 'material-ui/svg-icons/content/create';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import { grey800 } from 'material-ui/styles/colors';
 import './report.css';
 
