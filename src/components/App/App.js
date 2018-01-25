@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Container from '../Container/Container';
 import AddUser from '../AddUser/AddUser';
 import About from '../About/About';
+import Reports from '../Reports/Reports';
 import Navigation from '../Navigation/Navigation';
 import NotFound from '../NotFound/NotFound';
 import './app.css';
@@ -19,6 +20,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path='/users' component={Container} />
                         <Route path='/users/add' component={AddUser} />
+                        <Route path='/reports' component={Reports} />
                         <Route path='/users/:id' component={About} />
                         <Route component={NotFound} />
                     </Switch>
