@@ -13,6 +13,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import TextField from 'material-ui/TextField';
 import TimePicker from 'material-ui/TimePicker';
 import NewCosts from '../NewCosts/NewCosts';
+import Toggle from 'material-ui/Toggle';
 import './addReport.css';
 
 const styles = {
@@ -34,6 +35,7 @@ const styles = {
 class AddReport extends Component {
 
     state = {
+        toggled: true,
         city: {
             cityName: '',
             distance: 0,
@@ -212,7 +214,54 @@ class AddReport extends Component {
         });
     };
 
+    displayMap = () => {
+        if (this.state.toggled) {
+            return (
+                <div className="map-element">
+                    <div className="location-components">
+                        <div >
+                            <p>Lokacija : </p>
+                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                        </div>
+                        <div >
+                            <p>Distanca : </p>
+                            <input type="text" className="map-distance" value={Math.ceil(this.state.city.distance / 1000) + " km"} onChange={this.handleCity} required />
+                        </div>
+                    </div>
+                    <MyMap
+                        city={this.state.city.cityName || 'Banja Luka'}
+                        handleDistance={this.handleDistance}
+                    />
+                </div>
+            )
+        }
+        else return (
+            <div>
+                <div>
+                    {this.state.moreCosts.map(input => <NewCosts
+                        key={input.id}
+                        id={input.id}
+                        name={input.name}
+                        KM={input.KM}
+                    // handleMoreCostsName={this.handleMoreCostsName}
+                    // handleMoreCostsValue={this.handleMoreCostsValue}
+                    // handleDeleteInput={this.handleDeleteInput}
+                    />)}
+                </div>
+                <FloatingActionButton
+                    mini={true}
+                    style={{
+                        marginTop: '10px',
+                    }}
+                // onClick={this.handleMoreCosts}
+                >
+                    <ContentAdd />
+                </FloatingActionButton>
+            </div>
+        );
+    }
     render() {
+        console.log(this.state.toggled);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
@@ -231,13 +280,13 @@ class AddReport extends Component {
                         />
                     </div>
                     <div className="dates">
-                        <div className="rowDate">
+                        <div>
                             <PickDays
                                 handleDateStart={this.handleDateStart}
                                 handleDateEnd={this.handleDateEnd}
                             />
                         </div>
-                        <div className="time-picker">
+                        <div>
                             <TimePicker
                                 format="24hr"
                                 hintText="Vrijeme polaska"
@@ -283,7 +332,6 @@ class AddReport extends Component {
                             </RadioButtonGroup>
                         </div>
                     </div>
-
                     <TextField
                         className="cause-field"
                         hintText="poslovnog angažmana za klijenta"
@@ -295,15 +343,18 @@ class AddReport extends Component {
                         rows={1}
                         onChange={this.handleReason}
                     />
-                    <p>Lokacija : </p>
-                    <div className="input-group">
-                        <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                    <div className="toggle-map-mod">
+                        <Toggle
+                            labelStyle={{
+                                fontSize: '14px',
+                            }}
+                            defaultToggled={true}
+                            label="Map mod"
+                            labelPosition="right"
+                            onToggle={() => this.setState({ toggled: !this.state.toggled })}
+                        />
                     </div>
-                    <MyMap
-                        city={this.state.city.cityName || 'Banja Luka'}
-                        handleDistance={this.handleDistance}
-                    />
-
+                    {this.displayMap()}
                     <div className="drop">
                         <SelectField
                             floatingLabelText="Troškove snosi:"

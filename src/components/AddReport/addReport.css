@@ -23,7 +23,7 @@
     height: 30px;
     margin-bottom: 10px;
     border:none;
-    border-bottom:2px solid rgb(233, 192, 71);
+    border-bottom:2px solid #3cb8ff;
     border-radius:7%;     
     font-size:16px;
 }
@@ -77,9 +77,6 @@ p{
 .dates:hover {
     box-shadow: 0 0 5px #a8a8a8;    
 }
-.rowDate {
-      
-}
 .rowDate input {
     /* width: 150px; */
     height:30px;
@@ -90,8 +87,6 @@ p{
     border:none;
     border-bottom:2px solid rgb(233, 192, 71);
 }
-.time-picker{
-}
 .protocol{
     justify-content: flex-start;
     width: 100%;
@@ -100,4 +95,29 @@ p{
 .cause-field {
     width: 80%!important;
     margin-bottom: 3rem;
+}
+.map-element{
+  display:flex;
+  flex-direction: column;
+  width:80%;
+}
+.location-components{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.map-distance{
+    width:80px;
+    text-align: center;  
+    padding:2px;
+    height: 30px;
+    margin-bottom: 10px;
+    border:none;
+    border-bottom:2px solid #3cb8ff;
+    border-radius:7%;     
+    font-size:16px;
+}
+.toggle-map-mod{
+    margin-bottom:15px;
+    /* width: 80%; */
 }
