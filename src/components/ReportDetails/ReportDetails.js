@@ -13,7 +13,6 @@ class ReportDetails extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     fireDB.ref(`/users/${this.props.id}`).on("value", snapshot => {
       this.setState({
         user: snapshot.val(),
@@ -43,24 +42,20 @@ class ReportDetails extends Component {
 
   giveMeReport = () => {
     const reps = this.state.user.Reports;
-    console.log(reps);
-    const arrayFromUrl = this.props.path.split('/');
-    const reportId = arrayFromUrl.pop();
-    const keys = Object.keys(reps);
-    console.log(keys);
-    let matchingKeys =  keys.filter(key => key.indexOf(reportId) !== -1)
-    console.log(matchingKeys);
-    const report = matchingKeys.map(key => reps[key]).pop();
-    console.log(report);
-    return report;
+    if (reps) {
+      const arrayFromUrl = this.props.path.split('/');
+      const reportId = arrayFromUrl.pop();
+      const keys = Object.keys(reps);
+      const matchingKeys = keys.filter(key => key.indexOf(reportId) !== -1)
+      const report = matchingKeys.map(key => reps[key]).pop();
+      return report;
+    } else return null;
   }
 
   dateToArray = (arr) => {
     let arrayConverted = arr.split('.').reverse().slice(1);
     let arrayToInt = [];
-    arrayConverted.map(val => {
-      arrayToInt.push(parseInt(val))
-    });
+    arrayConverted.map(val => (arrayToInt.push(+val)));
     arrayToInt[1] = arrayToInt[1] - 1;
     return arrayToInt;
   }
@@ -79,7 +74,7 @@ class ReportDetails extends Component {
         return 39.16;
       case "EX-YU":
         return 97.90;
-      default: 
+      default:
         return 0;
     }
   }
