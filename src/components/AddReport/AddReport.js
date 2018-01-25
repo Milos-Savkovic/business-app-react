@@ -72,7 +72,7 @@ class AddReport extends Component {
         ref.push(report, error => {
             console.log(error);
         });
-        // this.handleSubmit();
+        this.handleSubmit();
     }
     handleSubmit = () => {
         this.props.updateReportList();

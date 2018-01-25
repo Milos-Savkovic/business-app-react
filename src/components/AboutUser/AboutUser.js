@@ -34,7 +34,6 @@ class AboutUser extends Component {
     }
 
     render() {
-        console.log(this.props.id)
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}
