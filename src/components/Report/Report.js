@@ -27,7 +27,6 @@ class Report extends Component {
 
     handleDelete = () => {
         fireDB.ref(`/users/${this.props.userId}/Reports/${this.props.id}`).remove();
-        this.handleClose();
     }
 
     render() {

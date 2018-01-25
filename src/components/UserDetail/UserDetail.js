@@ -106,6 +106,9 @@ class UserDetail extends Component {
                 <div className="nameClass">
                     {this.props.firstName + " " + this.props.lastName}
                 </div>
+                <div className="emailClass">
+                    {this.props.email}
+                </div>
                 <div className="positionClass">
                     {this.props.position}
                 </div>

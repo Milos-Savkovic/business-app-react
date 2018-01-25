@@ -34,6 +34,7 @@ class AboutUser extends Component {
     }
 
     render() {
+        console.log(this.props.id)
         let report = (this.state.addReport) ?
             <Field
                 id={this.props.id}
@@ -52,8 +53,9 @@ class AboutUser extends Component {
         return (
             <div className="aboutUser">
                 <UserDetail
-                    // key={this.props.id}
+                    key={this.props.id}
                     id={this.props.id}
+                    email={this.props.email}
                     firstName={this.props.firstName}
                     lastName={this.props.lastName}
                     position={this.props.position}

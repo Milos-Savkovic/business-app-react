@@ -33,6 +33,7 @@ class About extends Component {
                 <AboutUser
                     key={this.state.id}
                     id={this.state.id}
+                    email={this.state.user.Email}
                     firstName={this.state.user.FirstName}
                     lastName={this.state.user.LastName}
                     position={this.state.user.Position}
