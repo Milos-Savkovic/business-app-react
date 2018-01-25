@@ -19,15 +19,15 @@ class Reports extends Component {
     const reportsArr = [];
     const users = this.state.users;
     const keys = Object.keys(users);
-    const reports = keys.map(key => {
+    keys.map(key => {
       if (users[key].Reports) {
         const reps = Object.keys(users[key].Reports)
-        reps.map(reportKey => {
+        return reps.map(reportKey => {
           users[key].Reports[reportKey].userFirstName = users[key].FirstName;
           users[key].Reports[reportKey].userLastName = users[key].LastName;
           users[key].Reports[reportKey].userId = key;
           users[key].Reports[reportKey].key = reportKey;
-          reportsArr.push(users[key].Reports[reportKey]);
+          return reportsArr.push(users[key].Reports[reportKey]);
         });
       } else return null;
       // return reportsArr;
