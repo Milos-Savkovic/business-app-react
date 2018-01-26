@@ -62,12 +62,12 @@ class AddReport extends Component {
                 dailyEarnings: this.state.earnings,
                 date1: this.state.startDate,
                 date2: this.state.endDate,
-                towns: {
+                towns: [{
                     id: uuidv4(),
                     from: 'Banja Luka',
                     to: this.state.city.cityName,
                     distance: this.state.city.distance,
-                },
+                },],
                 typeOfTransport: this.state.typeOfTransport,
                 moreCosts: this.state.moreCosts,
                 protocol: this.state.protocol,
