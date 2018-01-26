@@ -26,7 +26,12 @@ class Report extends Component {
     };
 
     handleDelete = () => {
-        fireDB.ref(`/users/${this.props.userId}/Reports/${this.props.id}`).remove();
+        fireDB.ref(`/users/${this.props.userId}/Reports/${this.props.id}`).on("value", snapshot => {
+            let inArchive = snapshot.val();
+            inArchive.userId= this.props.userId;
+            fireDB.ref(`/archive/${this.props.id}`).set(inArchive);
+            // fireDB.ref(`/users/${this.props.userId}/Reports/${this.props.id}`).remove()
+        })
     }
 
     render() {
