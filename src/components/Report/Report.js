@@ -31,6 +31,7 @@ class Report extends Component {
     }
 
     render() {
+        console.log(this.props);
         const actions = [
             <FlatButton
                 label="Cancel"

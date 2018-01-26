@@ -53,7 +53,7 @@ class Reports extends Component {
                   fname={report.userFirstName}
                   lname={report.userLastName}
                   userId={report.userId}
-                  name={report.reportName}
+                  name={report.towns[report.towns.length - 1].to}
                   date={report.date1}
                 />
               </Link>
