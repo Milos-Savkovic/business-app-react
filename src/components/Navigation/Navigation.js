@@ -13,6 +13,7 @@ import Drawer from 'material-ui/Drawer';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import People from 'material-ui/svg-icons/social/people';
 import Reports from 'material-ui/svg-icons/image/filter-none';
+import Archive from 'material-ui/svg-icons/content/archive';
 import Divider from 'material-ui/Divider';
 import logo from '../../assets/images/logo.svg';
 
@@ -103,7 +104,20 @@ class Navigation extends Component {
                 >
                     <Link to="/users"><MenuItem primaryText="Users" leftIcon={<People />} onClick={this.handleClose} /></Link>
                     <Link to="/users/add"><MenuItem primaryText="Add user" leftIcon={<PersonAdd />} onClick={this.handleClose} /></Link>
-                    <Link to="/reports"><MenuItem primaryText="Reports" leftIcon={<Reports />} /></Link>
+                    <Link to="/reports">
+                        <MenuItem 
+                            primaryText="Reports" 
+                            leftIcon={<Reports />} 
+                            onClick={this.handleClose}
+                        />
+                    </Link>
+                    <Link to="/archive">
+                        <MenuItem 
+                            primaryText="Archive" 
+                            leftIcon={<Archive />} 
+                            // onClick={this.handleClose}
+                        />
+                    </Link>
                     <Divider />
                     <img src={logo} className="drawer-logo" alt="logo" />
                 </Drawer>
