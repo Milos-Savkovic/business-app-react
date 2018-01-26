@@ -103,7 +103,13 @@ class Navigation extends Component {
                 >
                     <Link to="/users"><MenuItem primaryText="Users" leftIcon={<People />} onClick={this.handleClose} /></Link>
                     <Link to="/users/add"><MenuItem primaryText="Add user" leftIcon={<PersonAdd />} onClick={this.handleClose} /></Link>
-                    <Link to="/reports"><MenuItem primaryText="Reports" leftIcon={<Reports />} /></Link>
+                    <Link to="/reports">
+                        <MenuItem 
+                            primaryText="Reports" 
+                            leftIcon={<Reports />} 
+                            onClick={this.handleClose}
+                        />
+                    </Link>
                     <Divider />
                     <img src={logo} className="drawer-logo" alt="logo" />
                 </Drawer>

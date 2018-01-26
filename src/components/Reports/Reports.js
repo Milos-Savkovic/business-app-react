@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { fireDB } from '../../api/firebaseApp';
+import { Link } from 'react-router-dom';
+import Report from './Report/Report';
+import './Reports.css';
 
 class Reports extends Component {
   state = {
@@ -14,32 +17,46 @@ class Reports extends Component {
       console.log("The read failed: " + errorObject.code);
     });
   }
-
-  render() {
+  sortedArrayOfReports = (array) => {
     const reportsArr = [];
-    const users = this.state.users;
-    const keys = Object.keys(users);
+    const keys = Object.keys(array);
     keys.map(key => {
-      if (users[key].Reports) {
-        const reps = Object.keys(users[key].Reports)
+      if (array[key].Reports) {
+        const reps = Object.keys(array[key].Reports)
         return reps.map(reportKey => {
-          users[key].Reports[reportKey].userFirstName = users[key].FirstName;
-          users[key].Reports[reportKey].userLastName = users[key].LastName;
-          users[key].Reports[reportKey].userId = key;
-          users[key].Reports[reportKey].key = reportKey;
-          return reportsArr.push(users[key].Reports[reportKey]);
+          const report = array[key].Reports[reportKey];
+          report.userFirstName = array[key].FirstName;
+          report.userLastName = array[key].LastName;
+          report.userId = key;
+          report.key = reportKey;
+          return reportsArr.push(report);
         });
       } else return null;
-      // return reportsArr;
     });
-    console.log(users);
-    console.log(reportsArr);
+    const sortedReports = reportsArr.reverse();
+    return sortedReports;
+  }
+
+  render() {
+    const reports = this.sortedArrayOfReports(this.state.users);
+    console.log(reports);
     return (
-      <div>
+      <div className="reports-wrapper">
         {
-          reportsArr.map(report => {
+          reports.map(report => {
             return (
-              <div key={report.key}>{report.reportName}</div>
+              <Link 
+                to={`/users/${report.userId}/${report.key}`}
+                key={report.key}
+              >
+                <Report
+                  fname={report.userFirstName}
+                  lname={report.userLastName}
+                  userId={report.userId}
+                  name={report.reportName}
+                  date={report.date1}
+                />
+              </Link>
             );
           })
         }

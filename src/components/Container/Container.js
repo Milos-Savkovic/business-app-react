@@ -41,6 +41,9 @@ class Container extends Component {
     componentWillMount() {
         this.helper();
     }
+    componentWillUnmount() {
+        fetchUsers().off();
+    }
 
     clickHandlerDetail = (id) => {
         this.setState({
