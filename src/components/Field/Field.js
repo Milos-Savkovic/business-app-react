@@ -11,6 +11,7 @@ class Field extends Component {
         this.props.clicked();
     }
     render() {
+        console.log(this.props);
         let text = (this.props.path === `/users/${this.props.id}`) ?
             (
                 <div className="fieldBack">

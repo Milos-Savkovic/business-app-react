@@ -260,16 +260,30 @@ class AddReport extends Component {
     });
 
     handleChangeMinTime = (event, date) => {
-        console.log(date);
-        date = `${date.getHours()}:${date.getMinutes()}`;
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        if (hours.toString().length === 1) {
+            hours = "0" + hours;
+        }
+        if (minutes.toString().length === 1) {
+            minutes = "0" + minutes;
+        }
+        date = `${hours}:${minutes}`;
         this.setState({
             startTime: date,
         });
     };
 
     handleChangeMaxTime = (event, date) => {
-        console.log(date);
-        date = `${date.getHours()}:${date.getMinutes()}`;
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        if (hours.toString().length === 1) {
+            hours = "0" + hours;
+        }
+        if (minutes.toString().length === 1) {
+            minutes = "0" + minutes;
+        }
+        date = `${hours}:${minutes}`;
         this.setState({
             endTime: date,
         });
@@ -320,7 +334,7 @@ class AddReport extends Component {
     }
     render() {
         console.log(this.state);
-        const date=new Date();
+        const date = new Date();
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { fireDB } from '../../api/firebaseApp';
+// import ReportDetails from '../ReportDetails/ReportDetails';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -10,6 +12,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { grey800 } from 'material-ui/styles/colors';
 import './report.css';
+import AddReport from '../AddReport/AddReport';
 
 class Report extends Component {
 
@@ -59,7 +62,7 @@ class Report extends Component {
                         targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                     >
-                        <MenuItem primaryText="Edit" leftIcon={<Create />} />
+                        <Link to={`/users/${this.props.userId}/${this.props.id}/edit`}> <MenuItem primaryText="Edit" leftIcon={<Create />} /></Link>
                         <MenuItem primaryText="Remove" leftIcon={<Delete />} onClick={() => this.handleOpen()} />
                     </IconMenu>
                 </div>
@@ -71,6 +74,16 @@ class Report extends Component {
                 >
                     Are you sure you want to delete this item?
              </Dialog>
+                {/* <Route
+                    path={`/users/${this.props.userId}/${this.props.id}/edit`}
+                    render={() => <AddReport
+                        // id={this.props.id}
+                        // path={this.props.path}
+                        // firstName={this.props.fname}
+                        // lastName={this.props.lname}
+                        // position={this.props.position}
+                    />}
+                /> */}
             </div>
         )
     }
