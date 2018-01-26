@@ -1,4 +1,6 @@
 import React from 'react';
+// import { Route } from 'react-router-dom';
+// import EditReport from '../EditReport/EditReport';
 import './ReportTable.css';
 import moment from 'moment';
 
@@ -8,9 +10,10 @@ export const ReportTable = (props) => {
     borderBottom: { borderBottom: '1px solid #333' },
   }
   const rep = props.report;
-  const days = props.days;  
+  const days = props.days;
   const sum = props.sum;
   const dailyEarnings = props.dailyEarnings;
+  const destinations = props.cities;
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -51,7 +54,7 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell cell-7">
           <div className="medium-field medium-field-end"><b>SVEGA</b></div>
-          <div className="medium-field medium-field-end" style={style.borderTop}>{props.totalCosts.daily}</div>
+          <div className="medium-field medium-field-end" style={style.borderTop}>{props.totalCosts.daily.toFixed(2)}</div>
         </div>
       </div>
       <div className="table-row table-row-2">
@@ -70,7 +73,7 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell cell-3 table-row-2-cell-3">
           <div className="long-field">Do</div>
-          <div className="long-field">{rep.reportName}</div>
+          <div className="long-field">{destinations[destinations.length - 1].to}</div>
           <div className="long-field"></div>
           <div className="long-field"></div>
           <div className="long-field"></div>
@@ -172,6 +175,16 @@ export const ReportTable = (props) => {
         <span className="underline underline-large"></span>
       </div>
       <div className="table-row table-row-7">Potpis podnosioca obračuna&nbsp;</div>
+      {/*<Route
+        path={`/users/${this.props.id}/:key`}
+        render={() => <ReportDetails
+          id={this.props.id}
+          path={this.props.path}
+          firstName={this.props.fname}
+          lastName={this.props.lname}
+          position={this.props.position}
+        />}
+        />*/}
     </div>
   );
 }

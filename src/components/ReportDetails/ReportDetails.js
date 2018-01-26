@@ -42,6 +42,7 @@ class ReportDetails extends Component {
 
   giveMeReport = () => {
     const reps = this.state.user.Reports;
+    console.log(reps);
     if (reps) {
       const arrayFromUrl = this.props.path.split('/');
       const reportId = arrayFromUrl.pop();
@@ -52,8 +53,8 @@ class ReportDetails extends Component {
     } else return null;
   }
 
-  dateToArray = (arr) => {
-    let arrayConverted = arr.split('.').reverse().slice(1);
+  dateToArray = (array) => {
+    let arrayConverted = array.split('.').reverse().slice(1);
     let arrayToInt = [];
     arrayConverted.map(val => (arrayToInt.push(+val)));
     arrayToInt[1] = arrayToInt[1] - 1;
@@ -78,6 +79,11 @@ class ReportDetails extends Component {
         return 0;
     }
   }
+  distance = (towns) => {
+    const distances = towns.map(town => town.distance);
+    const sumOfDistances = distances.reduce((total, amount) => total + amount);
+    return sumOfDistances;
+  }
 
   render() {
     const report = this.giveMeReport();
@@ -85,9 +91,16 @@ class ReportDetails extends Component {
     else {
       if (this.state.user) {
         const days = this.substructDays(report.date1, report.date2);
+        const dailyEarnings = this.dayPay(report.dailyEarnings);
+        const cities = report.towns.map(town => (
+          {
+            from: town.from, to: town.to, distance: town.distance,
+          }
+        ));
+        const totalDistance = this.distance(cities);
         const totalCosts = {
           daily: this.dayPay(report.dailyEarnings) * days,
-          transition: +(report.distance * 1.95 / 1000).toFixed(2),
+          transition: +(totalDistance * 1.95 / 1000).toFixed(2),
           rest: 0,
           total() {
             let sum = this.daily + this.transition + this.rest;
@@ -95,7 +108,9 @@ class ReportDetails extends Component {
           },
         }
         const sum = totalCosts.total().toFixed(2);
-        const dailyEarnings = this.dayPay(report.dailyEarnings);
+        console.log(cities);
+        console.log(totalDistance);
+        console.log(sum);
         return (
           <div>
             <div className="report-container" id="report">
@@ -143,13 +158,13 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Vrsta u iznosu</span>
-                    <div className="floor-border floor-border--end">KM&nbsp;</div>
+                    <div className="floor-border floor-border--end">{dailyEarnings}&nbsp;KM&nbsp;</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">otputovaće po službenom poslu u mjesto-a</span>
-                    <div className="floor-border">{report.reportName}</div>
+                    <div className="floor-border">{cities.map(city => city.to)}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">
@@ -192,13 +207,13 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Pravac putovanja</span>
-                    <div className="floor-border">{`Banja luka - ${report.reportName} - Banja Luka`}</div>
+                    <div className="floor-border">{`${cities.map(city => `${city.from}-`)} - ${cities.map(city => `${city.to}-`)} Banja Luka`}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Na službenom putu će se zadržati najdalje do: </span>
-                    <div className="floor-border">{` ${report.endTime}h,  ${report.date2}`}</div>
+                    <div className="floor-border">{`${report.date2}`}</div>
                     <span className="report-text"> godine.&nbsp;</span>
                   </div>
                 </div>
@@ -258,6 +273,8 @@ class ReportDetails extends Component {
                   totalCosts={totalCosts}
                   sum={sum}
                   dailyEarnings={dailyEarnings}
+                  cities={cities}
+                  totalDistance={totalDistance}
                 />
                 <br />
                 <br />
