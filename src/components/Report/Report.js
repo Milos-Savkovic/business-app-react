@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fireDB } from '../../api/firebaseApp';
-// import ReportDetails from '../ReportDetails/ReportDetails';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -74,16 +73,6 @@ class Report extends Component {
                 >
                     Are you sure you want to delete this item?
              </Dialog>
-                {/* <Route
-                    path={`/users/${this.props.userId}/${this.props.id}/edit`}
-                    render={() => <AddReport
-                        // id={this.props.id}
-                        // path={this.props.path}
-                        // firstName={this.props.fname}
-                        // lastName={this.props.lname}
-                        // position={this.props.position}
-                    />}
-                /> */}
             </div>
         )
     }
