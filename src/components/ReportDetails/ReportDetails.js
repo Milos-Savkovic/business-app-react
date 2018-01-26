@@ -207,7 +207,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Pravac putovanja</span>
-                    <div className="floor-border">{`${cities.map(city => `${city.from}-`)} - ${cities.map(city => `${city.to}-`)} Banja Luka`}</div>
+                    <div className="floor-border">{`${cities.map(city => `${city.from}`)} - ${cities.map(city => `${city.to}-`)} Banja Luka`}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">

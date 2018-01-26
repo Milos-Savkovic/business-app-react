@@ -11,7 +11,6 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { grey800 } from 'material-ui/styles/colors';
 import './report.css';
-import AddReport from '../AddReport/AddReport';
 
 class Report extends Component {
 
