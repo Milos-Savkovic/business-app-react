@@ -117,9 +117,8 @@ h4{
 .drawer-logo {
     position: absolute;
     bottom: 2rem;
-    left: 4rem;
-    mix-blend-mode: luminosity;
-    width: 4rem;
+    left: 3rem;
+    /* mix-blend-mode: luminosity; */
+    width: 7rem;
     height: auto;
-    opacity: .5;
 }

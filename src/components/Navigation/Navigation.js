@@ -15,7 +15,7 @@ import People from 'material-ui/svg-icons/social/people';
 import Reports from 'material-ui/svg-icons/image/filter-none';
 import Archive from 'material-ui/svg-icons/content/archive';
 import Divider from 'material-ui/Divider';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/js-logo.png';
 
 class Logged extends Component {
     render() {
