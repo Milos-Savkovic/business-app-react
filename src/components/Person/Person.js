@@ -12,7 +12,7 @@ class Person extends Component {
     handleDetailPerson(id) {
         this.props.clickHandlerDetail(id);
     }
- 
+
     componentWillMount() {
         try {
             getImage(this.props.id)
@@ -21,6 +21,9 @@ class Person extends Component {
                         image: url,
                     });
                 }).catch(error => {
+                    this.setState({
+                        image: "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png",
+                    })
                     console.log(error);
                 })
         } catch (error) {
@@ -29,13 +32,10 @@ class Person extends Component {
     }
 
     render() {
-        let picture;
-        if (this.state.image) picture = this.state.image;
-        else picture = "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png";
 
         return (
             <div className="card">
-                <img src={picture} className="avatar" alt="Jane" />
+                <img src={this.state.image} className="avatar" alt="Jane" />
                 <div >
                     <h2 className="name">{`${this.props.firstName} ${this.props.lastName}`}</h2>
                     <p className="title">{this.props.position}</p>

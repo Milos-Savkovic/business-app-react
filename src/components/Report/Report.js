@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { fireDB } from '../../api/firebaseApp';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
@@ -10,6 +11,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { grey800 } from 'material-ui/styles/colors';
 import './report.css';
+import AddReport from '../AddReport/AddReport';
 
 class Report extends Component {
 
@@ -26,7 +28,7 @@ class Report extends Component {
     };
 
     handleDelete = () => {
-        fireDB.ref(`/users/${this.props.userId}/Reports/${this.props.id}`).remove();
+        fireDB.ref(`/users/${this.props.userId}/Reports/${this.props.id}`).remove()
     }
 
     render() {
@@ -59,7 +61,7 @@ class Report extends Component {
                         targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                     >
-                        <MenuItem primaryText="Edit" leftIcon={<Create />} />
+                        <Link to={`/users/${this.props.userId}/${this.props.id}/edit`}> <MenuItem primaryText="Edit" leftIcon={<Create />} /></Link>
                         <MenuItem primaryText="Remove" leftIcon={<Delete />} onClick={() => this.handleOpen()} />
                     </IconMenu>
                 </div>

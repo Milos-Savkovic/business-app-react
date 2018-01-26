@@ -12,7 +12,7 @@ import './userDetail.css';
 class UserDetail extends Component {
 
     state = {
-        picture: null,
+        image: null,
     }
 
     click = () => {
@@ -67,9 +67,12 @@ class UserDetail extends Component {
             getImage(this.props.id)
                 .then((url) => {
                     this.setState({
-                        picture: url,
+                        image: url,
                     });
                 }).catch(error => {
+                    this.setState({
+                        image:"https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png",
+                    })
                     console.log(error);
                 })
         } catch (error) {
@@ -78,14 +81,10 @@ class UserDetail extends Component {
     }
 
     render() {
-        let picture;
-        if (this.state.picture) picture = this.state.picture;
-        else picture = "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png";
-
         return (
             <div className="user">
                 <div className="profile-pic">
-                    <img src={picture} className="img" alt="Profile" />
+                    <img src={this.state.image} className="img" alt="Profile" />
                     <div className="edit">
                         <IconButton
                             onClick={() => this.fileUpload.click()}

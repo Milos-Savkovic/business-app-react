@@ -6,9 +6,10 @@ import './newDistance.css';
 
 class NewDistance extends Component {
 
-    handleDeleteInput = (e) => {
+    handleDeleteInputCity = (e) => {
         e.preventDefault();
-        this.props.handleDeleteInput(e);
+        console.log("This input will be removed");
+        this.props.handleDeleteInputCity(this.props.id);
     }
 
     render() {
@@ -44,7 +45,7 @@ class NewDistance extends Component {
                     onChange={ this.props.handleNextTown} 
                 />
                 <strong>km</strong>
-                <IconButton onClick={(e) => { this.handleDeleteInput(e) }} >
+                <IconButton onClick={(e) => { this.handleDeleteInputCity(e) }} >
                     <DeleteIcon className="delete-icon"
                     />
                 </IconButton>

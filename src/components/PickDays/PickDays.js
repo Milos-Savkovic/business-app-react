@@ -30,7 +30,16 @@ export default class DatePickerExampleToggle extends React.Component {
     };
 
     formatDate(date) {
-        return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + ".";
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+
+        if (day.toString().length === 1) {
+            day = "0" + day;
+        }
+        if (month.toString().length === 1) {
+            month = "0" + month;
+        }
+        return day + "." + month + "." + date.getFullYear() + ".";
     }
 
     render() {
