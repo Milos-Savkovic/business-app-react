@@ -67,7 +67,7 @@ class UserDetail extends Component {
             getImage(this.props.id)
                 .then((url) => {
                     this.setState({
-                        picture: url,
+                        image: url,
                     });
                 }).catch(error => {
                     this.setState({
