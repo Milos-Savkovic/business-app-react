@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import PickDays from '../PickDays/PickDays';
+import uuidv4 from 'uuid/v4';
 import MyMap from '../../api/MyMap';
 import { fireDB } from '../../api/firebaseApp';
-import uuidv4 from 'uuid/v4';
-import { grey400 } from 'material-ui/styles/colors';
+import PickDays from '../PickDays/PickDays';
+import NewCosts from '../NewCosts/NewCosts';
+import NewDistance from '../NewDistance/NewDistance';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import TextField from 'material-ui/TextField';
 import TimePicker from 'material-ui/TimePicker';
-import NewCosts from '../NewCosts/NewCosts';
 import Toggle from 'material-ui/Toggle';
+import { grey400 } from 'material-ui/styles/colors';
 import './addReport.css';
 
 const styles = {
@@ -40,6 +39,7 @@ class AddReport extends Component {
             cityName: '',
             distance: 0,
         },
+        towns: [],
         earnings: 'domaća',
         typeOfTransport: 'službeno',
         costs: 'kompanija',
@@ -54,21 +54,43 @@ class AddReport extends Component {
 
     setFirebase = (e) => {
         e.preventDefault();
-        //create new report 
-        const report = {
-            costs: this.state.costs,
-            dailyEarnings: this.state.earnings,
-            date1: this.state.startDate,
-            date2: this.state.endDate,
-            distance: this.state.city.distance,
-            reportName: this.state.city.cityName,
-            typeOfTransport: this.state.typeOfTransport,
-            moreCosts: this.state.moreCosts,
-            protocol: this.state.protocol,
-            reason: this.state.reason,
-            startTime: this.state.startTime,
-            endTime: this.state.endTime,
-        };
+        //Add report with  google map
+        let report;
+        if (this.state.toggled) {
+            report = {
+                costs: this.state.costs,
+                dailyEarnings: this.state.earnings,
+                date1: this.state.startDate,
+                date2: this.state.endDate,
+                towns: {
+                    id: uuidv4(),
+                    from: 'Banja Luka',
+                    to: this.state.city.cityName,
+                    distance: this.state.city.distance,
+                },
+                typeOfTransport: this.state.typeOfTransport,
+                moreCosts: this.state.moreCosts,
+                protocol: this.state.protocol,
+                reason: this.state.reason,
+                startTime: this.state.startTime,
+                endTime: this.state.endTime,
+            };
+        } else {
+            //create new report with more destinations
+            report = {
+                costs: this.state.costs,
+                dailyEarnings: this.state.earnings,
+                date1: this.state.startDate,
+                date2: this.state.endDate,
+                towns: this.state.towns,
+                typeOfTransport: this.state.typeOfTransport,
+                moreCosts: this.state.moreCosts,
+                protocol: this.state.protocol,
+                reason: this.state.reason,
+                startTime: this.state.startTime,
+                endTime: this.state.endTime,
+            };
+        }
         //push new report in reports array
         const ref = fireDB.ref(`/users/${this.props.id}/Reports`);
         ref.push(report, error => {
@@ -76,6 +98,7 @@ class AddReport extends Component {
         });
         this.handleSubmit();
     }
+
     handleSubmit = () => {
         this.props.updateReportList();
     }
@@ -141,6 +164,35 @@ class AddReport extends Component {
             moreCosts: newArray,
         });
     }
+    handleNextDistance = () => {
+        const towns = this.state.towns;
+        towns.push({
+            id: uuidv4(),
+            from: '',
+            to: '',
+            distance: ''
+        });
+        this.setState({
+            towns: towns,
+        });
+    }
+
+    handleNextTown = (e) => {
+        e.preventDefault();
+        let towns = this.state.towns;
+        let changer = towns.map(item => {
+            if (item.id === e.target.id) {
+                if (e.target.name === "1") item.from = e.target.value;
+                else if (e.target.name === "2") item.to = e.target.value;
+                else item.distance = e.target.value;
+            }
+            return item;
+        });
+        towns = changer;
+        this.setState({
+            towns,
+        });
+    }
 
     handleMoreCostsName = (e) => {
         e.preventDefault();
@@ -187,6 +239,15 @@ class AddReport extends Component {
 
         this.setState({
             moreCosts: changer,
+        });
+    }
+    handleDeleteInputCity = (id) => {
+        let towns = this.state.towns;
+        const changer = towns.filter(item => item.id !== id)
+            .map(item => { return item });
+
+        this.setState({
+            towns: changer,
         });
     }
 
@@ -236,32 +297,31 @@ class AddReport extends Component {
             )
         }
         else return (
-            <div>
+            <div className="add-destinations">
                 <div>
-                    {this.state.moreCosts.map(input => <NewCosts
+                    {this.state.towns.map(input => <NewDistance
                         key={input.id}
                         id={input.id}
-                        name={input.name}
-                        KM={input.KM}
-                    // handleMoreCostsName={this.handleMoreCostsName}
-                    // handleMoreCostsValue={this.handleMoreCostsValue}
-                    // handleDeleteInput={this.handleDeleteInput}
+                        handleNextTown={this.handleNextTown}
+                        // handleSecondCity={this.handleSecondCity}
+                        // handleDistanceValue={this.handleDistanceValue}
+                        handleDeleteInput={this.handleDeleteInputCity}
                     />)}
                 </div>
-                <FloatingActionButton
-                    mini={true}
+                <RaisedButton
+                    primary={true}
                     style={{
                         marginTop: '10px',
                     }}
-                // onClick={this.handleMoreCosts}
-                >
-                    <ContentAdd />
-                </FloatingActionButton>
+                    onClick={this.handleNextDistance}
+                    labelColor="rgb(255, 255, 255)"
+                    label="Add"
+                />
             </div>
         );
     }
     render() {
-        console.log(this.state.toggled);
+        console.log(this.state);
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
@@ -391,22 +451,20 @@ class AddReport extends Component {
                         {this.state.moreCosts.map(input => <NewCosts
                             key={input.id}
                             id={input.id}
-                            name={input.name}
-                            KM={input.KM}
                             handleMoreCostsName={this.handleMoreCostsName}
                             handleMoreCostsValue={this.handleMoreCostsValue}
                             handleDeleteInput={this.handleDeleteInput}
                         />)}
                     </div>
-                    <FloatingActionButton
-                        mini={true}
+                    <RaisedButton
+                        primary={true}
                         style={{
                             marginTop: '10px',
                         }}
                         onClick={this.handleMoreCosts}
-                    >
-                        <ContentAdd />
-                    </FloatingActionButton>
+                        labelColor="rgb(255, 255, 255)"
+                        label="Add"
+                    />
                     <RaisedButton
                         type="submit"
                         label="Add report"

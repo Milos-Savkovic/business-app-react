@@ -1,0 +1,13 @@
+.newInput strong {
+    color: rgb(187, 187, 187);
+ }
+ .delete-icon {
+   position: absolute;
+   bottom: 8px;
+ }
+ .delete-icon path {
+   color: rgb(187, 187, 187);
+ }
+ .delete-icon:hover path {  
+   color: rgb(226, 15, 15);
+ }
