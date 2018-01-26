@@ -303,7 +303,7 @@ class AddReport extends Component {
                         key={input.id}
                         id={input.id}
                         handleNextTown={this.handleNextTown}
-                        handleDeleteInput={this.handleDeleteInputCity}
+                        handleDeleteInputCity={this.handleDeleteInputCity}
                     />)}
                 </div>
                 <RaisedButton
