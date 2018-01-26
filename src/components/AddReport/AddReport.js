@@ -303,8 +303,6 @@ class AddReport extends Component {
                         key={input.id}
                         id={input.id}
                         handleNextTown={this.handleNextTown}
-                        // handleSecondCity={this.handleSecondCity}
-                        // handleDistanceValue={this.handleDistanceValue}
                         handleDeleteInput={this.handleDeleteInputCity}
                     />)}
                 </div>
@@ -322,12 +320,13 @@ class AddReport extends Component {
     }
     render() {
         console.log(this.state);
+        const date=new Date();
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
                     <div className="protocol">
                         <TextField
-                            hintText="03/2018"
+                            defaultValue={`03/${date.getFullYear()}`}
                             floatingLabelText="Broj protokola"
                             floatingLabelStyle={{
                                 color: grey400,
