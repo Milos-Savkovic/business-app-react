@@ -13,7 +13,7 @@ import TextField from 'material-ui/TextField';
 import TimePicker from 'material-ui/TimePicker';
 import Toggle from 'material-ui/Toggle';
 import { grey400 } from 'material-ui/styles/colors';
-import './addReport.css';
+import './editReport.css';
 
 const styles = {
     radioButton: {

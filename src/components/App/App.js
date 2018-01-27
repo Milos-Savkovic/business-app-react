@@ -5,6 +5,7 @@ import AddUser from '../AddUser/AddUser';
 import About from '../About/About';
 import Reports from '../Reports/Reports';
 import Navigation from '../Navigation/Navigation';
+import EditReport from '../EditReport/EditReport';
 import NotFound from '../NotFound/NotFound';
 import './app.css';
 
@@ -18,6 +19,7 @@ class App extends React.Component {
                 <Navigation />
                 <div className="containerApp">
                     <Switch>
+                        <Route path='/users/:id/:key/edit' component={EditReport} />
                         <Route exact path='/users' component={Container} />
                         <Route path='/users/add' component={AddUser} />
                         <Route path='/reports' component={Reports} />
