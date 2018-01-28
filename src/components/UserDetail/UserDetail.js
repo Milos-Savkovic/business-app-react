@@ -84,7 +84,7 @@ class UserDetail extends Component {
                                 targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                                 anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                             >
-                                <Link to={`/users/${this.props.id}/${key}/edit`}> <MenuItem primaryText="Edit" leftIcon={<Create />} /></Link>
+                                <Link to={`/users/${this.props.id}/${key}/edit`} className="underile-link"> <MenuItem primaryText="Edit" leftIcon={<Create />}/></Link>
                                 <MenuItem primaryText="Remove" leftIcon={<Delete />} onClick={() => this.handleOpen(key)} />
                             </IconMenu>
                             <Dialog
