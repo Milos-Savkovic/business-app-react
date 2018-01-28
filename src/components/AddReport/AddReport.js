@@ -50,6 +50,7 @@ class AddReport extends Component {
         moreCosts: [],
         protocol: '',
         reason: '',
+        numberOfProtocol: 1,
     }
 
     setFirebase = (e) => {
@@ -332,15 +333,40 @@ class AddReport extends Component {
             </div>
         );
     }
+
+    convertToNumber = (string) => {
+        const position = string.indexOf("/");
+        let newNumber = +string.slice(0, position);
+        if (this.state.numberOfProtocol < newNumber) {
+            this.setState({
+                numberOfProtocol: newNumber+1,
+            });
+        }
+    }
+
+    componentWillMount() {
+        fireDB.ref('/users').on('value', snapshot => {
+            const users = snapshot.val();
+            Object.keys(users).map((key) => {
+                if (users[key].Reports) {
+                    const reports = users[key].Reports;
+                    Object.keys(reports).map((key) => {
+                        return this.convertToNumber(reports[key].protocol)
+                    });
+                }
+                return null;
+            })
+        });
+    }
+
     render() {
-        console.log(this.state);
         const date = new Date();
         return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
                     <div className="protocol">
                         <TextField
-                            defaultValue={`03/${date.getFullYear()}`}
+                            value={`${('0' + this.state.numberOfProtocol).slice(-2)}/${date.getFullYear()}`}
                             floatingLabelText="Broj protokola"
                             floatingLabelStyle={{
                                 color: grey400,
