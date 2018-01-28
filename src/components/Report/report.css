@@ -1,26 +1,5 @@
-.reportName{
-    padding: 8px 3px;
-    display: flex;
-    flex-direction: row;
-}
-.reportName:hover{
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    background: rgb(60, 184, 255);
-}
-.reportName:active{
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    background: rgb(255, 255, 255);
-}
 .date{
     font-size: 14px;
-}
-.icon-menu{
-    height: 30px;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 0px;
 }
 .report{
     width:100%;

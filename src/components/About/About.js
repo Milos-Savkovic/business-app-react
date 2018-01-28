@@ -10,7 +10,7 @@ class About extends Component {
         id: this.props.match.params.id,
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.fetchData();
     }
 

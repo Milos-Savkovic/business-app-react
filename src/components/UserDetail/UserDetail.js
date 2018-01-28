@@ -1,43 +1,102 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import fire, { fireDB } from '../../api/firebaseApp';
 import Report from '../Report/Report';
 import IconButton from 'material-ui/IconButton';
 import Create from 'material-ui/svg-icons/content/create';
-import { grey50 } from 'material-ui/styles/colors';
+import IconMenu from 'material-ui/IconMenu';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MenuItem from 'material-ui/MenuItem';
+import Delete from 'material-ui/svg-icons/action/delete';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import { grey50, grey800 } from 'material-ui/styles/colors';
 // import base64Img from 'base64-img';
 import './userDetail.css';
 
 class UserDetail extends Component {
 
+    state = {
+        openAlert: false,
+        key:null,
+    }
+
     click = () => {
         this.props.clickedLink();
     }
+
+    handleOpen = (key) => {
+        this.setState({ openAlert: true, key:key });
+    };
+
+    handleClose = () => {
+        this.setState({ openAlert: false });
+    };
+
+    handleDelete = () => {
+        fireDB.ref(`/users/${this.props.id}/Reports/${this.state.key}`).remove()
+    }
+
     reporter() {
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.handleClose}
+            />,
+            <FlatButton
+                label="Yes"
+                secondary={true}
+                onClick={this.handleDelete}
+            />,
+        ];
         if (this.props.reports) {
             const reports = Object.keys(this.props.reports).map(key => {
                 return (
-                    <NavLink
-                        exact
-                        key={key}
-                        to={`/users/${this.props.id}/${key}`}
-                        className="navLink"
-                        activeClassName="active"
-                        onClick={this.click}
-                    >
-                        <Report
-                            userId={this.props.id}
-                            id={key}
-                            key={this.props.reports[key].reportName}
-                            cost={this.props.reports[key].costs}
-                            reportName={this.props.reports[key].towns[0].to}
-                            distance={this.props.reports[key].distance}
-                            dailyEarnings={this.props.reports[key].dailyEarnings}
-                            typeOfTransport={this.props.reports[key].typeOfTransport}
-                            date1={this.props.reports[key].date1}
-                            date2={this.props.reports[key].date2}
-                        />
-                    </NavLink>
+                    <div  className="reportName" key={key}>
+                        <NavLink
+                            exact
+                            key={key}
+                            to={`/users/${this.props.id}/${key}`}
+                            className="navLink"
+                            activeClassName="active"
+                            onClick={this.click}
+                        >
+                            <Report
+                                // userId={this.props.id}
+                                // id={key}
+                                key={this.props.reports[key].reportName}
+                                cost={this.props.reports[key].costs}
+                                reportName={this.props.reports[key].towns[0].to}
+                                distance={this.props.reports[key].distance}
+                                dailyEarnings={this.props.reports[key].dailyEarnings}
+                                typeOfTransport={this.props.reports[key].typeOfTransport}
+                                date1={this.props.reports[key].date1}
+                                date2={this.props.reports[key].date2}
+                            />
+                        </NavLink>
+                        <div className="icon-menu">
+                            <IconMenu
+                                multiple={false}
+                                iconButtonElement={
+                                    <IconButton><MoreVertIcon color={grey800} /></IconButton>
+                                }
+                                targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                                anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                            >
+                                <Link to={`/users/${this.props.id}/${key}/edit`}> <MenuItem primaryText="Edit" leftIcon={<Create />} /></Link>
+                                <MenuItem primaryText="Remove" leftIcon={<Delete />} onClick={() => this.handleOpen(key)} />
+                            </IconMenu>
+                            <Dialog
+                                actions={actions}
+                                modal={false}
+                                open={this.state.openAlert}
+                                onRequestClose={this.handleDelete}
+                            >
+                                Are you sure you want to delete this item?
+              </Dialog>
+                        </div>
+                    </div>
                 );
             }).reverse();
             return (reports);
