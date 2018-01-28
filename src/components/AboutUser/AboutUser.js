@@ -60,6 +60,7 @@ class AboutUser extends Component {
                     position={this.props.position}
                     reports={this.props.reports}
                     description={this.props.description}
+                    image={this.props.image}
                     clickedLink={this.clicked}
                     keyLocation={this.props.location.key}
                 />

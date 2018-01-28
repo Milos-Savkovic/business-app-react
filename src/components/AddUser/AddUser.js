@@ -60,6 +60,7 @@ class AddUser extends Component {
             LastName: this.state.user.lastname,
             Position: this.state.user.position,
             Email: this.state.user.email,
+            Image:'',
         }
         const ref = fireDB.ref(`/users`);
         ref.push(newUser, error => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import fire from '../../api/firebaseApp';
-import { getImage } from '../../api/getImage';
+import fire, { fireDB } from '../../api/firebaseApp';
 import Report from '../Report/Report';
 import IconButton from 'material-ui/IconButton';
 import Create from 'material-ui/svg-icons/content/create';
@@ -10,10 +9,6 @@ import { grey50 } from 'material-ui/styles/colors';
 import './userDetail.css';
 
 class UserDetail extends Component {
-
-    state = {
-        image: null,
-    }
 
     click = () => {
         this.props.clickedLink();
@@ -51,41 +46,30 @@ class UserDetail extends Component {
 
     handleUploadImage = (e) => {
         try {
-            console.log(this.props.id)
             const file = e.target.files[0];
-            const storageRef = fire.storage().ref(`images/${this.props.id}`).put(file);
-            console.log(storageRef);
+            fire.storage().ref(`images/${this.props.id}`).put(file);
+            const fetchImage = fire.storage().ref(`images/${this.props.id}`).getDownloadURL();
+            fetchImage.then((url) => {
+                console.log(url);
+                return (url);
+            }).then((image) => {
+                fireDB.ref(`users/${this.props.id}`).update({
+                    Image: image,
+                });
+            }).then(() => {
+                window.location.reload();
+            })
             console.log("Successfully added new picture.");
-            // window.location.reload();
         } catch (error) {
             console.log(error);
         }
     }
 
-    componentWillMount() {
-        try {
-            getImage(this.props.id)
-                .then((url) => {
-                    this.setState({
-                        image: url,
-                    });
-                }).catch(error => {
-                    this.setState({
-                        image:"https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png",
-                    })
-                    console.log(error);
-                })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    render() {    
-        console.log(this.props);
+    render() {
         return (
             <div className="user">
                 <div className="profile-pic">
-                    <img src={this.state.image} className="img" alt="Profile" />
+                    <img src={this.props.image} className="img" alt="Profile" />
                     <div className="edit">
                         <IconButton
                             onClick={() => this.fileUpload.click()}

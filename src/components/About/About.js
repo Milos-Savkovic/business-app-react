@@ -10,7 +10,7 @@ class About extends Component {
         id: this.props.match.params.id,
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.fetchData();
     }
 
@@ -18,7 +18,7 @@ class About extends Component {
         fireDB.ref(`/users/${this.state.id}`).on("value", snapshot => {
             this.setState({
                 user: snapshot.val(),
-            });            
+            });
         }, errorObject => {
             console.log("The read failed: " + errorObject.code);
         });
@@ -39,6 +39,7 @@ class About extends Component {
                     position={this.state.user.Position}
                     reports={this.state.user.Reports}
                     description={this.state.user.Description}
+                    image={this.state.user.Image || "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png"}
                     path={this.props.location.pathname}
                     history={this.props.history}
                     location={this.props.location}
