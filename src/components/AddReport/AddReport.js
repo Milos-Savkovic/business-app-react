@@ -337,9 +337,10 @@ class AddReport extends Component {
     convertToNumber = (string) => {
         const position = string.indexOf("/");
         let newNumber = +string.slice(0, position);
+        newNumber++;
         if (this.state.numberOfProtocol < newNumber) {
             this.setState({
-                numberOfProtocol: newNumber+1,
+                numberOfProtocol: newNumber,
             });
         }
     }
@@ -366,7 +367,7 @@ class AddReport extends Component {
                 <form className="form-newReport" onSubmit={this.setFirebase} >
                     <div className="protocol">
                         <TextField
-                            value={`${('0' + this.state.numberOfProtocol).slice(-2)}/${date.getFullYear()}`}
+                            hintText={`${('0' + this.state.numberOfProtocol).slice(-2)}/${date.getFullYear()}`}
                             floatingLabelText="Broj protokola"
                             floatingLabelStyle={{
                                 color: grey400,
