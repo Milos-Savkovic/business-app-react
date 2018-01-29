@@ -175,16 +175,6 @@ export const ReportTable = (props) => {
         <span className="underline underline-large"></span>
       </div>
       <div className="table-row table-row-7">Potpis podnosioca obračuna&nbsp;</div>
-      {/*<Route
-        path={`/users/${this.props.id}/:key`}
-        render={() => <ReportDetails
-          id={this.props.id}
-          path={this.props.path}
-          firstName={this.props.fname}
-          lastName={this.props.lname}
-          position={this.props.position}
-        />}
-        />*/}
     </div>
   );
 }

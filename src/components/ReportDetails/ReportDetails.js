@@ -100,7 +100,7 @@ class ReportDetails extends Component {
         const totalDistance = this.distance(cities);
         const totalCosts = {
           daily: this.dayPay(report.dailyEarnings) * days,
-          transition: +(totalDistance * 1.95 / 1000).toFixed(2),
+          transition: +(totalDistance * 1.95 / 1000 / 7).toFixed(2),
           rest: 0,
           total() {
             let sum = this.daily + this.transition + this.rest;
