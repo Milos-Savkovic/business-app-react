@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
 import MyMap from '../../api/MyMap';
 import { fireDB } from '../../api/firebaseApp';
-import PickDays from '../PickDays/PickDays';
+import PickDaysEdit from './PickDaysEdit/PickDaysEdit';
 import NewCosts from '../NewCosts/NewCosts';
 import NewDistance from '../NewDistance/NewDistance';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
@@ -372,7 +372,7 @@ class EditReport extends Component {
                     </div>
                     <div className="dates">
                         <div>
-                            <PickDays
+                            <PickDaysEdit
                                 handleDateStart={this.handleDateStart}
                                 handleDateEnd={this.handleDateEnd}
                                 start={this.state.report.date1}

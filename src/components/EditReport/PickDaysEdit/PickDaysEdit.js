@@ -7,8 +7,8 @@ export default class DatePickerExampleToggle extends React.Component {
         super(props);
 
         this.state = {
-            minDate: undefined,
-            maxDate: undefined,
+            minDate: moment(this.validFormat(this.props.start)).toDate() || undefined,
+            maxDate: moment(this.validFormat(this.props.end)).toDate() || undefined,
         };
     }
 
@@ -41,6 +41,14 @@ export default class DatePickerExampleToggle extends React.Component {
             month = "0" + month;
         }
         return day + "." + month + "." + date.getFullYear() + ".";
+    }
+    validFormat = (string) => {
+        const dateArray = string.split('.').reverse().slice(1).map(val => +val);
+        return {
+            year: dateArray[0],
+            month: dateArray[1],
+            day: dateArray[2],
+        }
     }
 
     render() {
