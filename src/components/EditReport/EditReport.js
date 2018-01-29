@@ -311,7 +311,7 @@ class EditReport extends Component {
                         </div>
                         <div >
                             <p>Distanca : </p>
-                            <input type="text" className="map-distance" value={Math.ceil(this.state.city.distance / 1000) + " km"} value={this.state.report.towns.map(town => (town.distance/1000).toFixed(2))+ " km"} onChange={this.handleCity} required />
+                            <input type="text" className="map-distance" value={this.state.report.towns.map(town => town.distance + "km ")} onChange={this.handleCity} required />
                         </div>
                     </div>
                     <MyMap
