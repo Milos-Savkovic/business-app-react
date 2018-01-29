@@ -1,6 +1,5 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
-import moment from 'moment';
 
 export default class DatePickerExampleToggle extends React.Component {
     constructor(props) {
