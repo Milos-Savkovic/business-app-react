@@ -307,11 +307,11 @@ class EditReport extends Component {
                     <div className="location-components">
                         <div >
                             <p>Lokacija : </p>
-                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
+                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} value={this.state.report.towns.map(town => town.to)} required />
                         </div>
                         <div >
                             <p>Distanca : </p>
-                            <input type="text" className="map-distance" value={Math.ceil(this.state.city.distance / 1000) + " km"} onChange={this.handleCity} required />
+                            <input type="text" className="map-distance" value={Math.ceil(this.state.city.distance / 1000) + " km"} value={this.state.report.towns.map(town => (town.distance/1000).toFixed(2))+ " km"} onChange={this.handleCity} required />
                         </div>
                     </div>
                     <MyMap
@@ -345,7 +345,6 @@ class EditReport extends Component {
     }
     render() {
         console.log(this.state);
-        const date = new Date();
         if (this.state.loading) {
             return (
                 <div className="load-bar">
@@ -387,7 +386,7 @@ class EditReport extends Component {
                                 textFieldStyle={{
                                     width: '130px',
                                     color: grey400,
-                                }}
+                                }}                                
                                 onChange={this.handleChangeMinTime}
                             />
                             <br />
@@ -397,7 +396,7 @@ class EditReport extends Component {
                                 textFieldStyle={{
                                     width: '130px',
                                     color: grey400,
-                                }}
+                                }}                                
                                 onChange={this.handleChangeMaxTime}
                             />
                         </div>
@@ -406,7 +405,7 @@ class EditReport extends Component {
                             <RadioButtonGroup
                                 name="earnings"
                                 onChange={this.handleEarnings}
-                                defaultSelected="domaća"
+                                defaultSelected={this.state.report.dailyEarnings}
                             >
                                 <RadioButton
                                     label="strana"
@@ -436,6 +435,7 @@ class EditReport extends Component {
                         multiLine={true}
                         rows={1}
                         onChange={this.handleReason}
+                        value={this.state.report.reason}
                     />
                     <div className="toggle-map-mod">
                         <Toggle
@@ -453,7 +453,7 @@ class EditReport extends Component {
                         <SelectField
                             floatingLabelText="Troškove snosi:"
                             floatingLabelStyle={styles.floatingLabelStyle}
-                            value={this.state.costs}
+                            value={this.state.report.costs}
                             onChange={this.handleCosts}
                             style={styles.selectField}
                         >
@@ -472,7 +472,7 @@ class EditReport extends Component {
                         <SelectField
                             floatingLabelText="Vrsta prevoza:"
                             floatingLabelStyle={styles.floatingLabelStyle}
-                            value={this.state.typeOfTransport}
+                            value={this.state.report.typeOfTransport}
                             onChange={this.handleTypeOfTransport}
                             style={styles.selectField}
                         >
