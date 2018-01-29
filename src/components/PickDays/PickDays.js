@@ -52,10 +52,6 @@ export default class DatePickerExampleToggle extends React.Component {
     }
 
     render() {
-        console.log(moment(this.validFormat(this.props.start)).toDate());
-        console.log(this.props);
-        console.log(this.state);
-        console.log(this.state.maxDate);
         return (
             <div>
                 <DatePicker

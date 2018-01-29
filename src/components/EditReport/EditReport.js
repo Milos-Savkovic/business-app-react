@@ -161,7 +161,7 @@ class EditReport extends Component {
     }
 
     xhandler = () => {
-        this.props.closeReport();
+        this.props.history.goBack();
     }
 
     handleMoreCosts = () => {
@@ -501,7 +501,7 @@ class EditReport extends Component {
                     />
                     <RaisedButton
                         type="submit"
-                        label="Add report"
+                        label="Save changes"
                         className="submit"
                         backgroundColor="rgb(60, 184, 255)"
                         labelColor="rgb(255, 255, 255)"
