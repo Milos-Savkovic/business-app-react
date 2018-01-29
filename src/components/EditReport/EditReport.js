@@ -345,10 +345,6 @@ class EditReport extends Component {
     }
     render() {
         console.log(this.state);
-<<<<<<< HEAD
-        console.log(this.props);
-=======
->>>>>>> develop
         if (this.state.loading) {
             return (
                 <div className="load-bar">
