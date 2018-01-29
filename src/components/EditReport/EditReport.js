@@ -31,7 +31,7 @@ const styles = {
     },
 };
 
-class AddReport extends Component {
+class EditReport extends Component {
 
     state = {
         toggled: true,
@@ -50,6 +50,17 @@ class AddReport extends Component {
         moreCosts: [],
         protocol: '',
         reason: '',
+        loading: true,
+        report: null,
+    }
+    componentWillMount() {
+        fireDB.ref(`/users/${this.props.match.params.id}/Reports/${this.props.match.params.key}`).once('value').then(snapshot => {
+            const report = snapshot.val();
+            this.setState({
+                report: report,
+                loading: false,
+            })
+        })
     }
 
     setFirebase = (e) => {
@@ -335,12 +346,20 @@ class AddReport extends Component {
     render() {
         console.log(this.state);
         const date = new Date();
-        return (
+        if (this.state.loading) {
+            return (
+                <div className="load-bar">
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                </div>
+            );
+        } else return (
             <div className="field">
                 <form className="form-newReport" onSubmit={this.setFirebase} >
                     <div className="protocol">
                         <TextField
-                            defaultValue={`03/${date.getFullYear()}`}
+                            defaultValue={this.state.report.protocol}
                             floatingLabelText="Broj protokola"
                             floatingLabelStyle={{
                                 color: grey400,
@@ -357,6 +376,8 @@ class AddReport extends Component {
                             <PickDays
                                 handleDateStart={this.handleDateStart}
                                 handleDateEnd={this.handleDateEnd}
+                                start={this.state.report.date1}
+                                end={this.state.report.date2}
                             />
                         </div>
                         <div>
@@ -496,4 +517,4 @@ class AddReport extends Component {
         );
     }
 }
-export default AddReport;
+export default EditReport;

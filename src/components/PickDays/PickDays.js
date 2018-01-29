@@ -1,13 +1,14 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
+import moment from 'moment';
 
 export default class DatePickerExampleToggle extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            minDate: undefined,
-            maxDate: undefined,
+            minDate: moment(this.validFormat(this.props.start)).toDate() || undefined,
+            maxDate: moment(this.validFormat(this.props.end)).toDate() || undefined,
         };
     }
 
@@ -15,7 +16,7 @@ export default class DatePickerExampleToggle extends React.Component {
         this.setState({
             minDate: date,
         });
-
+        console.log(date);
         const convertDate = this.formatDate(date);
         this.props.handleDateStart(convertDate);
     };
@@ -41,8 +42,20 @@ export default class DatePickerExampleToggle extends React.Component {
         }
         return day + "." + month + "." + date.getFullYear() + ".";
     }
+    validFormat = (string) => {
+        const dateArray = string.split('.').reverse().slice(1).map(val => +val);
+        return {
+            year: dateArray[0],
+            month: dateArray[1],
+            day: dateArray[2],
+        }
+    }
 
     render() {
+        console.log(moment(this.validFormat(this.props.start)).toDate());
+        console.log(this.props);
+        console.log(this.state);
+        console.log(this.state.maxDate);
         return (
             <div>
                 <DatePicker
