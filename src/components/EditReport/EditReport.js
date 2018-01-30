@@ -63,12 +63,23 @@ class EditReport extends Component {
                 endDate: report.date2,
                 startTime: report.startTime,
                 endTime: report.endTime,
-                reason:report.reason,
+                reason: report.reason,
                 costs: report.costs,
-                dailyEarnings:report.dailyEarnings,
-                typeOfTransport:report.typeOfTransport,
+                dailyEarnings: report.dailyEarnings,
+                typeOfTransport: report.typeOfTransport,
+                towns: report.towns,
                 loading: false,
-            })
+            });
+            if (report.towns.length > 1) {
+                this.setState({
+                    toggled: false,
+                });
+            }
+            if(report.moreCosts){
+                this.setState({
+                    moreCosts:report.moreCosts,
+                });
+            }
         })
     }
 
@@ -496,6 +507,7 @@ class EditReport extends Component {
                             {this.state.moreCosts.map(input => <NewCostsEdit
                                 key={input.id}
                                 id={input.id}
+                                input={input}
                                 handleMoreCostsName={this.handleMoreCostsName}
                                 handleMoreCostsValue={this.handleMoreCostsValue}
                                 handleDeleteInput={this.handleDeleteInput}

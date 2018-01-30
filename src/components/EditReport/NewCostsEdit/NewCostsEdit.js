@@ -16,6 +16,7 @@ class NewCosts extends Component {
                 <TextField
                     id={this.props.id}
                     hintText="Novi trošak"
+                    defaultValue={this.props.input.name}
                     style={{
                         width: '300px',
                     }}
@@ -24,6 +25,7 @@ class NewCosts extends Component {
                 <TextField
                     type="number"
                     id={this.props.id}
+                    defaultValue={+this.props.input.KM}
                     style={{
                         width: '70px',
                         marginLeft: '20px',
