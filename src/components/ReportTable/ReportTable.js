@@ -14,6 +14,8 @@ export const ReportTable = (props) => {
   const sum = props.sum;
   const dailyEarnings = props.dailyEarnings;
   const destinations = props.cities;
+  const costs = props.extraCosts;
+  console.log(destinations);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -63,32 +65,32 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell cell-2 table-row-2-cell-2">
           <div className="long-field">Od</div>
-          <div className="long-field">Banja Luka</div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
+          <div className="long-field">{destinations[0].from}</div>
+          <div className="long-field">{destinations[1] ? destinations[1].from : null}</div>
+          <div className="long-field">{destinations[2] ? destinations[2].from : null}</div>
+          <div className="long-field">{destinations[3] ? destinations[3].from : null}</div>
+          <div className="long-field">{destinations[4] ? destinations[4].from : null}</div>
+          <div className="long-field">{destinations[5] ? destinations[5].from : null}</div>
           <div className="long-field long-field-end"></div>
         </div>
         <div className="cell cell-3 table-row-2-cell-3">
           <div className="long-field">Do</div>
-          <div className="long-field">{destinations[destinations.length - 1].to}</div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
+          <div className="long-field">{destinations[0].to}</div>
+          <div className="long-field">{destinations[1] ? destinations[1].to : null}</div>
+          <div className="long-field">{destinations[2] ? destinations[2].to : null}</div>
+          <div className="long-field">{destinations[3] ? destinations[3].to : null}</div>
+          <div className="long-field">{destinations[4] ? destinations[4].to : null}</div>
+          <div className="long-field">{destinations[5] ? destinations[5].to : null}</div>
           <div className="long-field long-field-end"></div>
         </div>
         <div className="cell cell-4 table-row-2-cell-4">
           <div className="long-field">Vrsta prevoza</div>
           <div className="long-field">{rep.typeOfTransport}</div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
-          <div className="long-field"></div>
+          <div className="long-field">{destinations[1] ? rep.typeOfTransport : null}</div>
+          <div className="long-field">{destinations[2] ? rep.typeOfTransport : null}</div>
+          <div className="long-field">{destinations[3] ? rep.typeOfTransport : null}</div>
+          <div className="long-field">{destinations[4] ? rep.typeOfTransport : null}</div>
+          <div className="long-field">{destinations[5] ? rep.typeOfTransport : null}</div>
           <div className="long-field long-field-end"></div>
         </div>
         <div className="cell cell-5 table-row-2-cell-5">
@@ -103,22 +105,22 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
           <div className="medium-field medium-field-row-2">KM</div>
-          <div className="medium-field medium-field-row-2">{props.totalCosts.transition}</div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2">{(destinations[0].distance * 1.95 / 7).toFixed(2)}</div>
+          <div className="medium-field medium-field-row-2">{destinations[1] ? (destinations[1].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[2] ? (destinations[2].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[3] ? (destinations[3].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[4] ? (destinations[4].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[5] ? (destinations[5].distance * 1.95 / 7).toFixed(2) : null}</div>
           <div className="medium-field medium-field-row-2 medium-field-end"></div>
         </div>
         <div className="cell cell-7 table-row-2-cell-7">
           <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2">{props.totalCosts.transition}</div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2">{(destinations[0].distance * 1.95 / 7).toFixed(2)}</div>
+          <div className="medium-field medium-field-row-2">{destinations[1] ? (destinations[1].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[2] ? (destinations[2].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[3] ? (destinations[3].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[4] ? (destinations[4].distance * 1.95 / 7).toFixed(2) : null}</div>
+          <div className="medium-field medium-field-row-2">{destinations[5] ? (destinations[5].distance * 1.95 / 7).toFixed(2) : null}</div>
           <div className="medium-field medium-field-row-2 medium-field-end"></div>
         </div>
       </div>
@@ -127,12 +129,12 @@ export const ReportTable = (props) => {
           <p className="cell-1__text">Ostalo</p>
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          <div className="longer-field"></div>
+          <div className="longer-field">{costs ? costs.map(cost => `${cost.name}; `) : null}</div>
           <div className="longer-field"></div>
           <div className="longer-field" style={{ borderBottom: 0 }}></div>
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          <div className="medium-field medium-field-row-2"></div>
+          <div className="medium-field medium-field-row-2">{props.totalCosts.rest}</div>
           <div className="medium-field medium-field-row-2"></div>
           <div className="medium-field medium-field-row-2 medium-field-end"></div>
         </div>

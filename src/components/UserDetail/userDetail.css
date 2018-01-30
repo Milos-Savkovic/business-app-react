@@ -126,19 +126,12 @@
 .active,
 .active:hover,
 .active:focus {     
-    color: #ffffff;
+    color: black;
 }
 .reportName {
     padding: 8px 10px;
     text-align: left;
     border-bottom: 1px solid #fafafa;
-}
-.active .reportName,
-.active:hover .reportName,
-.active:focus .reportName {     
-    box-shadow: 0 1px 5px #999;
-    background-color: rgb(255, 255, 255);
-    color: black;
 }
 .reports-heading {
     color: #adadad;
@@ -162,7 +155,7 @@
     cursor: pointer;
     background: rgb(60, 184, 255);
 }
-.reportName:active{
+.active-link {
     color: rgb(0, 0, 0);
     cursor: pointer;
     background: rgb(255, 255, 255);

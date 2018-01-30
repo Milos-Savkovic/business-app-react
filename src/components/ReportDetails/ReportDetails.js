@@ -80,9 +80,16 @@ class ReportDetails extends Component {
     }
   }
   distance = (towns) => {
-    const distances = towns.map(town => town.distance);
+    const distances = towns.map(town => +town.distance);
     const sumOfDistances = distances.reduce((total, amount) => total + amount);
     return sumOfDistances;
+  }
+  extraExpenses = (costs) => {
+    if(costs) {
+      const expenses = costs.map(cost => +cost.KM);
+      const sumOfCosts = expenses.reduce((total, amount) => total + amount);
+      return sumOfCosts;
+    } else return 0;
   }
 
   render() {
@@ -100,8 +107,8 @@ class ReportDetails extends Component {
         const totalDistance = this.distance(cities);
         const totalCosts = {
           daily: this.dayPay(report.dailyEarnings) * days,
-          transition: +(totalDistance * 1.95 / 1000 / 7).toFixed(2),
-          rest: 0,
+          transition: +this.distance(cities) * 1.95 / 7,
+          rest: this.extraExpenses(report.moreCosts),
           total() {
             let sum = this.daily + this.transition + this.rest;
             return sum;
@@ -111,6 +118,7 @@ class ReportDetails extends Component {
         console.log(cities);
         console.log(totalDistance);
         console.log(sum);
+        console.log(totalCosts);
         return (
           <div>
             <div className="report-container" id="report">
@@ -164,7 +172,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">otputovaće po službenom poslu u mjesto-a</span>
-                    <div className="floor-border">{cities.map(city => city.to)}</div>
+                    <div className="floor-border">{cities.map(city => city.to).join(', ')}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">
@@ -207,7 +215,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Pravac putovanja</span>
-                    <div className="floor-border">{`${cities.map(city => `${city.from}`)} - ${cities.map(city => `${city.to}-`)} Banja Luka`}</div>
+                    <div className="floor-border">{cities.map(city => `${city.from} - ${city.to}`).join(', ') + `,${cities[cities.length-1].to} - Banja luka`}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">
@@ -275,6 +283,7 @@ class ReportDetails extends Component {
                   dailyEarnings={dailyEarnings}
                   cities={cities}
                   totalDistance={totalDistance}
+                  extraCosts={report.moreCosts}                  
                 />
                 <br />
                 <br />

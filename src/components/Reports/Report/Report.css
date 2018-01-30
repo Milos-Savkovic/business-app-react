@@ -11,6 +11,7 @@
 }
 .report-wrapper:hover {
   border-bottom: 2px solid #3cb8ff; 
+  background: #f3f3f3
 }
 .report-left {
   display: flex;

@@ -78,7 +78,7 @@
 .underline {
   border-bottom: 2px solid #111;
   display: inline-block;
-  width: 5rem;
+  width: 5.5rem;
   text-align: center;
   box-sizing: border-box;
 }
@@ -146,6 +146,9 @@
   width: 33.2rem;
   height: 1.94rem;
   border-bottom: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .table-row-2-cell-5,
 .table-row-2-cell-6,
