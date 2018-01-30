@@ -8,7 +8,6 @@ class NewDistance extends Component {
 
     handleDeleteInputCity = (e) => {
         e.preventDefault();
-        console.log("This input will be removed");
         this.props.handleDeleteInputCity(this.props.id);
     }
 
@@ -18,31 +17,32 @@ class NewDistance extends Component {
                 <TextField
                     name="1"
                     id={this.props.id}
-                    hintText="Od"
+                    defaultValue={this.props.input.from}
                     style={{
                         width: '200px',
                     }}
-                    onChange={ this.props.handleNextTown} 
+                    onChange={this.props.handleNextTown}
                 />
                 <TextField
                     name="2"
-                    hintText="Do"
+                    defaultValue={this.props.input.to}
                     id={this.props.id}
                     style={{
                         width: '200px',
                         marginLeft: '20px',
                     }}
-                    onChange={ this.props.handleNextTown} 
+                    onChange={this.props.handleNextTown}
                 />
                 <TextField
                     name="3"
                     type="number"
                     id={this.props.id}
+                    defaultValue={+this.props.input.distance}
                     style={{
                         width: '80px',
                         marginLeft: '20px',
                     }}
-                    onChange={ this.props.handleNextTown} 
+                    onChange={this.props.handleNextTown}
                 />
                 <strong>km</strong>
                 <IconButton onClick={(e) => { this.handleDeleteInputCity(e) }} >

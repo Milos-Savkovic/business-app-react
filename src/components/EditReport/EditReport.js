@@ -57,7 +57,6 @@ class EditReport extends Component {
         fireDB.ref(`/users/${this.props.match.params.id}/Reports/${this.props.match.params.key}`).once('value').then(snapshot => {
             const report = snapshot.val();
             this.setState({
-                report: report,
                 protocol: report.protocol,
                 startDate: report.date1,
                 endDate: report.date2,
@@ -65,19 +64,19 @@ class EditReport extends Component {
                 endTime: report.endTime,
                 reason: report.reason,
                 costs: report.costs,
-                dailyEarnings: report.dailyEarnings,
+                earnings: report.dailyEarnings,
                 typeOfTransport: report.typeOfTransport,
                 towns: report.towns,
                 loading: false,
             });
+            if (report.moreCosts) {
+                this.setState({
+                    moreCosts: report.moreCosts,
+                });
+            }
             if (report.towns.length > 1) {
                 this.setState({
                     toggled: false,
-                });
-            }
-            if(report.moreCosts){
-                this.setState({
-                    moreCosts:report.moreCosts,
                 });
             }
         })
@@ -150,7 +149,7 @@ class EditReport extends Component {
         this.setState({
             city: {
                 cityName: nm,
-                distance: dis,
+                distance: Math.ceil(dis / 1000),
             }
         })
     }
@@ -327,11 +326,11 @@ class EditReport extends Component {
                     <div className="location-components">
                         <div >
                             <p>Lokacija : </p>
-                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} value={this.state.report.towns.map(town => town.to)} required />
+                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} defaultValue={this.state.towns.map(town => town.to)} required />
                         </div>
                         <div >
                             <p>Distanca : </p>
-                            <input type="text" className="map-distance" value={this.state.report.towns.map(town => town.distance + " km")} onChange={this.handleCity} required />
+                            <input type="text" className="map-distance" value={this.state.towns.map(town => town.distance + " km")} onChange={this.handleCity} required />
                         </div>
                     </div>
                     <MyMap
@@ -345,6 +344,7 @@ class EditReport extends Component {
             <div className="add-destinations">
                 <div>
                     {this.state.towns.map(input => <NewDistanceEdit
+                        input={input}
                         key={input.id}
                         id={input.id}
                         handleNextTown={this.handleNextTown}
@@ -427,7 +427,7 @@ class EditReport extends Component {
                                 <RadioButtonGroup
                                     name="earnings"
                                     onChange={this.handleEarnings}
-                                    defaultSelected={this.state.dailyEarnings}
+                                    defaultSelected={this.state.earnings}
                                 >
                                     <RadioButton
                                         label="strana"
@@ -464,7 +464,7 @@ class EditReport extends Component {
                                 labelStyle={{
                                     fontSize: '14px',
                                 }}
-                                defaultToggled={true}
+                                defaultToggled={this.state.toggled}
                                 label="Map mod"
                                 labelPosition="right"
                                 onToggle={() => this.setState({ toggled: !this.state.toggled })}
