@@ -143,7 +143,7 @@ class AddReport extends Component {
         const name = e.target.name;
         const value = e.target.value;
 
-        city[name] = value;
+        city[name] = value/1000;
 
         this.setState({
             city
@@ -301,7 +301,7 @@ class AddReport extends Component {
                         </div>
                         <div >
                             <p>Distanca : </p>
-                            <input type="text" className="map-distance" value={Math.ceil(this.state.city.distance / 1000) + " km"} onChange={this.handleCity} required />
+                            <input type="text" className="map-distance" defaultValue={this.state.city.distance  + " km"} onChange={this.handleCity} required />
                         </div>
                     </div>
                     <MyMap
@@ -361,6 +361,7 @@ class AddReport extends Component {
     }
 
     render() {
+        console.log(this.state);
         const date = new Date();
         return (
             <div className="field">
