@@ -42,7 +42,7 @@ class AddReport extends Component {
         towns: [],
         earnings: 'domaća',
         typeOfTransport: 'službeno',
-        costs: 'kompanija',
+        costs: 'kompanije',
         startDate: null,
         endDate: null,
         startTime: null,
@@ -456,20 +456,20 @@ class AddReport extends Component {
                     {this.displayMap()}
                     <div className="drop">
                         <SelectField
-                            floatingLabelText="Troškove snosi:"
+                            floatingLabelText="Troškovi padaju na teret:"
                             floatingLabelStyle={styles.floatingLabelStyle}
                             value={this.state.costs}
                             onChange={this.handleCosts}
                             style={styles.selectField}
                         >
                             <MenuItem
-                                value="kompanija"
-                                primaryText="Kompanija"
+                                value="kompanije"
+                                primaryText="Kompanije"
                                 style={styles.menuItem}
                             />
                             <MenuItem
-                                value="zaposleni"
-                                primaryText="Zaposleni"
+                                value="zaposlenog"
+                                primaryText="Zaposlenog"
                                 style={styles.menuItem}
                             />
                         </SelectField>
