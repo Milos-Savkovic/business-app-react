@@ -16,6 +16,15 @@ export const ReportTable = (props) => {
   const destinations = props.cities;
   const costs = props.extraCosts;
   console.log(destinations);
+  const listOf = (destinations, option, divClass) => {
+    let array = [];
+    for (let i = 0; i <= 6; i++) {
+      array.push(destinations[i] ? destinations[i] : '');
+    }
+    return array.map((dest, id) => {
+      return <div key={id} className={divClass}>{dest ? dest[option] : ''}</div>
+    });
+  }
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -65,23 +74,11 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell cell-2 table-row-2-cell-2">
           <div className="long-field">Od</div>
-          <div className="long-field">{destinations[0].from}</div>
-          <div className="long-field">{destinations[1] ? destinations[1].from : null}</div>
-          <div className="long-field">{destinations[2] ? destinations[2].from : null}</div>
-          <div className="long-field">{destinations[3] ? destinations[3].from : null}</div>
-          <div className="long-field">{destinations[4] ? destinations[4].from : null}</div>
-          <div className="long-field">{destinations[5] ? destinations[5].from : null}</div>
-          <div className="long-field long-field-end"></div>
+          {listOf(destinations, 'from', 'long-field')}
         </div>
         <div className="cell cell-3 table-row-2-cell-3">
           <div className="long-field">Do</div>
-          <div className="long-field">{destinations[0].to}</div>
-          <div className="long-field">{destinations[1] ? destinations[1].to : null}</div>
-          <div className="long-field">{destinations[2] ? destinations[2].to : null}</div>
-          <div className="long-field">{destinations[3] ? destinations[3].to : null}</div>
-          <div className="long-field">{destinations[4] ? destinations[4].to : null}</div>
-          <div className="long-field">{destinations[5] ? destinations[5].to : null}</div>
-          <div className="long-field long-field-end"></div>
+          {listOf(destinations, 'to', 'long-field')}
         </div>
         <div className="cell cell-4 table-row-2-cell-4">
           <div className="long-field">Vrsta prevoza</div>
