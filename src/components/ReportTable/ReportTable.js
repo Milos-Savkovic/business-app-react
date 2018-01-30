@@ -15,7 +15,6 @@ export const ReportTable = (props) => {
   const dailyEarnings = props.dailyEarnings;
   const destinations = props.cities;
   const costs = props.extraCosts || [];
-  console.log(props);
   const listOf = (arrayOfObjects, option, divClass, rows) => {
     let array = [];
     for (let i = 0; i <= rows; i++) {
@@ -25,6 +24,7 @@ export const ReportTable = (props) => {
       return <div key={id} className={divClass.join(' ')}>{obj ? obj[option] : ''}</div>
     });
   }
+  console.log(props);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -151,7 +151,7 @@ export const ReportTable = (props) => {
       </div>
       <div className="table-row table-row-4">
         <div className="table-row-4-1">
-          Broj priloga: <span className="underline underline-medium">{rep.protocol}</span>
+          Broj priloga: <span className="underline underline-medium">{(rep.moreCosts ? rep.moreCosts.length : 0) + rep.towns.length}</span>
         </div>
         <div className="table-row-4-2">
           Ostaje za isplatu-uplatu&nbsp;
