@@ -18,7 +18,7 @@ class UserDetail extends Component {
 
     state = {
         openAlert: false,
-        key:null,
+        key: null,
     }
 
     click = () => {
@@ -26,7 +26,7 @@ class UserDetail extends Component {
     }
 
     handleOpen = (key) => {
-        this.setState({ openAlert: true, key:key });
+        this.setState({ openAlert: true, key: key });
     };
 
     handleClose = () => {
@@ -34,7 +34,10 @@ class UserDetail extends Component {
     };
 
     handleDelete = () => {
-        fireDB.ref(`/users/${this.props.id}/Reports/${this.state.key}`).remove()
+        fireDB.ref(`/users/${this.props.id}/Reports/${this.state.key}`).remove();
+        this.setState({
+            openAlert: false,
+        });
     }
 
     reporter() {
@@ -54,7 +57,7 @@ class UserDetail extends Component {
             const reports = Object.keys(this.props.reports).map(key => {
                 const activeLink = this.props.path === `/users/${this.props.id}/${key}` ? 'active-link' : '';
                 return (
-                    <div  className={`reportName ${activeLink}`} key={key}>
+                    <div className={`reportName ${activeLink}`} key={key}>
                         <NavLink
                             exact
                             key={key}
@@ -83,7 +86,7 @@ class UserDetail extends Component {
                                 targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                                 anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                             >
-                                <Link to={`/users/${this.props.id}/${key}/edit`} className="underile-link"> <MenuItem primaryText="Edit" leftIcon={<Create />}/></Link>
+                                <Link to={`/users/${this.props.id}/${key}/edit`} className="underile-link"> <MenuItem primaryText="Edit" leftIcon={<Create />} /></Link>
                                 <MenuItem primaryText="Remove" leftIcon={<Delete />} onClick={() => this.handleOpen(key)} />
                             </IconMenu>
                             <Dialog
