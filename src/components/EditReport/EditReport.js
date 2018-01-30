@@ -40,13 +40,13 @@ class EditReport extends Component {
             distance: 0,
         },
         towns: [],
-        earnings: 'domaća',
-        typeOfTransport: 'službeno',
-        costs: 'kompanija',
-        startDate: '',
+        earnings: '',
+        typeOfTransport: '',
+        costs: '',
+        startDate: null,
         endDate: null,
         startTime: null,
-        endtime: null,
+        endTime: null,
         moreCosts: [],
         protocol: '',
         reason: '',
@@ -58,6 +58,15 @@ class EditReport extends Component {
             const report = snapshot.val();
             this.setState({
                 report: report,
+                protocol: report.protocol,
+                startDate: report.date1,
+                endDate: report.date2,
+                startTime: report.startTime,
+                endTime: report.endTime,
+                reason:report.reason,
+                costs: report.costs,
+                dailyEarnings:report.dailyEarnings,
+                typeOfTransport:report.typeOfTransport,
                 loading: false,
             })
         })
@@ -344,6 +353,8 @@ class EditReport extends Component {
         );
     }
     render() {
+        console.log(this.props);
+        console.log(this.state);
         if (this.state.loading) {
             return (
                 <div className="load-bar">
@@ -358,7 +369,7 @@ class EditReport extends Component {
                     <form className="form-newReport" onSubmit={this.setFirebase} >
                         <div className="protocol">
                             <TextField
-                                defaultValue={this.state.report.protocol}
+                                defaultValue={this.state.protocol}
                                 floatingLabelText="Broj protokola"
                                 floatingLabelStyle={{
                                     color: grey400,
@@ -375,14 +386,14 @@ class EditReport extends Component {
                                 <PickDaysEdit
                                     handleDateStart={this.handleDateStart}
                                     handleDateEnd={this.handleDateEnd}
-                                    start={this.state.report.date1}
-                                    end={this.state.report.date2}
+                                    start={this.state.startDate}
+                                    end={this.state.endDate}
                                 />
                             </div>
                             <div>
                                 <TimePicker
                                     format="24hr"
-                                    hintText="Vrijeme polaska"
+                                    hintText={this.state.startTime}
                                     textFieldStyle={{
                                         width: '130px',
                                         color: grey400,
@@ -392,7 +403,7 @@ class EditReport extends Component {
                                 <br />
                                 <TimePicker
                                     format="24hr"
-                                    hintText="Vrijeme dolaska"
+                                    hintText={this.state.endTime}
                                     textFieldStyle={{
                                         width: '130px',
                                         color: grey400,
@@ -405,7 +416,7 @@ class EditReport extends Component {
                                 <RadioButtonGroup
                                     name="earnings"
                                     onChange={this.handleEarnings}
-                                    defaultSelected={this.state.report.dailyEarnings}
+                                    defaultSelected={this.state.dailyEarnings}
                                 >
                                     <RadioButton
                                         label="strana"
@@ -435,7 +446,7 @@ class EditReport extends Component {
                             multiLine={true}
                             rows={1}
                             onChange={this.handleReason}
-                            value={this.state.report.reason}
+                            defaultValue={this.state.reason}
                         />
                         <div className="toggle-map-mod">
                             <Toggle
@@ -453,7 +464,7 @@ class EditReport extends Component {
                             <SelectField
                                 floatingLabelText="Troškove snosi:"
                                 floatingLabelStyle={styles.floatingLabelStyle}
-                                value={this.state.report.costs}
+                                value={this.state.costs}
                                 onChange={this.handleCosts}
                                 style={styles.selectField}
                             >
@@ -472,7 +483,7 @@ class EditReport extends Component {
                         <SelectField
                                 floatingLabelText="Vrsta prevoza:"
                                 floatingLabelStyle={styles.floatingLabelStyle}
-                                value={this.state.report.typeOfTransport}
+                                value={this.state.typeOfTransport}
                                 onChange={this.handleTypeOfTransport}
                                 style={styles.selectField}
                             >
