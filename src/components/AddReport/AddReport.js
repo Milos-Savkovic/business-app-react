@@ -143,8 +143,8 @@ class AddReport extends Component {
         const name = e.target.name;
         const value = e.target.value;
 
-        city[name] = value/1000;
-
+        if (name !== 'cityName') city[name] = value / 1000;
+        else city[name] = value;
         this.setState({
             city
         });
@@ -301,7 +301,7 @@ class AddReport extends Component {
                         </div>
                         <div >
                             <p>Distanca : </p>
-                            <input type="text" className="map-distance" defaultValue={this.state.city.distance  + " km"} onChange={this.handleCity} required />
+                            <input type="text" className="map-distance" defaultValue={this.state.city.distance + " km"} onChange={this.handleCity} required />
                         </div>
                     </div>
                     <MyMap
