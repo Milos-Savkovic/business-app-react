@@ -3,9 +3,7 @@ import './report.css';
 
 class Report extends Component {
 
-    render() {
-        console.log(this.props);
-       
+    render() {       
         return (
                 <div className="report">
                     {this.props.reportName}
