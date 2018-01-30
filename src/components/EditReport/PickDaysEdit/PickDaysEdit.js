@@ -42,7 +42,6 @@ export default class PickDaysEdit extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 <DatePicker
@@ -56,7 +55,6 @@ export default class PickDaysEdit extends React.Component {
                     textFieldStyle={{
                         width: '130px',
                     }}
-                    required
                 />
                 <DatePicker
                     onChange={this.handleChangeMaxDate}
@@ -69,7 +67,6 @@ export default class PickDaysEdit extends React.Component {
                     textFieldStyle={{
                         width: '130px',
                     }}
-                    required
                 />
             </div>
         );

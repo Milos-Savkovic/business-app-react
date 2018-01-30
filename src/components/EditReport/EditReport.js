@@ -11,7 +11,6 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import TimePicker from 'material-ui/TimePicker';
-import Toggle from 'material-ui/Toggle';
 import { grey400 } from 'material-ui/styles/colors';
 import './editReport.css';
 
@@ -34,11 +33,6 @@ const styles = {
 class EditReport extends Component {
 
     state = {
-        toggled: true,
-        city: {
-            cityName: '',
-            distance: 0,
-        },
         towns: [],
         earnings: '',
         typeOfTransport: '',
@@ -51,13 +45,12 @@ class EditReport extends Component {
         protocol: '',
         reason: '',
         loading: true,
-        report: null,
     }
     componentWillMount() {
         fireDB.ref(`/users/${this.props.match.params.id}/Reports/${this.props.match.params.key}`).once('value').then(snapshot => {
             const report = snapshot.val();
             this.setState({
-                protocol: report.protocol,
+                protocol:report.protocol,
                 startDate: report.date1,
                 endDate: report.date2,
                 startTime: report.startTime,
@@ -74,11 +67,6 @@ class EditReport extends Component {
                     moreCosts: report.moreCosts,
                 });
             }
-            if (report.towns.length > 1) {
-                this.setState({
-                    toggled: false,
-                });
-            };
         })
     }
 
@@ -144,15 +132,6 @@ class EditReport extends Component {
         });
     }
 
-    handleDistance = (dis, nm) => {
-        this.setState({
-            city: {
-                cityName: nm,
-                distance: Math.ceil(dis / 1000),
-            }
-        })
-    }
-
     handleEarnings = (e, value) => this.setState({
         earnings: value,
     })
@@ -165,19 +144,6 @@ class EditReport extends Component {
         typeOfTransport: value,
     });
 
-    handleCity = (e) => {
-        e.preventDefault();
-        const city = this.state.city;
-        const name = e.target.name;
-        const value = e.target.value;
-
-        city[name] = value;
-
-        this.setState({
-            city
-        });
-    }
-
     xhandler = () => {
         this.props.history.goBack();
     }
@@ -186,7 +152,7 @@ class EditReport extends Component {
         const newArray = this.state.moreCosts;
         newArray.push({
             id: uuidv4(),
-            name: 0,
+            name: '',
             KM: '',
         });
         this.setState({
@@ -318,51 +284,8 @@ class EditReport extends Component {
         });
     };
 
-    displayMap = () => {
-        if (this.state.toggled) {
-            return (
-                <div className="map-element">
-                    <div className="location-components">
-                        <div >
-                            <p>Lokacija : </p>
-                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} defaultValue={this.state.towns.map(town => town.to)} required />
-                        </div>
-                        <div >
-                            <p>Distanca : </p>
-                            <input type="text" className="map-distance" value={this.state.towns.map(town => town.distance + " km")} onChange={this.handleCity} required />
-                        </div>
-                    </div>
-                    <MyMap
-                        city={this.state.city.cityName || 'Banja Luka'}
-                        handleDistance={this.handleDistance}
-                    />
-                </div>
-            )
-        }
-        else return (
-            <div className="add-destinations">
-                <div>
-                    {this.state.towns.map(input => <NewDistanceEdit
-                        input={input}
-                        key={input.id}
-                        id={input.id}
-                        handleNextTown={this.handleNextTown}
-                        handleDeleteInputCity={this.handleDeleteInputCity}
-                    />)}
-                </div>
-                <RaisedButton
-                    primary={true}
-                    style={{
-                        marginTop: '10px',
-                    }}
-                    onClick={this.handleNextDistance}
-                    labelColor="rgb(255, 255, 255)"
-                    label="Add"
-                />
-            </div>
-        );
-    }
     render() {
+        console.log(this.state);
         if (this.state.loading) {
             return (
                 <div className="load-bar">
@@ -386,7 +309,7 @@ class EditReport extends Component {
                                     width: '130px',
                                 }}
                                 onChange={this.handleProtocol}
-                                required
+
                             />
                         </div>
                         <div className="dates">
@@ -456,17 +379,26 @@ class EditReport extends Component {
                             onChange={this.handleReason}
                             defaultValue={this.state.reason}
                         />
-                        <div className="toggle-map-mod">
-                            <Toggle
-                                labelStyle={{
-                                    fontSize: '14px',
+                        <div className="add-destinations">
+                            <div>
+                                {this.state.towns.map(input => <NewDistanceEdit
+                                    input={input}
+                                    key={input.id}
+                                    id={input.id}
+                                    handleNextTown={this.handleNextTown}
+                                    handleDeleteInputCity={this.handleDeleteInputCity}
+                                />)}
+                            </div>
+                            <RaisedButton
+                                primary={true}
+                                style={{
+                                    marginTop: '10px',
                                 }}
-                                label="Map mod"
-                                labelPosition="right"
-                                onToggle={() => this.setState({ toggled: !this.state.toggled })}
+                                onClick={this.handleNextDistance}
+                                labelColor="rgb(255, 255, 255)"
+                                label="Add"
                             />
                         </div>
-                        {this.displayMap()}
                         <div className="drop">
                             <SelectField
                                 floatingLabelText="Troškove snosi:"
