@@ -16,7 +16,6 @@ export default class PickDaysEdit extends React.Component {
         this.setState({
             minDate: date,
         });
-        console.log(date);
         const convertDate = this.formatDate(date);
         this.props.handleDateStart(convertDate);
     };
@@ -52,7 +51,6 @@ export default class PickDaysEdit extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 <DatePicker

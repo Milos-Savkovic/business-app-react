@@ -122,15 +122,14 @@ class EditReport extends Component {
             };
         }
         //push new report in reports array
-        const ref = fireDB.ref(`/users/${this.props.id}/Reports`);
-        ref.push(report, error => {
-            console.log(error);
-        });
+        const ref = fireDB.ref(`/users/${this.props.match.params.id}/Reports/${this.props.match.params.key}`);
+        ref.update(report);
         this.handleSubmit();
     }
 
     handleSubmit = () => {
-        this.props.updateReportList();
+        alert("Successfully update report.");
+        this.props.history.goBack();
     }
 
     handleDateStart = (date) => {
@@ -364,8 +363,6 @@ class EditReport extends Component {
         );
     }
     render() {
-        console.log(this.props);
-        console.log(this.state);
         if (this.state.loading) {
             return (
                 <div className="load-bar">
