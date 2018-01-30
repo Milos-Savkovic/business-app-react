@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
-import MyMap from '../../api/MyMap';
 import { fireDB } from '../../api/firebaseApp';
 import PickDaysEdit from './PickDaysEdit/PickDaysEdit';
 import NewCostsEdit from './NewCostsEdit/NewCostsEdit';
@@ -285,7 +284,6 @@ class EditReport extends Component {
     };
 
     render() {
-        console.log(this.state);
         if (this.state.loading) {
             return (
                 <div className="load-bar">

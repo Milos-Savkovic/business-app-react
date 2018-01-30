@@ -359,7 +359,6 @@ class AddReport extends Component {
     }
 
     render() {
-        console.log(this.state);
         const date = new Date();
         return (
             <div className="field">

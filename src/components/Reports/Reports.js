@@ -39,7 +39,6 @@ class Reports extends Component {
 
   render() {
     const reports = this.sortedArrayOfReports(this.state.users);
-    console.log(reports);
     return (
       <div className="reports-wrapper">
         {

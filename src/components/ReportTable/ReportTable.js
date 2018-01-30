@@ -24,7 +24,6 @@ export const ReportTable = (props) => {
       return <div key={id} className={divClass.join(' ')}>{obj ? obj[option] : ''}</div>
     });
   }
-  console.log(props);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
