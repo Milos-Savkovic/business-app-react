@@ -42,7 +42,6 @@ class ReportDetails extends Component {
 
   giveMeReport = () => {
     const reps = this.state.user.Reports;
-    console.log(reps);
     if (reps) {
       const arrayFromUrl = this.props.path.split('/');
       const reportId = arrayFromUrl.pop();
@@ -114,8 +113,7 @@ class ReportDetails extends Component {
             return sum;
           },
         }
-        const sum = totalCosts.total().toFixed(2);
-        console.log(this.state);
+        const sum = totalCosts.total().toFixed(2);        
         return (
           <div>
             <div className="report-container" id="report">
