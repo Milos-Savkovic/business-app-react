@@ -115,10 +115,7 @@ class ReportDetails extends Component {
           },
         }
         const sum = totalCosts.total().toFixed(2);
-        console.log(cities);
-        console.log(totalDistance);
-        console.log(sum);
-        console.log(totalCosts);
+        console.log(this.state);
         return (
           <div>
             <div className="report-container" id="report">
@@ -197,7 +194,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Troškovi putovanje padaju na teret</span>
-                    <div className="floor-border">{report.typeOfTransport}</div>
+                    <div className="floor-border">{report.costs}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">
