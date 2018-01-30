@@ -52,8 +52,9 @@ class UserDetail extends Component {
         ];
         if (this.props.reports) {
             const reports = Object.keys(this.props.reports).map(key => {
+                const activeLink = this.props.path === `/users/${this.props.id}/${key}` ? 'active-link' : '';
                 return (
-                    <div  className="reportName" key={key}>
+                    <div  className={`reportName ${activeLink}`} key={key}>
                         <NavLink
                             exact
                             key={key}
@@ -63,8 +64,6 @@ class UserDetail extends Component {
                             onClick={this.click}
                         >
                             <Report
-                                // userId={this.props.id}
-                                // id={key}
                                 key={this.props.reports[key].reportName}
                                 cost={this.props.reports[key].costs}
                                 reportName={this.props.reports[key].towns[0].to}
@@ -125,6 +124,7 @@ class UserDetail extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="user">
                 <div className="profile-pic">

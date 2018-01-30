@@ -53,6 +53,7 @@ class AboutUser extends Component {
             <div className="aboutUser">
                 <UserDetail
                     key={this.props.id}
+                    path={this.props.path}
                     id={this.props.id}
                     email={this.props.email}
                     firstName={this.props.firstName}
