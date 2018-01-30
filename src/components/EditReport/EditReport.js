@@ -115,7 +115,7 @@ class EditReport extends Component {
     }
 
     handleSubmit = () => {
-        alert("Successfully update report.");
+        console.log("Successfully update report.");
         this.props.history.goBack();
     }
 
