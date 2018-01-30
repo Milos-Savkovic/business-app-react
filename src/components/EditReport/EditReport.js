@@ -461,7 +461,6 @@ class EditReport extends Component {
                                 labelStyle={{
                                     fontSize: '14px',
                                 }}
-                                defaultToggled={this.state.toggled}
                                 label="Map mod"
                                 labelPosition="right"
                                 onToggle={() => this.setState({ toggled: !this.state.toggled })}
