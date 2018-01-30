@@ -69,7 +69,7 @@ class UserDetail extends Component {
                             <Report
                                 key={this.props.reports[key].reportName}
                                 cost={this.props.reports[key].costs}
-                                reportName={this.props.reports[key].towns[0].to}
+                                reportName={this.props.reports[key].protocol}
                                 distance={this.props.reports[key].distance}
                                 dailyEarnings={this.props.reports[key].dailyEarnings}
                                 typeOfTransport={this.props.reports[key].typeOfTransport}
