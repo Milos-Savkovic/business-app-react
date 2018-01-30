@@ -151,7 +151,7 @@ export const ReportTable = (props) => {
       </div>
       <div className="table-row table-row-4">
         <div className="table-row-4-1">
-          Broj priloga: <span className="underline underline-medium">{rep.protocol}</span>
+          Broj priloga: <span className="underline underline-medium">{(rep.moreCosts ? rep.moreCosts.length : 0) + rep.towns.length}</span>
         </div>
         <div className="table-row-4-2">
           Ostaje za isplatu-uplatu&nbsp;

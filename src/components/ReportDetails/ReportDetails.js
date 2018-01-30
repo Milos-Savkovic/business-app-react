@@ -84,7 +84,7 @@ class ReportDetails extends Component {
     return sumOfDistances;
   }
   extraExpenses = (costs) => {
-    if(costs) {
+    if (costs) {
       const expenses = costs.map(cost => +cost.KM);
       const sumOfCosts = expenses.reduce((total, amount) => total + amount);
       return sumOfCosts;
@@ -96,6 +96,12 @@ class ReportDetails extends Component {
     if (!report) return <Redirect to={`/users/${this.props.id}`} />
     else {
       if (this.state.user) {
+        const direction = (array) => {
+          const directions = array.length > 1 ?
+            array.map(city => `${city.to}`).join(' - ') + ' - ' + array.reverse().slice(1).map(city => `${city.to}`).join('-')
+            : array.map(city => `${city.to}`);
+          return `Banja luka -  ${directions} - Banja luka`
+        }
         const days = this.substructDays(report.date1, report.date2);
         const dailyEarnings = this.dayPay(report.dailyEarnings);
         const cities = report.towns.map(town => (
@@ -113,7 +119,8 @@ class ReportDetails extends Component {
             return sum;
           },
         }
-        const sum = totalCosts.total().toFixed(2);        
+        const directions = direction(cities);
+        const sum = totalCosts.total().toFixed(2);
         return (
           <div>
             <div className="report-container" id="report">
@@ -210,7 +217,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Pravac putovanja</span>
-                    <div className="floor-border">{cities.map(city => `${city.from} - ${city.to}`).join(', ') + `,${cities[cities.length-1].to} - Banja luka`}</div>
+                    <div className="floor-border">{directions}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">
@@ -278,7 +285,7 @@ class ReportDetails extends Component {
                   dailyEarnings={dailyEarnings}
                   cities={cities}
                   totalDistance={totalDistance}
-                  extraCosts={report.moreCosts}                  
+                  extraCosts={report.moreCosts}
                 />
                 <br />
                 <br />
