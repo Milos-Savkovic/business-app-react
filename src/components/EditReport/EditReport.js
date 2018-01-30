@@ -3,8 +3,8 @@ import uuidv4 from 'uuid/v4';
 import MyMap from '../../api/MyMap';
 import { fireDB } from '../../api/firebaseApp';
 import PickDaysEdit from './PickDaysEdit/PickDaysEdit';
-import NewCosts from '../NewCosts/NewCosts';
-import NewDistance from '../NewDistance/NewDistance';
+import NewCostsEdit from './NewCostsEdit/NewCostsEdit';
+import NewDistanceEdit from './NewDistanceEdit/NewDistanceEdit';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -43,7 +43,7 @@ class EditReport extends Component {
         earnings: 'domaća',
         typeOfTransport: 'službeno',
         costs: 'kompanija',
-        startDate: null,
+        startDate: '',
         endDate: null,
         startTime: null,
         endtime: null,
@@ -311,7 +311,7 @@ class EditReport extends Component {
                         </div>
                         <div >
                             <p>Distanca : </p>
-                            <input type="text" className="map-distance" value={Math.ceil(this.state.city.distance / 1000) + " km"} value={this.state.report.towns.map(town => (town.distance/1000).toFixed(2))+ " km"} onChange={this.handleCity} required />
+                            <input type="text" className="map-distance" value={this.state.report.towns.map(town => town.distance + " km")} onChange={this.handleCity} required />
                         </div>
                     </div>
                     <MyMap
@@ -324,7 +324,7 @@ class EditReport extends Component {
         else return (
             <div className="add-destinations">
                 <div>
-                    {this.state.towns.map(input => <NewDistance
+                    {this.state.towns.map(input => <NewDistanceEdit
                         key={input.id}
                         id={input.id}
                         handleNextTown={this.handleNextTown}
@@ -344,7 +344,6 @@ class EditReport extends Component {
         );
     }
     render() {
-        console.log(this.state);
         if (this.state.loading) {
             return (
                 <div className="load-bar">
@@ -353,168 +352,169 @@ class EditReport extends Component {
                     <div className="bar"></div>
                 </div>
             );
-        } else return (
-            <div className="field">
-                <form className="form-newReport" onSubmit={this.setFirebase} >
-                    <div className="protocol">
+        } else
+            return (
+                <div className="field">
+                    <form className="form-newReport" onSubmit={this.setFirebase} >
+                        <div className="protocol">
+                            <TextField
+                                defaultValue={this.state.report.protocol}
+                                floatingLabelText="Broj protokola"
+                                floatingLabelStyle={{
+                                    color: grey400,
+                                }}
+                                style={{
+                                    width: '130px',
+                                }}
+                                onChange={this.handleProtocol}
+                                required
+                            />
+                        </div>
+                        <div className="dates">
+                            <div>
+                                <PickDaysEdit
+                                    handleDateStart={this.handleDateStart}
+                                    handleDateEnd={this.handleDateEnd}
+                                    start={this.state.report.date1}
+                                    end={this.state.report.date2}
+                                />
+                            </div>
+                            <div>
+                                <TimePicker
+                                    format="24hr"
+                                    hintText="Vrijeme polaska"
+                                    textFieldStyle={{
+                                        width: '130px',
+                                        color: grey400,
+                                    }}
+                                    onChange={this.handleChangeMinTime}
+                                />
+                                <br />
+                                <TimePicker
+                                    format="24hr"
+                                    hintText="Vrijeme dolaska"
+                                    textFieldStyle={{
+                                        width: '130px',
+                                        color: grey400,
+                                    }}
+                                    onChange={this.handleChangeMaxTime}
+                                />
+                            </div>
+                            <div className="rowEarnings">
+                                <p>Dnevnica : </p>
+                                <RadioButtonGroup
+                                    name="earnings"
+                                    onChange={this.handleEarnings}
+                                    defaultSelected={this.state.report.dailyEarnings}
+                                >
+                                    <RadioButton
+                                        label="strana"
+                                        value="strana"
+                                        style={styles.radioButton}
+                                    />
+                                    <RadioButton
+                                        label="domaća"
+                                        value="domaća"
+                                        style={styles.radioButton}
+                                    />
+                                    <RadioButton
+                                        label="EX-YU"
+                                        value="EX-YU"
+                                        style={styles.radioButton}
+                                    />
+                                </RadioButtonGroup>
+                            </div>
+                        </div>
                         <TextField
-                            defaultValue={this.state.report.protocol}
-                            floatingLabelText="Broj protokola"
+                            className="cause-field"
+                            hintText="poslovnog angažmana za klijenta"
+                            floatingLabelText="Putuje se radi"
                             floatingLabelStyle={{
                                 color: grey400,
                             }}
-                            style={{
-                                width: '130px',
-                            }}
-                            onChange={this.handleProtocol}
-                            required
+                            multiLine={true}
+                            rows={1}
+                            onChange={this.handleReason}
+                            value={this.state.report.reason}
                         />
-                    </div>
-                    <div className="dates">
-                        <div>
-                            <PickDaysEdit
-                                handleDateStart={this.handleDateStart}
-                                handleDateEnd={this.handleDateEnd}
-                                start={this.state.report.date1}
-                                end={this.state.report.date2}
+                        <div className="toggle-map-mod">
+                            <Toggle
+                                labelStyle={{
+                                    fontSize: '14px',
+                                }}
+                                defaultToggled={true}
+                                label="Map mod"
+                                labelPosition="right"
+                                onToggle={() => this.setState({ toggled: !this.state.toggled })}
                             />
                         </div>
-                        <div>
-                            <TimePicker
-                                format="24hr"
-                                hintText="Vrijeme polaska"
-                                textFieldStyle={{
-                                    width: '130px',
-                                    color: grey400,
-                                }}                                
-                                onChange={this.handleChangeMinTime}
-                            />
-                            <br />
-                            <TimePicker
-                                format="24hr"
-                                hintText="Vrijeme dolaska"
-                                textFieldStyle={{
-                                    width: '130px',
-                                    color: grey400,
-                                }}                                
-                                onChange={this.handleChangeMaxTime}
-                            />
-                        </div>
-                        <div className="rowEarnings">
-                            <p>Dnevnica : </p>
-                            <RadioButtonGroup
-                                name="earnings"
-                                onChange={this.handleEarnings}
-                                defaultSelected={this.state.report.dailyEarnings}
+                        {this.displayMap()}
+                        <div className="drop">
+                            <SelectField
+                                floatingLabelText="Troškove snosi:"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                value={this.state.report.costs}
+                                onChange={this.handleCosts}
+                                style={styles.selectField}
                             >
-                                <RadioButton
-                                    label="strana"
-                                    value="strana"
-                                    style={styles.radioButton}
+                                <MenuItem
+                                    value="kompanija"
+                                    primaryText="Kompanija"
+                                    style={styles.menuItem}
                                 />
-                                <RadioButton
-                                    label="domaća"
-                                    value="domaća"
-                                    style={styles.radioButton}
+                                <MenuItem
+                                    value="zaposleni"
+                                    primaryText="Zaposleni"
+                                    style={styles.menuItem}
                                 />
-                                <RadioButton
-                                    label="EX-YU"
-                                    value="EX-YU"
-                                    style={styles.radioButton}
-                                />
-                            </RadioButtonGroup>
+                            </SelectField>
+                            &nbsp;
+                        <SelectField
+                                floatingLabelText="Vrsta prevoza:"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                value={this.state.report.typeOfTransport}
+                                onChange={this.handleTypeOfTransport}
+                                style={styles.selectField}
+                            >
+                                <MenuItem value="službeno" primaryText="Službeno vozilo" />
+                                <MenuItem value="lično" primaryText="Lično vozilo" />
+                            </SelectField>
                         </div>
-                    </div>
-                    <TextField
-                        className="cause-field"
-                        hintText="poslovnog angažmana za klijenta"
-                        floatingLabelText="Putuje se radi"
-                        floatingLabelStyle={{
-                            color: grey400,
-                        }}
-                        multiLine={true}
-                        rows={1}
-                        onChange={this.handleReason}
-                        value={this.state.report.reason}
-                    />
-                    <div className="toggle-map-mod">
-                        <Toggle
-                            labelStyle={{
-                                fontSize: '14px',
+                        <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
+                        <div>
+                            {this.state.moreCosts.map(input => <NewCostsEdit
+                                key={input.id}
+                                id={input.id}
+                                handleMoreCostsName={this.handleMoreCostsName}
+                                handleMoreCostsValue={this.handleMoreCostsValue}
+                                handleDeleteInput={this.handleDeleteInput}
+                            />)}
+                        </div>
+                        <RaisedButton
+                            primary={true}
+                            style={{
+                                marginTop: '10px',
                             }}
-                            defaultToggled={true}
-                            label="Map mod"
-                            labelPosition="right"
-                            onToggle={() => this.setState({ toggled: !this.state.toggled })}
+                            onClick={this.handleMoreCosts}
+                            labelColor="rgb(255, 255, 255)"
+                            label="Add"
                         />
-                    </div>
-                    {this.displayMap()}
-                    <div className="drop">
-                        <SelectField
-                            floatingLabelText="Troškove snosi:"
-                            floatingLabelStyle={styles.floatingLabelStyle}
-                            value={this.state.report.costs}
-                            onChange={this.handleCosts}
-                            style={styles.selectField}
+                        <RaisedButton
+                            type="submit"
+                            label="Save changes"
+                            className="submit"
+                            backgroundColor="rgb(60, 184, 255)"
+                            labelColor="rgb(255, 255, 255)"
+                        />
+                        <div
+                            className="close"
+                            onClick={this.xhandler}
                         >
-                            <MenuItem
-                                value="kompanija"
-                                primaryText="Kompanija"
-                                style={styles.menuItem}
-                            />
-                            <MenuItem
-                                value="zaposleni"
-                                primaryText="Zaposleni"
-                                style={styles.menuItem}
-                            />
-                        </SelectField>
-                        &nbsp;
-                        <SelectField
-                            floatingLabelText="Vrsta prevoza:"
-                            floatingLabelStyle={styles.floatingLabelStyle}
-                            value={this.state.report.typeOfTransport}
-                            onChange={this.handleTypeOfTransport}
-                            style={styles.selectField}
-                        >
-                            <MenuItem value="službeno" primaryText="Službeno vozilo" />
-                            <MenuItem value="lično" primaryText="Lično vozilo" />
-                        </SelectField>
+                            X
                     </div>
-                    <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
-                    <div>
-                        {this.state.moreCosts.map(input => <NewCosts
-                            key={input.id}
-                            id={input.id}
-                            handleMoreCostsName={this.handleMoreCostsName}
-                            handleMoreCostsValue={this.handleMoreCostsValue}
-                            handleDeleteInput={this.handleDeleteInput}
-                        />)}
-                    </div>
-                    <RaisedButton
-                        primary={true}
-                        style={{
-                            marginTop: '10px',
-                        }}
-                        onClick={this.handleMoreCosts}
-                        labelColor="rgb(255, 255, 255)"
-                        label="Add"
-                    />
-                    <RaisedButton
-                        type="submit"
-                        label="Save changes"
-                        className="submit"
-                        backgroundColor="rgb(60, 184, 255)"
-                        labelColor="rgb(255, 255, 255)"
-                    />
-                    <div
-                        className="close"
-                        onClick={this.xhandler}
-                    >
-                        X
-                    </div>
-                </form>
-            </div>
-        );
+                    </form>
+                </div>
+            );
     }
 }
 export default EditReport;
