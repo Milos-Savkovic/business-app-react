@@ -14,15 +14,15 @@ export const ReportTable = (props) => {
   const sum = props.sum;
   const dailyEarnings = props.dailyEarnings;
   const destinations = props.cities;
-  const costs = props.extraCosts;
-  console.log(destinations);
-  const listOf = (destinations, option, divClass) => {
+  const costs = props.extraCosts || [];
+  console.log(props);
+  const listOf = (arrayOfObjects, option, divClass, rows) => {
     let array = [];
-    for (let i = 0; i <= 6; i++) {
-      array.push(destinations[i] ? destinations[i] : '');
+    for (let i = 0; i <= rows; i++) {
+      array.push(arrayOfObjects[i] ? arrayOfObjects[i] : '');
     }
-    return array.map((dest, id) => {
-      return <div key={id} className={divClass}>{dest ? dest[option] : ''}</div>
+    return array.map((obj, id) => {
+      return <div key={id} className={divClass.join(' ')}>{obj ? obj[option] : ''}</div>
     });
   }
   return (
@@ -74,11 +74,11 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell cell-2 table-row-2-cell-2">
           <div className="long-field">Od</div>
-          {listOf(destinations, 'from', 'long-field')}
+          {listOf(destinations, 'from', ['long-field'], 6)}
         </div>
         <div className="cell cell-3 table-row-2-cell-3">
           <div className="long-field">Do</div>
-          {listOf(destinations, 'to', 'long-field')}
+          {listOf(destinations, 'to', ['long-field'], 6)}
         </div>
         <div className="cell cell-4 table-row-2-cell-4">
           <div className="long-field">Vrsta prevoza</div>
@@ -126,19 +126,13 @@ export const ReportTable = (props) => {
           <p className="cell-1__text">Ostalo</p>
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          <div className="longer-field">{costs ? costs.map(cost => `${cost.name}; `) : null}</div>
-          <div className="longer-field"></div>
-          <div className="longer-field" style={{ borderBottom: 0 }}></div>
+          {listOf(costs, 'name', ['longer-field'], 2)}
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          <div className="medium-field medium-field-row-2">{props.totalCosts.rest}</div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2 medium-field-end"></div>
+          {listOf(costs, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
         </div>
         <div className="cell cell-7 table-row-2-cell-7">
-          <div className="medium-field medium-field-row-2">{props.totalCosts.rest}</div>
-          <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2 medium-field-end"></div>
+          {listOf(costs, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
         </div>
       </div>
       <div className="table-row table-row-3">
