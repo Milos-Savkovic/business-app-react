@@ -7,8 +7,8 @@ export default class PickDaysEdit extends React.Component {
         super(props);
 
         this.state = {
-            minDate: moment(this.validFormat(this.props.start)).toDate() || undefined,
-            maxDate: moment(this.validFormat(this.props.end)).toDate() || undefined,
+            minDate: undefined,
+            maxDate: undefined,
         };
     }
 
@@ -41,21 +41,14 @@ export default class PickDaysEdit extends React.Component {
         }
         return day + "." + month + "." + date.getFullYear() + ".";
     }
-    validFormat = (string) => {
-        const dateArray = string.split('.').reverse().slice(1).map(val => +val);
-        return {
-            year: dateArray[0],
-            month: dateArray[1],
-            day: dateArray[2],
-        }
-    }
 
     render() {
+        console.log(this.state);
         return (
             <div>
                 <DatePicker
                     onChange={this.handleChangeMinDate}
-                    floatingLabelText="Datum polaska"
+                    floatingLabelText={`Old : ${this.props.start}`}
                     maxDate={this.state.maxDate}
                     defaultDate={this.state.minDate}
                     formatDate={this.formatDate}
@@ -68,7 +61,7 @@ export default class PickDaysEdit extends React.Component {
                 />
                 <DatePicker
                     onChange={this.handleChangeMaxDate}
-                    floatingLabelText="Datum dolaska"
+                    floatingLabelText={`Old: ${this.props.end}`}
                     minDate={this.state.minDate}
                     defaultDate={this.state.maxDate}
                     formatDate={this.formatDate}

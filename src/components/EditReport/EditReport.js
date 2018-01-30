@@ -78,7 +78,7 @@ class EditReport extends Component {
                 this.setState({
                     toggled: false,
                 });
-            }
+            };
         })
     }
 
