@@ -65,11 +65,19 @@
   box-sizing: border-box;
   transition: all .2s ease-out;
 }
+.print-icon {
+  padding: 2px;
+  margin-left: 15px;
+  fill: rgb(60, 184, 255)!important;
+}
 .print-report-button:hover {
   cursor: pointer;
   color: white;
   background: rgb(60, 185, 255);
   border: 1px solid rgb(60, 185, 255);
+}
+.print-report-button:hover .print-icon {
+  fill: #fff!important;
 }
 .report-row-no-line, .report-field {
   display: flex;

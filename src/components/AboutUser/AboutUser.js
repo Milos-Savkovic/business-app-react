@@ -55,12 +55,12 @@ class AboutUser extends Component {
                     key={this.props.id}
                     path={this.props.path}
                     id={this.props.id}
-                    email={this.props.email}
+                    // email={this.props.email}
                     firstName={this.props.firstName}
                     lastName={this.props.lastName}
                     position={this.props.position}
                     reports={this.props.reports}
-                    description={this.props.description}
+                    // description={this.props.description}
                     image={this.props.image}
                     clickedLink={this.clicked}
                     keyLocation={this.props.location.key}
