@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './ReportDetails.css';
 import { ReportTable } from '../ReportTable/ReportTable';
+import PrintIcon from 'material-ui/svg-icons/action/print';
 import moment from 'moment';
 
 class ReportDetails extends Component {
@@ -352,7 +353,12 @@ class ReportDetails extends Component {
               className="print-report-button"
               onClick={this.printReport}
             >
-              Print report &#128438;
+              Print report 
+              <PrintIcon 
+                // color="#3cb8ff" 
+                // hoverColor="#fff" 
+                className="print-icon" 
+              />
           </button>
             <br />
           </div>
