@@ -165,12 +165,21 @@ class AddReport extends Component {
     }
     handleNextDistance = () => {
         const towns = this.state.towns;
-        towns.push({
-            id: uuidv4(),
-            from: '',
-            to: '',
-            distance: ''
-        });
+        if (this.state.typeOfTransport === "autobus") {
+            towns.push({
+                id: uuidv4(),
+                from: '',
+                to: '',
+                busTicket: ''
+            });
+        } else {
+            towns.push({
+                id: uuidv4(),
+                from: '',
+                to: '',
+                distance: ''
+            });
+        }
         this.setState({
             towns: towns,
         });
@@ -183,6 +192,7 @@ class AddReport extends Component {
             if (item.id === e.target.id) {
                 if (e.target.name === "1") item.from = e.target.value;
                 else if (e.target.name === "2") item.to = e.target.value;
+                else if (this.setFirebase.typeOfTransport === "autobus") item.busTicket = e.target.value;
                 else item.distance = e.target.value;
             }
             return item;
@@ -313,6 +323,7 @@ class AddReport extends Component {
             <div className="add-destinations">
                 <div>
                     {this.state.towns.map(input => <NewDistance
+                        typeOfTransport={this.state.typeOfTransport}
                         key={input.id}
                         id={input.id}
                         handleNextTown={this.handleNextTown}
@@ -442,18 +453,7 @@ class AddReport extends Component {
                         rows={1}
                         onChange={this.handleReason}
                     />
-                    <div className="toggle-map-mod">
-                        <Toggle
-                            labelStyle={{
-                                fontSize: '14px',
-                            }}
-                            defaultToggled={true}
-                            label="Map mod"
-                            labelPosition="right"
-                            onToggle={() => this.setState({ toggled: !this.state.toggled })}
-                        />
-                    </div>
-                    {this.displayMap()}
+
                     <div className="drop">
                         <SelectField
                             floatingLabelText="Troškovi padaju na teret:"
@@ -486,6 +486,18 @@ class AddReport extends Component {
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>
                     </div>
+                    <div className="toggle-map-mod">
+                        <Toggle
+                            labelStyle={{
+                                fontSize: '14px',
+                            }}
+                            defaultToggled={true}
+                            label="Map mod"
+                            labelPosition="right"
+                            onToggle={() => this.setState({ toggled: !this.state.toggled })}
+                        />
+                    </div>
+                    {this.displayMap()}
                     <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
                     <div>
                         {this.state.moreCosts.map(input => <NewCosts

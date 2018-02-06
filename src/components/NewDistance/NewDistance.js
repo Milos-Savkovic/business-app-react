@@ -12,6 +12,11 @@ class NewDistance extends Component {
         this.props.handleDeleteInputCity(this.props.id);
     }
 
+    renderLabel() {
+        if (this.props.typeOfTransport === "autobus") return <strong>KM</strong>;
+        return <strong>km</strong>;
+    }
+
     render() {
         return (
             <div className="newInput">
@@ -22,7 +27,7 @@ class NewDistance extends Component {
                     style={{
                         width: '200px',
                     }}
-                    onChange={ this.props.handleNextTown} 
+                    onChange={this.props.handleNextTown}
                 />
                 <TextField
                     name="2"
@@ -32,7 +37,7 @@ class NewDistance extends Component {
                         width: '200px',
                         marginLeft: '20px',
                     }}
-                    onChange={ this.props.handleNextTown} 
+                    onChange={this.props.handleNextTown}
                 />
                 <TextField
                     name="3"
@@ -42,9 +47,9 @@ class NewDistance extends Component {
                         width: '80px',
                         marginLeft: '20px',
                     }}
-                    onChange={ this.props.handleNextTown} 
+                    onChange={this.props.handleNextTown}
                 />
-                <strong>km</strong>
+                {this.renderLabel()}
                 <IconButton onClick={(e) => { this.handleDeleteInputCity(e) }} >
                     <DeleteIcon className="delete-icon"
                     />

@@ -58,7 +58,8 @@ p{
 }
 .drop{
      width:405px;
-     margin-top: 3rem;
+     margin-bottom: 3rem;
+     margin-top: 0px;
 }
 .dropItem{
     align-content: stretch;
@@ -94,7 +95,7 @@ p{
 }
 .cause-field {
     width: 80%!important;
-    margin-bottom: 3rem;
+    margin-bottom: -1rem;
 }
 .map-element{
   display:flex;
