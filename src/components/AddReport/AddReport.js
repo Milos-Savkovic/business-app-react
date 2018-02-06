@@ -480,6 +480,7 @@ class AddReport extends Component {
                             onChange={this.handleTypeOfTransport}
                             style={styles.selectField}
                         >
+                            <MenuItem value="autobus" primaryText="Autobus" />
                             <MenuItem value="službeno" primaryText="Službeno vozilo" />
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>

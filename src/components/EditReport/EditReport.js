@@ -49,7 +49,7 @@ class EditReport extends Component {
         fireDB.ref(`/users/${this.props.match.params.id}/Reports/${this.props.match.params.key}`).once('value').then(snapshot => {
             const report = snapshot.val();
             this.setState({
-                protocol:report.protocol,
+                protocol: report.protocol,
                 startDate: report.date1,
                 endDate: report.date2,
                 startTime: report.startTime,
@@ -424,6 +424,7 @@ class EditReport extends Component {
                                 onChange={this.handleTypeOfTransport}
                                 style={styles.selectField}
                             >
+                                <MenuItem value="autobus" primaryText="Autobus" />
                                 <MenuItem value="službeno" primaryText="Službeno vozilo" />
                                 <MenuItem value="lično" primaryText="Lično vozilo" />
                             </SelectField>

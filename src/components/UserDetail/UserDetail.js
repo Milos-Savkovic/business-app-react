@@ -109,6 +109,7 @@ class UserDetail extends Component {
         try {
             const file = e.target.files[0];
             fire.storage().ref(`images/${this.props.id}`).put(file);
+            
             const fetchImage = fire.storage().ref(`images/${this.props.id}`).getDownloadURL();
             fetchImage.then((url) => {
                 console.log(url);
