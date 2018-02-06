@@ -45,8 +45,8 @@ class AddReport extends Component {
         costs: 'kompanije',
         startDate: null,
         endDate: null,
-        startTime: null,
-        endtime: null,
+        startTime: '08:00',
+        endTime: '23:00',
         moreCosts: [],
         protocol: '',
         reason: '',
@@ -359,6 +359,7 @@ class AddReport extends Component {
     }
 
     render() {
+        console.log(this.state);
         const date = new Date();
         return (
             <div className="field">
@@ -387,7 +388,7 @@ class AddReport extends Component {
                         <div>
                             <TimePicker
                                 format="24hr"
-                                hintText="Vrijeme polaska"
+                                hintText="08:00"
                                 textFieldStyle={{
                                     width: '130px',
                                     color: grey400,
@@ -397,7 +398,7 @@ class AddReport extends Component {
                             <br />
                             <TimePicker
                                 format="24hr"
-                                hintText="Vrijeme dolaska"
+                                hintText="23:00"
                                 textFieldStyle={{
                                     width: '130px',
                                     color: grey400,
@@ -413,17 +414,17 @@ class AddReport extends Component {
                                 defaultSelected="domaća"
                             >
                                 <RadioButton
-                                    label="strana"
+                                    label="strana ( 20 KM )"
                                     value="strana"
                                     style={styles.radioButton}
                                 />
                                 <RadioButton
-                                    label="domaća"
+                                    label="domaća ( 39.16 KM )"
                                     value="domaća"
                                     style={styles.radioButton}
                                 />
                                 <RadioButton
-                                    label="EX-YU"
+                                    label="EX-YU ( 97.90 KM )"
                                     value="EX-YU"
                                     style={styles.radioButton}
                                 />
