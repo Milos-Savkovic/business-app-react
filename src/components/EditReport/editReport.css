@@ -58,6 +58,7 @@ p{
 }
 .drop{
      width:405px;
+     margin-bottom: 3rem;
      margin-top: 3rem;
 }
 .dropItem{
@@ -94,7 +95,7 @@ p{
 }
 .cause-field {
     width: 80%!important;
-    margin-bottom: 3rem;
+    margin-bottom: -1rem;
 }
 .map-element{
   display:flex;
@@ -116,9 +117,6 @@ p{
     border-bottom:2px solid #3cb8ff;
     border-radius:7%;     
     font-size:16px;
-}
-.toggle-map-mod{
-    margin-bottom:15px;
 }
 .add-destinations{
     display: flex;

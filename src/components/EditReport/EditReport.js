@@ -160,12 +160,21 @@ class EditReport extends Component {
     }
     handleNextDistance = () => {
         const towns = this.state.towns;
-        towns.push({
-            id: uuidv4(),
-            from: '',
-            to: '',
-            distance: ''
-        });
+        if (this.state.typeOfTransport === "autobus") {
+            towns.push({
+                id: uuidv4(),
+                from: '',
+                to: '',
+                busTicket: ''
+            });
+        } else {
+            towns.push({
+                id: uuidv4(),
+                from: '',
+                to: '',
+                distance: ''
+            });
+        }
         this.setState({
             towns: towns,
         });
@@ -178,6 +187,7 @@ class EditReport extends Component {
             if (item.id === e.target.id) {
                 if (e.target.name === "1") item.from = e.target.value;
                 else if (e.target.name === "2") item.to = e.target.value;
+                else if (this.setFirebase.typeOfTransport === "autobus") item.busTicket = e.target.value;
                 else item.distance = e.target.value;
             }
             return item;
@@ -284,6 +294,7 @@ class EditReport extends Component {
     };
 
     render() {
+        console.log(this.state);
         if (this.state.loading) {
             return (
                 <div className="load-bar">
@@ -377,9 +388,42 @@ class EditReport extends Component {
                             onChange={this.handleReason}
                             defaultValue={this.state.reason}
                         />
+                        <div className="drop">
+                            <SelectField
+                                floatingLabelText="Troškovi padaju na teret:"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                value={this.state.costs}
+                                onChange={this.handleCosts}
+                                style={styles.selectField}
+                            >
+                                <MenuItem
+                                    value="kompanije"
+                                    primaryText="Kompanije"
+                                    style={styles.menuItem}
+                                />
+                                <MenuItem
+                                    value="zaposlenog"
+                                    primaryText="Zaposlenog"
+                                    style={styles.menuItem}
+                                />
+                            </SelectField>
+                            &nbsp;
+                        <SelectField
+                                floatingLabelText="Vrsta prevoza:"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                value={this.state.typeOfTransport}
+                                onChange={this.handleTypeOfTransport}
+                                style={styles.selectField}
+                            >
+                                <MenuItem value="autobus" primaryText="Autobus" />
+                                <MenuItem value="službeno" primaryText="Službeno vozilo" />
+                                <MenuItem value="lično" primaryText="Lično vozilo" />
+                            </SelectField>
+                        </div>
                         <div className="add-destinations">
                             <div>
                                 {this.state.towns.map(input => <NewDistanceEdit
+                                    typeOfTransport={this.state.typeOfTransport}
                                     input={input}
                                     key={input.id}
                                     id={input.id}
@@ -396,38 +440,6 @@ class EditReport extends Component {
                                 labelColor="rgb(255, 255, 255)"
                                 label="Add"
                             />
-                        </div>
-                        <div className="drop">
-                            <SelectField
-                                floatingLabelText="Troškove snosi:"
-                                floatingLabelStyle={styles.floatingLabelStyle}
-                                value={this.state.costs}
-                                onChange={this.handleCosts}
-                                style={styles.selectField}
-                            >
-                                <MenuItem
-                                    value="kompanija"
-                                    primaryText="Kompanija"
-                                    style={styles.menuItem}
-                                />
-                                <MenuItem
-                                    value="zaposleni"
-                                    primaryText="Zaposleni"
-                                    style={styles.menuItem}
-                                />
-                            </SelectField>
-                            &nbsp;
-                        <SelectField
-                                floatingLabelText="Vrsta prevoza:"
-                                floatingLabelStyle={styles.floatingLabelStyle}
-                                value={this.state.typeOfTransport}
-                                onChange={this.handleTypeOfTransport}
-                                style={styles.selectField}
-                            >
-                                <MenuItem value="autobus" primaryText="Autobus" />
-                                <MenuItem value="službeno" primaryText="Službeno vozilo" />
-                                <MenuItem value="lično" primaryText="Lično vozilo" />
-                            </SelectField>
                         </div>
                         <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
                         <div>

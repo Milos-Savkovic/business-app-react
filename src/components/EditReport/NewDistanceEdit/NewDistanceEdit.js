@@ -11,6 +11,11 @@ class NewDistance extends Component {
         this.props.handleDeleteInputCity(this.props.id);
     }
 
+    renderLabel() {
+        if (this.props.typeOfTransport === "autobus") return <strong>KM</strong>;
+        return <strong>km</strong>;
+    }
+
     render() {
         return (
             <div className="newInput">
@@ -44,7 +49,7 @@ class NewDistance extends Component {
                     }}
                     onChange={this.props.handleNextTown}
                 />
-                <strong>km</strong>
+                {this.renderLabel()}
                 <IconButton onClick={(e) => { this.handleDeleteInputCity(e) }} >
                     <DeleteIcon className="delete-icon"
                     />

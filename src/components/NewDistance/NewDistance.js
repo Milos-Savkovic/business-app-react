@@ -8,7 +8,6 @@ class NewDistance extends Component {
 
     handleDeleteInputCity = (e) => {
         e.preventDefault();
-        console.log("This input will be removed");
         this.props.handleDeleteInputCity(this.props.id);
     }
 
