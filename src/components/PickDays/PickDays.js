@@ -15,7 +15,6 @@ export default class DatePickerExampleToggle extends React.Component {
         this.setState({
             minDate: date,
         });
-        console.log(date);
         const convertDate = this.formatDate(date);
         this.props.handleDateStart(convertDate);
     };

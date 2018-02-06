@@ -294,7 +294,6 @@ class EditReport extends Component {
     };
 
     render() {
-        console.log(this.state);
         if (this.state.loading) {
             return (
                 <div className="load-bar">

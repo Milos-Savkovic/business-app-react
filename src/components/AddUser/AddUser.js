@@ -28,7 +28,6 @@ class AddUser extends Component {
             firstname: '',
             lastname: '',
             position: '',
-            description: '',
             email: '',
         },
         isAdded: false,
@@ -55,7 +54,6 @@ class AddUser extends Component {
     setFirebase = (event) => {
         event.preventDefault();
         const newUser = {
-            Description: this.state.user.description,
             FirstName: this.state.user.firstname,
             LastName: this.state.user.lastname,
             Position: this.state.user.position,
@@ -107,17 +105,6 @@ class AddUser extends Component {
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         onChange={this.handleInput}
                         name="position"
-                        required
-                    /><br />
-                    <TextField
-                        floatingLabelText="Deskripcija"
-                        multiLine={true}
-                        rows={1}
-                        rowsMax={4}
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="description"
                         required
                     /><br />
                     <FlatButton type="submit" label="Dodaj novu osobu" name="submit" style={styles.button} />
