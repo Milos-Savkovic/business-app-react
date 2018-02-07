@@ -29,8 +29,8 @@ class Logged extends Component {
                 <div className="menu-item-right">
                     <MenuItem primaryText={this.props.email} />
                     <Avatar src={this.props.photo} size={50} />
-                    <MenuItem primaryText="Refresh" onClick={() => { window.location.reload() }} />
-                    <MenuItem primaryText="Sign out" onClick={this.props.handlelogout} />
+                    <MenuItem primaryText="Osvježi" onClick={() => { window.location.reload() }} />
+                    <MenuItem primaryText="Odjavite se" onClick={this.props.handlelogout} />
                 </div>
             </IconMenu>
         );
@@ -75,7 +75,7 @@ class Navigation extends Component {
     }
 
     render() {
-        const linkToHome = <Link to='/users'>Bussines Trip</Link>
+        const linkToHome = <Link to='/users'>Busines Trip</Link>
         return (
             <div>
                 <AppBar
@@ -100,11 +100,11 @@ class Navigation extends Component {
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({ open })}
                 >
-                    <Link to="/users"><MenuItem primaryText="Users" leftIcon={<People />} onClick={this.handleClose} /></Link>
-                    <Link to="/users/add"><MenuItem primaryText="Add user" leftIcon={<PersonAdd />} onClick={this.handleClose} /></Link>
+                    <Link to="/users"><MenuItem primaryText="Zaposleni" leftIcon={<People />} onClick={this.handleClose} /></Link>
+                    <Link to="/users/add"><MenuItem primaryText="Novi zaposleni" leftIcon={<PersonAdd />} onClick={this.handleClose} /></Link>
                     <Link to="/reports">
                         <MenuItem 
-                            primaryText="Reports" 
+                            primaryText="Izvještaji" 
                             leftIcon={<Reports />} 
                             onClick={this.handleClose}
                         />

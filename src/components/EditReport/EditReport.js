@@ -437,7 +437,7 @@ class EditReport extends Component {
                                 }}
                                 onClick={this.handleNextDistance}
                                 labelColor="rgb(255, 255, 255)"
-                                label="Add"
+                                label="Dodaj"
                             />
                         </div>
                         <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
@@ -458,11 +458,11 @@ class EditReport extends Component {
                             }}
                             onClick={this.handleMoreCosts}
                             labelColor="rgb(255, 255, 255)"
-                            label="Add"
+                            label="Dodaj"
                         />
                         <RaisedButton
                             type="submit"
-                            label="Save changes"
+                            label="Sačuvaj izmjene"
                             className="submit"
                             backgroundColor="rgb(60, 184, 255)"
                             labelColor="rgb(255, 255, 255)"

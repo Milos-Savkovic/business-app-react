@@ -14,7 +14,7 @@ class Field extends Component {
         let text = (this.props.path === `/users/${this.props.id}`) ?
             (
                 <div className="fieldBack">
-                    <h3 className="field-tip">Choose report on left to print</h3>
+                    <h3 className="field-tip">Izaberite izvještaj sa lijeve strane</h3>
                 </div>
             ) : null;
         return (

@@ -89,7 +89,7 @@ class Container extends Component {
             return (
                 <div className="container">
                     <div className="users-heading">
-                        <h3>Users</h3>
+                        <h3>Zaposleni</h3>
                         <IconButton
                             onClick={this.clickHandler}
                             className="add-person-icon-container"

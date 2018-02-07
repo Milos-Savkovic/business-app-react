@@ -17,7 +17,7 @@ class Person extends Component {
                     <h2 className="name">{`${this.props.firstName} ${this.props.lastName}`}</h2>
                     <p className="title">{this.props.position}</p>
                     <RaisedButton
-                        label="More"
+                        label="Više"
                         onClick={() => { this.handleDetailPerson(this.props.id) }}
                         primary={true}
                     />

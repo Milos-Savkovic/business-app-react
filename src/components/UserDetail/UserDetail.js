@@ -43,12 +43,12 @@ class UserDetail extends Component {
     reporter() {
         const actions = [
             <FlatButton
-                label="Cancel"
+                label="Ne"
                 primary={true}
                 onClick={this.handleClose}
             />,
             <FlatButton
-                label="Yes"
+                label="Da"
                 secondary={true}
                 onClick={this.handleDelete}
             />,
@@ -86,8 +86,8 @@ class UserDetail extends Component {
                                 targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                                 anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                             >
-                                <Link to={`/users/${this.props.id}/${key}/edit`} className="underile-link"> <MenuItem primaryText="Edit" leftIcon={<Create />} /></Link>
-                                <MenuItem primaryText="Remove" leftIcon={<Delete />} onClick={() => this.handleOpen(key)} />
+                                <Link to={`/users/${this.props.id}/${key}/edit`} className="underile-link"> <MenuItem primaryText="Izmijeni" leftIcon={<Create />} /></Link>
+                                <MenuItem primaryText="Obriši" leftIcon={<Delete />} onClick={() => this.handleOpen(key)} />
                             </IconMenu>
                             <Dialog
                                 actions={actions}
@@ -95,7 +95,7 @@ class UserDetail extends Component {
                                 open={this.state.openAlert}
                                 onRequestClose={this.handleDelete}
                             >
-                                Are you sure you want to delete this item?
+                                Da li ste sigurni da želite obrisati ovaj putni nalog?
               </Dialog>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ class UserDetail extends Component {
                     <div className="edit">
                         <IconButton
                             onClick={() => this.fileUpload.click()}
-                            tooltip="Edit image"
+                            tooltip="Dodajte sliku"
                             tooltipPosition="bottom-left"
                             tooltipStyles={{
                                 fontSize: "14px",
@@ -155,7 +155,7 @@ class UserDetail extends Component {
                 <div className="positionClass">
                     {this.props.position}
                 </div>                
-                <h4 className="reports-heading">Reports</h4>
+                <h4 className="reports-heading">Izvještaji</h4>
                 <div className="reportsClass">
                     {this.reporter()}
                 </div>

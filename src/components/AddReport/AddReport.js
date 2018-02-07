@@ -304,7 +304,7 @@ class AddReport extends Component {
                 <div className="map-element">
                     <div className="location-components">
                         <div >
-                            <p>Lokacija : </p>
+                            <p>Destinacija : </p>
                             <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
                         </div>
                         <div >
@@ -337,7 +337,7 @@ class AddReport extends Component {
                     }}
                     onClick={this.handleNextDistance}
                     labelColor="rgb(255, 255, 255)"
-                    label="Add"
+                    label="Dodaj"
                 />
             </div>
         );
@@ -491,7 +491,7 @@ class AddReport extends Component {
                                 fontSize: '14px',
                             }}
                             defaultToggled={true}
-                            label="Map mod"
+                            label="Mapa mod"
                             labelPosition="right"
                             onToggle={() => this.setState({ toggled: !this.state.toggled })}
                         />
@@ -514,11 +514,11 @@ class AddReport extends Component {
                         }}
                         onClick={this.handleMoreCosts}
                         labelColor="rgb(255, 255, 255)"
-                        label="Add"
+                        label="Dodaj"
                     />
                     <RaisedButton
                         type="submit"
-                        label="Add report"
+                        label="Dodaj novi izvještaj"
                         className="submit"
                         backgroundColor="rgb(60, 184, 255)"
                         labelColor="rgb(255, 255, 255)"
