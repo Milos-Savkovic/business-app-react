@@ -15,15 +15,37 @@ export const ReportTable = (props) => {
   const dailyEarnings = props.dailyEarnings;
   const destinations = props.cities;
   const costs = props.extraCosts || [];
-  const listOf = (arrayOfObjects, option, divClass, rows) => {
+  const tableRowsOf = (arrayOfObjects, typeOfTransport, option, divClass, rows, formula) => {
     let array = [];
     for (let i = 0; i <= rows; i++) {
       array.push(arrayOfObjects[i] ? arrayOfObjects[i] : '');
     }
-    return array.map((obj, id) => {
-      return <div key={id} className={divClass.join(' ')}>{obj ? obj[option] : ''}</div>
-    });
+    if (!typeOfTransport) {
+      return array.map((obj, id) => {
+        return <div key={id} className={divClass.join(' ')}>{!formula ? (obj ? obj[option] : '') : (obj ? formula(obj, option) : '')}</div>
+      });
+    } else {
+      return array.map((obj, id) => {
+        return <div key={id} className={divClass.join(' ')}>{obj ? typeOfTransport : ''}</div>
+      });
+    }
   }
+  const multiplyByZeroPointFour = (obj, prop) => (obj[prop] * .4).toFixed(2);
+  const tripExpense = transitionType => {
+    switch (transitionType) {
+      case 'službeno':
+        return tableRowsOf([], null, null, ["medium-field", "medium-field-row-2"], 6);
+      case 'autobus':
+        return tableRowsOf(destinations, null, "busTicket", ["medium-field", "medium-field-row-2"], 6);
+      case 'lično':
+        console.log("licno, bre")
+        return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, multiplyByZeroPointFour);
+      default:
+        return 0;
+    }
+  }
+  console.log(props);
+  const expense = tripExpense(rep.typeOfTransport);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -73,51 +95,27 @@ export const ReportTable = (props) => {
         </div>
         <div className="cell cell-2 table-row-2-cell-2">
           <div className="long-field">Od</div>
-          {listOf(destinations, 'from', ['long-field'], 6)}
+          {tableRowsOf(destinations, null, 'from', ['long-field'], 6)}
         </div>
         <div className="cell cell-3 table-row-2-cell-3">
           <div className="long-field">Do</div>
-          {listOf(destinations, 'to', ['long-field'], 6)}
+          {tableRowsOf(destinations, null, 'to', ['long-field'], 6)}
         </div>
         <div className="cell cell-4 table-row-2-cell-4">
           <div className="long-field">Vrsta prevoza</div>
-          <div className="long-field">{rep.typeOfTransport}</div>
-          <div className="long-field">{destinations[1] ? rep.typeOfTransport : null}</div>
-          <div className="long-field">{destinations[2] ? rep.typeOfTransport : null}</div>
-          <div className="long-field">{destinations[3] ? rep.typeOfTransport : null}</div>
-          <div className="long-field">{destinations[4] ? rep.typeOfTransport : null}</div>
-          <div className="long-field">{destinations[5] ? rep.typeOfTransport : null}</div>
-          <div className="long-field long-field-end"></div>
+          {tableRowsOf(destinations, rep.typeOfTransport, 'to', ['long-field'], 6)}
         </div>
         <div className="cell cell-5 table-row-2-cell-5">
           <div className="short-field short-field-row-2">Kl.</div>
-          <div className="short-field short-field-row-2"></div>
-          <div className="short-field short-field-row-2"></div>
-          <div className="short-field short-field-row-2"></div>
-          <div className="short-field short-field-row-2"></div>
-          <div className="short-field short-field-row-2"></div>
-          <div className="short-field short-field-row-2"></div>
-          <div className="short-field short-field-end short-field-row-2"></div>
+          {tableRowsOf([], null, null, ["short-field", "short-field-row-2"], 6)}
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
           <div className="medium-field medium-field-row-2">KM</div>
-          <div className="medium-field medium-field-row-2">{(destinations[0].distance * 1.95 / 7).toFixed(2)}</div>
-          <div className="medium-field medium-field-row-2">{destinations[1] ? (destinations[1].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[2] ? (destinations[2].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[3] ? (destinations[3].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[4] ? (destinations[4].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[5] ? (destinations[5].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2 medium-field-end"></div>
+          {expense}
         </div>
         <div className="cell cell-7 table-row-2-cell-7">
           <div className="medium-field medium-field-row-2"></div>
-          <div className="medium-field medium-field-row-2">{(destinations[0].distance * 1.95 / 7).toFixed(2)}</div>
-          <div className="medium-field medium-field-row-2">{destinations[1] ? (destinations[1].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[2] ? (destinations[2].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[3] ? (destinations[3].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[4] ? (destinations[4].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2">{destinations[5] ? (destinations[5].distance * 1.95 / 7).toFixed(2) : null}</div>
-          <div className="medium-field medium-field-row-2 medium-field-end"></div>
+          {expense}
         </div>
       </div>
       <div className="table-row table-row-8">
@@ -125,13 +123,13 @@ export const ReportTable = (props) => {
           <p className="cell-1__text">Ostalo</p>
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          {listOf(costs, 'name', ['longer-field'], 2)}
+          {tableRowsOf(costs, null, 'name', ['longer-field'], 2)}
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          {listOf(costs, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
+          {tableRowsOf(costs, null, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
         </div>
         <div className="cell cell-7 table-row-2-cell-7">
-          {listOf(costs, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
+          {tableRowsOf(costs, null, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
         </div>
       </div>
       <div className="table-row table-row-3">

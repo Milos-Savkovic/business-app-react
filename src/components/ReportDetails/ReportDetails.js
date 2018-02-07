@@ -22,10 +22,6 @@ class ReportDetails extends Component {
       console.log("The read failed: " + errorObject.code);
     });
   }
-  // componentWillUnmount() {
-  //   console.log('component unmounted');
-  //   fireDB.ref(`/users/${this.props.id}`).off();
-  // }
 
   printReport = () => {
     const divToPrint = document.getElementById('report');
@@ -79,16 +75,11 @@ class ReportDetails extends Component {
         return 0;
     }
   }
-  distance = (towns) => {
-    const distances = towns.map(town => +town.distance);
-    const sumOfDistances = distances.reduce((total, amount) => total + amount);
-    return sumOfDistances;
-  }
-  extraExpenses = (costs) => {
-    if (costs) {
-      const expenses = costs.map(cost => +cost.KM);
-      const sumOfCosts = expenses.reduce((total, amount) => total + amount);
-      return sumOfCosts;
+  sumOf = (arrayOf, prop) => {
+    if(arrayOf) {
+      const arrayOfObjectsProp = arrayOf.map(object => +object[prop]);
+      const sumOfObjectsProp = arrayOfObjectsProp.reduce((total, value) => total + value);
+      return sumOfObjectsProp;
     } else return 0;
   }
 
@@ -107,14 +98,14 @@ class ReportDetails extends Component {
         const dailyEarnings = this.dayPay(report.dailyEarnings);
         const cities = report.towns.map(town => (
           {
-            from: town.from, to: town.to, distance: town.distance,
+            from: town.from, to: town.to, distance: town.distance, busTicket: town.busTicket,
           }
         ));
-        const totalDistance = this.distance(cities);
+        const totalDistance = this.sumOf(cities, "distance");
         const totalCosts = {
           daily: this.dayPay(report.dailyEarnings) * days,
-          transition: +this.distance(cities) * 1.95 / 7,
-          rest: this.extraExpenses(report.moreCosts),
+          transition: report.typeOfTransport !== "službeno" ? (this.sumOf(cities, "busTicket") || +this.sumOf(cities, "distance") * .4) : 0,
+          rest: this.sumOf(report.moreCosts, "KM"),
           total() {
             let sum = this.daily + this.transition + this.rest;
             return sum;
@@ -122,6 +113,7 @@ class ReportDetails extends Component {
         }
         const directions = direction(cities);
         const sum = totalCosts.total().toFixed(2);
+        console.log(totalCosts);
         return (
           <div>
             <div className="report-container" id="report">
