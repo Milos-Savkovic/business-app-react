@@ -6,7 +6,7 @@ const Report = (props) => {
   return (
     <div className="report-wrapper">
       <div className="report-left">
-        <h3 className="report-heading">{props.name}</h3>
+        <h3 className="report-heading">{props.reportName}</h3>
         <div className="report-user">{`${props.fname} ${props.lname}`}</div>
       </div>
       <div className="report-right">

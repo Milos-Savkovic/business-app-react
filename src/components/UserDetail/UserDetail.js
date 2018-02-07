@@ -54,8 +54,10 @@ class UserDetail extends Component {
             />,
         ];
         if (this.props.reports) {
+            console.log(this.props.reports);
             const reports = Object.keys(this.props.reports).map(key => {
                 const activeLink = this.props.path === `/users/${this.props.id}/${key}` ? 'active-link' : '';
+                const report = this.props.reports[key];
                 return (
                     <div className={`reportName ${activeLink}`} key={key}>
                         <NavLink
@@ -67,14 +69,14 @@ class UserDetail extends Component {
                             onClick={this.click}
                         >
                             <Report
-                                key={this.props.reports[key].reportName}
-                                cost={this.props.reports[key].costs}
-                                reportName={this.props.reports[key].protocol}
-                                distance={this.props.reports[key].distance}
-                                dailyEarnings={this.props.reports[key].dailyEarnings}
-                                typeOfTransport={this.props.reports[key].typeOfTransport}
-                                date1={this.props.reports[key].date1}
-                                date2={this.props.reports[key].date2}
+                                key={report.reportName}
+                                cost={report.costs}
+                                reportName={report.towns[report.towns.length-1].to}
+                                distance={report.distance}
+                                dailyEarnings={report.dailyEarnings}
+                                typeOfTransport={report.typeOfTransport}
+                                date1={report.date1}
+                                date2={report.date2}
                             />
                         </NavLink>
                         <div className="icon-menu">

@@ -43,12 +43,14 @@ class Reports extends Component {
       <div className="reports-wrapper">
         {
           reports.map(report => {
+            const finalDestination = report.towns[report.towns.length -1].to;
             return (
               <Link 
                 to={`/users/${report.userId}/${report.key}`}
                 key={report.key}
               >
                 <Report
+                  reportName={finalDestination}
                   fname={report.userFirstName}
                   lname={report.userLastName}
                   userId={report.userId}

@@ -127,7 +127,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field" style={{ paddingRight: '1rem' }}>
                     <span className="report-text">Broj:</span>
-                    <div className="floor-border medium-width-border">{report.protocol}</div>
+                    <div className="floor-border medium-width-border"></div>
                   </div>
                   <div className="report-field">
                     <span className="report-text">Datum:</span>
