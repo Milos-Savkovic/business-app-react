@@ -187,7 +187,7 @@ class EditReport extends Component {
             if (item.id === e.target.id) {
                 if (e.target.name === "1") item.from = e.target.value;
                 else if (e.target.name === "2") item.to = e.target.value;
-                else if (this.setFirebase.typeOfTransport === "autobus") item.busTicket = e.target.value;
+                else if (this.state.typeOfTransport === "autobus") item.busTicket = e.target.value;
                 else item.distance = e.target.value;
             }
             return item;
