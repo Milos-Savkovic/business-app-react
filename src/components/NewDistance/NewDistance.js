@@ -40,7 +40,6 @@ class NewDistance extends Component {
                 />
                 <TextField
                     name="3"
-                    type="number"
                     id={this.props.id}
                     style={{
                         width: '80px',

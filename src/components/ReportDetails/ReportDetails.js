@@ -90,7 +90,7 @@ class ReportDetails extends Component {
       if (this.state.user) {
         const direction = (array) => {
           const directions = array.length > 1 ?
-            array.map(city => `${city.to}`).join(' - ') + ' - ' + array.reverse().slice(1).map(city => `${city.to}`).join('-')
+            array.filter(city => city.to !== 'Banja Luka').map(city => `${city.to}`).join(' - ') 
             : array.map(city => `${city.to}`);
           return `Banja luka -  ${directions} - Banja luka`
         }
@@ -167,7 +167,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">otputovaće po službenom poslu u mjesto-a</span>
-                    <div className="floor-border">{cities.map(city => city.to).join(', ')}</div>
+                    <div className="floor-border">{cities.filter(city => city.to !== 'Banja Luka').map(city => city.to).join(', ')}</div>
                   </div>
                 </div>
                 <div className="report-row-no-line">

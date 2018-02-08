@@ -17,6 +17,7 @@ class NewDistance extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="newInput">
                 <TextField
@@ -40,9 +41,8 @@ class NewDistance extends Component {
                 />
                 <TextField
                     name="3"
-                    type="number"
                     id={this.props.id}
-                    defaultValue={+this.props.input.distance}
+                    defaultValue={this.props.input.distance || this.props.input.busTicket}
                     style={{
                         width: '80px',
                         marginLeft: '20px',

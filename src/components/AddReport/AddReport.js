@@ -388,7 +388,6 @@ class AddReport extends Component {
                                 width: '130px',
                             }}
                             onChange={this.handleProtocol}
-                            required
                         />
                     </div>
                     <div className="dates">

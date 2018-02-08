@@ -66,6 +66,7 @@ class EditReport extends Component {
                     moreCosts: report.moreCosts,
                 });
             }
+            console.log(this.state);
         })
     }
 
