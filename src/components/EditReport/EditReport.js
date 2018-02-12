@@ -359,17 +359,17 @@ class EditReport extends Component {
                                     defaultSelected={this.state.earnings}
                                 >
                                     <RadioButton
-                                        label="strana ( 20 KM )"
+                                        label="strana ( 97.90 KM )"
                                         value="strana"
                                         style={styles.radioButton}
                                     />
                                     <RadioButton
-                                        label="domaća ( 39.16 KM )"
+                                        label="domaća ( 20.00 KM )"
                                         value="domaća"
                                         style={styles.radioButton}
                                     />
                                     <RadioButton
-                                        label="EX-YU ( 97.90 KM )"
+                                        label="EX-YU ( 39.16 KM )"
                                         value="EX-YU"
                                         style={styles.radioButton}
                                     />

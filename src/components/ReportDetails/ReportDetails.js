@@ -68,9 +68,9 @@ class ReportDetails extends Component {
       case "domaća":
         return 20;
       case "strana":
-        return 39.16;
-      case "EX-YU":
         return 97.90;
+      case "EX-YU":
+        return 39.16;
       default:
         return 0;
     }
