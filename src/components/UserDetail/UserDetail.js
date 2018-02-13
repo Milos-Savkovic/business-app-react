@@ -89,7 +89,7 @@ class UserDetail extends Component {
                             <IconMenu
                                 multiple={false}
                                 iconButtonElement={
-                                    <IconButton><MoreVertIcon color={grey800} /></IconButton>
+                                    <IconButton className="icon-menu-dots" ><MoreVertIcon color={grey800} /></IconButton>
                                 }
                                 targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
                                 anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}

@@ -121,8 +121,10 @@
   border-right: 0;
 }
 
-.table-row-2-cell-1 {
+.table-row-2-cell-1,
+.table-row-8-cell-1 {
   position: relative;
+  border-bottom: 2px solid #444;
 }
 .table-row-2-cell-1 p.cell-1__text {
   position: absolute;

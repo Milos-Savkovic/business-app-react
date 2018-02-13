@@ -75,7 +75,18 @@ class Navigation extends Component {
     }
 
     render() {
-        const linkToHome = <Link to='/users'>Busines Trip</Link>
+        const linkToHome = <Link to='/users' style={{display: 'flex', alignItems: 'center'}}>
+                                <img 
+                                    src={logo} 
+                                    width='50' 
+                                    height='auto' 
+                                    alt="logo" 
+                                    style={{mixBlendMode: 'luminosity'}}
+                                />
+                                <span style={{width: '10px'}} />
+                                Busines Trip
+                            </Link>
+        const appLogo = <img src={logo} className="drawer-logo" alt="logo" />;
         return (
             <div>
                 <AppBar
@@ -103,14 +114,14 @@ class Navigation extends Component {
                     <Link to="/users"><MenuItem primaryText="Zaposleni" leftIcon={<People />} onClick={this.handleClose} /></Link>
                     <Link to="/users/add"><MenuItem primaryText="Novi zaposleni" leftIcon={<PersonAdd />} onClick={this.handleClose} /></Link>
                     <Link to="/reports">
-                        <MenuItem 
-                            primaryText="Izvještaji" 
-                            leftIcon={<Reports />} 
+                        <MenuItem
+                            primaryText="Izvještaji"
+                            leftIcon={<Reports />}
                             onClick={this.handleClose}
                         />
                     </Link>
                     <Divider />
-                    <img src={logo} className="drawer-logo" alt="logo" />
+                    <Link to={`http://jsguru.io/`} target="_blank" >{appLogo}</Link>
                 </Drawer>
             </div>
         );

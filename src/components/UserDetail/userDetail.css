@@ -48,10 +48,13 @@
     right: 5px;
     top: 5px;
     display: none;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background: #00000047;
-    border-radius: 50%;
+    border-radius: 10%;
+}
+.edit button {
+    padding: 11px!important;
 }
 .edit a {
     color: rgb(255, 255, 255);
@@ -142,10 +145,18 @@
     margin: 1rem 0;
 }
 .icon-menu{
-    height: 30px;
+    height: inherit;
     display: flex;
     justify-content: flex-end;
     padding-right: 0px;
+}
+.icon-menu-dots {
+    height: 55px!important;
+    width: 40px!important;
+    padding: 0!important;
+}
+.icon-menu-dots:hover svg {
+    fill: white!important;
 }
 .reportName{
     margin-left:3px;

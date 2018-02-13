@@ -113,7 +113,6 @@ class ReportDetails extends Component {
         }
         const directions = direction(cities);
         const sum = totalCosts.total().toFixed(2);
-        console.log(totalCosts);
         return (
           <div>
             <div className="report-container" id="report">
@@ -185,7 +184,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Putovanje će trajati</span>&nbsp;
-                  <div className="floor-border" style={{ width: '8rem' }}>{this.substructDays(report.date1, report.date2)}</div>
+                  <div className="floor-border" style={{ width: '8rem' }}>{this.substructDays(report.date1, report.date2) + 1}</div>
                     <span className="report-text"> dan/a.&nbsp;</span>
                   </div>
                 </div>

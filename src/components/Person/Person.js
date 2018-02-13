@@ -43,7 +43,6 @@ class Person extends Component {
                 onClick={this.handleDelete}
             />,
         ];
-        console.log(this.props);
         return (
             <div className="card">
                 <div className="icon-menu-user">

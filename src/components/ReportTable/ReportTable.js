@@ -38,13 +38,11 @@ export const ReportTable = (props) => {
       case 'autobus':
         return tableRowsOf(destinations, null, "busTicket", ["medium-field", "medium-field-row-2"], 6);
       case 'lično':
-        console.log("licno, bre")
         return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, multiplyByZeroPointFour);
       default:
         return 0;
     }
   }
-  console.log(props);
   const expense = tripExpense(rep.typeOfTransport);
   return (
     <div className="table-container">
