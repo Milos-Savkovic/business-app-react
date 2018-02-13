@@ -4,7 +4,8 @@
 }
 
 
-.card {       
+.card {    
+    position: relative;   
     height: 100%;
     width:100%;
     float: left;
@@ -69,4 +70,8 @@
     width: 310px;
     margin-top:5px;
     /* border-radius: 5px; */
+}
+.icon-menu-user {
+    position: absolute;
+    right: 0;
 }
