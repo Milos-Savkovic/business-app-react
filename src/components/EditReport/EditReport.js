@@ -66,7 +66,6 @@ class EditReport extends Component {
                     moreCosts: report.moreCosts,
                 });
             }
-            console.log(this.state);
         })
     }
 
@@ -294,6 +293,11 @@ class EditReport extends Component {
         });
     };
 
+    isFinalDestination(id) {
+        if (id === this.state.towns[Math.floor(this.state.towns.length / 2) - 1].id) return 1;
+        return 0;
+    }
+
     render() {
         if (this.state.loading) {
             return (
@@ -423,6 +427,7 @@ class EditReport extends Component {
                         <div className="add-destinations">
                             <div>
                                 {this.state.towns.map(input => <NewDistanceEdit
+                                    finalDestination={this.isFinalDestination(input.id)}
                                     typeOfTransport={this.state.typeOfTransport}
                                     input={input}
                                     key={input.id}

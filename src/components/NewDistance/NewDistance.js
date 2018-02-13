@@ -16,6 +16,10 @@ class NewDistance extends Component {
         return <strong>km</strong>;
     }
 
+    isFinalDestination() {
+        if (this.props.finalDestination) return "Finalna destinacija";
+    }
+
     render() {
         return (
             <div className="newInput">
@@ -29,6 +33,7 @@ class NewDistance extends Component {
                     onChange={this.props.handleNextTown}
                 />
                 <TextField
+                    floatingLabelText={this.isFinalDestination()}
                     name="2"
                     hintText="Do"
                     id={this.props.id}

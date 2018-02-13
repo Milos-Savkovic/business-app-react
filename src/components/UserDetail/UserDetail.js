@@ -40,6 +40,11 @@ class UserDetail extends Component {
         });
     }
 
+    handleTownName(towns) {
+        if (towns[Math.floor(towns.length / 2)].to) return towns[Math.floor(towns.length / 2)].to;
+        return towns[0].to;
+    }
+
     reporter() {
         const actions = [
             <FlatButton
@@ -54,7 +59,6 @@ class UserDetail extends Component {
             />,
         ];
         if (this.props.reports) {
-            console.log(this.props.reports);
             const reports = Object.keys(this.props.reports).map(key => {
                 const activeLink = this.props.path === `/users/${this.props.id}/${key}` ? 'active-link' : '';
                 const report = this.props.reports[key];
@@ -71,7 +75,7 @@ class UserDetail extends Component {
                             <Report
                                 key={report.reportName}
                                 cost={report.costs}
-                                reportName={report.towns[0].to}
+                                reportName={this.handleTownName(report.towns)}
                                 distance={report.distance}
                                 dailyEarnings={report.dailyEarnings}
                                 typeOfTransport={report.typeOfTransport}
@@ -111,7 +115,7 @@ class UserDetail extends Component {
         try {
             const file = e.target.files[0];
             fire.storage().ref(`images/${this.props.id}`).put(file);
-            
+
             const fetchImage = fire.storage().ref(`images/${this.props.id}`).getDownloadURL();
             fetchImage.then((url) => {
                 console.log(url);
@@ -153,10 +157,10 @@ class UserDetail extends Component {
                 </div>
                 <div className="nameClass">
                     {this.props.firstName + " " + this.props.lastName}
-                </div>                
+                </div>
                 <div className="positionClass">
                     {this.props.position}
-                </div>                
+                </div>
                 <h4 className="reports-heading">Izvještaji</h4>
                 <div className="reportsClass">
                     {this.reporter()}

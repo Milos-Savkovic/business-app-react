@@ -326,6 +326,7 @@ class AddReport extends Component {
             <div className="add-destinations">
                 <div>
                     {this.state.towns.map(input => <NewDistance
+                        finalDestination={this.isFinalDestination(input.id)}
                         typeOfTransport={this.state.typeOfTransport}
                         key={input.id}
                         id={input.id}
@@ -355,6 +356,11 @@ class AddReport extends Component {
                 numberOfProtocol: newNumber,
             });
         }
+    }
+
+    isFinalDestination(id) {
+        if (id === this.state.towns[Math.floor(this.state.towns.length / 2) - 1].id) return 1;
+        return 0;
     }
 
     componentWillMount() {

@@ -37,15 +37,20 @@ class Reports extends Component {
     return sortedReports;
   }
 
+  handleTownName(towns) {
+    if (towns[Math.floor(towns.length / 2)].to) return towns[Math.floor(towns.length / 2)].to;
+    return towns[0].to;
+  }
+
   render() {
     const reports = this.sortedArrayOfReports(this.state.users);
     return (
       <div className="reports-wrapper">
         {
           reports.map(report => {
-            const finalDestination = report.towns[0].to;
+            const finalDestination = this.handleTownName(report.towns);
             return (
-              <Link 
+              <Link
                 to={`/users/${report.userId}/${report.key}`}
                 key={report.key}
               >

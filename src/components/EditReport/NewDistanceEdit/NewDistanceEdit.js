@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import { blue500 } from 'material-ui/styles/colors';
 import './newDistanceEdit.css';
 
 class NewDistance extends Component {
@@ -16,8 +17,11 @@ class NewDistance extends Component {
         return <strong>km</strong>;
     }
 
+    isFinalDestination() {
+        if (this.props.finalDestination) return "Finalna destinacija";
+    }
+
     render() {
-        console.log(this.props);
         return (
             <div className="newInput">
                 <TextField
@@ -30,6 +34,10 @@ class NewDistance extends Component {
                     onChange={this.props.handleNextTown}
                 />
                 <TextField
+                    floatingLabelText={this.isFinalDestination()}
+                    floatingLabelStyle={{
+                        color: blue500,
+                    }}
                     name="2"
                     defaultValue={this.props.input.to}
                     id={this.props.id}
