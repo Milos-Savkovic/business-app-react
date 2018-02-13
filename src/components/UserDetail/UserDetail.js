@@ -98,7 +98,7 @@ class UserDetail extends Component {
                                 onRequestClose={this.handleDelete}
                             >
                                 Da li ste sigurni da želite obrisati ovaj putni nalog?
-              </Dialog>
+                            </Dialog>
                         </div>
                     </div>
                 );

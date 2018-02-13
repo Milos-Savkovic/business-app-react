@@ -6,6 +6,7 @@ import About from '../About/About';
 import Reports from '../Reports/Reports';
 import Navigation from '../Navigation/Navigation';
 import EditReport from '../EditReport/EditReport';
+import EditUser from '../EditUser/EditUser';
 import NotFound from '../NotFound/NotFound';
 import './app.css';
 
@@ -23,6 +24,7 @@ class App extends React.Component {
                         <Route exact path='/users' component={Container} />
                         <Route path='/users/add' component={AddUser} />
                         <Route path='/reports' component={Reports} />
+                        <Route exact path={`/users/:id/edit`} component={EditUser} />
                         <Route path='/users/:id' component={About} />
                         <Route component={NotFound} />
                     </Switch>
