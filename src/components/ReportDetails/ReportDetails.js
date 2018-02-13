@@ -94,7 +94,7 @@ class ReportDetails extends Component {
             : array.map(city => `${city.to}`);
           return `Banja luka -  ${directions} - Banja luka`
         }
-        const days = this.substructDays(report.date1, report.date2);
+        const days = this.substructDays(report.date1, report.date2) + 1;
         const dailyEarnings = this.dayPay(report.dailyEarnings);
         const cities = report.towns.map(town => (
           {

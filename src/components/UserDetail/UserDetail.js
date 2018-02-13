@@ -71,7 +71,7 @@ class UserDetail extends Component {
                             <Report
                                 key={report.reportName}
                                 cost={report.costs}
-                                reportName={report.towns[report.towns.length/2-1].to}
+                                reportName={report.towns[0].to}
                                 distance={report.distance}
                                 dailyEarnings={report.dailyEarnings}
                                 typeOfTransport={report.typeOfTransport}
