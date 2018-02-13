@@ -38,7 +38,9 @@ class Reports extends Component {
   }
 
   handleTownName(towns) {
-    if (towns[Math.floor(towns.length / 2)].to) return towns[Math.floor(towns.length / 2)].to;
+    if (towns[Math.floor(towns.length / 2) - 1] !== undefined) {
+      return towns[Math.floor(towns.length / 2) - 1].to;
+    }
     return towns[0].to;
   }
 
