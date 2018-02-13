@@ -359,7 +359,7 @@ class AddReport extends Component {
     }
 
     isFinalDestination(id) {
-        if (id === this.state.towns[Math.floor(this.state.towns.length / 2) - 1].id) return 1;
+        if (id === this.state.towns[Math.floor(this.state.towns.length / 2) || 0].id) return 1;
         return 0;
     }
 
