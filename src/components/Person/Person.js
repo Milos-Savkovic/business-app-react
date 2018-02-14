@@ -18,18 +18,26 @@ class Person extends Component {
         openAlert: false,
         key: null,
     }
+
     handleDetailPerson(id) {
         this.props.clickHandlerDetail(id);
     }
+
     handleDelete = () => {
         fireDB.ref(`/users/${this.props.id}`).remove();
         this.setState({
             openAlert: false,
         });
     }
+
     handleOpen = (key) => {
         this.setState({ openAlert: true, key: key });
     }
+
+    handleClose = () => {
+        this.setState({ openAlert: false });
+    }
+
     render() {
         const actions = [
             <FlatButton
@@ -61,9 +69,9 @@ class Person extends Component {
                         actions={actions}
                         modal={false}
                         open={this.state.openAlert}
-                        onRequestClose={this.handleDelete}
+                        onRequestClose={this.handleClose}
                     >
-                        Da li ste sigurni da želite obrisati ovaj putni nalog?
+                        Da li ste sigurni da želite obrisati ovog zaposlenog?
                     </Dialog>
                 </div>
                 <img src={this.props.image} className="avatar" alt="Jane" />
