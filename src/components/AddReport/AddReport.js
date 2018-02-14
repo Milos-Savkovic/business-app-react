@@ -158,6 +158,7 @@ class AddReport extends Component {
             id: uuidv4(),
             name: 0,
             KM: '',
+            number: 0,
         });
         this.setState({
             moreCosts: newArray,
@@ -194,7 +195,6 @@ class AddReport extends Component {
                 else if (e.target.name === "2") item.to = e.target.value;
                 else if (this.state.typeOfTransport === "autobus") {
                     item.busTicket = e.target.value;
-                    console.log(item.busTicket);
                 }
                 else item.distance = e.target.value;
             }
@@ -210,16 +210,19 @@ class AddReport extends Component {
         e.preventDefault();
         const id = e.target.id;
         const value = e.target.value;
-
+        const name = e.target.name;
         let moreCosts = this.state.moreCosts;
 
-        let costArray = moreCosts.map(item => {
+        let changer = moreCosts.map(item => {
             if (item.id === id) {
-                item.name = value;
+                if (name === "1") item.name = value;
+                else if (name === "2") item.number = value;
+                else item.KM = value;
             }
             return item;
         });
-        moreCosts = costArray;
+
+        moreCosts = changer;
         this.setState({
             moreCosts,
         });

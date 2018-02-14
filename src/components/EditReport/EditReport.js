@@ -153,6 +153,7 @@ class EditReport extends Component {
             id: uuidv4(),
             name: '',
             KM: '',
+            number: 0,
         });
         this.setState({
             moreCosts: newArray,
@@ -202,35 +203,19 @@ class EditReport extends Component {
         e.preventDefault();
         const id = e.target.id;
         const value = e.target.value;
-
+        const name = e.target.name;
         let moreCosts = this.state.moreCosts;
 
-        let costArray = moreCosts.map(item => {
+        let changer = moreCosts.map(item => {
             if (item.id === id) {
-                item.name = value;
+                if (name === "1") item.name = value;
+                else if (name === "2") item.number = value;
+                else item.KM = value;
             }
             return item;
         });
-        moreCosts = costArray;
-        this.setState({
-            moreCosts,
-        });
-    }
 
-    handleMoreCostsValue = (e) => {
-        e.preventDefault();
-        const id = e.target.id;
-        const value = e.target.value;
-
-        let moreCosts = this.state.moreCosts;
-
-        let costArray = moreCosts.map(item => {
-            if (item.id === id) {
-                item.KM = value;
-            }
-            return item;
-        });
-        moreCosts = costArray;
+        moreCosts = changer;
         this.setState({
             moreCosts,
         });
@@ -456,7 +441,7 @@ class EditReport extends Component {
                                 id={input.id}
                                 input={input}
                                 handleMoreCostsName={this.handleMoreCostsName}
-                                handleMoreCostsValue={this.handleMoreCostsValue}
+                                // handleMoreCostsValue={this.handleMoreCostsValue}
                                 handleDeleteInput={this.handleDeleteInput}
                             />)}
                         </div>
