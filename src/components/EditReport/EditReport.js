@@ -427,6 +427,7 @@ class EditReport extends Component {
                             </SelectField>
                         </div>
                         <div className="add-destinations">
+                            <p style={{ marginTop: '3rem' }}>Destinacije</p>
                             <div>
                                 {this.state.towns.map(input => <NewDistanceEdit
                                     finalDestination={this.isFinalDestination(input.id)}
@@ -448,7 +449,7 @@ class EditReport extends Component {
                                 label="Dodaj"
                             />
                         </div>
-                        <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
+                        <p style={{ marginTop: '3rem' }}>Dodatni troškovi</p>
                         <div>
                             {this.state.moreCosts.map(input => <NewCostsEdit
                                 key={input.id}

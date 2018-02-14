@@ -324,6 +324,7 @@ class AddReport extends Component {
         }
         else return (
             <div className="add-destinations">
+                <p style={{ marginTop: '3rem' }}>Destinacije</p>
                 <div>
                     {this.state.towns.map(input => <NewDistance
                         finalDestination={this.isFinalDestination(input.id)}
@@ -507,7 +508,7 @@ class AddReport extends Component {
                         />
                     </div>
                     {this.displayMap()}
-                    <p style={{ marginTop: '3rem' }}>Dodatni troškovi: </p>
+                    <p style={{ marginTop: '3rem' }}>Dodatni troškovi</p>
                     <div>
                         {this.state.moreCosts.map(input => <NewCosts
                             key={input.id}

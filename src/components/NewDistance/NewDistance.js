@@ -24,6 +24,7 @@ class NewDistance extends Component {
         return (
             <div className="newInput">
                 <TextField
+                    required
                     name="1"
                     id={this.props.id}
                     hintText="Od"
@@ -33,6 +34,7 @@ class NewDistance extends Component {
                     onChange={this.props.handleNextTown}
                 />
                 <TextField
+                    required
                     floatingLabelText={this.isFinalDestination()}
                     name="2"
                     hintText="Do"
@@ -44,6 +46,7 @@ class NewDistance extends Component {
                     onChange={this.props.handleNextTown}
                 />
                 <TextField
+                    required
                     name="3"
                     id={this.props.id}
                     style={{

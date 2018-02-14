@@ -25,6 +25,7 @@ class NewDistance extends Component {
         return (
             <div className="newInput">
                 <TextField
+                    required
                     name="1"
                     id={this.props.id}
                     defaultValue={this.props.input.from}
@@ -34,6 +35,7 @@ class NewDistance extends Component {
                     onChange={this.props.handleNextTown}
                 />
                 <TextField
+                    required
                     floatingLabelText={this.isFinalDestination()}
                     floatingLabelStyle={{
                         color: blue500,
@@ -48,6 +50,7 @@ class NewDistance extends Component {
                     onChange={this.props.handleNextTown}
                 />
                 <TextField
+                    required
                     name="3"
                     id={this.props.id}
                     defaultValue={this.props.input.distance || this.props.input.busTicket}
