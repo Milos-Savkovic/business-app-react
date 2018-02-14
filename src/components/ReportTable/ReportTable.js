@@ -44,6 +44,13 @@ export const ReportTable = (props) => {
     }
   }
   const expense = tripExpense(rep.typeOfTransport);
+  const tickets = () => {
+    if(rep.typeOfTransport === 'autobus') {
+      const ticketCount = destinations.map(dest => dest.busTicket ? 1 : 0).reduce((amount,val) => amount + val);
+      return ticketCount;
+    } else return 0;
+  }
+  const numberOfTickets = tickets();
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -146,7 +153,7 @@ export const ReportTable = (props) => {
       </div>
       <div className="table-row table-row-4">
         <div className="table-row-4-1">
-          Broj priloga: <span className="underline underline-medium">{(rep.moreCosts ? rep.moreCosts.length : 0) + rep.towns.length}</span>
+          Broj priloga: <span className="underline underline-medium">{(rep.moreCosts ? rep.moreCosts.length : 0) + numberOfTickets}</span>
         </div>
         <div className="table-row-4-2">
           Ostaje za isplatu-uplatu&nbsp;
