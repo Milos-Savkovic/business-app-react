@@ -76,14 +76,6 @@ class Navigation extends Component {
 
     render() {
         const linkToHome = <Link to='/users' style={{display: 'flex', alignItems: 'center'}}>
-                                <img 
-                                    src={logo} 
-                                    width='50' 
-                                    height='auto' 
-                                    alt="logo" 
-                                    style={{mixBlendMode: 'luminosity'}}
-                                />
-                                <span style={{width: '10px'}} />
                                 Busines Trip
                             </Link>
         const appLogo = <img src={logo} className="drawer-logo" alt="logo" />;
