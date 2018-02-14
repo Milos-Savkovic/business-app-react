@@ -31,7 +31,7 @@ class NewCosts extends Component {
                     floatingLabelStyle={{
                         color: blue500,
                     }}
-                    defaultValue={0}
+                    defaultValue={1}
                     style={{
                         width: '40px',
                         marginLeft: '20px',
