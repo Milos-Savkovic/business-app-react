@@ -113,6 +113,12 @@ class ReportDetails extends Component {
         }
         const directions = direction(cities);
         const sum = totalCosts.total().toFixed(2);
+        const extraCosts = report.moreCosts.map(obj => {
+          const newObj = Object.assign({}, obj);
+          newObj.name = newObj.number > 1 ? newObj.name = `${newObj.name}(${newObj.number})` : newObj.name;
+          return newObj;
+        })
+        console.log(extraCosts);
         return (
           <div>
             <div className="report-container" id="report">
@@ -277,7 +283,7 @@ class ReportDetails extends Component {
                   dailyEarnings={dailyEarnings}
                   cities={cities}
                   totalDistance={totalDistance}
-                  extraCosts={report.moreCosts}
+                  extraCosts={extraCosts}
                 />
                 <br />
                 <br />

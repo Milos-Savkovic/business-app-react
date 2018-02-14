@@ -51,6 +51,16 @@ export const ReportTable = (props) => {
     } else return 0;
   }
   const numberOfTickets = tickets();
+  const countExtraCosts = (array) => {
+    const count = array.map(item => {
+      if(item.number){
+        return +item.number;
+      } else return 1;
+    }).reduce((a,b) => a+b);
+    return count;
+  };
+  const numberOfExtraCosts = countExtraCosts(costs);
+  console.log(numberOfExtraCosts);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -153,7 +163,7 @@ export const ReportTable = (props) => {
       </div>
       <div className="table-row table-row-4">
         <div className="table-row-4-1">
-          Broj priloga: <span className="underline underline-medium">{(rep.moreCosts ? rep.moreCosts.length : 0) + numberOfTickets}</span>
+          Broj priloga: <span className="underline underline-medium">{(costs ? numberOfExtraCosts : 0) + numberOfTickets}</span>
         </div>
         <div className="table-row-4-2">
           Ostaje za isplatu-uplatu&nbsp;
