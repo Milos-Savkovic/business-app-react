@@ -60,7 +60,6 @@ export const ReportTable = (props) => {
     return count;
   };
   const numberOfExtraCosts = countExtraCosts(costs);
-  console.log(numberOfExtraCosts);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">

@@ -12,7 +12,6 @@ class NewCosts extends Component {
         this.props.handleDeleteInput(this.props.id);
     }
     render() {
-        console.log(this.props);
         return (
             <div className="newInput">
                 <TextField

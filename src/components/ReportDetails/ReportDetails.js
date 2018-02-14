@@ -118,7 +118,6 @@ class ReportDetails extends Component {
           newObj.name = newObj.number > 1 ? newObj.name = `${newObj.name}(${newObj.number})` : newObj.name;
           return newObj;
         })
-        console.log(extraCosts);
         return (
           <div>
             <div className="report-container" id="report">
