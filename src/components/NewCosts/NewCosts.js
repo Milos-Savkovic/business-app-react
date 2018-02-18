@@ -41,10 +41,9 @@ class NewCosts extends Component {
                 />
                 <TextField
                     name="3"
-                    type="number"
                     id={this.props.id}
                     style={{
-                        width: '70px',
+                        width: '60px',
                         marginLeft: '20px',
                     }}
                     onChange={this.props.handleMoreCostsValue}
