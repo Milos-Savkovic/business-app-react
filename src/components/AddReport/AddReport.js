@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
 import MyMap from '../../api/MyMap';
+import DistanceInput from '../../api/DistanceInput';
 import { fireDB } from '../../api/firebaseApp';
 import PickDays from '../PickDays/PickDays';
 import NewCosts from '../NewCosts/NewCosts';
@@ -311,7 +312,10 @@ class AddReport extends Component {
                     <div className="location-components">
                         <div className="location-div">
                             <p>Destinacija : </p>
-                            <TextField
+                            <DistanceInput 
+                            handleCity={this.handleCity}
+                            />
+                            {/* <TextField
                                 id="mapSearch"
                                 autoComplete='off'
                                 placeholder="Search..."
@@ -319,7 +323,8 @@ class AddReport extends Component {
                                 onChange={this.handleCity}
                                 style={{ width: 200 }}
                                 required
-                            /> </div>
+                            /> */}
+                        </div>
                         <div className="distance-div">
                             <p>Distanca : </p>
                             <div className="distance-label">
