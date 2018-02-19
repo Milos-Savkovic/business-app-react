@@ -116,6 +116,7 @@ p{
     display:flex;
     flex-direction: row;
     margin-bottom: 50px;
+    align-items: baseline;
 }
 #person-vehicle-specs-input1, #person-vehicle-specs-input2{
     text-align: center;  

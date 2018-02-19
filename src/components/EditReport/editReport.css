@@ -123,12 +123,12 @@ p{
     align-items: center;
 }
 .personal-vehicle-specs{
-    margin-top:0px;
     display:flex;
     flex-direction: row;
+    align-items: baseline;
 }
 #person-vehicle-specs-input1, #person-vehicle-specs-input2{
     text-align: center;  
     margin-bottom: 10px;
-    border-radius:7%;     
+    border-radius:7%;   
 }

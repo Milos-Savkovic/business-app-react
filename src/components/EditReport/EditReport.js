@@ -62,6 +62,8 @@ class EditReport extends Component {
                 typeOfTransport: report.typeOfTransport,
                 towns: report.towns,
                 loading: false,
+                fuelPrice: report.fuelPrice || '',
+                personalVehicleFuel: report.personalVehicleFuel || '',
             });
             if (report.moreCosts) {
                 this.setState({
@@ -93,6 +95,8 @@ class EditReport extends Component {
                 reason: this.state.reason,
                 startTime: this.state.startTime,
                 endTime: this.state.endTime,
+                fuelPrice: this.state.fuelPrice || '',
+                personalVehicleFuel: this.state.personalVehicleFuel || '',
             };
         } else {
             //create new report with more destinations
@@ -108,6 +112,8 @@ class EditReport extends Component {
                 reason: this.state.reason,
                 startTime: this.state.startTime,
                 endTime: this.state.endTime,
+                fuelPrice: this.state.fuelPrice || '',
+                personalVehicleFuel: this.state.personalVehicleFuel || '',
             };
         }
         //push new report in reports array
@@ -294,7 +300,6 @@ class EditReport extends Component {
 
         if (id === "person-vehicle-specs-input1") this.setState({ personalVehicleFuel: value });
         else this.setState({ fuelPrice: value });
-        console.log("Izmjena na licnom vozilu");
     }
 
     renderPersonalVehicle() {
@@ -315,6 +320,7 @@ class EditReport extends Component {
                     onChange={e => this.handlePersonVehicle(e)}
                     required
                 />
+                <p> l</p>
                 <TextField
                     id='person-vehicle-specs-input2'
                     hintText='2.10'
@@ -332,6 +338,7 @@ class EditReport extends Component {
                     required
                     onChange={e => this.handlePersonVehicle(e)}
                 />
+                <p>KM</p>
             </div>
         )
     }

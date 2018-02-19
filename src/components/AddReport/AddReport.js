@@ -78,6 +78,8 @@ class AddReport extends Component {
                 reason: this.state.reason,
                 startTime: this.state.startTime,
                 endTime: this.state.endTime,
+                fuelPrice: this.state.fuelPrice || '',
+                personalVehicleFuel: this.state.personalVehicleFuel || '',
             };
         } else {
             //create new report with more destinations
@@ -93,6 +95,9 @@ class AddReport extends Component {
                 reason: this.state.reason,
                 startTime: this.state.startTime,
                 endTime: this.state.endTime,
+                fuelPrice: this.state.fuelPrice || '',
+                personalVehicleFuel: this.state.personalVehicleFuel || '',
+
             };
         }
         //push new report in reports array
@@ -428,6 +433,7 @@ class AddReport extends Component {
                     onChange={e => this.handlePersonVehicle(e)}
                     required
                 />
+                <p> l</p>
                 <TextField
                     id='person-vehicle-specs-input2'
                     hintText='2.10'
@@ -445,12 +451,12 @@ class AddReport extends Component {
                     required
                     onChange={e => this.handlePersonVehicle(e)}
                 />
+                <p>KM</p>
             </div>
         )
     }
 
     render() {
-        console.log(this.state);
         const date = new Date();
         return (
             <div className="field">
