@@ -312,18 +312,9 @@ class AddReport extends Component {
                     <div className="location-components">
                         <div className="location-div">
                             <p>Destinacija : </p>
-                            <DistanceInput 
-                            handleCity={this.handleCity}
+                            <DistanceInput
+                                handleCity={this.handleCity}
                             />
-                            {/* <TextField
-                                id="mapSearch"
-                                autoComplete='off'
-                                placeholder="Search..."
-                                name="cityName"
-                                onChange={this.handleCity}
-                                style={{ width: 200 }}
-                                required
-                            /> */}
                         </div>
                         <div className="distance-div">
                             <p>Distanca : </p>
