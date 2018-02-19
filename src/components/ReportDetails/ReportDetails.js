@@ -96,7 +96,8 @@ class ReportDetails extends Component {
             : array.map(city => `${city.to}`);
           return `Banja luka -  ${directions} - Banja luka`
         }
-        const days = this.substructDays(report.date1, report.date2) + 1;
+        const startHour = parseInt(report.startTime.split(":")[0], 10);
+        const days = this.substructDays(report.date1, report.date2) + (startHour < 17 ? 1 : 0);
         const dailyEarnings = this.dayPay(report.dailyEarnings);
         const cities = report.towns.map(town => (
           {
@@ -121,7 +122,7 @@ class ReportDetails extends Component {
           return newObj;
         }) : [];
         console.log(report);
-        console.log(totalCosts);
+        console.log(startHour);
         return (
           <div>
             <div className="report-container" id="report">
