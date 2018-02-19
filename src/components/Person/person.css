@@ -74,8 +74,8 @@
 }
 .icon-menu-user {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 1px;
+    top: 1px;
     opacity: 0;
     border-bottom-left-radius: 10%;
     z-index: 99;

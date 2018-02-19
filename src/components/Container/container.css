@@ -4,6 +4,7 @@
     flex-flow: row wrap;
     justify-content: flex-start;
     width: 1085px;
+    padding-bottom: 40px;
 }
 @media(min-width: 1449px) {
     .container {
