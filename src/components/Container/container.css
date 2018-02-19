@@ -45,5 +45,5 @@ svg.add-person-icon path {
     height: 375px!important;
 }
 .material-paper:hover {
-    box-shadow: 0 0 10px #94efff;
+    box-shadow: 0 2px 10px #94efff;
 }

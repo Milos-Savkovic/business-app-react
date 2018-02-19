@@ -78,8 +78,12 @@ class ReportDetails extends Component {
     }
   }
   sumOf = (arrayOf, prop) => {
-    if(arrayOf) {
-      const arrayOfObjectsProp = arrayOf.map(object => object[prop] !== "" ? parseInt(object[prop], 10) : 0);
+    if(arrayOf && prop === 'KM') {
+      const arrayOfObjectsProp = arrayOf.map(object => object[prop] !== "" ? +parseFloat(object[prop].replace(/,/g, ".")).toFixed(2) : 0);
+      const sumOfObjectsProp = arrayOfObjectsProp.reduce((total, value) => total + value);
+      return sumOfObjectsProp;
+    } else if (arrayOf) {
+      const arrayOfObjectsProp = arrayOf.map(object => object[prop] !== "" ? parseFloat(object[prop]) : 0);
       const sumOfObjectsProp = arrayOfObjectsProp.reduce((total, value) => total + value);
       return sumOfObjectsProp;
     } else return 0;
@@ -121,8 +125,9 @@ class ReportDetails extends Component {
           newObj.name = newObj.number > 1 ? newObj.name = `${newObj.name}(${newObj.number})` : newObj.name;
           return newObj;
         }) : [];
-        console.log(report);
-        console.log(startHour);
+        console.log(this.sumOf(report.moreCosts, 'KM'));
+        console.log(report.moreCosts);
+        console.log(totalCosts.rest);
         return (
           <div>
             <div className="report-container" id="report">

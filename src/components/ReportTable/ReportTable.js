@@ -54,14 +54,12 @@ export const ReportTable = (props) => {
   const countExtraCosts = (array) => {
     const count = array.map(item => {
       if (item.number) {
-        return +item.number;
+        return parseInt(item.number, 10);
       } else return 1;
     }).reduce((a, b) => a + b);
     return count;
   };
   const numberOfExtraCosts = costs.length > 1 ? countExtraCosts(costs) : 0;
-  console.log(numberOfExtraCosts);
-  console.log(props);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
