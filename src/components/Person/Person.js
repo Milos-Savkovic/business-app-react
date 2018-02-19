@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fireDB } from '../../api/firebaseApp';
 import './person.css';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -52,7 +52,10 @@ class Person extends Component {
             />,
         ];
         return (
-            <div className="card">
+            <div
+                className="card"
+                onClick={() => { this.handleDetailPerson(this.props.id) }}
+            >
                 <div className="icon-menu-user">
                     <IconMenu
                         multiple={false}
@@ -78,12 +81,11 @@ class Person extends Component {
                 <div >
                     <h2 className="name">{`${this.props.firstName} ${this.props.lastName}`}</h2>
                     <p className="title">{this.props.position}</p>
-                    <RaisedButton
+                    {/* <RaisedButton
                         label="Više"
                         onClick={() => { this.handleDetailPerson(this.props.id) }}
                         primary={true}
-                    />
-
+                    /> */}
                 </div>
             </div>
         );

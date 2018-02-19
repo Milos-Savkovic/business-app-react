@@ -10,7 +10,7 @@ import Paper from 'material-ui/Paper';
 // import fetchUsers from './Seed-offline';
 
 const style = {
-    height: 400,
+    height: 360,
     width: 320,
     margin: 20,
     textAlign: 'center',
