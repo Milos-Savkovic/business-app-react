@@ -13,7 +13,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import TimePicker from 'material-ui/TimePicker';
 import Toggle from 'material-ui/Toggle';
-import { grey400 } from 'material-ui/styles/colors';
+import { blue500 } from 'material-ui/styles/colors';
 import './addReport.css';
 
 const styles = {
@@ -21,7 +21,7 @@ const styles = {
         marginBottom: 10,
     },
     floatingLabelStyle: {
-        color: grey400,
+        color: blue500,
         fontSize: '16px',
     },
     menuItem: {
@@ -43,6 +43,8 @@ class AddReport extends Component {
         towns: [],
         earnings: 'domaća',
         typeOfTransport: 'službeno',
+        personalVehicleFuel: null,
+        fuelPrice: null,
         costs: 'kompanije',
         startDate: null,
         endDate: null,
@@ -398,7 +400,57 @@ class AddReport extends Component {
         });
     }
 
+    handlePersonVehicle(e) {
+        e.preventDefault();
+        const id = e.target.id;
+        const value = e.target.value;
+
+        if (id === "person-vehicle-specs-input1") this.setState({ personalVehicleFuel: value });
+        else this.setState({ fuelPrice: value });
+        console.log("Izmjena na licnom vozilu");
+    }
+
+    renderPersonalVehicle() {
+        if (this.state.typeOfTransport === "lično") return (
+            <div className="personal-vehicle-specs">
+                <TextField
+                    id='person-vehicle-specs-input1'
+                    hintText='7'
+                    floatingLabelText='Potrošnja'
+                    floatingLabelStyle={{
+                        color: blue500,
+                    }}
+                    defaultValue={this.state.personalVehicleFuel}
+                    hintStyle={{ width: '100px', textAlign: 'center' }}
+                    style={{
+                        width: '100px',
+                    }}
+                    onChange={e => this.handlePersonVehicle(e)}
+                    required
+                />
+                <TextField
+                    id='person-vehicle-specs-input2'
+                    hintText='2.10'
+                    floatingLabelText='Cijena goriva'
+                    floatingLabelStyle={{
+                        color: blue500,
+                        textAlign: 'center',
+                    }}
+                    defaultValue={this.state.fuelPrice}
+                    hintStyle={{ width: '100px', textAlign: 'center' }}
+                    style={{
+                        width: '100px',
+                        marginLeft: '40px',
+                    }}
+                    required
+                    onChange={e => this.handlePersonVehicle(e)}
+                />
+            </div>
+        )
+    }
+
     render() {
+        console.log(this.state);
         const date = new Date();
         return (
             <div className="field">
@@ -408,7 +460,7 @@ class AddReport extends Component {
                             hintText={`${('0' + this.state.numberOfProtocol).slice(-2)}/${date.getFullYear()}`}
                             floatingLabelText="Broj protokola"
                             floatingLabelStyle={{
-                                color: grey400,
+                                color: blue500,
                             }}
                             style={{
                                 width: '130px',
@@ -429,7 +481,7 @@ class AddReport extends Component {
                                 hintText="08:00"
                                 textFieldStyle={{
                                     width: '130px',
-                                    color: grey400,
+                                    color: blue500,
                                 }}
                                 onChange={this.handleChangeMinTime}
                             />
@@ -439,7 +491,7 @@ class AddReport extends Component {
                                 hintText="23:00"
                                 textFieldStyle={{
                                     width: '130px',
-                                    color: grey400,
+                                    color: blue500,
                                 }}
                                 onChange={this.handleChangeMaxTime}
                             />
@@ -474,7 +526,7 @@ class AddReport extends Component {
                         hintText="poslovnog angažmana za klijenta"
                         floatingLabelText="Putuje se radi"
                         floatingLabelStyle={{
-                            color: grey400,
+                            color: blue500,
                         }}
                         multiLine={true}
                         rows={1}
@@ -513,6 +565,7 @@ class AddReport extends Component {
                             <MenuItem value="lično" primaryText="Lično vozilo" />
                         </SelectField>
                     </div>
+                    {this.renderPersonalVehicle()}
                     <div className="toggle-map-mod">
                         <Toggle
                             labelStyle={{

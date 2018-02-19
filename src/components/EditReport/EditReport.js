@@ -35,6 +35,8 @@ class EditReport extends Component {
         towns: [],
         earnings: '',
         typeOfTransport: '',
+        personalVehicleFuel: null,
+        fuelPrice: null,
         costs: '',
         startDate: null,
         endDate: null,
@@ -285,7 +287,13 @@ class EditReport extends Component {
         }
     }
 
-    handlePersonVehicle() {
+    handlePersonVehicle(e) {
+        e.preventDefault();
+        const id = e.target.id;
+        const value = e.target.value;
+
+        if (id === "person-vehicle-specs-input1") this.setState({ personalVehicleFuel: value });
+        else this.setState({ fuelPrice: value });
         console.log("Izmjena na licnom vozilu");
     }
 
@@ -294,37 +302,35 @@ class EditReport extends Component {
             <div className="personal-vehicle-specs">
                 <TextField
                     id='person-vehicle-specs-input1'
-                    name="1"
                     hintText='7'
                     floatingLabelText='Potrošnja'
                     floatingLabelStyle={{
                         color: blue500,
                     }}
-                    // defaultValue={this.props.input.from}
+                    defaultValue={this.state.personalVehicleFuel}
                     hintStyle={{ width: '100px', textAlign: 'center' }}
                     style={{
                         width: '100px',
                     }}
-                    onChange={this.props.handlePersonVehicle}
+                    onChange={e => this.handlePersonVehicle(e)}
                     required
                 />
                 <TextField
                     id='person-vehicle-specs-input2'
-                    name="2"
-                    hintText='0'
+                    hintText='2.10'
                     floatingLabelText='Cijena goriva'
                     floatingLabelStyle={{
                         color: blue500,
                         textAlign: 'center',
                     }}
-                    // defaultValue={this.props.input.to}
+                    defaultValue={this.state.fuelPrice}
                     hintStyle={{ width: '100px', textAlign: 'center' }}
                     style={{
                         width: '100px',
                         marginLeft: '40px',
                     }}
                     required
-                    onChange={this.props.handlePersonVehicle}
+                    onChange={e => this.handlePersonVehicle(e)}
                 />
             </div>
         )

@@ -76,7 +76,7 @@ class Navigation extends Component {
 
     render() {
         const linkToHome = <Link to='/users' style={{display: 'flex', alignItems: 'center'}}>
-                                Busines Trip
+                                Business Trip
                             </Link>
         const appLogo = <img src={logo} className="drawer-logo" alt="logo" />;
         return (
