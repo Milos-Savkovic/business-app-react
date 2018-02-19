@@ -14,7 +14,7 @@ export const ReportTable = (props) => {
   const sum = props.sum;
   const dailyEarnings = props.dailyEarnings;
   const destinations = props.cities;
-  const costs = props.extraCosts || [];
+  const costs = props.extraCosts;
   const tableRowsOf = (arrayOfObjects, typeOfTransport, option, divClass, rows, formula) => {
     let array = [];
     for (let i = 0; i <= rows; i++) {
@@ -45,21 +45,23 @@ export const ReportTable = (props) => {
   }
   const expense = tripExpense(rep.typeOfTransport);
   const tickets = () => {
-    if(rep.typeOfTransport === 'autobus') {
-      const ticketCount = destinations.map(dest => dest.busTicket ? 1 : 0).reduce((amount,val) => amount + val);
+    if (rep.typeOfTransport === 'autobus') {
+      const ticketCount = destinations.map(dest => dest.busTicket ? 1 : 0).reduce((amount, val) => amount + val);
       return ticketCount;
     } else return 0;
   }
   const numberOfTickets = tickets();
   const countExtraCosts = (array) => {
     const count = array.map(item => {
-      if(item.number){
+      if (item.number) {
         return +item.number;
       } else return 1;
-    }).reduce((a,b) => a+b);
+    }).reduce((a, b) => a + b);
     return count;
   };
-  const numberOfExtraCosts = countExtraCosts(costs);
+  const numberOfExtraCosts = costs.length > 1 ? countExtraCosts(costs) : 0;
+  console.log(numberOfExtraCosts);
+  console.log(props);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">

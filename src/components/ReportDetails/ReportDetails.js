@@ -79,7 +79,7 @@ class ReportDetails extends Component {
   }
   sumOf = (arrayOf, prop) => {
     if(arrayOf) {
-      const arrayOfObjectsProp = arrayOf.map(object => +object[prop]);
+      const arrayOfObjectsProp = arrayOf.map(object => object[prop] !== "" ? parseInt(object[prop], 10) : 0);
       const sumOfObjectsProp = arrayOfObjectsProp.reduce((total, value) => total + value);
       return sumOfObjectsProp;
     } else return 0;
@@ -106,7 +106,7 @@ class ReportDetails extends Component {
         const totalDistance = this.sumOf(cities, "distance");
         const totalCosts = {
           daily: this.dayPay(report.dailyEarnings) * days,
-          transition: report.typeOfTransport !== "službeno" ? (this.sumOf(cities, "busTicket") || +this.sumOf(cities, "distance") * .4) : 0,
+          transition: report.typeOfTransport !== "službeno" ? (this.sumOf(cities, "busTicket") || this.sumOf(cities, "distance") * .4) : 0,
           rest: this.sumOf(report.moreCosts, "KM"),
           total() {
             let sum = this.daily + this.transition + this.rest;
@@ -115,11 +115,13 @@ class ReportDetails extends Component {
         }
         const directions = direction(cities);
         const sum = totalCosts.total().toFixed(2);
-        const extraCosts = report.moreCosts.map(obj => {
+        const extraCosts = report.moreCosts ? report.moreCosts.map(obj => {
           const newObj = Object.assign({}, obj);
           newObj.name = newObj.number > 1 ? newObj.name = `${newObj.name}(${newObj.number})` : newObj.name;
           return newObj;
-        })
+        }) : [];
+        console.log(report);
+        console.log(totalCosts);
         return (
           <div>
             <div className="report-container" id="report">

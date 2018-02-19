@@ -19,10 +19,6 @@ class Person extends Component {
         key: null,
     }
 
-    handleDetailPerson(id) {
-        this.props.clickHandlerDetail(id);
-    }
-
     handleDelete = () => {
         fireDB.ref(`/users/${this.props.id}`).remove();
         this.setState({
@@ -52,44 +48,45 @@ class Person extends Component {
             />,
         ];
         return (
-            <div className="card"           >
-                <div className="icon-menu-user">
-                    <IconMenu
-                        multiple={false}
-                        iconButtonElement={
-                            <IconButton><MoreVertIcon color={cyan50} /></IconButton>
-                        }
-                        targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-                        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-                    >
-                        <Link to={`/users/${this.props.id}/edit`} className="underile-link"> <MenuItem primaryText="Izmijeni" leftIcon={<Create />} /></Link>
-                        <MenuItem primaryText="Obriši" leftIcon={<Delete />} onClick={() => this.handleOpen(this.props.id)} />
-                    </IconMenu>
-                    <Dialog
-                        actions={actions}
-                        modal={false}
-                        open={this.state.openAlert}
-                        onRequestClose={this.handleClose}
-                    >
-                        Da li ste sigurni da želite obrisati ovog zaposlenog?
+            <Link to={`/users/${this.props.id}`} >
+                <div className="card"           >
+                    <div className="icon-menu-user">
+                        <IconMenu
+                            multiple={false}
+                            iconButtonElement={
+                                <IconButton><MoreVertIcon color={cyan50} /></IconButton>
+                            }
+                            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+                            anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        >
+                            <Link to={`/users/${this.props.id}/edit`} className="underile-link"> <MenuItem primaryText="Izmijeni" leftIcon={<Create />} /></Link>
+                            <MenuItem primaryText="Obriši" leftIcon={<Delete />} onClick={() => this.handleOpen(this.props.id)} />
+                        </IconMenu>
+                        <Dialog
+                            actions={actions}
+                            modal={false}
+                            open={this.state.openAlert}
+                            onRequestClose={this.handleClose}
+                        >
+                            Da li ste sigurni da želite obrisati ovog zaposlenog?
                     </Dialog>
-                </div>
-                <img
-                    src={this.props.image}
-                    className="avatar"
-                    alt="Jane"
-                    onClick={() => { this.handleDetailPerson(this.props.id) }}
-                />
-                <div >
-                    <h2 className="name">{`${this.props.firstName} ${this.props.lastName}`}</h2>
-                    <p className="title">{this.props.position}</p>
-                    {/* <RaisedButton
+                    </div>
+                    <img
+                        src={this.props.image}
+                        className="avatar"
+                        alt="Jane"
+                    />
+                    <div >
+                        <h2 className="name">{`${this.props.firstName} ${this.props.lastName}`}</h2>
+                        <p className="title">{this.props.position}</p>
+                        {/* <RaisedButton
                         label="Više"
                         onClick={() => { this.handleDetailPerson(this.props.id) }}
                         primary={true}
                     /> */}
+                    </div>
                 </div>
-            </div>
+            </Link>
         );
     }
 }

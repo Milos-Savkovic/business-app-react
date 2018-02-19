@@ -40,6 +40,9 @@ svg.add-person-icon path {
 .add-person-icon-container:hover svg.add-person-icon path {
     fill: rgb(0, 188, 213);
 }
+.material-paper {
+    height: 375px!important;
+}
 .material-paper:hover {
     box-shadow: 0 0 10px #94efff;
 }

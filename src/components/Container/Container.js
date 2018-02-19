@@ -24,7 +24,6 @@ class Container extends Component {
     state = {
         users: [],
         newUser: false,
-        userDetails: false,
         userDetailsId: [],
     }
 
@@ -43,15 +42,6 @@ class Container extends Component {
     }
     componentWillUnmount() {
         fetchUsers().off();
-    }
-
-    clickHandlerDetail = (id) => {
-        this.setState({
-            userDetails: true,
-            userDetailsId: id,
-        });
-        this.props.history.push(`/users/${this.state.userDetailsId}`);
-
     }
 
     clickHandler = () => {

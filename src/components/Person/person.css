@@ -68,8 +68,9 @@
 .avatar{
     height: 240px;
     width: 310px;
-    margin-top:5px;
-    /* border-radius: 5px; */
+}
+.avatar:hover {
+    cursor: pointer;
 }
 .icon-menu-user {
     position: absolute;
