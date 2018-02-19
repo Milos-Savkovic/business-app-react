@@ -309,13 +309,31 @@ class AddReport extends Component {
             return (
                 <div className="map-element">
                     <div className="location-components">
-                        <div >
+                        <div className="location-div">
                             <p>Destinacija : </p>
-                            <input type="text" id="mapSearch" placeholder="Search..." name="cityName" onChange={this.handleCity} required />
-                        </div>
-                        <div >
+                            <TextField
+                                id="mapSearch"
+                                autoComplete='off'
+                                placeholder="Search..."
+                                name="cityName"
+                                onChange={this.handleCity}
+                                style={{ width: 200 }}
+                                required
+                            /> </div>
+                        <div className="distance-div">
                             <p>Distanca : </p>
-                            <input type="text" name="distance" className="map-distance" value={this.state.city.distance + " km"} onChange={this.handleCity} required />
+                            <div className="distance-label">
+                                <TextField
+                                    id="mapDistance"
+                                    autoComplete='off'
+                                    name="distance"
+                                    onChange={this.handleCity}
+                                    value={this.state.city.distance}
+                                    style={{ width: 60 }}
+                                    required
+                                />
+                                <p>km</p>
+                            </div>
                         </div>
                     </div>
                     <MyMap

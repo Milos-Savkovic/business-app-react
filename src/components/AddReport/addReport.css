@@ -17,15 +17,29 @@
     color: white!important;
 }
 #mapSearch{
-    width:200px;
     text-align: center;  
-    padding:2px;
-    height: 30px;
     margin-bottom: 10px;
-    border:none;
-    border-bottom:2px solid #3cb8ff;
-    border-radius:7%;     
-    font-size:16px;
+    border-radius:7%;   
+}
+#mapDistance{
+       text-align: center;  
+       margin-bottom: 10px;
+       border-radius:7%;     
+}
+.distance-div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.location-div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.distance-label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 p{
     font-size:18px;
@@ -89,7 +103,7 @@ p{
     flex-direction: row;
     justify-content: space-between;
 }
-.map-distance{
+/* .map-distance{
     width:80px;
     text-align: center;  
     padding:2px;
@@ -99,7 +113,7 @@ p{
     border-bottom:2px solid #3cb8ff;
     border-radius:7%;     
     font-size:16px;
-}
+} */
 .toggle-map-mod{
     margin-bottom:15px;
 }

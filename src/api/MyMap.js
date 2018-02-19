@@ -11,7 +11,7 @@ import {
 
 const MyMap = compose(
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCL8hbtDdyI1wWhrtyebSc2LaMlV1_lsko",
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCL8hbtDdyI1wWhrtyebSc2LaMlV1_lsko&libraries=places",
         loadingElement: <div style={{ height: `100%`, width: `100%` }} />,
         containerElement: <div style={{ height: `450px`, width: `100%`, border: '2px solid #3cb8ff', borderRadius: '5px', }} />,
         mapElement: <div style={{ height: `100%`, width: `100%` }} />,
