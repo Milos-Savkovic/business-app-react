@@ -30,7 +30,10 @@ export const ReportTable = (props) => {
       });
     }
   }
-  const multiplyByZeroPointFour = (obj, prop) => (obj[prop] * .4).toFixed(2);
+  const formulas = {
+    replaceComma: (obj, prop) => obj[prop].replace(/,/g, "."),
+    multiplyByZeroPointFour: (obj, prop) => (obj[prop] * .4).toFixed(2),
+  }
   const tripExpense = transitionType => {
     switch (transitionType) {
       case 'službeno':
@@ -38,7 +41,7 @@ export const ReportTable = (props) => {
       case 'autobus':
         return tableRowsOf(destinations, null, "busTicket", ["medium-field", "medium-field-row-2"], 6);
       case 'lično':
-        return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, multiplyByZeroPointFour);
+        return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, formulas.multiplyByZeroPointFour);
       default:
         return 0;
     }
@@ -60,6 +63,7 @@ export const ReportTable = (props) => {
     return count;
   };
   const numberOfExtraCosts = costs.length > 1 ? countExtraCosts(costs) : 0;
+  console.log(costs);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">
@@ -140,10 +144,10 @@ export const ReportTable = (props) => {
           {tableRowsOf(costs, null, 'name', ['longer-field'], 2)}
         </div>
         <div className="cell cell-6 table-row-2-cell-6">
-          {tableRowsOf(costs, null, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
+          {tableRowsOf(costs, null, 'KM', ['medium-field', 'medium-field-row-2'], 2, formulas.replaceComma)}
         </div>
         <div className="cell cell-7 table-row-2-cell-7">
-          {tableRowsOf(costs, null, 'KM', ['medium-field', 'medium-field-row-2'], 2)}
+          {tableRowsOf(costs, null, 'KM', ['medium-field', 'medium-field-row-2'], 2, formulas.replaceComma)}
         </div>
       </div>
       <div className="table-row table-row-3">

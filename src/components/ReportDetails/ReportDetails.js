@@ -199,7 +199,7 @@ class ReportDetails extends Component {
                 <div className="report-row-no-line">
                   <div className="report-field">
                     <span className="report-text">Putovanje će trajati</span>&nbsp;
-                  <div className="floor-border" style={{ width: '8rem' }}>{this.substructDays(report.date1, report.date2) + 1}</div>
+                  <div className="floor-border" style={{ width: '8rem' }}>{days}</div>
                     <span className="report-text"> dan/a.&nbsp;</span>
                   </div>
                 </div>
