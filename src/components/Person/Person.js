@@ -52,10 +52,7 @@ class Person extends Component {
             />,
         ];
         return (
-            <div
-                className="card"
-                onClick={() => { this.handleDetailPerson(this.props.id) }}
-            >
+            <div className="card"           >
                 <div className="icon-menu-user">
                     <IconMenu
                         multiple={false}
@@ -77,7 +74,12 @@ class Person extends Component {
                         Da li ste sigurni da želite obrisati ovog zaposlenog?
                     </Dialog>
                 </div>
-                <img src={this.props.image} className="avatar" alt="Jane" />
+                <img
+                    src={this.props.image}
+                    className="avatar"
+                    alt="Jane"
+                    onClick={() => { this.handleDetailPerson(this.props.id) }}
+                />
                 <div >
                     <h2 className="name">{`${this.props.firstName} ${this.props.lastName}`}</h2>
                     <p className="title">{this.props.position}</p>
