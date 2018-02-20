@@ -15,6 +15,8 @@ export const ReportTable = (props) => {
   const dailyEarnings = props.dailyEarnings;
   const destinations = props.cities;
   const costs = props.extraCosts;
+  const avareageConsumption = props.report.personalVehicleFuel;
+  const priceOfFuel = props.report.fuelPrice;
   const tableRowsOf = (arrayOfObjects, typeOfTransport, option, divClass, rows, formula) => {
     let array = [];
     for (let i = 0; i <= rows; i++) {
@@ -30,7 +32,7 @@ export const ReportTable = (props) => {
       });
     }
   }
-  const multiplyByZeroPointFour = (obj, prop) => (obj[prop] * .4).toFixed(2);
+  const priceForFuel = (obj, prop) => (obj[prop] * (+avareageConsumption) / 100 * (+priceOfFuel)).toFixed(2);
   const tripExpense = transitionType => {
     switch (transitionType) {
       case 'službeno':
@@ -38,7 +40,7 @@ export const ReportTable = (props) => {
       case 'autobus':
         return tableRowsOf(destinations, null, "busTicket", ["medium-field", "medium-field-row-2"], 6);
       case 'lično':
-        return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, multiplyByZeroPointFour);
+        return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, priceForFuel);
       default:
         return 0;
     }
