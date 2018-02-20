@@ -78,7 +78,7 @@ class ReportDetails extends Component {
     }
   }
   sumOf = (arrayOf, prop) => {
-    if(arrayOf && prop === 'KM') {
+    if (arrayOf && prop === 'KM') {
       const arrayOfObjectsProp = arrayOf.map(object => object[prop] !== "" ? +parseFloat(object[prop].replace(/,/g, ".")).toFixed(2) : 0);
       const sumOfObjectsProp = arrayOfObjectsProp.reduce((total, value) => total + value);
       return sumOfObjectsProp;
@@ -88,6 +88,14 @@ class ReportDetails extends Component {
       return sumOfObjectsProp;
     } else return 0;
   }
+  fuelPrice = (array, prop, avareageConsumption, priceOfFuel) => {
+    const arrayOfprop = array.map(item => +item[prop]);
+    const sumOfarray = arrayOfprop.reduce((a, b) => a + b);
+    console.log(sumOfarray);
+    const price = sumOfarray * (+avareageConsumption) / 100 * (+priceOfFuel);
+    console.log(price);
+    return price;
+  }
 
   render() {
     const report = this.giveMeReport();
@@ -96,7 +104,7 @@ class ReportDetails extends Component {
       if (this.state.user) {
         const direction = (array) => {
           const directions = array.length > 1 ?
-            array.filter(city => city.to !== 'Banja Luka').map(city => `${city.to}`).join(' - ') 
+            array.filter(city => city.to !== 'Banja Luka').map(city => `${city.to}`).join(' - ')
             : array.map(city => `${city.to}`);
           return `Banja luka -  ${directions} - Banja luka`
         }
@@ -111,7 +119,7 @@ class ReportDetails extends Component {
         const totalDistance = this.sumOf(cities, "distance");
         const totalCosts = {
           daily: this.dayPay(report.dailyEarnings) * days,
-          transition: report.typeOfTransport !== "službeno" ? (this.sumOf(cities, "busTicket") || this.sumOf(cities, "distance") * .4) : 0,
+          transition: report.typeOfTransport !== "službeno" ? (this.sumOf(cities, "busTicket") || this.fuelPrice(report.towns, "distance", report.personalVehicleFuel, report.fuelPrice)) : 0,
           rest: this.sumOf(report.moreCosts, "KM"),
           total() {
             let sum = this.daily + this.transition + this.rest;
@@ -125,8 +133,8 @@ class ReportDetails extends Component {
           newObj.name = newObj.number > 1 ? newObj.name = `${newObj.name}(${newObj.number})` : newObj.name;
           return newObj;
         }) : [];
-        console.log(this.sumOf(report.moreCosts, 'KM'));
-        console.log(report.moreCosts);
+        console.log(this.fuelPrice(report.towns, "distance", report.personalVehicleFuel, report.fuelPrice));
+        console.log(report);
         console.log(totalCosts.rest);
         return (
           <div>
@@ -359,13 +367,13 @@ class ReportDetails extends Component {
               className="print-report-button"
               onClick={this.printReport}
             >
-              Print report 
-              <PrintIcon 
+              Print report
+              <PrintIcon
                 // color="#3cb8ff" 
                 // hoverColor="#fff" 
-                className="print-icon" 
+                className="print-icon"
               />
-          </button>
+            </button>
             <br />
           </div>
 

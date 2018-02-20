@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import TimePicker from 'material-ui/TimePicker';
-import { grey400 } from 'material-ui/styles/colors';
+import { grey400, blue500 } from 'material-ui/styles/colors';
 import './editReport.css';
 
 const styles = {
@@ -18,7 +18,7 @@ const styles = {
         marginBottom: 10,
     },
     floatingLabelStyle: {
-        color: grey400,
+        color: blue500,
         fontSize: '16px',
     },
     menuItem: {
@@ -35,6 +35,8 @@ class EditReport extends Component {
         towns: [],
         earnings: '',
         typeOfTransport: '',
+        personalVehicleFuel: null,
+        fuelPrice: null,
         costs: '',
         startDate: null,
         endDate: null,
@@ -60,6 +62,8 @@ class EditReport extends Component {
                 typeOfTransport: report.typeOfTransport,
                 towns: report.towns,
                 loading: false,
+                fuelPrice: report.fuelPrice || '',
+                personalVehicleFuel: report.personalVehicleFuel || '',
             });
             if (report.moreCosts) {
                 this.setState({
@@ -91,6 +95,8 @@ class EditReport extends Component {
                 reason: this.state.reason,
                 startTime: this.state.startTime,
                 endTime: this.state.endTime,
+                fuelPrice: this.state.fuelPrice || '',
+                personalVehicleFuel: this.state.personalVehicleFuel || '',
             };
         } else {
             //create new report with more destinations
@@ -106,6 +112,8 @@ class EditReport extends Component {
                 reason: this.state.reason,
                 startTime: this.state.startTime,
                 endTime: this.state.endTime,
+                fuelPrice: this.state.fuelPrice || '',
+                personalVehicleFuel: this.state.personalVehicleFuel || '',
             };
         }
         //push new report in reports array
@@ -285,6 +293,56 @@ class EditReport extends Component {
         }
     }
 
+    handlePersonVehicle(e) {
+        e.preventDefault();
+        const id = e.target.id;
+        const value = e.target.value;
+
+        if (id === "person-vehicle-specs-input1") this.setState({ personalVehicleFuel: value });
+        else this.setState({ fuelPrice: value });
+    }
+
+    renderPersonalVehicle() {
+        if (this.state.typeOfTransport === "lično") return (
+            <div className="personal-vehicle-specs">
+                <TextField
+                    id='person-vehicle-specs-input1'
+                    hintText='7'
+                    floatingLabelText='Potrošnja'
+                    floatingLabelStyle={{
+                        color: blue500,
+                    }}
+                    defaultValue={this.state.personalVehicleFuel}
+                    hintStyle={{ width: '100px', textAlign: 'center' }}
+                    style={{
+                        width: '100px',
+                    }}
+                    onChange={e => this.handlePersonVehicle(e)}
+                    required
+                />
+                <p> l</p>
+                <TextField
+                    id='person-vehicle-specs-input2'
+                    hintText='2.10'
+                    floatingLabelText='Cijena goriva'
+                    floatingLabelStyle={{
+                        color: blue500,
+                        textAlign: 'center',
+                    }}
+                    defaultValue={this.state.fuelPrice}
+                    hintStyle={{ width: '100px', textAlign: 'center' }}
+                    style={{
+                        width: '100px',
+                        marginLeft: '40px',
+                    }}
+                    required
+                    onChange={e => this.handlePersonVehicle(e)}
+                />
+                <p>KM</p>
+            </div>
+        )
+    }
+
     render() {
         if (this.state.loading) {
             return (
@@ -303,7 +361,7 @@ class EditReport extends Component {
                                 defaultValue={this.state.protocol}
                                 floatingLabelText="Broj protokola"
                                 floatingLabelStyle={{
-                                    color: grey400,
+                                    color: blue500,
                                 }}
                                 style={{
                                     width: '130px',
@@ -372,7 +430,7 @@ class EditReport extends Component {
                             hintText="poslovnog angažmana za klijenta"
                             floatingLabelText="Putuje se radi"
                             floatingLabelStyle={{
-                                color: grey400,
+                                color: blue500,
                             }}
                             multiLine={true}
                             rows={1}
@@ -381,7 +439,7 @@ class EditReport extends Component {
                         />
                         <div className="drop">
                             <SelectField
-                                floatingLabelText="Troškovi padaju na teret:"
+                                floatingLabelText="Troškovi padaju na teret"
                                 floatingLabelStyle={styles.floatingLabelStyle}
                                 value={this.state.costs}
                                 onChange={this.handleCosts}
@@ -400,7 +458,7 @@ class EditReport extends Component {
                             </SelectField>
                             &nbsp;
                         <SelectField
-                                floatingLabelText="Vrsta prevoza:"
+                                floatingLabelText="Vrsta prevoza"
                                 floatingLabelStyle={styles.floatingLabelStyle}
                                 value={this.state.typeOfTransport}
                                 onChange={this.handleTypeOfTransport}
@@ -411,6 +469,7 @@ class EditReport extends Component {
                                 <MenuItem value="lično" primaryText="Lično vozilo" />
                             </SelectField>
                         </div>
+                        {this.renderPersonalVehicle()}
                         <div className="add-destinations">
                             <p style={{ marginTop: '3rem' }}>Destinacije</p>
                             <div>
