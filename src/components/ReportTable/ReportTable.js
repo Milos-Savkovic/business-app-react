@@ -4,6 +4,7 @@ import React from 'react';
 import './ReportTable.css';
 import moment from 'moment';
 
+
 export const ReportTable = (props) => {
   const style = {
     borderTop: { borderTop: '1px solid #333' },
@@ -20,7 +21,7 @@ export const ReportTable = (props) => {
   const tableRowsOf = (arrayOfObjects, typeOfTransport, option, divClass, rows, formula) => {
     let array = [];
     for (let i = 0; i <= rows; i++) {
-      array.push(arrayOfObjects[i] ? arrayOfObjects[i] : '');
+     array.push(arrayOfObjects[i] ? arrayOfObjects[i] : '');
     }
     if (!typeOfTransport) {
       return array.map((obj, id) => {
@@ -51,21 +52,13 @@ export const ReportTable = (props) => {
   const expense = tripExpense(rep.typeOfTransport);
   const tickets = () => {
     if (rep.typeOfTransport === 'autobus') {
-      const ticketCount = destinations.map(dest => dest.busTicket ? 1 : 0).reduce((amount, val) => amount + val);
-      return ticketCount;
+      return destinations.map(dest => dest.busTicket ? 1 : 0).reduce((amount, val) => amount + val);      
     } else return 0;
   }
   const numberOfTickets = tickets();
-  const countExtraCosts = (array) => {
-    const count = array.map(item => {
-      if (item.number) {
-        return parseInt(item.number, 10);
-      } else return 1;
-    }).reduce((a, b) => a + b);
-    return count;
-  };
+  const countExtraCosts = (array) => array.map(item => item.number ? parseInt(item.number, 10) : 1).reduce((a, b) => a + b);
   const numberOfExtraCosts = costs.length >= 1 ? countExtraCosts(costs) : 0;
-  console.log(costs);
+  console.log(props);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">

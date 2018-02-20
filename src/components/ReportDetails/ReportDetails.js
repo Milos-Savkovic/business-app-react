@@ -122,20 +122,19 @@ class ReportDetails extends Component {
           transition: report.typeOfTransport !== "službeno" ? (this.sumOf(cities, "busTicket") || this.fuelPrice(report.towns, "distance", report.personalVehicleFuel, report.fuelPrice)) : 0,
           rest: this.sumOf(report.moreCosts, "KM"),
           total() {
-            let sum = this.daily + this.transition + this.rest;
-            return sum;
+             return this.daily + this.transition + this.rest;
           },
         }
         const directions = direction(cities);
         const sum = totalCosts.total().toFixed(2);
         const extraCosts = report.moreCosts ? report.moreCosts.map(obj => {
-          const newObj = Object.assign({}, obj);
+          const newObj = Object.assign(
+            {}, 
+            obj
+          );
           newObj.name = newObj.number > 1 ? newObj.name = `${newObj.name}(${newObj.number})` : newObj.name;
           return newObj;
         }) : [];
-        console.log(this.fuelPrice(report.towns, "distance", report.personalVehicleFuel, report.fuelPrice));
-        console.log(report);
-        console.log(totalCosts.rest);
         return (
           <div>
             <div className="report-container" id="report">
