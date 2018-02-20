@@ -32,7 +32,10 @@ export const ReportTable = (props) => {
       });
     }
   }
-  const priceForFuel = (obj, prop) => (obj[prop] * (+avareageConsumption) / 100 * (+priceOfFuel)).toFixed(2);
+  const formulas = {
+    replaceComma: (obj, prop) => +parseFloat(obj[prop].replace(/,/g, ".")).toFixed(2),
+    priceForFuel: (obj, prop) => (obj[prop] * (+avareageConsumption) / 100 * (+priceOfFuel)).toFixed(2),
+  }
   const tripExpense = transitionType => {
     switch (transitionType) {
       case 'službeno':
@@ -40,7 +43,7 @@ export const ReportTable = (props) => {
       case 'autobus':
         return tableRowsOf(destinations, null, "busTicket", ["medium-field", "medium-field-row-2"], 6);
       case 'lično':
-        return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, priceForFuel);
+        return tableRowsOf(destinations, null, "distance", ["medium-field", "medium-field-row-2"], 6, formulas.priceForFuel);
       default:
         return 0;
     }
@@ -61,7 +64,7 @@ export const ReportTable = (props) => {
     }).reduce((a, b) => a + b);
     return count;
   };
-  const numberOfExtraCosts = costs.length > 1 ? countExtraCosts(costs) : 0;
+  const numberOfExtraCosts = costs.length >= 1 ? countExtraCosts(costs) : 0;
   console.log(costs);
   return (
     <div className="table-container">

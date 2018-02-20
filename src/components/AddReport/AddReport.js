@@ -71,6 +71,7 @@ class AddReport extends Component {
                     from: 'Banja Luka',
                     to: this.state.city.cityName,
                     distance: this.state.city.distance,
+                    busTicket: this.state.city.busTicket,
                 },],
                 typeOfTransport: this.state.typeOfTransport,
                 moreCosts: this.state.moreCosts,
@@ -179,6 +180,7 @@ class AddReport extends Component {
                 id: uuidv4(),
                 from: '',
                 to: '',
+                distance: '',
                 busTicket: ''
             });
         } else {
@@ -186,6 +188,7 @@ class AddReport extends Component {
                 id: uuidv4(),
                 from: '',
                 to: '',
+                busTicket: '',
                 distance: ''
             });
         }
@@ -203,8 +206,12 @@ class AddReport extends Component {
                 else if (e.target.name === "2") item.to = e.target.value;
                 else if (this.state.typeOfTransport === "autobus") {
                     item.busTicket = e.target.value;
+                    item.distance = '';
                 }
-                else item.distance = e.target.value;
+                else {
+                    item.distance = e.target.value;
+                    item.busTicket = '';
+                }
             }
             return item;
         });
