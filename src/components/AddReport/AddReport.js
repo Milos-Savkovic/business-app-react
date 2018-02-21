@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
-import MyMap from '../../api/MyMap';
-import DistanceInput from '../../api/DistanceInput';
+// import MyMap from '../../api/MyMap';
+import { MyGoogleMapWithSearch } from '../../api/GoogleMap';
+// import DistanceInput from '../../api/DistanceInput';
 import { fireDB } from '../../api/firebaseApp';
 import PickDays from '../PickDays/PickDays';
 import NewCosts from '../NewCosts/NewCosts';
@@ -326,9 +327,9 @@ class AddReport extends Component {
                     <div className="location-components">
                         <div className="location-div">
                             <p>Destinacija : </p>
-                            <DistanceInput
-                                handleCity={this.handleCity}
-                            />
+                            {/* <DistanceInput */}
+                            {/* handleCity={this.handleCity} */}
+                            {/* /> */}
                         </div>
                         <div className="distance-div">
                             <p>Distanca : </p>
@@ -346,10 +347,11 @@ class AddReport extends Component {
                             </div>
                         </div>
                     </div>
-                    <MyMap
+                    {/* <MyMap
                         city={this.state.city.cityName || 'Banja Luka'}
                         handleDistance={this.handleDistance}
-                    />
+                    /> */}
+                    <MyGoogleMapWithSearch />
                 </div>
             )
         }
