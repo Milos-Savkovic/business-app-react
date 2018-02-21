@@ -58,7 +58,6 @@ export const ReportTable = (props) => {
   const numberOfTickets = tickets();
   const countExtraCosts = (array) => array.map(item => item.number ? parseInt(item.number, 10) : 1).reduce((a, b) => a + b);
   const numberOfExtraCosts = costs.length >= 1 ? countExtraCosts(costs) : 0;
-  console.log(props);
   return (
     <div className="table-container">
       <div className="table-row table-row-1">

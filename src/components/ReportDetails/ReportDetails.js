@@ -91,9 +91,7 @@ class ReportDetails extends Component {
   fuelPrice = (array, prop, avareageConsumption, priceOfFuel) => {
     const arrayOfprop = array.map(item => +item[prop]);
     const sumOfarray = arrayOfprop.reduce((a, b) => a + b);
-    console.log(sumOfarray);
     const price = sumOfarray * (+avareageConsumption) / 100 * (+priceOfFuel);
-    console.log(price);
     return price;
   }
 
