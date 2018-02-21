@@ -553,7 +553,6 @@ class AddReport extends Component {
                             multiLine={true}
                             rows={1}
                             onChange={this.handleNumberOfDailies}
-                            required
                         />
                     </div>
                     <TextField

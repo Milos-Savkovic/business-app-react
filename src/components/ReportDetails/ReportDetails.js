@@ -108,7 +108,7 @@ class ReportDetails extends Component {
           return `Banja luka -  ${directions} - Banja luka`
         }
         const startHour = parseInt(report.startTime.split(":")[0], 10);
-        const days = this.substructDays(report.date1, report.date2) + (startHour < 17 ? 1 : 0);
+        const days = report.days ? report.days : this.substructDays(report.date1, report.date2) + (startHour < 17 ? 1 : 0);
         const dailyEarnings = this.dayPay(report.dailyEarnings);
         const cities = report.towns.map(town => (
           {
