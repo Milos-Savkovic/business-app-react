@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import fire, { fireDB } from '../../api/firebaseApp';
 import Report from '../Report/Report';
+import {Loader} from '../Loader/Loader';
 import IconButton from 'material-ui/IconButton';
 import Create from 'material-ui/svg-icons/content/create';
 import IconMenu from 'material-ui/IconMenu';
@@ -19,6 +20,7 @@ class UserDetail extends Component {
     state = {
         openAlert: false,
         key: null,
+        loading: false,
     }
 
     click = () => {
@@ -114,31 +116,40 @@ class UserDetail extends Component {
     }
 
     handleUploadImage = (e) => {
+        this.setState({
+            loading: true,
+        });
         try {
             const file = e.target.files[0];
             fire.storage().ref(`images/${this.props.id}`).put(file)
                 .then(() => {
                     const fetchImage = fire.storage().ref(`images/${this.props.id}`).getDownloadURL();
                     fetchImage.then((url) => {
-                        console.log(url);
                         return (url);
                     }).then((image) => {
                         fireDB.ref(`users/${this.props.id}`).update({
                             Image: image,
                         });
                     }).then(() => {
-                        window.location.reload();
+                        this.setState({
+                            loading: false,
+                        });
                     })
-                    console.log("Successfully added new picture.");
                 })
         } catch (error) {
             console.log(error);
         }
     }
-
-    render() {
-        return (
-            <div className="user">
+    renderPicture = () => {
+        if(this.state.loading) return (
+            <div className="profile-pic">
+                <div className="change-img-loader" >
+                    <Loader />
+                </div>
+            </div>
+        );
+        else {
+            return (
                 <div className="profile-pic">
                     <img src={this.props.image} className="img" alt="Profile" />
                     <div className="edit">
@@ -158,6 +169,13 @@ class UserDetail extends Component {
                             onChange={(e) => this.handleUploadImage(e)} />
                     </div>
                 </div>
+            );
+        }
+    }
+    render() {
+         return (
+            <div className="user">
+                {this.renderPicture()}
                 <div className="nameClass">
                     {this.props.firstName + " " + this.props.lastName}
                 </div>

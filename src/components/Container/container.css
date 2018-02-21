@@ -27,19 +27,18 @@
 .users-heading h3 {
     margin: 0;
 }
-.add-person-icon {
-    height: 42px!important;
-    width: 42px!important;
-}
 svg.add-person-icon path {
-    fill: rgb(144, 144, 144);
+    fill: rgb(255, 255, 255);
 }
 .add-person-icon-container {
-    height: 50px!important;
-    width: 50px!important;
-}
-.add-person-icon-container:hover svg.add-person-icon path {
-    fill: rgb(0, 188, 213);
+    height: 60px!important;
+    width: 60px!important;
+    background: #3cb9ff!important;
+    border-radius: 50%;
+    position: absolute!important;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 999;
 }
 .material-paper {
     height: 375px!important;

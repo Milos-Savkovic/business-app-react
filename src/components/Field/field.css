@@ -19,6 +19,9 @@
     right:20px;
     position: fixed;
 }
+.fieldButton button {
+    background-color: rgb(60, 185, 255)!important;
+}
 .field-tip {
     font-size: 4rem;
     text-align: center;

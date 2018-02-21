@@ -178,3 +178,8 @@
 .underile-link{
 text-decoration: none;
 }
+.change-img-loader {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+}

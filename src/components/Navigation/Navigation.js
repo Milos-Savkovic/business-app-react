@@ -29,7 +29,7 @@ class Logged extends Component {
                 <div className="menu-item-right">
                     <MenuItem primaryText={this.props.email} />
                     <Avatar src={this.props.photo} size={50} />
-                    <MenuItem primaryText="Osvježi" onClick={() => { window.location.reload() }} />
+                    {/*<MenuItem primaryText="Osvježi" onClick={() => { window.location.reload() }} />*/}
                     <MenuItem primaryText="Odjavite se" onClick={this.props.handlelogout} />
                 </div>
             </IconMenu>
@@ -92,7 +92,7 @@ class Navigation extends Component {
                         email={this.state.userEmail}
                     />}
                     style={{
-                        backgroundColor: 'rgb(144, 144, 144)'
+                        backgroundColor: 'rgb(23, 142, 244)'
                     }}
 
                 />

@@ -7,6 +7,7 @@ import './ReportDetails.css';
 import { ReportTable } from '../ReportTable/ReportTable';
 import PrintIcon from 'material-ui/svg-icons/action/print';
 import moment from 'moment';
+import {Loader} from '../Loader/Loader';
 
 class ReportDetails extends Component {
   state = {
@@ -378,11 +379,7 @@ class ReportDetails extends Component {
       }
       else {
         return (
-          <div className="load-bar">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
+          <Loader />
         );
       }
     }
