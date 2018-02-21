@@ -4,6 +4,8 @@ import { fireDB } from '../../api/firebaseApp'
 import TextField from 'material-ui/TextField';
 import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import './editUser.css';
 
 //Styles for inputs
 const styles = {
@@ -29,12 +31,14 @@ class AddUser extends Component {
             position: '',
             email: '',
         },
+        sex: '',
+        image: '',
         isAdded: false,
         loading: true,
         close: false,
     }
     componentWillMount() {
-      this.getFireBase();
+        this.getFireBase();
     }
     xhandler = () => {
         this.setState({
@@ -52,20 +56,36 @@ class AddUser extends Component {
             user
         })
     }
-    getFireBase = () => {      
+    getFireBase = () => {
         fireDB.ref(`/users/${this.props.match.params.id}`).once('value').then(snapshot => {
             const user = snapshot.val();
             this.setState({
-              user: {
-                firstname: user.FirstName,
-                lastname: user.LastName,
-                position: user.Position,
-                email: user.Email,
-              },
-              loading: false,
+                user: {
+                    firstname: user.FirstName,
+                    lastname: user.LastName,
+                    position: user.Position,
+                    email: user.Email,
+                },
+                sex: user.Sex || 'muški',
+                image: user.Image || (user.Sex === 'muški')
+                    ? 'https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png'
+                    : 'https://i.pinimg.com/474x/4b/5d/19/4b5d1954fbb5b6bad18f0ac25c4ab3c3--free-avatars-create-your-own-avatar.jpg',
+                loading: false,
             });
-        })    
+        })
     }
+
+    handleSex = (e, value) => {
+        this.setState({
+            sex: value,
+        });
+        (value === "muški") ? this.setState({
+            image: 'https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png',
+        }) : this.setState({
+            image: 'https://i.pinimg.com/474x/4b/5d/19/4b5d1954fbb5b6bad18f0ac25c4ab3c3--free-avatars-create-your-own-avatar.jpg',
+        });
+    }
+
     setFirebase = (event) => {
         event.preventDefault();
         const newUser = {
@@ -73,7 +93,8 @@ class AddUser extends Component {
             LastName: this.state.user.lastname,
             Position: this.state.user.position,
             Email: this.state.user.email,
-            Image:'',
+            Sex: this.state.sex,
+            Image: this.state.image,
         }
         const ref = fireDB.ref(`/users/${this.props.match.params.id}`);
         ref.update(newUser);
@@ -83,67 +104,85 @@ class AddUser extends Component {
     }
 
     render() {
+        console.log(this.state);
         if (this.state.isAdded || this.state.close) return <Redirect to="/users" />
-        if(this.state.loading) return (
-          <div className="load-bar">
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
+        if (this.state.loading) return (
+            <div className="load-bar">
+                <div className="bar"></div>
+                <div className="bar"></div>
+                <div className="bar"></div>
+            </div>
         );
         else {
-          return (
-            <div className="add-user-container" >
-                <form className="contactForm" onSubmit={this.setFirebase}>
-                    <TextField
-                        defaultValue={this.state.user.firstname}
-                        floatingLabelText="Ime"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="firstname"
-                        required
-                    /><br />
-                    <TextField
-                        defaultValue={this.state.user.lastname}
-                        floatingLabelText="Prezime"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="lastname"
-                        required
-                    /><br />
-                    <TextField
-                        defaultValue={this.state.user.email}
-                        type="email"
-                        floatingLabelText="Email"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="email"
-                        required
-                    /><br />
-                    <TextField
-                        defaultValue={this.state.user.position}
-                        floatingLabelText="Pozicija"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="position"
-                        required
-                    /><br />
-                    <FlatButton type="submit" label="Sačuvaj izmjene" name="submit" style={styles.button} />
-                </form>
-                <div
-                    className="close"
-                    onClick={this.xhandler}
-                >
-                    X
+            return (
+                <div className="add-user-container" >
+                    <form className="contactForm" onSubmit={this.setFirebase}>
+                        <TextField
+                            defaultValue={this.state.user.firstname}
+                            floatingLabelText="Ime"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                            onChange={this.handleInput}
+                            name="firstname"
+                            required
+                        /><br />
+                        <TextField
+                            defaultValue={this.state.user.lastname}
+                            floatingLabelText="Prezime"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                            onChange={this.handleInput}
+                            name="lastname"
+                            required
+                        /><br />
+                        <TextField
+                            defaultValue={this.state.user.email}
+                            type="email"
+                            floatingLabelText="Email"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                            onChange={this.handleInput}
+                            name="email"
+                            required
+                        /><br />
+                        <TextField
+                            defaultValue={this.state.user.position}
+                            floatingLabelText="Pozicija"
+                            floatingLabelStyle={styles.floatingLabelStyle}
+                            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                            onChange={this.handleInput}
+                            name="position"
+                            required
+                        /><br />
+                        <div className="radio-button-sex">
+                            <p>Pol : </p>
+                            <RadioButtonGroup
+                                name="sex"
+                                onChange={this.handleSex}
+                                defaultSelected={this.state.sex}
+                            >
+                                <RadioButton
+                                    label="muški "
+                                    value="muški"
+                                />
+                                <RadioButton
+                                    label="ženski"
+                                    value="ženski"
+                                />
+                            </RadioButtonGroup>
+                        </div>
+                        <FlatButton type="submit" label="Sačuvaj izmjene" name="submit" style={styles.button} />
+                    </form>
+                    <div
+                        className="close"
+                        onClick={this.xhandler}
+                    >
+                        X
                 </div>
-            </div>
-          );
+                </div>
+            );
         }
-        
+
     }
 }
 

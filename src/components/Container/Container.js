@@ -69,7 +69,7 @@ class Container extends Component {
                             firstName={teamComponents[key].FirstName}
                             lastName={teamComponents[key].LastName}
                             position={teamComponents[key].Position}
-                            image={teamComponents[key].Image || "https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png"}
+                            image={teamComponents[key].Image}
                             clickHandlerDetail={this.clickHandlerDetail}
                         />
                     </Paper>

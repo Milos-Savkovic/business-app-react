@@ -4,6 +4,7 @@ import { fireDB } from '../../api/firebaseApp'
 import TextField from 'material-ui/TextField';
 import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import './addUser.css';
 
 //Styles for inputs
@@ -30,8 +31,10 @@ class AddUser extends Component {
             position: '',
             email: '',
         },
+        sex: 'muški',
         isAdded: false,
         close: false,
+        image: 'https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png',
     }
 
     xhandler = () => {
@@ -51,6 +54,17 @@ class AddUser extends Component {
         })
     }
 
+    handleSex = (e, value) => {
+        this.setState({
+            sex: value,
+        });
+        (value === "muški") ? this.setState({
+            image: 'https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png',
+        }) : this.setState({
+            image: 'https://i.pinimg.com/474x/4b/5d/19/4b5d1954fbb5b6bad18f0ac25c4ab3c3--free-avatars-create-your-own-avatar.jpg',
+        });
+    }
+
     setFirebase = (event) => {
         event.preventDefault();
         const newUser = {
@@ -58,7 +72,8 @@ class AddUser extends Component {
             LastName: this.state.user.lastname,
             Position: this.state.user.position,
             Email: this.state.user.email,
-            Image:'',
+            Sex: this.state.sex,
+            Image: this.state.image,
         }
         const ref = fireDB.ref(`/users`);
         ref.push(newUser, error => {
@@ -107,6 +122,23 @@ class AddUser extends Component {
                         name="position"
                         required
                     /><br />
+                    <div className="radio-button-sex">
+                        <p>Pol : </p>
+                        <RadioButtonGroup
+                            name="sex"
+                            onChange={this.handleSex}
+                            defaultSelected={this.state.sex}
+                        >
+                            <RadioButton
+                                label="muški "
+                                value="muški"
+                            />
+                            <RadioButton
+                                label="ženski"
+                                value="ženski"
+                            />
+                        </RadioButtonGroup>
+                    </div>
                     <FlatButton type="submit" label="Dodaj novu osobu" name="submit" style={styles.button} />
                 </form>
                 <div
