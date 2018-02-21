@@ -116,20 +116,21 @@ class UserDetail extends Component {
     handleUploadImage = (e) => {
         try {
             const file = e.target.files[0];
-            fire.storage().ref(`images/${this.props.id}`).put(file);
-
-            const fetchImage = fire.storage().ref(`images/${this.props.id}`).getDownloadURL();
-            fetchImage.then((url) => {
-                console.log(url);
-                return (url);
-            }).then((image) => {
-                fireDB.ref(`users/${this.props.id}`).update({
-                    Image: image,
-                });
-            }).then(() => {
-                window.location.reload();
-            })
-            console.log("Successfully added new picture.");
+            fire.storage().ref(`images/${this.props.id}`).put(file)
+                .then(() => {
+                    const fetchImage = fire.storage().ref(`images/${this.props.id}`).getDownloadURL();
+                    fetchImage.then((url) => {
+                        console.log(url);
+                        return (url);
+                    }).then((image) => {
+                        fireDB.ref(`users/${this.props.id}`).update({
+                            Image: image,
+                        });
+                    }).then(() => {
+                        window.location.reload();
+                    })
+                    console.log("Successfully added new picture.");
+                })
         } catch (error) {
             console.log(error);
         }

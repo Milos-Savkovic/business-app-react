@@ -104,7 +104,6 @@ class AddUser extends Component {
     }
 
     render() {
-        console.log(this.state);
         if (this.state.isAdded || this.state.close) return <Redirect to="/users" />
         if (this.state.loading) return (
             <div className="load-bar">
