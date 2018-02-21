@@ -33,6 +33,7 @@ class EditReport extends Component {
 
     state = {
         towns: [],
+        days: 0,
         earnings: '',
         typeOfTransport: '',
         personalVehicleFuel: null,
@@ -51,6 +52,7 @@ class EditReport extends Component {
         fireDB.ref(`/users/${this.props.match.params.id}/Reports/${this.props.match.params.key}`).once('value').then(snapshot => {
             const report = snapshot.val();
             this.setState({
+                days: report.days,
                 protocol: report.protocol,
                 startDate: report.date1,
                 endDate: report.date2,
@@ -79,6 +81,7 @@ class EditReport extends Component {
         let report;
         if (this.state.toggled) {
             report = {
+                days: this.state.days,
                 costs: this.state.costs,
                 dailyEarnings: this.state.earnings,
                 date1: this.state.startDate,
@@ -102,6 +105,7 @@ class EditReport extends Component {
         } else {
             //create new report with more destinations
             report = {
+                days: this.state.days,
                 costs: this.state.costs,
                 dailyEarnings: this.state.earnings,
                 date1: this.state.startDate,
@@ -263,6 +267,8 @@ class EditReport extends Component {
     handleReason = (event, value) => this.setState({
         reason: value,
     });
+
+    handleNumberOfDailies = (event, value) => this.setState({ days: +value});
 
     handleChangeMinTime = (event, date) => {
         let hours = date.getHours();
@@ -432,6 +438,20 @@ class EditReport extends Component {
                                     />
                                 </RadioButtonGroup>
                             </div>
+                        </div>
+                        <div className="number-of-daily-earnings">
+                            <TextField
+                                className="days-input"
+                                defaultValue={this.state.days}
+                                floatingLabelText="Broj dnevnica"
+                                floatingLabelStyle={{
+                                    color: blue500,
+                                }}
+                                multiLine={true}
+                                rows={1}
+                                onChange={this.handleNumberOfDailies}
+                                required
+                            />
                         </div>
                         <TextField
                             className="cause-field"

@@ -42,6 +42,7 @@ class AddReport extends Component {
             distance: 0,
             busTicket: '',
         },
+        days: 0,
         towns: [],
         earnings: 'domaća',
         typeOfTransport: 'službeno',
@@ -68,6 +69,7 @@ class AddReport extends Component {
                 dailyEarnings: this.state.earnings,
                 date1: this.state.startDate,
                 date2: this.state.endDate,
+                days: this.state.days,
                 towns: [{
                     id: uuidv4(),
                     from: 'Banja Luka',
@@ -91,6 +93,7 @@ class AddReport extends Component {
                 dailyEarnings: this.state.earnings,
                 date1: this.state.startDate,
                 date2: this.state.endDate,
+                days: this.state.days,
                 towns: this.state.towns,
                 typeOfTransport: this.state.typeOfTransport,
                 moreCosts: this.state.moreCosts,
@@ -289,7 +292,7 @@ class AddReport extends Component {
     handleReason = (event, value) => this.setState({
         reason: value,
     });
-
+    
     handleChangeMinTime = (event, date) => {
         let hours = date.getHours();
         let minutes = date.getMinutes();
@@ -304,7 +307,7 @@ class AddReport extends Component {
             startTime: date,
         });
     };
-
+    
     handleChangeMaxTime = (event, date) => {
         let hours = date.getHours();
         let minutes = date.getMinutes();
@@ -319,6 +322,8 @@ class AddReport extends Component {
             endTime: date,
         });
     };
+    
+    handleNumberOfDailies = (event, value) => this.setState({ days: +value});
 
     displayMap = () => {
         if (this.state.toggled) {
@@ -466,6 +471,7 @@ class AddReport extends Component {
     }
 
     render() {
+        console.log(this.state);
         const date = new Date();
         return (
             <div className="field">
@@ -535,6 +541,20 @@ class AddReport extends Component {
                                 />
                             </RadioButtonGroup>
                         </div>
+                    </div>
+                    <div className="number-of-daily-earnings">
+                        <TextField
+                            className="days-input"
+                            defaultValue={this.state.days}
+                            floatingLabelText="Broj dnevnica"
+                            floatingLabelStyle={{
+                                color: blue500,
+                            }}
+                            multiLine={true}
+                            rows={1}
+                            onChange={this.handleNumberOfDailies}
+                            required
+                        />
                     </div>
                     <TextField
                         className="cause-field"

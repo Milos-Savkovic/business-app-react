@@ -123,3 +123,6 @@ p{
     margin-bottom: 10px;
     border-radius:7%;     
 }
+.days-input {
+    width: 100px!important;
+}
