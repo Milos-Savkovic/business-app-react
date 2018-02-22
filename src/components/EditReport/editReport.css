@@ -71,11 +71,7 @@ p{
     width: 80%;
     justify-content: space-evenly;
     margin-top: 3rem;
-    /* background-color: #ececec; */
     box-shadow: 0 0 1px #a8a8a8;
-}
-.dates:hover {
-    box-shadow: 0 0 5px #a8a8a8;    
 }
 .rowDate input {
     /* width: 150px; */

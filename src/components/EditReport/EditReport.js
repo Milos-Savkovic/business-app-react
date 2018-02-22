@@ -33,7 +33,7 @@ class EditReport extends Component {
 
     state = {
         towns: [],
-        days: 0,
+        days: null,
         earnings: '',
         typeOfTransport: '',
         personalVehicleFuel: null,
@@ -52,7 +52,7 @@ class EditReport extends Component {
         fireDB.ref(`/users/${this.props.match.params.id}/Reports/${this.props.match.params.key}`).once('value').then(snapshot => {
             const report = snapshot.val();
             this.setState({
-                days: report.days,
+                days: report.days > 0 ? report.days : null,
                 protocol: report.protocol,
                 startDate: report.date1,
                 endDate: report.date2,

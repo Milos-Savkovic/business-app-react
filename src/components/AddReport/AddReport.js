@@ -42,7 +42,7 @@ class AddReport extends Component {
             distance: 0,
             busTicket: '',
         },
-        days: 0,
+        days: null,
         towns: [],
         earnings: 'domaća',
         typeOfTransport: 'službeno',
