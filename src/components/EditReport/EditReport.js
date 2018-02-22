@@ -268,7 +268,7 @@ class EditReport extends Component {
         reason: value,
     });
 
-    handleNumberOfDailies = (event, value) => this.setState({ days: +value});
+    handleNumberOfDailies = (event, value) => this.setState({ days: +value });
 
     handleChangeMinTime = (event, date) => {
         let hours = date.getHours();
@@ -369,7 +369,7 @@ class EditReport extends Component {
         } else
             return (
                 <div className="field">
-                    <form className="form-newReport" onSubmit={this.setFirebase} >
+                    <form className="form-newReport form-edit-report" onSubmit={this.setFirebase} >
                         <div className="protocol">
                             <TextField
                                 defaultValue={this.state.protocol}
@@ -385,7 +385,7 @@ class EditReport extends Component {
                             />
                         </div>
                         <div className="dates">
-                            <div>
+                            <div className="dates-collumn">
                                 <PickDaysEdit
                                     handleDateStart={this.handleDateStart}
                                     handleDateEnd={this.handleDateEnd}
@@ -393,7 +393,7 @@ class EditReport extends Component {
                                     end={this.state.endDate}
                                 />
                             </div>
-                            <div>
+                            <div className="dates-collumn">
                                 <TimePicker
                                     format="24hr"
                                     hintText={this.state.startTime}
@@ -403,7 +403,6 @@ class EditReport extends Component {
                                     }}
                                     onChange={this.handleChangeMinTime}
                                 />
-                                <br />
                                 <TimePicker
                                     format="24hr"
                                     hintText={this.state.endTime}
@@ -414,9 +413,10 @@ class EditReport extends Component {
                                     onChange={this.handleChangeMaxTime}
                                 />
                             </div>
-                            <div className="rowEarnings">
-                                <p>Dnevnica : </p>
+                            <div className="dates-collumn">
+                                <div className="radio-group-heading"><p>Dnevnica</p></div>
                                 <RadioButtonGroup
+                                    className="radio-group"
                                     name="earnings"
                                     onChange={this.handleEarnings}
                                     defaultSelected={this.state.earnings}

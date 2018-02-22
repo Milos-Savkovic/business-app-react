@@ -292,7 +292,7 @@ class AddReport extends Component {
     handleReason = (event, value) => this.setState({
         reason: value,
     });
-    
+
     handleChangeMinTime = (event, date) => {
         let hours = date.getHours();
         let minutes = date.getMinutes();
@@ -307,7 +307,7 @@ class AddReport extends Component {
             startTime: date,
         });
     };
-    
+
     handleChangeMaxTime = (event, date) => {
         let hours = date.getHours();
         let minutes = date.getMinutes();
@@ -322,8 +322,8 @@ class AddReport extends Component {
             endTime: date,
         });
     };
-    
-    handleNumberOfDailies = (event, value) => this.setState({ days: +value});
+
+    handleNumberOfDailies = (event, value) => this.setState({ days: +value });
 
     displayMap = () => {
         if (this.state.toggled) {
@@ -490,13 +490,13 @@ class AddReport extends Component {
                         />
                     </div>
                     <div className="dates">
-                        <div>
+                        <div className="dates-collumn">
                             <PickDays
                                 handleDateStart={this.handleDateStart}
                                 handleDateEnd={this.handleDateEnd}
                             />
                         </div>
-                        <div>
+                        <div className="dates-collumn">
                             <TimePicker
                                 format="24hr"
                                 hintText="08:00"
@@ -505,8 +505,7 @@ class AddReport extends Component {
                                     color: blue500,
                                 }}
                                 onChange={this.handleChangeMinTime}
-                            />
-                            <br />
+                            />                            
                             <TimePicker
                                 format="24hr"
                                 hintText="23:00"
@@ -517,9 +516,10 @@ class AddReport extends Component {
                                 onChange={this.handleChangeMaxTime}
                             />
                         </div>
-                        <div className="rowEarnings">
-                            <p>Dnevnica : </p>
+                        <div className="dates-collumn">
+                            <div className="radio-group-heading"><p>Dnevnica</p></div>
                             <RadioButtonGroup
+                                className="radio-group"
                                 name="earnings"
                                 onChange={this.handleEarnings}
                                 defaultSelected="domaća"

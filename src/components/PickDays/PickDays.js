@@ -46,7 +46,7 @@ export default class DatePickerExampleToggle extends React.Component {
             <div>
                 <DatePicker
                     onChange={this.handleChangeMinDate}
-                    floatingLabelText="Datum polaska"
+                    hintText="Datum polaska"
                     maxDate={this.state.maxDate}
                     defaultDate={this.state.minDate}
                     formatDate={this.formatDate}
@@ -58,8 +58,9 @@ export default class DatePickerExampleToggle extends React.Component {
                     required
                 />
                 <DatePicker
+                    // className="margin-on-top"
                     onChange={this.handleChangeMaxDate}
-                    floatingLabelText="Datum dolaska"
+                    hintText="Datum dolaska"
                     minDate={this.state.minDate}
                     defaultDate={this.state.maxDate}
                     formatDate={this.formatDate}
