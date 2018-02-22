@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
-// import MyMap from '../../api/MyMap';
-import { MyGoogleMapWithSearch } from '../../api/GoogleMap';
-// import DistanceInput from '../../api/DistanceInput';
+import MyMap from '../../api/MyMap';
 import { fireDB } from '../../api/firebaseApp';
 import PickDays from '../PickDays/PickDays';
 import NewCosts from '../NewCosts/NewCosts';
@@ -148,14 +146,12 @@ class AddReport extends Component {
         typeOfTransport: value,
     });
 
-    handleCity = (e) => {
-        e.preventDefault();
+    handleCityFromMap = (newCity) => {
         const city = this.state.city;
-        const name = e.target.name;
-        let value = e.target.value;
-        city[name] = value;
+        const stringWithoutComma = newCity.slice(0, newCity.indexOf(','));
+        city.cityName = stringWithoutComma;
         this.setState({
-            city
+            city,
         });
     }
 
@@ -326,10 +322,6 @@ class AddReport extends Component {
                 <div className="map-element">
                     <div className="location-components">
                         <div className="location-div">
-                            <p>Destinacija : </p>
-                            {/* <DistanceInput */}
-                            {/* handleCity={this.handleCity} */}
-                            {/* /> */}
                         </div>
                         <div className="distance-div">
                             <p>Distanca : </p>
@@ -338,7 +330,6 @@ class AddReport extends Component {
                                     id="mapDistance"
                                     autoComplete='off'
                                     name="distance"
-                                    onChange={this.handleCity}
                                     value={this.state.city.distance}
                                     style={{ width: 60 }}
                                     required
@@ -347,11 +338,10 @@ class AddReport extends Component {
                             </div>
                         </div>
                     </div>
-                    {/* <MyMap
-                        city={this.state.city.cityName || 'Banja Luka'}
+                    <MyMap
                         handleDistance={this.handleDistance}
-                    /> */}
-                    <MyGoogleMapWithSearch />
+                        handleCity={this.handleCityFromMap}
+                    />
                 </div>
             )
         }
