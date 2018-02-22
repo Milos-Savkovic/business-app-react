@@ -128,7 +128,7 @@ class AddReport extends Component {
     handleDistance = (dis, nm) => {
         this.setState({
             city: {
-                cityName: nm,
+                cityName: nm.slice(0, nm.indexOf(',')),
                 distance: Math.ceil(dis / 1000),
             }
         })
@@ -145,15 +145,6 @@ class AddReport extends Component {
     handleTypeOfTransport = (event, index, value) => this.setState({
         typeOfTransport: value,
     });
-
-    handleCityFromMap = (newCity) => {
-        const city = this.state.city;
-        const stringWithoutComma = newCity.slice(0, newCity.indexOf(','));
-        city.cityName = stringWithoutComma;
-        this.setState({
-            city,
-        });
-    }
 
     xhandler = () => {
         this.props.closeReport();
@@ -340,7 +331,6 @@ class AddReport extends Component {
                     </div>
                     <MyMap
                         handleDistance={this.handleDistance}
-                        handleCity={this.handleCityFromMap}
                     />
                 </div>
             )

@@ -37,19 +37,19 @@ const MyMap = compose(
                                 directions: result,
                                 distance: result['routes'][0]['legs'][0]['distance'].value,
                             });
-                            this.props.handleDistance(this.state.distance, this.props.city);
+                            this.props.handleDistance(this.state.distance, city);
 
                         }
                     });
                 },
                 handleNewCityToParent: (city) => {
-                    this.props.handleCity(city);
                     this.state.onDirectionsService(city);
                 },
             });
         },
     })
 )(props => {
+    console.log(props);
     return (
         <GoogleMap
             defaultZoom={8}
