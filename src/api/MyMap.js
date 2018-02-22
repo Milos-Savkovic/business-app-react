@@ -6,8 +6,9 @@ import {
     GoogleMap,
     Marker,
     withScriptjs,
-    DirectionsRenderer
+    DirectionsRenderer,
 } from "react-google-maps";
+import { SearchBox } from "react-google-maps/lib/components/places/SearchBox";
 
 const MyMap = compose(
     withProps({
@@ -19,56 +20,76 @@ const MyMap = compose(
     withScriptjs,
     withGoogleMap,
     lifecycle({
-        componentWillReceiveProps() {
-            if ((this.props.city !== 'Banja Luka') && (this.props.city !== undefined)) {
-                this.setState({
-                    isBanjaLuka: false,
-                });
+        componentWillMount() {
+            this.setState({
+                center: {
+                    lat: 44.7782748, lng: 17.187756,
+                },
+                onDirectionsService: (city) => {
+                    const DirectionsService = new google.maps.DirectionsService();
+                    DirectionsService.route({
+                        origin: new google.maps.LatLng(44.7782748, 17.187756),
+                        destination: city,
+                        travelMode: google.maps.TravelMode.DRIVING,
+                    }, (result, status) => {
+                        if (status === google.maps.DirectionsStatus.OK) {
+                            this.setState({
+                                directions: result,
+                                distance: result['routes'][0]['legs'][0]['distance'].value,
+                            });
+                            this.props.handleDistance(this.state.distance, city);
 
-                const DirectionsService = new google.maps.DirectionsService();
-                DirectionsService.route({
-                    origin: new google.maps.LatLng(44.7782748, 17.187756),
-                    destination: this.props.city,
-                    travelMode: google.maps.TravelMode.DRIVING,
-                }, (result, status) => {
-                    if (status === google.maps.DirectionsStatus.OK) {
-                        this.setState({
-                            directions: result,
-                            distance: result['routes'][0]['legs'][0]['distance'].value,
-                        });
-                        this.props.handleDistance(this.state.distance, this.props.city);
-                    }
-                });
-            } else if (this.props.city === 'Banja Luka') {
-                this.setState({
-                    isBanjaLuka: true,
-                })
-            }
-        }
+                        }
+                    });
+                },
+                handleNewCityToParent: (city) => {
+                    this.state.onDirectionsService(city);
+                },
+            });
+        },
     })
 )(props => {
-    if (props.isBanjaLuka) {
-        return (
-            <GoogleMap
-                defaultZoom={8}
-                defaultCenter={new google.maps.LatLng(44.7782748, 17.187756)}
+    console.log(props);
+    return (
+        <GoogleMap
+            defaultZoom={8}
+            defaultCenter={props.center}
+        >
+            <SearchBox
+                controlPosition={google.maps.ControlPosition.TOP}
             >
-                <Marker
-                    position={new google.maps.LatLng(44.7782748, 17.187756)}
+                <input
+                    onKeyPress={(e) => {
+                        if (e.which === 13) {
+                            e.preventDefault();
+                            const city = e.target.value;
+                            props.handleNewCityToParent(city);
+                        }
+                    }}
+                    type="text"
+                    placeholder="Search..."
+                    style={{
+                        boxSizing: `border-box`,
+                        border: `1px solid transparent`,
+                        width: `240px`,
+                        height: `32px`,
+                        marginTop: `27px`,
+                        padding: `0 12px`,
+                        borderRadius: `3px`,
+                        boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+                        fontSize: `14px`,
+                        outline: `none`,
+                        textOverflow: `ellipses`,
+                    }}
                 />
-            </GoogleMap>
-        )
-    } else {
-        return (
-            <GoogleMap
-                defaultZoom={8}
-                defaultCenter={new google.maps.LatLng(44.7782748, 17.187756)}
-            >
-                {props.directions && <DirectionsRenderer directions={props.directions} />}
-            </GoogleMap>
-        )
-    }
+            </SearchBox>
+            <Marker
+                position={new google.maps.LatLng(44.7782748, 17.187756)}
+            />
+            {props.directions && <DirectionsRenderer directions={props.directions} />}
+        </GoogleMap>
+    )
 }
-    );
+);
 
 export default MyMap;

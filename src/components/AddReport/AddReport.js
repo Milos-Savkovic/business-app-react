@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
-// import MyMap from '../../api/MyMap';
-import { MyGoogleMapWithSearch } from '../../api/GoogleMap';
-// import DistanceInput from '../../api/DistanceInput';
+import MyMap from '../../api/MyMap';
 import { fireDB } from '../../api/firebaseApp';
 import PickDays from '../PickDays/PickDays';
 import NewCosts from '../NewCosts/NewCosts';
@@ -133,7 +131,7 @@ class AddReport extends Component {
     handleDistance = (dis, nm) => {
         this.setState({
             city: {
-                cityName: nm,
+                cityName: nm.slice(0, nm.indexOf(',')),
                 distance: Math.ceil(dis / 1000),
             }
         })
@@ -150,17 +148,6 @@ class AddReport extends Component {
     handleTypeOfTransport = (event, index, value) => this.setState({
         typeOfTransport: value,
     });
-
-    handleCity = (e) => {
-        e.preventDefault();
-        const city = this.state.city;
-        const name = e.target.name;
-        let value = e.target.value;
-        city[name] = value;
-        this.setState({
-            city
-        });
-    }
 
     xhandler = () => {
         this.props.closeReport();
@@ -331,10 +318,6 @@ class AddReport extends Component {
                 <div className="map-element">
                     <div className="location-components">
                         <div className="location-div">
-                            <p>Destinacija : </p>
-                            {/* <DistanceInput */}
-                            {/* handleCity={this.handleCity} */}
-                            {/* /> */}
                         </div>
                         <div className="distance-div">
                             <p>Distanca : </p>
@@ -343,7 +326,6 @@ class AddReport extends Component {
                                     id="mapDistance"
                                     autoComplete='off'
                                     name="distance"
-                                    onChange={this.handleCity}
                                     value={this.state.city.distance}
                                     style={{ width: 60 }}
                                     required
@@ -352,11 +334,9 @@ class AddReport extends Component {
                             </div>
                         </div>
                     </div>
-                    {/* <MyMap
-                        city={this.state.city.cityName || 'Banja Luka'}
+                    <MyMap
                         handleDistance={this.handleDistance}
-                    /> */}
-                    <MyGoogleMapWithSearch />
+                    />
                 </div>
             )
         }
