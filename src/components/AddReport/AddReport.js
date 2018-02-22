@@ -129,9 +129,10 @@ class AddReport extends Component {
     }
 
     handleDistance = (dis, nm) => {
+        const slicedNameOfCity = (nm.indexOf(',') === -1) ? nm : nm.slice(0, nm.indexOf(','));
         this.setState({
             city: {
-                cityName: nm.slice(0, nm.indexOf(',')),
+                cityName: slicedNameOfCity,
                 distance: Math.ceil(dis / 1000),
             }
         })
@@ -485,7 +486,7 @@ class AddReport extends Component {
                                     color: blue500,
                                 }}
                                 onChange={this.handleChangeMinTime}
-                            />                            
+                            />
                             <TimePicker
                                 format="24hr"
                                 hintText="23:00"
