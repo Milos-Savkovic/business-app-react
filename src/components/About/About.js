@@ -50,8 +50,6 @@ class About extends Component {
     }
 
     render() {
-        // console.log(Object.keys(this.state.user.Reports).map(key => key));
-        // console.log(Object.keys(this.state.user.Reports).map(key => key));
         return (
             <div className="container-about" >
                 {this.about()}

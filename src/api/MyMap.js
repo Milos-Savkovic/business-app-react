@@ -49,7 +49,6 @@ const MyMap = compose(
         },
     })
 )(props => {
-    console.log(props);
     return (
         <GoogleMap
             defaultZoom={8}
