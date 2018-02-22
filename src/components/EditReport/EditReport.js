@@ -198,16 +198,23 @@ class EditReport extends Component {
 
     handleNextTown = (e) => {
         e.preventDefault();
+        const { name, value } = e.target;
         let towns = this.state.towns;
         let changer = towns.map(item => {
             if (item.id === e.target.id) {
-                if (e.target.name === "1") item.from = e.target.value;
-                else if (e.target.name === "2") item.to = e.target.value;
+                if (name === "1") {
+                    // const slicedNameOfCity = (value.indexOf(',') === -1) ? value : value.slice(0, value.indexOf(','));
+                    item.from = value;
+                }
+                else if (name === "2") {
+                    // const slicedNameOfCity = (value.indexOf(',') === -1) ? value : value.slice(0, value.indexOf(','));
+                    item.to = value;
+                }
                 else if (this.state.typeOfTransport === "autobus") {
-                    item.busTicket = e.target.value;
+                    item.busTicket = value;
                     item.distance = '';
                 } else {
-                    item.distance = e.target.value
+                    item.distance = value
                     item.busTicket = '';
                 };
             }

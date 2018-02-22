@@ -1,6 +1,9 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import { compose, withProps, lifecycle } from 'recompose';
+import {
+    compose,
+    withProps,
+} from 'recompose';
 import {
     withScriptjs,
 } from 'react-google-maps';
@@ -12,29 +15,14 @@ const DistanceInput = compose(
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `400px` }} />,
     }),
-    lifecycle({
-        componentWillMount() {
-            this.setState({
-                handleCity: this.props.handleCity,
-                places: [],
-            })
-        },
-    }),
     withScriptjs
-)(props =>
-    <div data-standalone-searchbox="">
+)(props => {
+    console.log(props);
+    return (
         <StandaloneSearchBox >
-            <TextField
-                id="mapSearch"
-                autoComplete='off'
-                placeholder="Search..."
-                name="cityName"
-                onChange={props.handleCity ? props.handleCity : 0}
-                style={{ width: 200 }}
-                required
-            />
+            {props.children}
         </StandaloneSearchBox>
-    </div>
     );
+});
 
 export default DistanceInput;
