@@ -4,6 +4,7 @@ import { fireDB } from '../../api/firebaseApp';
 import PickDaysEdit from './PickDaysEdit/PickDaysEdit';
 import NewCostsEdit from './NewCostsEdit/NewCostsEdit';
 import NewDistanceEdit from './NewDistanceEdit/NewDistanceEdit';
+import {Loader} from '../Loader/Loader';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -360,11 +361,7 @@ class EditReport extends Component {
     render() {
         if (this.state.loading) {
             return (
-                <div className="load-bar">
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                </div>
+                <Loader />
             );
         } else
             return (
