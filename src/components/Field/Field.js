@@ -39,6 +39,7 @@ class Field extends Component {
                         firstName={this.props.fname}
                         lastName={this.props.lname}
                         position={this.props.position}
+                        reports={this.props.reports}
                     />}
                 />
             </div>

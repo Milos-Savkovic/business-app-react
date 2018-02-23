@@ -36,6 +36,7 @@ class AboutUser extends Component {
     render() {
         let report = (this.state.addReport) ?
             <Field
+                reports={this.props.reports}
                 id={this.props.id}
                 path={this.props.path}
                 clicked={this.addReportHandler}

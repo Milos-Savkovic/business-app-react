@@ -19,6 +19,7 @@
     max-width: 1196px;
     display: flex;
     margin: 0 auto;
+    background: rgb(249, 249, 249);
 }
 .margin-on-top {
     margin-top: 1rem;

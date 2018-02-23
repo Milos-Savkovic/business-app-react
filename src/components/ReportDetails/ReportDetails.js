@@ -41,7 +41,7 @@ class ReportDetails extends Component {
   }
 
   giveMeReport = () => {
-    const reps = this.state.user.Reports;
+    const reps = this.props.reports;
     if (reps) {
       const arrayFromUrl = this.props.path.split('/');
       const reportId = arrayFromUrl.pop();
