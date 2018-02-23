@@ -7,6 +7,20 @@ import './newDistanceEdit.css';
 
 class NewDistance extends Component {
 
+    state = {
+        distance: this.props.input.distance || 0,
+        busTicket: this.props.input.busTicket || 0,
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.state.distance !== nextProps.input.distance || this.state.busTicket !== nextProps.input.busTicket) {
+            this.setState({
+                distance: nextProps.input.distance,
+                busTicket: nextProps.input.busTicket,
+            })
+        }
+    }
+
     handleDeleteInputCity = (e) => {
         e.preventDefault();
         this.props.handleDeleteInputCity(this.props.id);
@@ -53,7 +67,7 @@ class NewDistance extends Component {
                     required
                     name="3"
                     id={this.props.id}
-                    defaultValue={this.props.input.distance || this.props.input.busTicket}
+                    value={this.state.busTicket || this.state.distance}
                     style={{
                         width: '80px',
                         marginLeft: '20px',

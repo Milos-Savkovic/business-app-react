@@ -4,7 +4,7 @@ import { fireDB } from '../../api/firebaseApp';
 import PickDaysEdit from './PickDaysEdit/PickDaysEdit';
 import NewCostsEdit from './NewCostsEdit/NewCostsEdit';
 import NewDistanceEdit from './NewDistanceEdit/NewDistanceEdit';
-import {Loader} from '../Loader/Loader';
+import { Loader } from '../Loader/Loader';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -153,9 +153,30 @@ class EditReport extends Component {
         costs: value,
     });
 
-    handleTypeOfTransport = (event, index, value) => this.setState({
-        typeOfTransport: value,
-    });
+    handleTypeOfTransport = (event, index, value) => {
+
+        this.setState({
+            typeOfTransport: value,
+        });
+        this.handleInputForBusOrWehicle(value);
+    }
+    handleInputForBusOrWehicle = (val) => {
+        const oldTowns = this.state.towns;
+        let newTowns = [];
+        if (val === 'autobus' || val === 'lično') {
+            newTowns = oldTowns.map(item => {
+                const town = Object.assign({}, item);
+                town.distance = '';
+                town.busTicket = '';
+                return town;
+            });
+        } else {
+            newTowns = oldTowns;
+        }
+        this.setState({
+            towns: newTowns,
+        });
+    }
 
     xhandler = () => {
         this.props.history.goBack();
@@ -213,7 +234,7 @@ class EditReport extends Component {
                 }
                 else if (this.state.typeOfTransport === "autobus") {
                     item.busTicket = value;
-                    item.distance = '';
+                    // item.distance = '';
                 } else {
                     item.distance = value
                     item.busTicket = '';
