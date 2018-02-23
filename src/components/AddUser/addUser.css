@@ -4,7 +4,7 @@
     display: flex;
     flex: 1;
     align-items: baseline;
-    padding-top:25px;
+    padding-top:100px;
 }
 .contactForm { 
   width: 100%;
@@ -17,6 +17,10 @@
   padding-bottom: 20px;
 }
 .radio-button-sex p{
-  font-size: 16px;
-  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+.radio-button-sex svg {
+  fill: rgb(23, 141, 244)!important;
 }

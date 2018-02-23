@@ -89,57 +89,74 @@ class AddUser extends Component {
         return (
             <div className="add-user-container" >
                 <form className="contactForm" onSubmit={this.setFirebase}>
-                    <TextField
-                        floatingLabelText="Ime"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="firstname"
-                        required
-                    /><br />
-                    <TextField
-                        floatingLabelText="Prezime"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="lastname"
-                        required
-                    /><br />
-                    <TextField
-                        type="email"
-                        floatingLabelText="Email"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="email"
-                        required
-                    /><br />
-                    <TextField
-                        floatingLabelText="Pozicija"
-                        floatingLabelStyle={styles.floatingLabelStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        onChange={this.handleInput}
-                        name="position"
-                        required
-                    /><br />
-                    <div className="radio-button-sex">
-                        <p>Pol : </p>
-                        <RadioButtonGroup
-                            name="sex"
-                            onChange={this.handleSex}
-                            defaultSelected={this.state.sex}
-                        >
-                            <RadioButton
-                                label="muški "
-                                value="muški"
+                    <div className="form-row">
+                        <div className="form-column-size-2">
+                            <p className="form-gender-heading">Osnovne informacije</p>
+                            <TextField
+                                defaultValue={this.state.user.firstname}
+                                floatingLabelText="Ime"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                onChange={this.handleInput}
+                                name="firstname"
+                                required
+                            /><br />
+                            <TextField
+                                defaultValue={this.state.user.lastname}
+                                floatingLabelText="Prezime"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                onChange={this.handleInput}
+                                name="lastname"
+                                required
+                            /><br />
+                            <TextField
+                                defaultValue={this.state.user.email}
+                                type="email"
+                                floatingLabelText="Email"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                onChange={this.handleInput}
+                                name="email"
+                                required
+                            /><br />
+                            <TextField
+                                defaultValue={this.state.user.position}
+                                floatingLabelText="Pozicija"
+                                floatingLabelStyle={styles.floatingLabelStyle}
+                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                onChange={this.handleInput}
+                                name="position"
+                                required
                             />
-                            <RadioButton
-                                label="ženski"
-                                value="ženski"
-                            />
-                        </RadioButtonGroup>
+                        </div>
+                        <div className="form-column-size-2">
+                            <p className="form-gender-heading">Pol</p>
+                            <div className="radio-button-sex radio-buttons-container">
+                                <RadioButtonGroup
+                                    name="sex"
+                                    onChange={this.handleSex}
+                                    defaultSelected={this.state.sex}
+                                >
+                                    <RadioButton
+                                        label="muški "
+                                        value="muški"
+                                    />
+                                    <RadioButton
+                                        label="ženski"
+                                        value="ženski"
+                                    />
+                                </RadioButtonGroup>
+                            </div>
+                            <div className="avatar-container">
+                                <p className="form-gender-heading">Avatar</p>
+                                <img src={this.state.image} className="avatar-img" alt="avatar" />
+                            </div>
+                        </div>
                     </div>
-                    <FlatButton type="submit" label="Dodaj novu osobu" name="submit" style={styles.button} />
+                    <div className="form-row">
+                        <FlatButton type="submit" label="Sačuvaj izmjene" name="submit" style={styles.button} />
+                    </div>
                 </form>
                 <div
                     className="close"
