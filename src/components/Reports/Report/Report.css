@@ -4,10 +4,26 @@
   margin: 0 auto;
   padding-top: 1rem; 
   padding-bottom: 1rem; 
+  box-sizing: border-box;
   padding-left: 1rem; 
   padding-right: 1rem; 
   display: flex;
   justify-content: space-between;
+  position: relative;
+}
+.report-wrapper::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  background: #3cb8ff;
+  height: 0;
+  width: 6px;
+  transition: height .3s;
+}
+.report-wrapper:hover::before {
+  height: 6px;
 }
 .report-wrapper:hover {
   border-bottom: 2px solid #3cb8ff; 
