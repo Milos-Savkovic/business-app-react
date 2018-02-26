@@ -3,12 +3,13 @@ import { Redirect } from 'react-router-dom';
 import { fireDB } from '../../api/firebaseApp'
 import TextField from 'material-ui/TextField';
 import { grey900, blue500, lime50 } from 'material-ui/styles/colors';
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import FlatButton from 'material-ui/FlatButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import './addUser.css';
 
 //Styles for inputs
-const styles = {
+const STYLES = {
     floatingLabelStyle: {
         color: grey900,
     },
@@ -19,8 +20,23 @@ const styles = {
         margin: 12,
         backgroundColor: blue500,
         color: lime50,
+        width: '250px',
     },
+    arrowBack: {
+        color: '#676767',
+    }
 };
+//Sex
+const GENDER = {
+    male: 'muški',
+    female: 'ženski',
+}
+//Sex Images
+const DEFAULT_AVATAR = {
+    male: 'https://firebasestorage.googleapis.com/v0/b/business-trip-app.appspot.com/o/images%2Fdefault_avatars%2Fboy_avatar.png?alt=media&token=7cccfefe-8396-40a1-96fb-7dadf9f5ebb5',
+    female: 'https://firebasestorage.googleapis.com/v0/b/business-trip-app.appspot.com/o/images%2Fdefault_avatars%2Fgirl_avatar.jpg?alt=media&token=939eb8ed-b2d6-4ace-a87d-6e638623047e',
+}
+
 
 class AddUser extends Component {
 
@@ -31,10 +47,10 @@ class AddUser extends Component {
             position: '',
             email: '',
         },
-        sex: 'muški',
+        sex: GENDER.male,
         isAdded: false,
         close: false,
-        image: 'https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png',
+        image: DEFAULT_AVATAR.male,
     }
 
     xhandler = () => {
@@ -58,10 +74,10 @@ class AddUser extends Component {
         this.setState({
             sex: value,
         });
-        (value === "muški") ? this.setState({
-            image: 'https://cdn.dribbble.com/users/112117/screenshots/3792149/avatar-dribbble_1x.png',
+        (value === GENDER.male) ? this.setState({
+            image: DEFAULT_AVATAR.male,
         }) : this.setState({
-            image: 'https://i.pinimg.com/474x/4b/5d/19/4b5d1954fbb5b6bad18f0ac25c4ab3c3--free-avatars-create-your-own-avatar.jpg',
+            image: DEFAULT_AVATAR.female,
         });
     }
 
@@ -88,15 +104,18 @@ class AddUser extends Component {
         if (this.state.isAdded || this.state.close) return <Redirect to="/users" />
         return (
             <div className="add-user-container" >
-                <form className="contactForm" onSubmit={this.setFirebase}>
-                    <div className="form-row">
+                <form className="contactForm padding-down" onSubmit={this.setFirebase}>
+                    <div className="form-row form-row-background-grey shadow-bottom form-row-no-margin">
+                        <h2 className="edit-user-name">Osnovne informacije</h2>
+                    </div>
+                    <div className="padding-down"></div>
+                    <div className="form-row form-row-no-margin">
                         <div className="form-column-size-2">
-                            <p className="form-gender-heading">Osnovne informacije</p>
                             <TextField
                                 defaultValue={this.state.user.firstname}
                                 floatingLabelText="Ime"
-                                floatingLabelStyle={styles.floatingLabelStyle}
-                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                floatingLabelStyle={STYLES.floatingLabelStyle}
+                                floatingLabelFocusStyle={STYLES.floatingLabelFocusStyle}
                                 onChange={this.handleInput}
                                 name="firstname"
                                 required
@@ -104,8 +123,8 @@ class AddUser extends Component {
                             <TextField
                                 defaultValue={this.state.user.lastname}
                                 floatingLabelText="Prezime"
-                                floatingLabelStyle={styles.floatingLabelStyle}
-                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                floatingLabelStyle={STYLES.floatingLabelStyle}
+                                floatingLabelFocusStyle={STYLES.floatingLabelFocusStyle}
                                 onChange={this.handleInput}
                                 name="lastname"
                                 required
@@ -114,8 +133,8 @@ class AddUser extends Component {
                                 defaultValue={this.state.user.email}
                                 type="email"
                                 floatingLabelText="Email"
-                                floatingLabelStyle={styles.floatingLabelStyle}
-                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                floatingLabelStyle={STYLES.floatingLabelStyle}
+                                floatingLabelFocusStyle={STYLES.floatingLabelFocusStyle}
                                 onChange={this.handleInput}
                                 name="email"
                                 required
@@ -123,8 +142,8 @@ class AddUser extends Component {
                             <TextField
                                 defaultValue={this.state.user.position}
                                 floatingLabelText="Pozicija"
-                                floatingLabelStyle={styles.floatingLabelStyle}
-                                floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                                floatingLabelStyle={STYLES.floatingLabelStyle}
+                                floatingLabelFocusStyle={STYLES.floatingLabelFocusStyle}
                                 onChange={this.handleInput}
                                 name="position"
                                 required
@@ -139,12 +158,12 @@ class AddUser extends Component {
                                     defaultSelected={this.state.sex}
                                 >
                                     <RadioButton
-                                        label="muški "
-                                        value="muški"
+                                        label={GENDER.male}
+                                        value={GENDER.male}
                                     />
                                     <RadioButton
-                                        label="ženski"
-                                        value="ženski"
+                                        label={GENDER.female}
+                                        value={GENDER.female}
                                     />
                                 </RadioButtonGroup>
                             </div>
@@ -155,15 +174,17 @@ class AddUser extends Component {
                         </div>
                     </div>
                     <div className="form-row">
-                        <FlatButton type="submit" label="Sačuvaj izmjene" name="submit" style={styles.button} />
+                        <FlatButton type="submit" label="Sačuvaj izmjene" name="submit" style={STYLES.button} />
                     </div>
                 </form>
                 <div
-                    className="close"
+                    className="close close-no-background"
                     onClick={this.xhandler}
                 >
-                    X
-                    </div>
+                    <ArrowBack 
+                        color={STYLES.arrowBack.color}
+                    />
+                </div>
             </div>
         );
     }

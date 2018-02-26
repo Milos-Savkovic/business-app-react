@@ -1,7 +1,7 @@
 .close {
     position: absolute;
-    top: 1rem;
-    right: 2rem;
+    top: 1.25rem;
+    right: 1.25rem;
     font-size: 1rem;
     font-weight:  500;
     background-color: rgb(236, 58, 58);

@@ -1,4 +1,5 @@
 .form-row {
+  box-sizing: border-box;
   display: flex;
   flex-flow: row wrap;
   flex: 1;
@@ -6,10 +7,23 @@
   justify-content: center;
   margin-top: 5rem;
 }
+.form-row-background-grey {
+  background: rgb(249, 249, 249);
+}
+.form-row-background-blue {
+  background: rgb(23, 141, 244);
+  min-height: 3px;
+}
+.form-row-no-margin {
+  margin-top: 0;
+}
+.shadow-bottom {
+  box-shadow: 0 3px 10px #dbdbdb;
+}
 .form-column-size-2 {
   width: 400px;
   padding: 2rem;
-  box-shadow: 0 2px 5px #a5a5a5;
+  /* box-shadow: 0 2px 5px #a5a5a5; */
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -33,4 +47,13 @@
 .avatar-img {
   height: 240px;
   width: 320px;
+  box-shadow: 0 0 3px #004d90;
+}
+.padding-down {
+  padding-bottom: 40px;
+}
+.edit-user-name {
+  color: rgb(23, 141, 244);
+  text-transform: capitalize;
+  font-family: Roboto, sans-serif;
 }
